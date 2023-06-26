@@ -39,3 +39,11 @@
 // }
 
 // export default PokemonTest;
+
+import React from 'react';
+
+function pokemontest() {
+  return <div>hello</div>;
+}
+
+export default pokemontest;
