@@ -1,8 +1,9 @@
 import React from 'react'
+import Pokemontest from './pokemontest'
 
 function dashboard() {
   return (
-    <div>dashboard</div>
+    <div><Pokemontest/></div>
   )
 }
 

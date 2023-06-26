@@ -38,4 +38,5 @@ function PokemonTest() {
   return <div></div>;
 }
 
-// export default PokemonTest;
+export default PokemonTest;
+
