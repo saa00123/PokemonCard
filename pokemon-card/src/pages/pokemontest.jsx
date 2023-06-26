@@ -19,13 +19,13 @@ function PokemonTest() {
     // });
 
     // q 파라미터로 카드 찾기
-    pokemon.card.where({ q: 'name:Charizard' }).then((result) => {
-      console.log('result : ', result);
+    pokemon.card.where({ q: "name:Charizard" }).then((result) => {
+      console.log("result : ", result);
       SetResults(result);
     });
   }, []);
 
-  console.log('results : ', results.data[67].images.small);
+  console.log("results : ", results.data[67].images.small);
   const ImageTest = results.data[67].images.small;
 
   // results.map((result) => {
