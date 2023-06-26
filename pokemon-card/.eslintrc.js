@@ -23,7 +23,7 @@ module.exports = {
     "import/prefer-default-export": 0,
     "global-require": 0,
     "import/no-extraneous-dependencies": 0,
-    "jsx-quotes": ["error", "prefer-single"],
+    "jsx-quotes": ["error", "prefer-double"],
     "react/jsx-props-no-spreading": 0,
     "react/forbid-prop-types": 0,
     "react/jsx-filename-extension": [2, { extensions: [".js", ".jsx"] }],
