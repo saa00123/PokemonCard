@@ -11,8 +11,10 @@ const Image = styled.div`
 
 function PokemonTest() {
   const [results, SetResults] = useState([]);
-  pokemon.configure({ apiKey: process.env.REACT_APP_POKEMON_API_KEY });
+  
   useEffect(() => {
+    pokemon.configure({ apiKey: process.env.REACT_APP_POKEMON_API_KEY });
+
     // id로 카드 찾기
     // pokemon.card.find('base2-1').then((card) => {
     //   console.log(card);
@@ -25,11 +27,11 @@ function PokemonTest() {
     });
   }, []);
 
-  console.log("results : ", results.data[67].images.small);
-  const ImageTest = results.data[67].images.small;
+  console.log('results : ', results);
+  // const ImageTest = results.data;
 
   // results.map((result) => {
-  //   console.log('img result : ', result.data[0].images.small);
+  //   console.log('img result : ', result.data.images.small);
   //   return (
   //     <>
   //       <Image>{result.images.small}</Image>
@@ -37,9 +39,13 @@ function PokemonTest() {
   //   );
   // });
 
+  // for(let i=0; i<50; i++){
+  //   console.log('img : ', results.data[i].images.small)
+  // }
+
   return (
     <div>
-      <Image url={ImageTest} />
+      {/* <Image url={ImageTest} /> */}
     </div>
   );
 }
