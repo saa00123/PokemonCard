@@ -10,6 +10,8 @@ logs
 .env
 
 node_modules
+yarn.lock
+package-lock.json
 bower_components
 
 *.sublime*
