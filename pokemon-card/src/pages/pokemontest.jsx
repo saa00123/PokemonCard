@@ -11,7 +11,7 @@ const Image = styled.div`
 
 function PokemonTest() {
   const [results, SetResults] = useState([]);
-  
+
   useEffect(() => {
     pokemon.configure({ apiKey: process.env.REACT_APP_POKEMON_API_KEY });
 
@@ -27,7 +27,7 @@ function PokemonTest() {
     });
   }, []);
 
-  console.log('results : ', results);
+  console.log("results : ", results);
   // const ImageTest = results.data;
 
   // results.map((result) => {
@@ -43,11 +43,7 @@ function PokemonTest() {
   //   console.log('img : ', results.data[i].images.small)
   // }
 
-  return (
-    <div>
-      {/* <Image url={ImageTest} /> */}
-    </div>
-  );
+  return <div>{/* <Image url={ImageTest} /> */}</div>;
 }
 
 export default PokemonTest;
