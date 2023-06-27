@@ -30,7 +30,7 @@ const SearchButton = styled.button`
   }
 `;
 
-const SearchComponent = ({ onSearch }) => {
+const Search = ({ onSearch }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.searchTerm.value;
@@ -47,4 +47,4 @@ const SearchComponent = ({ onSearch }) => {
   );
 };
 
-export default SearchComponent;
+export default Search;
