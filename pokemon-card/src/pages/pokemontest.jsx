@@ -10,8 +10,8 @@ const Image = styled.div`
 `;
 
 function PokemonTest() {
-  const [results, SetResults] = useState([]);
-
+  const [results, setResults] = useState([]);
+  
   useEffect(() => {
     pokemon.configure({ apiKey: process.env.REACT_APP_POKEMON_API_KEY });
 
@@ -22,10 +22,14 @@ function PokemonTest() {
 
     // q 파라미터로 카드 찾기
     pokemon.card.where({ q: "name:Charizard" }).then((result) => {
-      console.log("result : ", result);
-      SetResults(result);
+      setResults(result);
+      if(result.data){
+        console.log(result.data[0]);
+      }
+      // console.log("result : ", result);
+      // SetResults(result);
     });
-  }, []);
+  }, [setResults, results]);
 
   console.log("results : ", results);
   // const ImageTest = results.data;
@@ -39,9 +43,9 @@ function PokemonTest() {
   //   );
   // });
 
-  // for(let i=0; i<50; i++){
-  //   console.log('img : ', results.data[i].images.small)
-  // }
+  for(let i=0; i<50; i++){
+    console.log('img : ', results.data[i].images.small)
+  }
 
   return <div>{/* <Image url={ImageTest} /> */}</div>;
 }
