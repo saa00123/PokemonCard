@@ -48,3 +48,20 @@ const Search = ({ onSearch }) => {
 };
 
 export default Search;
+
+// 아래는 component 사용법 예시
+
+// const App = () => {
+//     const handleSearch = (searchTerm) => {
+//       console.log('검색어:', searchTerm);
+//       // 검색 기능 구현 로직 작성
+//     };
+
+//     return (
+//       <div>
+//         <SearchComponent onSearch={handleSearch} />
+//       </div>
+//     );
+//   };
+
+//   export default App;
