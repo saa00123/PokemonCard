@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const BackgroundImage = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-position: center;
@@ -55,14 +55,14 @@ const BackgroundImages = ({ color }) => {
       break;
   }
 
-  const imagePath = require(`../images/${imageName}`).default;
+  const imagePath = require(`../../images/${imageName}`);
 
   return <BackgroundImage image={imagePath} />;
 };
 
 export default BackgroundImages;
 
-// 아래는 porps시 사용법 예시
+// 아래는 props시 사용법 예시
 
 // const App = () => {
 //   return (

@@ -3,6 +3,7 @@ import TestBtn from "../components/BaseComponents/Button";
 import TestDropDown from "../components/BaseComponents/DropDown";
 import TestSearch from "../components/BaseComponents/Search";
 import TestSideMenu from "../components/BaseComponents/SideMenu";
+import TestBackgroundImage from "../components/BaseComponents/BackgroundImages";
 
 const options = [
   { id: 1, label: "최신순" },
@@ -39,6 +40,7 @@ function dashboard() {
       <TestDropDown options={options} onSelect={handleOptionSelect} />
       <TestSearch onSearch={handleSearch} />
       <TestSideMenu menuItems={menuItems} onItemClick={handleItemClick} />
+      <TestBackgroundImage color="fire" />
     </div>
   );
 }
