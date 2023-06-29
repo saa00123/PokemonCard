@@ -1,11 +1,11 @@
 import React from "react";
-import Pokemontest from "./pokemontest";
+import TestBtn from "../components/BaseComponents/Button";
 
 function dashboard() {
   return (
-    <div>
-      <Pokemontest />
-    </div>
+    <TestBtn width="200px" height="40px" border="1px solid black">
+      TestBtn
+    </TestBtn>
   );
 }
 

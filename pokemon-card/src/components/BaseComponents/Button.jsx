@@ -1,7 +1,8 @@
+/* eslint-disable react/button-has-type */
 import React from "react";
 
 const Button = ({ children, width, height, border, borderRadius, fontSize, backgroundColor, color, ...rest }) => (
-  <Button
+  <button
     style={{
       width,
       height,
@@ -14,7 +15,7 @@ const Button = ({ children, width, height, border, borderRadius, fontSize, backg
     {...rest}
   >
     {children}
-  </Button>
+  </button>
 );
 
 export default Button;
