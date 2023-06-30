@@ -2,15 +2,19 @@ import React from "react";
 import styled from "styled-components";
 
 const BackgroundImage = styled.div`
-  width: 300px;
-  height: 300px;
+  width: ${(props) => props.width || "300px"};
+  height: ${(props) => props.height || "300px"};
   background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  border: ${(props) => props.border || "none"};
+  border-radius: ${(props) => props.borderRadius || "0"};
+  padding: ${(props) => props.padding || "0"};
+  margin: ${(props) => props.margin || "0"};
 `;
 
-const BackgroundImages = ({ color }) => {
+const BackgroundImages = ({ color, ...rest }) => {
   let imageName;
 
   switch (color.toLowerCase()) {
@@ -57,7 +61,7 @@ const BackgroundImages = ({ color }) => {
 
   const imagePath = require(`../../images/${imageName}`);
 
-  return <BackgroundImage image={imagePath} />;
+  return <BackgroundImage image={imagePath} {...rest} />;
 };
 
 export default BackgroundImages;
