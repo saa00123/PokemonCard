@@ -26,7 +26,7 @@ const BasicDiv = (props) => {
       fontSize={fontSize}
       fontWeight={fontWeight}
     >
-      {/* Content of the div */}
+      BasicDiv
     </DivContainer>
   );
 };
