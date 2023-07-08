@@ -3,17 +3,11 @@ import React from "react";
 const Color = ({ color }) => {
   const colors = {
     Default: "#FFFFFF",
-    Colorless: "#F6F6F6",
-    Water: "#0097FF",
-    Fire: "#FF0000",
-    Grass: "#75F84B",
-    Dragon: "#FFBE18",
-    Fighting: "#AB1D1D",
-    Psychic: "#A77BC1",
-    Darkness: "#5F5D5D",
-    Lightning: "#F8FB6E",
-    Metal: "#D9D9D9",
-    Fairy: "#FE85D5",
+    Red: "#BE0020",
+    Gray1: "#969696",
+    Gray2: "#595959",
+    Gray3: "#D9D9D9",
+    Black: "#000000",
   };
 
   const colorValue = colors[color] || colors.Default;
