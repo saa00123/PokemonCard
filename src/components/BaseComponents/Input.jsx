@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Color from "./Color";
 
 const StyledInput = styled.input`
   color: ${(props) => props.color};
@@ -8,9 +9,11 @@ const StyledInput = styled.input`
   font-weight: ${(props) => props.fontWeight};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderRadius};
+  box-sizing: border-box;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
+  outline: none;
   padding: ${(props) => props.padding};
 
   &:focus {
@@ -20,7 +23,11 @@ const StyledInput = styled.input`
 `;
 
 const Input = (props) => {
-  const { color, fontSize, fontWeight, border, borderRadius, width, height, margin, padding, ...rest } = props;
+  const { color, fontSize, fontWeight, border, borderRadius, width, height, margin, padding, placeholder, ...rest } =
+    props;
+
+  const Red = Color({ color: "Red" });
+  const White = Color({ color: "Default" });
 
   return (
     <StyledInput
@@ -33,6 +40,9 @@ const Input = (props) => {
       height={height}
       margin={margin}
       padding={padding}
+      placeholder={placeholder}
+      hoverBorder="2px solid"
+      hoverBorderColor={Red}
       {...rest}
     />
   );

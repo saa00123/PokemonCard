@@ -3,6 +3,7 @@ import TestBtn from "../../components/BaseComponents/Button";
 import TestDropDown from "../../components/BaseComponents/DropDown";
 import TestSearch from "../../components/BaseComponents/Search";
 import TestSideMenu from "../../components/BaseComponents/SideMenu";
+import TestInput from "../../components/BaseComponents/Input";
 
 const options = [
   { id: 1, label: "최신순" },
@@ -37,8 +38,15 @@ const Home = () => {
         입찰하기
       </TestBtn>
       <TestDropDown options={options} onSelect={handleOptionSelect} />
-      <TestSearch onSearch={handleSearch} borderRadius="0.937rem" />
+      <TestSearch onSearch={handleSearch} />
       <TestSideMenu menuItems={menuItems} onItemClick={handleItemClick} />
+      <TestInput
+        fontSize="1.625rem"
+        width="21.875rem"
+        height="3.75rem"
+        borderRadius="0.937rem"
+        placeholder="비밀번호를 입력하시오"
+      />
     </div>
   );
 };
