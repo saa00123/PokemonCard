@@ -1,16 +1,8 @@
 import React from "react";
-<<<<<<< Updated upstream:src/pages/main/Home.jsx
 import TestBtn from "../../components/BaseComponents/Button";
 import TestDropDown from "../../components/BaseComponents/DropDown";
 import TestSearch from "../../components/BaseComponents/Search";
 import TestSideMenu from "../../components/BaseComponents/SideMenu";
-=======
-import TestBtn from "../components/BaseComponents/Button";
-import TestDropDown from "../components/BaseComponents/DropDown";
-import TestSearch from "../components/BaseComponents/Search";
-import TestSideMenu from "../components/BaseComponents/SideMenu";
-import Color from "../components/BaseComponents/Color";
->>>>>>> Stashed changes:PokemonCardAuction/src/pages/Home.jsx
 
 const options = [
   { id: 1, label: "최신순" },
