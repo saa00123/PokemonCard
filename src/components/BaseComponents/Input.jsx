@@ -12,6 +12,11 @@ const StyledInput = styled.input`
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
+
+  &:focus {
+    border: ${(props) => props.hoverBorder};
+    border-color: ${(props) => props.hoverBorderColor};
+  }
 `;
 
 const Input = (props) => {
