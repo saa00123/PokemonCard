@@ -1,8 +1,8 @@
 import React from "react";
-import TestBtn from "../components/BaseComponents/Button";
-import TestDropDown from "../components/BaseComponents/DropDown";
-import TestSearch from "../components/BaseComponents/Search";
-import TestSideMenu from "../components/BaseComponents/SideMenu";
+import TestBtn from "../../components/BaseComponents/Button";
+import TestDropDown from "../../components/BaseComponents/DropDown";
+import TestSearch from "../../components/BaseComponents/Search";
+import TestSideMenu from "../../components/BaseComponents/SideMenu";
 
 const options = [
   { id: 1, label: "최신순" },
