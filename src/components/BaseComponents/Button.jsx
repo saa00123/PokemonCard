@@ -1,22 +1,52 @@
 /* eslint-disable react/button-has-type */
 import React from "react";
+import styled from "styled-components";
+import Color from "./Color";
 
-const Button = ({ children, width, height, border, borderRadius, fontSize, backgroundColor, color, ...rest }) => (
-  <button
-    style={{
-      width,
-      height,
-      border,
-      borderRadius,
-      fontSize,
-      backgroundColor,
-      color,
-    }}
-    {...rest}
-  >
-    {children}
-  </button>
-);
+const ButtonStyle = styled.button`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  border: ${(props) => props.border};
+  border-radius: ${(props) => props.borderRadius};
+  box-sizing: border-box;
+  font-size: ${(props) => props.fontSize};
+  font-weight: bold;
+  background-color: ${(props) => props.backgroundColor};
+  color: ${(props) => props.color};
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${(props) => props.hoverBackgroundColor};
+    color: ${(props) => props.hoverColor};
+    border: ${(props) => props.hoverBorder};
+    border-color: ${(props) => props.hoverBorderColor};
+  }
+`;
+
+const Button = ({ children, width, height, border, borderRadius, fontSize, ...rest }) => {
+  const Red = Color({ color: "Red" });
+  const White = Color({ color: "Default" });
+
+  return (
+    <ButtonStyle
+      width={width}
+      height={height}
+      border={border}
+      borderRadius={borderRadius}
+      fontSize={fontSize}
+      fontWeight="bold"
+      backgroundColor={Red}
+      color={White}
+      hoverBackgroundColor={White}
+      hoverColor={Red}
+      hoverBorder="2px solid"
+      hoverBorderColor={Red}
+      {...rest}
+    >
+      {children}
+    </ButtonStyle>
+  );
+};
 
 export default Button;
 

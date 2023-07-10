@@ -1,8 +1,9 @@
 import React from "react";
-import TestBtn from "../../components/BaseComponents/Button";
-import TestDropDown from "../../components/BaseComponents/DropDown";
-import TestSearch from "../../components/BaseComponents/Search";
-import TestSideMenu from "../../components/BaseComponents/SideMenu";
+import TestBtn from "../components/BaseComponents/Button";
+import TestDropDown from "../components/BaseComponents/DropDown";
+import TestSearch from "../components/BaseComponents/Search";
+import TestSideMenu from "../components/BaseComponents/SideMenu";
+import Color from "../components/BaseComponents/Color";
 
 const options = [
   { id: 1, label: "최신순" },
@@ -19,7 +20,7 @@ const menuItems = [
   { id: 4, name: "레드" },
 ];
 
-function dashboard() {
+const Home = () => {
   const handleOptionSelect = (option) => {
     console.log("옵션 선택: ", option);
   };
@@ -33,14 +34,14 @@ function dashboard() {
   };
   return (
     <div>
-      <TestBtn width="200px" height="40px" border="1px solid black">
-        TestBtn
+      <TestBtn width="12.5rem" height="4.063rem" border="none" borderRadius="0.937rem" fontSize="1.5rem">
+        입찰하기
       </TestBtn>
       <TestDropDown options={options} onSelect={handleOptionSelect} />
-      <TestSearch onSearch={handleSearch} />
+      <TestSearch onSearch={handleSearch} borderRadius="0.937rem" />
       <TestSideMenu menuItems={menuItems} onItemClick={handleItemClick} />
     </div>
   );
-}
+};
 
-export default dashboard;
+export default Home;
