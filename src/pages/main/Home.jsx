@@ -1,4 +1,6 @@
 import React from "react";
+import { Provider } from "react-redux";
+import { store } from "../../redux/store";
 import TestBtn from "../../components/BaseComponents/Button";
 import TestDropDown from "../../components/BaseComponents/DropDown";
 import TestSearch from "../../components/BaseComponents/Search";
@@ -33,7 +35,7 @@ const Home = () => {
     console.log("메뉴 아이템 클릭: ", itemId);
   };
   return (
-    <div>
+    <Provider store={store}>
       <TestBtn width="12.5rem" height="4.063rem" border="none" borderRadius="0.937rem" fontSize="1.5rem">
         입찰하기
       </TestBtn>
@@ -47,7 +49,7 @@ const Home = () => {
         borderRadius="0.937rem"
         placeholder="비밀번호를 입력하시오"
       />
-    </div>
+    </Provider>
   );
 };
 
