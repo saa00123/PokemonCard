@@ -9,10 +9,11 @@ import TestInput from "../../components/BaseComponents/Input";
 
 const options = [
   { id: 1, label: "최신순" },
-  { id: 2, label: "가격낮은순" },
-  { id: 3, label: "가격높은순" },
-  { id: 4, label: "등급높은순" },
-  { id: 5, label: "등급낮은순" },
+  { id: 2, label: "마감순" },
+  { id: 3, label: "높은 가격순" },
+  { id: 4, label: "낮은 가격순" },
+  { id: 5, label: "높은 등급순" },
+  { id: 6, label: "낮은 등급순" },
 ];
 
 const menuItems = [
@@ -40,7 +41,7 @@ const Home = () => {
         입찰하기
       </TestBtn>
       <TestDropDown options={options} onSelect={handleOptionSelect} />
-      <TestSearch onSearch={handleSearch} />
+      {/* <TestSearch onSearch={handleSearch} />
       <TestSideMenu menuItems={menuItems} onItemClick={handleItemClick} />
       <TestInput
         fontSize="1.625rem"
@@ -48,7 +49,7 @@ const Home = () => {
         height="3.75rem"
         borderRadius="0.937rem"
         placeholder="비밀번호를 입력하시오"
-      />
+      /> */}
     </Provider>
   );
 };

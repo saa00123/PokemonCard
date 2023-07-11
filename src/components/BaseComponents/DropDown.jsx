@@ -1,57 +1,102 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Color from "./Color";
 
 const DropdownContainer = styled.div`
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 11.25rem;
+  height: 3.125rem;
+  border-radius: 15px;
+  border: solid 2px ${Color({ color: "Gray2" })};
+  background-color: ${Color({ color: "Default" })};
 `;
 
 const DropdownButton = styled.button`
-  background-color: #f1f1f1;
-  color: #333;
-  padding: 10px;
-  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 8.313rem;
+  height: 3.125rem;
+  font-family: Inter;
+  font-size: 1.25rem;
+  text-align: center;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 `;
 
 const DropdownMenu = styled.ul`
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #f1f1f1;
   list-style-type: none;
   padding: 0;
   margin: 0;
-  border: 1px solid #ddd;
+  width: 11.25rem;
+  height: 3.125rem;
+  margin-top: 0.313rem;
+  background-color: #fff;
 `;
 
 const DropdownMenuItem = styled.li`
   padding: 10px;
   cursor: pointer;
+  font-family: Inter;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #595959;
+  border: solid 1px #b8b8b8;
 
   &:hover {
     background-color: #dddddd;
   }
 `;
 
+const Polygon = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 0.8125rem solid transparent;
+  border-right: 0.8125rem solid transparent;
+  border-bottom: 1.313rem solid ${Color({ color: "Red" })};
+  transform: rotate(180deg);
+`;
+
 const Dropdown = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
 
   const handleOptionClick = (option) => {
     onSelect(option);
+    setSelectedOption(option);
     setIsOpen(false);
   };
+  useEffect(() => {
+    if (selectedOption) {
+      setShouldShowInitialOption(false);
+    }
+  }, [selectedOption]);
 
   return (
     <DropdownContainer>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>분류</DropdownButton>
+      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+        {selectedOption ? selectedOption.label : options[0].label}
+        <Polygon />
+      </DropdownButton>
       {isOpen && (
         <DropdownMenu>
-          {options.map((option) => (
-            <DropdownMenuItem key={option.id} onClick={() => handleOptionClick(option)}>
-              {option.label}
-            </DropdownMenuItem>
-          ))}
+          {options.map(
+            (option) =>
+              option !== selectedOption &&
+              (!shouldShowInitialOption || option !== options[0]) && (
+                <DropdownMenuItem key={option.id} onClick={() => handleOptionClick(option)}>
+                  {option.label}
+                </DropdownMenuItem>
+              ),
+          )}
         </DropdownMenu>
       )}
     </DropdownContainer>
@@ -59,27 +104,3 @@ const Dropdown = ({ options, onSelect }) => {
 };
 
 export default Dropdown;
-
-// 아래는 component 사용법 예시
-
-// const App = () => {
-//     const options = [
-//       { id: 1, label: '최신순' },
-//       { id: 2, label: '가격낮은순' },
-//       { id: 3, label: '가격높은순' },
-//       // 추가적인 옵션들...
-//     ];
-
-//     const handleOptionSelect = (option) => {
-//       console.log('옵션 선택:', option);
-//       // 선택된 옵션에 따른 동작 구현 로직 작성
-//     };
-
-//     return (
-//       <div>
-//         <Dropdown options={options} onSelect={handleOptionSelect} />
-//       </div>
-//     );
-//   };
-
-//   export default App;
