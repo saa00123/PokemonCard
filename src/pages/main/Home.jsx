@@ -41,7 +41,7 @@ const Home = () => {
         입찰하기
       </TestBtn>
       <TestDropDown options={options} onSelect={handleOptionSelect} />
-      {/* <TestSearch onSearch={handleSearch} />
+      <TestSearch onSearch={handleSearch} />
       <TestSideMenu menuItems={menuItems} onItemClick={handleItemClick} />
       <TestInput
         fontSize="1.625rem"
@@ -49,7 +49,7 @@ const Home = () => {
         height="3.75rem"
         borderRadius="0.937rem"
         placeholder="비밀번호를 입력하시오"
-      /> */}
+      />
     </Provider>
   );
 };
