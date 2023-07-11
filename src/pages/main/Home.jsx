@@ -9,10 +9,11 @@ import TestInput from "../../components/BaseComponents/Input";
 
 const options = [
   { id: 1, label: "최신순" },
-  { id: 2, label: "가격낮은순" },
-  { id: 3, label: "가격높은순" },
-  { id: 4, label: "등급높은순" },
-  { id: 5, label: "등급낮은순" },
+  { id: 2, label: "마감순" },
+  { id: 3, label: "높은 가격순" },
+  { id: 4, label: "낮은 가격순" },
+  { id: 5, label: "높은 등급순" },
+  { id: 6, label: "낮은 등급순" },
 ];
 
 const menuItems = [

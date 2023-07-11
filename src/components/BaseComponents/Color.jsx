@@ -1,5 +1,3 @@
-import React from "react";
-
 const Color = ({ color }) => {
   const colors = {
     Default: "#FFFFFF",
