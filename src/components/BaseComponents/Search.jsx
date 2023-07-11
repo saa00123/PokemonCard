@@ -1,36 +1,54 @@
 import React from "react";
 import styled from "styled-components";
+import Color from "./Color";
+import SearchImage from "../images/SearchImage.png";
+import HoverSearchImage from "../images/HoverSearchImage.png";
 
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  /* justify-content: center; */
+  width: 55rem;
+  height: 4.375rem;
+  border: 1px solid black;
 `;
 
 const SearchInput = styled.input`
-  width: 200px;
-  height: 30px;
-  padding: 5px;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  font-size: 14px;
+  box-sizing: border-box;
+  width: 50rem;
+  height: 4.375rem;
+  padding-left: 2rem;
+  border: 4px solid;
+  border-color: ${(props) => props.borderColor};
+  border-radius: 10rem;
+  font-size: 1.75rem;
 `;
 
 const SearchButton = styled.button`
-  margin-left: 10px;
-  padding: 5px 10px;
-  background-color: #007bff;
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  background-color: ${(props) => props.buttonBackgroundColor};
+  background-image: url(${SearchImage});
+  background-repeat: no-repeat;
+  background-size: 4.375rem;
   color: #ffffff;
   border: none;
-  border-radius: 4px;
+  border-radius: 4rem;
+  transition: background-image 0.2s ease;
+  left: 5rem;
   cursor: pointer;
-  font-size: 14px;
+  /* font-size: 14px; */
 
   &:hover {
-    background-color: #0056b3;
+    /* background-color: #0056b3; */
+    background-image: url(${HoverSearchImage});
   }
 `;
 
 const Search = ({ onSearch }) => {
+  const Red = Color({ color: "Red" });
+  const White = Color({ color: "Default" });
   const handleSearch = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.searchTerm.value;
@@ -40,8 +58,8 @@ const Search = ({ onSearch }) => {
   return (
     <SearchContainer>
       <form onSubmit={handleSearch}>
-        <SearchInput type="text" name="searchTerm" placeholder="검색어 입력" />
-        <SearchButton type="submit">검색</SearchButton>
+        <SearchInput type="text" name="searchTerm" placeholder="Search" borderColor={Red} />
+        <SearchButton type="submit" buttonBackgroundColor={White} />
       </form>
     </SearchContainer>
   );
