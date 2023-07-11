@@ -1,16 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import Color from "./Color";
-import SearchImage from "../images/SearchImage.png";
-import HoverSearchImage from "../images/HoverSearchImage.png";
+import SearchImage from "../../images/SearchImage.png";
+import HoverSearchImage from "../../images/HoverSearchImage.png";
 
 const SearchContainer = styled.div`
-  display: flex;
   align-items: center;
-  /* justify-content: center; */
-  width: 55rem;
+  width: 50rem;
   height: 4.375rem;
-  border: 1px solid black;
+  display: flex;
+`;
+
+const SearchInputContainer = styled.div`
+  width: 50rem;
+  height: 4.375rem;
 `;
 
 const SearchInput = styled.input`
@@ -22,26 +25,30 @@ const SearchInput = styled.input`
   border-color: ${(props) => props.borderColor};
   border-radius: 10rem;
   font-size: 1.75rem;
+  outline: none;
+`;
+
+const SearchButtonContainer = styled.div`
+  width: 4.375rem;
+  height: 4.375rem;
+  margin-left: 46rem;
+  margin-top: -4rem;
 `;
 
 const SearchButton = styled.button`
-  position: absolute;
-  width: 4rem;
-  height: 4rem;
+  width: 3.5rem;
+  height: 3.5rem;
   background-color: ${(props) => props.buttonBackgroundColor};
   background-image: url(${SearchImage});
   background-repeat: no-repeat;
   background-size: 4.375rem;
-  color: #ffffff;
+  background-position: center;
   border: none;
   border-radius: 4rem;
   transition: background-image 0.2s ease;
-  left: 5rem;
   cursor: pointer;
-  /* font-size: 14px; */
 
   &:hover {
-    /* background-color: #0056b3; */
     background-image: url(${HoverSearchImage});
   }
 `;
@@ -49,6 +56,7 @@ const SearchButton = styled.button`
 const Search = ({ onSearch }) => {
   const Red = Color({ color: "Red" });
   const White = Color({ color: "Default" });
+
   const handleSearch = (e) => {
     e.preventDefault();
     const searchTerm = e.target.elements.searchTerm.value;
@@ -58,8 +66,12 @@ const Search = ({ onSearch }) => {
   return (
     <SearchContainer>
       <form onSubmit={handleSearch}>
-        <SearchInput type="text" name="searchTerm" placeholder="Search" borderColor={Red} />
-        <SearchButton type="submit" buttonBackgroundColor={White} />
+        <SearchInputContainer>
+          <SearchInput type="text" name="searchTerm" spellCheck="false" placeholder="Search" borderColor={Red} />
+        </SearchInputContainer>
+        <SearchButtonContainer>
+          <SearchButton type="submit" buttonBackgroundColor={White} />
+        </SearchButtonContainer>
       </form>
     </SearchContainer>
   );
