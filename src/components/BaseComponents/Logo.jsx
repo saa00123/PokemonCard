@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import LogoImage from "../../images/Logo.png";
 
 const LogoContainer = styled.div`
   display: flex;
@@ -7,11 +8,17 @@ const LogoContainer = styled.div`
   align-items: center;
   width: 9.375rem;
   height: 6.25rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
 `;
 
-const Logo = () => <LogoContainer>PGA</LogoContainer>;
+const Image = styled.img`
+  width: 100%;
+  height: 4.375rem;
+`;
+
+const Logo = () => (
+  <LogoContainer>
+    <Image src={LogoImage} alt="LogoImage" />
+  </LogoContainer>
+);
 
 export default Logo;

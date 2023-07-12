@@ -6,6 +6,7 @@ import TestDropDown from "../../components/BaseComponents/DropDown";
 import TestSearch from "../../components/BaseComponents/Search";
 import TestSideMenu from "../../components/BaseComponents/SideMenu";
 import TestInput from "../../components/BaseComponents/Input";
+import TestPreview from "../../components/ImageComponents/SmallCardPreview";
 
 const options = [
   { id: 1, label: "최신순" },
@@ -50,6 +51,7 @@ const Home = () => {
         borderRadius="0.937rem"
         placeholder="비밀번호를 입력하시오"
       />
+      <TestPreview />
     </Provider>
   );
 };
