@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/BaseComponents/Header";
 
 import Home from "./pages/main/Home";
 import CardRegistration from "./pages/main/CardRegistration";
@@ -20,13 +21,61 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Home />
+            </>
+          }
+        />
         {/** Main */}
-        <Route path="/CardRegistration" element={<CardRegistration />} />
-        <Route path="/Auction" element={<Auction />} />
-        <Route path="/FinishAuction" element={<FinishAuction />} />
-        <Route path="/FinishAuctionDetail" element={<FinishAuctionDetail />} />
-        <Route path="/MyPage" element={<MyPage />} />
+        <Route
+          path="/CardRegistration"
+          element={
+            <>
+              <Header />
+              <CardRegistration />
+            </>
+          }
+        />
+        <Route
+          path="/Auction"
+          element={
+            <>
+              <Header />
+              <Auction />
+            </>
+          }
+        />
+        <Route
+          path="/FinishAuction"
+          element={
+            <>
+              <Header />
+              <FinishAuction />
+            </>
+          }
+        />
+        <Route
+          path="/FinishAuctionDetail"
+          element={
+            <>
+              <Header />
+              <FinishAuctionDetail />
+            </>
+          }
+        />
+        <Route
+          path="/MyPage"
+          element={
+            <>
+              <Header />
+              <MyPage />
+            </>
+          }
+        />
 
         {/** Login */}
         <Route path="/Login" element={<Login />} />
