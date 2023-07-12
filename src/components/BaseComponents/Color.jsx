@@ -5,6 +5,7 @@ const Color = ({ color }) => {
     Gray1: "#969696",
     Gray2: "#595959",
     Gray3: "#D9D9D9",
+    Gray4: "#b8b8b8",
     Black: "#000000",
   };
 
