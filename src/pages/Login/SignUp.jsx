@@ -11,7 +11,7 @@ function SignUp() {
 
   return (
     <Div
-      className="LoginContainer"
+      className="SignUpContainer"
       display="flex"
       direction="column"
       justify="start"
