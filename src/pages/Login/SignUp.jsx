@@ -224,6 +224,7 @@ function SignUp() {
           </Div>
           <Button
             className="SighUpBtn"
+            type="submit"
             width="12.5rem"
             height="4.375rem"
             borderRadius="1rem"

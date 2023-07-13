@@ -98,6 +98,7 @@ function Login() {
                 </Button>
                 <Button
                   className="SignUpBtn"
+                  type="submit"
                   color={Gray2}
                   backgroundColor={Default}
                   border="none"
