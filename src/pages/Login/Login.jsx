@@ -10,7 +10,7 @@ function Login() {
   const navigate = useNavigate();
 
   const Default = Color({ color: "Default" });
-  const Gray = Color({ color: "Gray2" });
+  const Gray2 = Color({ color: "Gray2" });
 
   return (
     <Div
@@ -84,7 +84,7 @@ function Login() {
               >
                 <Button
                   className="SignUpBtn"
-                  color={Gray}
+                  color={Gray2}
                   backgroundColor={Default}
                   border="none"
                   fontSize="1rem"
@@ -98,7 +98,7 @@ function Login() {
                 </Button>
                 <Button
                   className="SignUpBtn"
-                  color={Gray}
+                  color={Gray2}
                   backgroundColor={Default}
                   border="none"
                   fontSize="1rem"
@@ -121,6 +121,7 @@ function Login() {
           fontSize="1.25rem"
           fontWight="bold"
           borderRadius="1rem"
+          border="none"
         >
           로그인
         </Button>
