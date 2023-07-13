@@ -68,6 +68,7 @@ function EmailAuth() {
           fontWeight="bold"
           borderRadius="1rem"
           border="none"
+          onClick={() => navigate("/")}
         >
           홈으로 이동
         </Button>
