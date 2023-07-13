@@ -69,7 +69,7 @@ function SignUp() {
               display="flex"
               items="center"
               width="11.001rem"
-              height="5.25rem"
+              height="3.75rem"
               text="left"
               fontSize="1.625rem"
             >
@@ -103,7 +103,7 @@ function SignUp() {
               display="flex"
               items="center"
               width="11.001rem"
-              height="5.25rem"
+              height="3.75rem"
               text="left"
               fontSize="1.625rem"
             >
@@ -137,7 +137,7 @@ function SignUp() {
               display="flex"
               items="center"
               width="11.001rem"
-              height="5.25rem"
+              height="3.75rem"
               text="left"
               fontSize="1.625rem"
             >
@@ -162,7 +162,7 @@ function SignUp() {
                 color={Gray1}
                 fontSize="0.75rem"
               >
-                사용 불가능한 비밀번호입니다.
+                8자 이상, 숫자, 영어, 특수분자 포함
               </Div>
             </Div>
           </Div>
@@ -172,7 +172,7 @@ function SignUp() {
               display="flex"
               items="center"
               width="11.001rem"
-              height="5.25rem"
+              height="3.75rem"
               text="left"
               fontSize="1.625rem"
             >
