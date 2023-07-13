@@ -88,6 +88,10 @@ function Login() {
                   backgroundColor={Default}
                   border="none"
                   fontSize="1rem"
+                  hoverBackgroundColor="none"
+                  hoverColor="none"
+                  hoverBorder="none"
+                  hoverBorderColor="none"
                   onClick={() => navigate("/SignUp")}
                 >
                   회원가입
@@ -98,6 +102,10 @@ function Login() {
                   backgroundColor={Default}
                   border="none"
                   fontSize="1rem"
+                  hoverBackgroundColor="none"
+                  hoverColor="none"
+                  hoverBorder="none"
+                  hoverBorderColor="none"
                   onClick={() => navigate("/FindIdPassword")}
                 >
                   아이디/비밀번호 찾기
