@@ -16,6 +16,7 @@ const DivContainer = styled.div`
   background: ${(props) => props.background};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
+  text-align: ${(props) => props.text};
 `;
 
 const BasicDiv = (props) => {
@@ -34,6 +35,7 @@ const BasicDiv = (props) => {
     background,
     fontSize,
     fontWeight,
+    text,
     children,
   } = props;
 
@@ -53,6 +55,7 @@ const BasicDiv = (props) => {
       background={background}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      text={text}
     >
       {children}
     </DivContainer>
