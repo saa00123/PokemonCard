@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const DivContainer = styled.div`
+  display: ${(props) => props.display};
+  flex-direction: ${(props) => props.direction};
+  justify-content: ${(props) => props.justify};
+  align-items: ${(props) => props.items};
+  margin: ${(props) => props.margin};
+  padding: ${(props) => props.padding};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border: ${(props) => props.border};
@@ -13,10 +19,32 @@ const DivContainer = styled.div`
 `;
 
 const BasicDiv = (props) => {
-  const { width, height, border, borderRadius, color, background, fontSize, fontWeight } = props;
+  const {
+    display,
+    direction,
+    justify,
+    items,
+    margin,
+    padding,
+    width,
+    height,
+    border,
+    borderRadius,
+    color,
+    background,
+    fontSize,
+    fontWeight,
+    children,
+  } = props;
 
   return (
     <DivContainer
+      display={display}
+      direction={direction}
+      justify={justify}
+      items={items}
+      margin={margin}
+      padding={padding}
       width={width}
       height={height}
       border={border}
@@ -26,7 +54,7 @@ const BasicDiv = (props) => {
       fontSize={fontSize}
       fontWeight={fontWeight}
     >
-      BasicDiv
+      {children}
     </DivContainer>
   );
 };
