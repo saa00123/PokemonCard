@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 import Header from "./components/BaseComponents/Header";
 
 import Home from "./pages/main/Home";
@@ -20,72 +22,74 @@ import ResetPassword from "./pages/Login/ResetPassword";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Home />
-            </>
-          }
-        />
-        {/** Main */}
-        <Route
-          path="/CardRegistration"
-          element={
-            <>
-              <Header />
-              <CardRegistration />
-            </>
-          }
-        />
-        <Route
-          path="/Auction"
-          element={
-            <>
-              <Header />
-              <Auction />
-            </>
-          }
-        />
-        <Route
-          path="/FinishAuction"
-          element={
-            <>
-              <Header />
-              <FinishAuction />
-            </>
-          }
-        />
-        <Route
-          path="/FinishAuctionDetail"
-          element={
-            <>
-              <Header />
-              <FinishAuctionDetail />
-            </>
-          }
-        />
-        <Route
-          path="/MyPage"
-          element={
-            <>
-              <Header />
-              <MyPage />
-            </>
-          }
-        />
+      <Provider store={store}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Home />
+              </>
+            }
+          />
+          {/** Main */}
+          <Route
+            path="/CardRegistration"
+            element={
+              <>
+                <Header />
+                <CardRegistration />
+              </>
+            }
+          />
+          <Route
+            path="/Auction"
+            element={
+              <>
+                <Header />
+                <Auction />
+              </>
+            }
+          />
+          <Route
+            path="/FinishAuction"
+            element={
+              <>
+                <Header />
+                <FinishAuction />
+              </>
+            }
+          />
+          <Route
+            path="/FinishAuctionDetail"
+            element={
+              <>
+                <Header />
+                <FinishAuctionDetail />
+              </>
+            }
+          />
+          <Route
+            path="/MyPage"
+            element={
+              <>
+                <Header />
+                <MyPage />
+              </>
+            }
+          />
 
-        {/** Login */}
-        <Route path="/Login" element={<Login />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/SignUpComplete" element={<SignUpComplete />} />
-        <Route path="/EmailAuth" element={<EmailAuth />} />
-        <Route path="/FindIdPassword" element={<FindIdPassword />} />
-        <Route path="/AfterFindId" element={<AfterFindId />} />
-        <Route path="/ResetPassword" element={<ResetPassword />} />
-      </Routes>
+          {/** Login */}
+          <Route path="/Login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/SignUpComplete" element={<SignUpComplete />} />
+          <Route path="/EmailAuth" element={<EmailAuth />} />
+          <Route path="/FindIdPassword" element={<FindIdPassword />} />
+          <Route path="/AfterFindId" element={<AfterFindId />} />
+          <Route path="/ResetPassword" element={<ResetPassword />} />
+        </Routes>
+      </Provider>
     </BrowserRouter>
   );
 }

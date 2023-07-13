@@ -15,6 +15,7 @@ const ButtonStyle = styled.button`
   font-weight: bold;
   background-color: ${(props) => props.backgroundColor};
   color: ${(props) => props.color};
+  cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
