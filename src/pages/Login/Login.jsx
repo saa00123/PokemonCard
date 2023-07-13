@@ -27,7 +27,6 @@ function Login() {
         className="LoginInputContainer"
         display="flex"
         justify="center"
-        items="center"
         margin="5.813rem 0 0 0"
         width="37.625rem"
         height="10.188rem"
