@@ -17,6 +17,7 @@ const Image = styled.img`
   width: 1.5rem;
   height: 1.5rem;
   background-color: ${Default};
+  opacity: 0.5;
 `;
 
 const ListButton = () => (
