@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Color from "../BaseComponents/Color";
 import Button from "../BaseComponents/Button";
-import GridImage from "../../images/Grid.png";
+import ListImage from "../../images/List.png";
 
 const Default = Color({ color: "Default" });
 const Gray1 = Color({ color: "Gray1" });
@@ -14,22 +14,22 @@ const CenteredButton = styled(Button)`
 `;
 
 const Image = styled.img`
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   background-color: ${Default};
 `;
 
-const GridButton = () => (
+const ListButton = () => (
   <CenteredButton
-    className="GridButton"
+    className="ListButton"
     width="2.5rem"
     height="2.5rem"
     backgroundColor={Default}
     borderRadius="none"
     border={`solid 1px ${Gray1}`}
   >
-    <Image src={GridImage} alt="GridImage" />
+    <Image src={ListImage} alt="ListImage" />
   </CenteredButton>
 );
 
-export default GridButton;
+export default ListButton;

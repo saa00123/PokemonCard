@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setIsHovered } from "../../redux/state";
 import Color from "./Color";
 
