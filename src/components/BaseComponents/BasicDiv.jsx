@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const DivContainer = styled.div`
   display: ${(props) => props.display};
-  flex-direction: ${(props) => props.direction};
-  justify-content: ${(props) => props.justify};
-  align-items: ${(props) => props.items};
+  flex-direction: ${(props) => props.flexDirection};
+  justify-content: ${(props) => props.justifyContent};
+  align-items: ${(props) => props.alignItems};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
@@ -16,14 +16,14 @@ const DivContainer = styled.div`
   background: ${(props) => props.background};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
-  text-align: ${(props) => props.text};
-  box-shadow: ${(props) => props.shadow};
+  text-align: ${(props) => props.textAlign};
+  box-shadow: ${(props) => props.boxShadow};
 
-  @media (min-width: 1024px,max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookDisplay};
-    flex-direction: ${(props) => props.notebookDirection};
-    justify-content: ${(props) => props.notebookJustify};
-    align-items: ${(props) => props.notebookItems};
+    flex-direction: ${(props) => props.notebookFlexDirection};
+    justify-content: ${(props) => props.notebookJustifyContent};
+    align-items: ${(props) => props.notebookAlignItems};
     margin: ${(props) => props.notebookMargin};
     padding: ${(props) => props.notebookPadding};
     width: ${(props) => props.notebookWidth};
@@ -34,17 +34,17 @@ const DivContainer = styled.div`
     background: ${(props) => props.notebookBackground};
     font-size: ${(props) => props.notebookFontSize};
     font-weight: ${(props) => props.notebookFontWeight};
-    text-align: ${(props) => props.notebookText};
-    box-shadow: ${(props) => props.notebookShadow};
+    text-align: ${(props) => props.notebookTextAlign};
+    box-shadow: ${(props) => props.notebookBoxShadow};
   }
 `;
 
 const BasicDiv = (props) => {
   const {
     display,
-    direction,
-    justify,
-    items,
+    flexDirection,
+    justifyContent,
+    alignItems,
     margin,
     padding,
     width,
@@ -55,12 +55,12 @@ const BasicDiv = (props) => {
     background,
     fontSize,
     fontWeight,
-    text,
-    shadow,
+    textAlign,
+    boxShadow,
     notebookDisplay,
-    notebookDirection,
-    notebookJustify,
-    notebookItems,
+    notebookFlexDirection,
+    notebookJustifyContent,
+    notebookAlignItems,
     notebookMargin,
     notebookPadding,
     notebookWidth,
@@ -71,17 +71,17 @@ const BasicDiv = (props) => {
     notebookBackground,
     notebookFontSize,
     notebookFontWeight,
-    notebookText,
-    notebookShadow,
+    notebookTextAlign,
+    notebookBoxShadow,
     children,
   } = props;
 
   return (
     <DivContainer
       display={display}
-      direction={direction}
-      justify={justify}
-      items={items}
+      flexDirection={flexDirection}
+      justifyContent={justifyContent}
+      alignItems={alignItems}
       margin={margin}
       padding={padding}
       width={width}
@@ -92,12 +92,12 @@ const BasicDiv = (props) => {
       background={background}
       fontSize={fontSize}
       fontWeight={fontWeight}
-      text={text}
-      shadow={shadow}
+      textAlign={textAlign}
+      boxShadow={boxShadow}
       notebookDisplay={notebookDisplay}
-      notebookDirection={notebookDirection}
-      notebookJustify={notebookJustify}
-      notebookItems={notebookItems}
+      notebookFlexDirection={notebookFlexDirection}
+      notebookJustifyContent={notebookJustifyContent}
+      notebookAlignItems={notebookAlignItems}
       notebookMargin={notebookMargin}
       notebookPadding={notebookPadding}
       notebookWidth={notebookWidth}
@@ -108,8 +108,8 @@ const BasicDiv = (props) => {
       notebookBackground={notebookBackground}
       notebookFontSize={notebookFontSize}
       notebookFontWeight={notebookFontWeight}
-      notebookText={notebookText}
-      notebookShadow={notebookShadow}
+      notebookTextAlign={notebookTextAlign}
+      notebookBoxShadow={notebookBoxShadow}
     >
       {children}
     </DivContainer>

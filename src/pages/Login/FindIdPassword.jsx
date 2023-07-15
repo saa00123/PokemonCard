@@ -12,18 +12,18 @@ function FindIdPassword() {
     <Div
       className="FindIdPasswordContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="5.938rem 0 0 0"
       width="100vw"
     >
       <Logo />
-      <Div className="MainContainer" display="flex" justify="space-between" width="90.438rem">
+      <Div className="MainContainer" display="flex" justifyContent="space-between" width="90.438rem">
         <Div
           className="FindIdContainer"
           display="flex"
-          direction="column"
+          flexDirection="column"
           width="40.625rem"
           height="46.064rem"
           margin="5.375rem 0 0 0"
@@ -34,18 +34,18 @@ function FindIdPassword() {
           <Div
             className="FindIdMainContainer"
             display="flex"
-            direction="column"
-            justify="center"
-            items="center"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
             width="40.75rem"
             height="22.375rem"
-            shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           >
             <Div
               className="FindIdNotice"
               display="flex"
-              justify="center"
-              items="center"
+              justifyContent="center"
+              alignItems="center"
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
@@ -57,10 +57,10 @@ function FindIdPassword() {
               <Div
                 className="Name"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="7.5rem"
                 height="3.75rem"
-                text="left"
+                textAlign="left"
                 fontSize="1.625rem"
               >
                 이름
@@ -78,10 +78,10 @@ function FindIdPassword() {
               <Div
                 className="Email"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="7.5rem"
                 height="3.75rem"
-                text="left"
+                textAlign="left"
                 fontSize="1.625rem"
               >
                 이메일
@@ -112,7 +112,7 @@ function FindIdPassword() {
         <Div
           className="FindPasswordContainer"
           display="flex"
-          direction="column"
+          flexDirection="column"
           width="40.625rem"
           height="46.064rem"
           margin="5.375rem 0 0 0"
@@ -130,18 +130,18 @@ function FindIdPassword() {
           <Div
             className="FindPasswordMainContainer"
             display="flex"
-            direction="column"
-            justify="center"
-            items="center"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
             width="40.75rem"
             height="22.375rem"
-            shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           >
             <Div
               className="FindPasswordNotice"
               display="flex"
-              justify="center"
-              items="center"
+              justifyContent="center"
+              alignItems="center"
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
@@ -153,10 +153,10 @@ function FindIdPassword() {
               <Div
                 className="Id"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="7.5rem"
                 height="3.75rem"
-                text="left"
+                textAlign="left"
                 fontSize="1.625rem"
               >
                 아이디
@@ -174,10 +174,10 @@ function FindIdPassword() {
               <Div
                 className="Email"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="7.5rem"
                 height="3.75rem"
-                text="left"
+                textAlign="left"
                 fontSize="1.625rem"
               >
                 이메일

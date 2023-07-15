@@ -13,14 +13,14 @@ function SignUp() {
     <Div
       className="SignUpContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="3.875rem 0 0 0"
       width="100vw"
     >
       <Logo />
-      <Div className="SignContainer" display="flex" direction="column" width="40.625rem" height="46.064rem">
+      <Div className="SignContainer" display="flex" flexDirection="column" width="40.625rem" height="46.064rem">
         <Div
           className="SignHeader"
           width="7.625rem"
@@ -35,21 +35,21 @@ function SignUp() {
         <Div
           className="SignMainContainer"
           display="flex"
-          direction="column"
-          justify="center"
-          items="center"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
           width="40.625rem"
           height="43.063rem"
-          shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
         >
           <Div className="NameContainer" display="flex" margin="0 0 0.688rem 0">
             <Div
               className="Name"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               이름
@@ -67,15 +67,15 @@ function SignUp() {
             <Div
               className="Nickname"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               닉네임
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.25rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.25rem">
               <Input
                 placeholder="닉네임을 입력하세요."
                 padding="0 0 0 1.313rem"
@@ -87,7 +87,7 @@ function SignUp() {
               <Div
                 className="NicknameWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
@@ -101,15 +101,15 @@ function SignUp() {
             <Div
               className="Id"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               아이디
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.25rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.25rem">
               <Input
                 placeholder="아이디를 입력하세요."
                 padding="0 0 0 1.313rem"
@@ -121,7 +121,7 @@ function SignUp() {
               <Div
                 className="NicknameWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
@@ -135,15 +135,15 @@ function SignUp() {
             <Div
               className="Password"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               비밀번호
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.25rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.25rem">
               <Input
                 type="password"
                 placeholder="비밀번호를 입력하세요."
@@ -156,7 +156,7 @@ function SignUp() {
               <Div
                 className="NicknameWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
@@ -170,15 +170,15 @@ function SignUp() {
             <Div
               className="PasswordCheck"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               비밀번호 확인
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.25rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.25rem">
               <Input
                 type="password"
                 placeholder="비밀번호를 다시 입력하세요."
@@ -191,7 +191,7 @@ function SignUp() {
               <Div
                 className="NicknameWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
@@ -205,10 +205,10 @@ function SignUp() {
             <Div
               className="Email"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               이메일

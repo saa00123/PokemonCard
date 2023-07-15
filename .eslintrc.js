@@ -30,7 +30,7 @@ module.exports = {
     "import/extensions": 0,
     "no-use-before-define": 0,
     "no-shadow": "off",
-    "react/prop-types": 0,
+    "react/prop-types": "off",
     "no-empty-pattern": 0,
     "no-alert": 0,
     "react-hooks/exhaustive-deps": 0,

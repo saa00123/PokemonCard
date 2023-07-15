@@ -14,9 +14,9 @@ function EmailAuth() {
     <Div
       className="EmailAuthContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="12.625rem 0 1.125rem 0"
       width="100vw"
     >
@@ -24,18 +24,18 @@ function EmailAuth() {
       <Div
         className="EmailAuthMainContainer"
         display="flex"
-        direction="column"
-        justify="center"
-        items="center"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
         width="56.25rem"
         height="29.438rem"
-        shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
       >
         <Div
           className="EmailCheckBox"
           display="flex"
-          justify="center"
-          items="center"
+          justifyContent="center"
+          alignItems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -49,8 +49,8 @@ function EmailAuth() {
         <Div
           className="EmailCheckBox"
           display="flex"
-          justify="center"
-          items="center"
+          justifyContent="center"
+          alignItems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"

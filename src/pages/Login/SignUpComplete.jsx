@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Color from "../../components/BaseComponents/Color";
-import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Button from "../../components/BaseComponents/Button";
 
@@ -14,17 +13,17 @@ function SignUpComplete() {
     <Div
       className="SignUpCompleteContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="7.625rem 0 0 0"
       width="100vw"
     >
       <Div
         className="SignUpGif"
         display="flex"
-        justify="center"
-        items="center"
+        justifyContent="center"
+        alignItems="center"
         width="27.313rem"
         height="20.125rem"
         margin="0 0 2.938rem 0"
@@ -35,8 +34,8 @@ function SignUpComplete() {
       <Div
         className="CompeleteMessage"
         display="flex"
-        justify="center"
-        items="center"
+        justifyContent="center"
+        alignItems="center"
         width="59.813rem"
         height="7.188rem"
         color={Gray2}

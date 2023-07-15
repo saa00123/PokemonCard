@@ -25,7 +25,7 @@ const ButtonStyle = styled.button`
     border-color: ${(props) => props.hoverBorderColor};
   }
 
-  @media (min-width: 1024px,max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookWidth};
     height: ${(props) => props.notebookHeight};
     border: ${(props) => props.notebookBorder};
@@ -62,7 +62,7 @@ const Button = ({
   ...rest
 }) => {
   const Red = Color({ color: "Red" });
-  const White = Color({ color: "Default" });
+  const White = Color({ color: "White" });
 
   const dispatch = useDispatch();
 

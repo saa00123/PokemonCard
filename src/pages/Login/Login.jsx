@@ -16,9 +16,9 @@ function Login() {
     <Div
       className="LoginContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="14.125rem 0 0 0"
       width="100vw"
     >
@@ -26,20 +26,20 @@ function Login() {
       <Div
         className="LoginInputContainer"
         display="flex"
-        justify="center"
+        justifyContent="center"
         margin="5.813rem 0 0 0"
         width="37.625rem"
         height="10.188rem"
       >
-        <Div className="IdPasswordContainer" display="flex" direction="column" margin="0 0.75rem 0 0">
+        <Div className="IdPasswordContainer" display="flex" flexDirection="column" margin="0 0.75rem 0 0">
           <Div className="IdContainer" display="flex" margin="0 0 0.813rem 0">
             <Div
               className="Id"
               display="flex"
-              items="center"
+              alignItems="center"
               width="8.75rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               아이디
@@ -57,15 +57,15 @@ function Login() {
             <Div
               className="Password"
               display="flex"
-              items="center"
+              alignItems="center"
               width="8.75rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               비밀번호
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.625rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.625rem">
               <Input
                 placeholder="Put your password"
                 padding="0 0 0 1.313rem"
@@ -77,8 +77,8 @@ function Login() {
               <Div
                 className="SignAndFindContainer"
                 display="flex"
-                justify="space-between"
-                items="center"
+                justifyContent="space-between"
+                alignItems="center"
                 width="21.438rem"
                 height="1.875rem"
               >
@@ -91,7 +91,7 @@ function Login() {
                   hoverBackgroundColor="none"
                   hoverColor="none"
                   hoverBorder="none"
-                  hoverBorderColor="none"
+                  hoverBordercolor="none"
                   onClick={() => navigate("/SignUp")}
                 >
                   회원가입
@@ -106,7 +106,7 @@ function Login() {
                   hoverBackgroundColor="none"
                   hoverColor="none"
                   hoverBorder="none"
-                  hoverBorderColor="none"
+                  hoverBordercolor="none"
                   onClick={() => navigate("/FindIdPassword")}
                 >
                   아이디/비밀번호 찾기
@@ -120,7 +120,7 @@ function Login() {
           width="6.25rem"
           height="8.313rem"
           fontSize="1.25rem"
-          fontWight="bold"
+          fontWeight="bold"
           borderRadius="1rem"
           border="none"
         >

@@ -13,9 +13,9 @@ function ResetPassword() {
     <Div
       className="ResetPasswordContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="7.188rem 0 0 0"
       width="100vw"
     >
@@ -23,7 +23,7 @@ function ResetPassword() {
       <Div
         className="ResetContainer"
         display="flex"
-        direction="column"
+        flexDirection="column"
         width="40.625rem"
         height="46.064rem"
         margin="3.063rem 0 0 0"
@@ -41,26 +41,26 @@ function ResetPassword() {
         <Div
           className="ResetIdMainContainer"
           display="flex"
-          direction="column"
-          justify="center"
-          items="center"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
           width="40.625rem"
           height="25rem"
-          shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
         >
           <Div className="PasswordContainer" display="flex" margin="0 0 0.5rem 0">
             <Div
               className="Password"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               비밀번호
             </Div>
-            <Div display="flex" direction="column" items="center" width="21.875rem" height="5.25rem">
+            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.25rem">
               <Input
                 placeholder="비밀번호를 입력하세요."
                 padding="0 0 0 1.313rem"
@@ -72,7 +72,7 @@ function ResetPassword() {
               <Div
                 className="PasswordWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
@@ -86,18 +86,18 @@ function ResetPassword() {
             <Div
               className="Password"
               display="flex"
-              items="center"
+              alignItems="center"
               width="11.001rem"
               height="3.75rem"
-              text="left"
+              textAlign="left"
               fontSize="1.625rem"
             >
               비밀번호 확인
             </Div>
             <Div
               display="flex"
-              direction="column"
-              items="center"
+              flexDirection="column"
+              alignItems="center"
               width="21.875rem"
               height="5.25rem"
               margin="0 0 2.688rem 0"
@@ -113,7 +113,7 @@ function ResetPassword() {
               <Div
                 className="PasswordCheckWarning"
                 display="flex"
-                items="center"
+                alignItems="center"
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}

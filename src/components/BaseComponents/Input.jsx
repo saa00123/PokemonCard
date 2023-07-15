@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import Color from "./Color";
 
@@ -21,7 +20,7 @@ const StyledInput = styled.input`
     border-color: ${(props) => props.hoverBorderColor};
   }
 
-  @media (min-width: 1024px,max-width: 1440px) {
+  @media (min-width: 1024px) and (max-width: 1440px) {
     color: ${(props) => props.notebookColor};
     font-size: ${(props) => props.notebookFontSize};
     font-weight: ${(props) => props.notebookFontWeight};
@@ -30,7 +29,7 @@ const StyledInput = styled.input`
     box-sizing: border-box;
     width: ${(props) => props.notebookWidth};
     height: ${(props) => props.notebookHeight};
-    margin: ${(props) => props.noteobokMargin};
+    margin: ${(props) => props.notebookMargin};
     outline: none;
     padding: ${(props) => props.notebookPadding};
 
@@ -52,7 +51,6 @@ const Input = (props) => {
     height,
     margin,
     padding,
-    placeholder,
     notebookColor,
     notebookFontSize,
     notebookFontWeight,
@@ -60,7 +58,7 @@ const Input = (props) => {
     notebookBorderRadius,
     notebookWidth,
     notebookHeight,
-    noteobokMargin,
+    notebookMargin,
     notebookPadding,
     notebookHoverBorder,
     notebookHoverBorderColor,
@@ -80,7 +78,6 @@ const Input = (props) => {
       height={height}
       margin={margin}
       padding={padding}
-      placeholder={placeholder}
       hoverBorder="2px solid"
       hoverBorderColor={Red}
       notebookColor={notebookColor}
@@ -90,37 +87,13 @@ const Input = (props) => {
       notebookBorderRadius={notebookBorderRadius}
       notebookWidth={notebookWidth}
       notebookHeight={notebookHeight}
-      noteobokMargin={noteobokMargin}
+      notebookMargin={notebookMargin}
       notebookPadding={notebookPadding}
       notebookHoverBorder="2px solid"
       notebookHoverBorderColor={notebookHoverBorderColor}
       {...rest}
     />
   );
-};
-
-Input.propTypes = {
-  color: PropTypes.string,
-  fontSize: PropTypes.string,
-  fontWeight: PropTypes.string,
-  border: PropTypes.string,
-  borderRadius: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  margin: PropTypes.string,
-  padding: PropTypes.string,
-};
-
-Input.defaultProps = {
-  color: "black",
-  fontSize: "1rem",
-  fontWeight: "normal",
-  border: "1px solid #ccc",
-  borderRadius: "4px",
-  width: "100%",
-  height: "40px",
-  margin: "0",
-  padding: "8px",
 };
 
 export default Input;

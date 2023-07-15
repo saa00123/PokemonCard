@@ -14,9 +14,9 @@ function AfterFindId() {
     <Div
       className="AfterFindContainer"
       display="flex"
-      direction="column"
-      justify="start"
-      items="center"
+      flexDirection="column"
+      justifyContent="start"
+      alignItems="center"
       padding="12.625rem 0 1.125rem 0"
       width="100vw"
     >
@@ -24,18 +24,18 @@ function AfterFindId() {
       <Div
         className="AfterFindMainContainer"
         display="flex"
-        direction="column"
-        justify="center"
-        items="center"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
         width="56.25rem"
         height="29.438rem"
-        shadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
       >
         <Div
           className="IdCheckBox"
           display="flex"
-          justify="center"
-          items="center"
+          justifyContent="center"
+          alignItems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -48,8 +48,8 @@ function AfterFindId() {
         <Div
           className="IdCheckBox"
           display="flex"
-          justify="center"
-          items="center"
+          justifyContent="center"
+          alignItems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -60,7 +60,13 @@ function AfterFindId() {
           <Div className="IdCheck">apple134</Div>
           입니다.
         </Div>
-        <Div className="BtnContainer" display="flex" justify="space-between" items="center" width="26.938rem">
+        <Div
+          className="BtnContainer"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          width="26.938rem"
+        >
           <Button
             className="LoginBtn"
             width="12.5rem"
