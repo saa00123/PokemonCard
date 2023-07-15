@@ -13,17 +13,17 @@ function SignUpComplete() {
     <Div
       className="SignUpCompleteContainer"
       display="flex"
-      flexDirection="column"
-      justifyContent="start"
-      alignItems="center"
+      flexdirection="column"
+      justifycontent="start"
+      alignitems="center"
       padding="7.625rem 0 0 0"
       width="100vw"
     >
       <Div
         className="SignUpGif"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
+        justifycontent="center"
+        alignitems="center"
         width="27.313rem"
         height="20.125rem"
         margin="0 0 2.938rem 0"
@@ -34,8 +34,8 @@ function SignUpComplete() {
       <Div
         className="CompeleteMessage"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
+        justifycontent="center"
+        alignitems="center"
         width="59.813rem"
         height="7.188rem"
         color={Gray2}
@@ -50,7 +50,7 @@ function SignUpComplete() {
         height="4.375rem"
         fontSize="1.5rem"
         fontWeight="bold"
-        borderRadius="1rem"
+        borderradius="1rem"
         border="none"
         onClick={() => navigate("/Login")}
       >

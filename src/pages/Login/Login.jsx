@@ -16,9 +16,9 @@ function Login() {
     <Div
       className="LoginContainer"
       display="flex"
-      flexDirection="column"
-      justifyContent="start"
-      alignItems="center"
+      flexdirection="column"
+      justifycontent="start"
+      alignitems="center"
       padding="14.125rem 0 0 0"
       width="100vw"
     >
@@ -26,20 +26,20 @@ function Login() {
       <Div
         className="LoginInputContainer"
         display="flex"
-        justifyContent="center"
+        justifycontent="center"
         margin="5.813rem 0 0 0"
         width="37.625rem"
         height="10.188rem"
       >
-        <Div className="IdPasswordContainer" display="flex" flexDirection="column" margin="0 0.75rem 0 0">
+        <Div className="IdPasswordContainer" display="flex" flexdirection="column" margin="0 0.75rem 0 0">
           <Div className="IdContainer" display="flex" margin="0 0 0.813rem 0">
             <Div
               className="Id"
               display="flex"
-              alignItems="center"
+              alignitems="center"
               width="8.75rem"
               height="3.75rem"
-              textAlign="left"
+              textalign="left"
               fontSize="1.625rem"
             >
               아이디
@@ -50,35 +50,35 @@ function Login() {
               width="21.875rem"
               height="3.75rem"
               fontSize="1.625rem"
-              borderRadius="15px"
+              borderradius="15px"
             />
           </Div>
           <Div className="PasswordContainer" display="flex">
             <Div
               className="Password"
               display="flex"
-              alignItems="center"
+              alignitems="center"
               width="8.75rem"
               height="3.75rem"
-              textAlign="left"
+              textalign="left"
               fontSize="1.625rem"
             >
               비밀번호
             </Div>
-            <Div display="flex" flexDirection="column" alignItems="center" width="21.875rem" height="5.625rem">
+            <Div display="flex" flexdirection="column" alignitems="center" width="21.875rem" height="5.625rem">
               <Input
                 placeholder="Put your password"
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
                 fontSize="1.625rem"
-                borderRadius="15px"
+                borderradius="15px"
               />
               <Div
                 className="SignAndFindContainer"
                 display="flex"
-                justifyContent="space-between"
-                alignItems="center"
+                justifycontent="space-between"
+                alignitems="center"
                 width="21.438rem"
                 height="1.875rem"
               >
@@ -121,7 +121,7 @@ function Login() {
           height="8.313rem"
           fontSize="1.25rem"
           fontWeight="bold"
-          borderRadius="1rem"
+          borderradius="1rem"
           border="none"
         >
           로그인

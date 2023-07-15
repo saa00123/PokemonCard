@@ -3,76 +3,76 @@ import styled from "styled-components";
 
 const DivContainer = styled.div`
   display: ${(props) => props.display};
-  flex-direction: ${(props) => props.flexDirection};
-  justify-content: ${(props) => props.justifyContent};
-  align-items: ${(props) => props.alignItems};
+  flex-direction: ${(props) => props.flexdirection};
+  justify-content: ${(props) => props.justifycontent};
+  align-items: ${(props) => props.alignitems};
   margin: ${(props) => props.margin};
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border: ${(props) => props.border};
-  border-radius: ${(props) => props.borderRadius};
+  border-radius: ${(props) => props.borderradius};
   color: ${(props) => props.color};
   background: ${(props) => props.background};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
-  text-align: ${(props) => props.textAlign};
-  box-shadow: ${(props) => props.boxShadow};
+  text-align: ${(props) => props.textalign};
+  box-shadow: ${(props) => props.boxshadow};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookDisplay};
-    flex-direction: ${(props) => props.notebookFlexDirection};
-    justify-content: ${(props) => props.notebookJustifyContent};
-    align-items: ${(props) => props.notebookAlignItems};
+    flex-direction: ${(props) => props.notebookflexdirection};
+    justify-content: ${(props) => props.notebookjustifycontent};
+    align-items: ${(props) => props.notebookalignitems};
     margin: ${(props) => props.notebookMargin};
     padding: ${(props) => props.notebookPadding};
     width: ${(props) => props.notebookWidth};
     height: ${(props) => props.notebookHeight};
     border: ${(props) => props.notebookBorder};
-    border-radius: ${(props) => props.notebookBorderRadius};
+    border-radius: ${(props) => props.notebookborderradius};
     color: ${(props) => props.notebookColor};
     background: ${(props) => props.notebookBackground};
     font-size: ${(props) => props.notebookFontSize};
     font-weight: ${(props) => props.notebookFontWeight};
-    text-align: ${(props) => props.notebookTextAlign};
-    box-shadow: ${(props) => props.notebookBoxShadow};
+    text-align: ${(props) => props.notebooktextalign};
+    box-shadow: ${(props) => props.notebookboxshadow};
   }
 `;
 
 const BasicDiv = (props) => {
   const {
     display,
-    flexDirection,
-    justifyContent,
-    alignItems,
+    flexdirection,
+    justifycontent,
+    alignitems,
     margin,
     padding,
     width,
     height,
     border,
-    borderRadius,
+    borderradius,
     color,
     background,
     fontSize,
     fontWeight,
-    textAlign,
-    boxShadow,
+    textalign,
+    boxshadow,
     notebookDisplay,
-    notebookFlexDirection,
-    notebookJustifyContent,
-    notebookAlignItems,
+    notebookflexdirection,
+    notebookjustifycontent,
+    notebookalignitems,
     notebookMargin,
     notebookPadding,
     notebookWidth,
     notebookHeight,
     notebookBorder,
-    notebookBorderRadius,
+    notebookborderradius,
     notebookColor,
     notebookBackground,
     notebookFontSize,
     notebookFontWeight,
-    notebookTextAlign,
-    notebookBoxShadow,
+    notebooktextalign,
+    notebookboxshadow,
     children,
     ...rest
   } = props;
@@ -80,37 +80,37 @@ const BasicDiv = (props) => {
   return (
     <DivContainer
       display={display}
-      flexDirection={flexDirection}
-      justifyContent={justifyContent}
-      alignItems={alignItems}
+      flexdirection={flexdirection}
+      justifycontent={justifycontent}
+      alignitems={alignitems}
       margin={margin}
       padding={padding}
       width={width}
       height={height}
       border={border}
-      borderRadius={borderRadius}
+      borderradius={borderradius}
       color={color}
       background={background}
       fontSize={fontSize}
       fontWeight={fontWeight}
-      textAlign={textAlign}
-      boxShadow={boxShadow}
+      textalign={textalign}
+      boxshadow={boxshadow}
       notebookDisplay={notebookDisplay}
-      notebookFlexDirection={notebookFlexDirection}
-      notebookJustifyContent={notebookJustifyContent}
-      notebookAlignItems={notebookAlignItems}
+      notebookflexdirection={notebookflexdirection}
+      notebookjustifycontent={notebookjustifycontent}
+      notebookalignitems={notebookalignitems}
       notebookMargin={notebookMargin}
       notebookPadding={notebookPadding}
       notebookWidth={notebookWidth}
       notebookHeight={notebookHeight}
       notebookBorder={notebookBorder}
-      notebookBorderRadius={notebookBorderRadius}
+      notebookborderradius={notebookborderradius}
       notebookColor={notebookColor}
       notebookBackground={notebookBackground}
       notebookFontSize={notebookFontSize}
       notebookFontWeight={notebookFontWeight}
-      notebookTextAlign={notebookTextAlign}
-      notebookBoxShadow={notebookBoxShadow}
+      notebooktextalign={notebooktextalign}
+      notebookboxshadow={notebookboxshadow}
       {...rest}
     >
       {children}

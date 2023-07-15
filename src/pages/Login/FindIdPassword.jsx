@@ -12,18 +12,18 @@ function FindIdPassword() {
     <Div
       className="FindIdPasswordContainer"
       display="flex"
-      flexDirection="column"
-      justifyContent="start"
-      alignItems="center"
+      flexdirection="column"
+      justifycontent="start"
+      alignitems="center"
       padding="5.938rem 0 0 0"
       width="100vw"
     >
       <Logo />
-      <Div className="MainContainer" display="flex" justifyContent="space-between" width="90.438rem">
+      <Div className="MainContainer" display="flex" justifycontent="space-between" width="90.438rem">
         <Div
           className="FindIdContainer"
           display="flex"
-          flexDirection="column"
+          flexdirection="column"
           width="40.625rem"
           height="46.064rem"
           margin="5.375rem 0 0 0"
@@ -34,18 +34,18 @@ function FindIdPassword() {
           <Div
             className="FindIdMainContainer"
             display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
+            flexdirection="column"
+            justifycontent="center"
+            alignitems="center"
             width="40.75rem"
             height="22.375rem"
-            boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           >
             <Div
               className="FindIdNotice"
               display="flex"
-              justifyContent="center"
-              alignItems="center"
+              justifycontent="center"
+              alignitems="center"
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
@@ -57,10 +57,10 @@ function FindIdPassword() {
               <Div
                 className="Name"
                 display="flex"
-                alignItems="center"
+                alignitems="center"
                 width="7.5rem"
                 height="3.75rem"
-                textAlign="left"
+                textalign="left"
                 fontSize="1.625rem"
               >
                 이름
@@ -71,17 +71,17 @@ function FindIdPassword() {
                 width="21.875rem"
                 height="3.75rem"
                 fontSize="1.625rem"
-                borderRadius="15px"
+                borderradius="15px"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
               <Div
                 className="Email"
                 display="flex"
-                alignItems="center"
+                alignitems="center"
                 width="7.5rem"
                 height="3.75rem"
-                textAlign="left"
+                textalign="left"
                 fontSize="1.625rem"
               >
                 이메일
@@ -93,7 +93,7 @@ function FindIdPassword() {
                 width="21.875rem"
                 height="3.75rem"
                 fontSize="1.625rem"
-                borderRadius="15px"
+                borderradius="15px"
               />
               <Button
                 type="submit"
@@ -101,7 +101,7 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.25rem"
                 fontWeight="bold"
-                borderRadius="1rem"
+                borderradius="1rem"
                 border="none"
               >
                 확인
@@ -112,7 +112,7 @@ function FindIdPassword() {
         <Div
           className="FindPasswordContainer"
           display="flex"
-          flexDirection="column"
+          flexdirection="column"
           width="40.625rem"
           height="46.064rem"
           margin="5.375rem 0 0 0"
@@ -130,18 +130,18 @@ function FindIdPassword() {
           <Div
             className="FindPasswordMainContainer"
             display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
+            flexdirection="column"
+            justifycontent="center"
+            alignitems="center"
             width="40.75rem"
             height="22.375rem"
-            boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           >
             <Div
               className="FindPasswordNotice"
               display="flex"
-              justifyContent="center"
-              alignItems="center"
+              justifycontent="center"
+              alignitems="center"
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
@@ -153,10 +153,10 @@ function FindIdPassword() {
               <Div
                 className="Id"
                 display="flex"
-                alignItems="center"
+                alignitems="center"
                 width="7.5rem"
                 height="3.75rem"
-                textAlign="left"
+                textalign="left"
                 fontSize="1.625rem"
               >
                 아이디
@@ -167,17 +167,17 @@ function FindIdPassword() {
                 width="21.875rem"
                 height="3.75rem"
                 fontSize="1.625rem"
-                borderRadius="15px"
+                borderradius="15px"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
               <Div
                 className="Email"
                 display="flex"
-                alignItems="center"
+                alignitems="center"
                 width="7.5rem"
                 height="3.75rem"
-                textAlign="left"
+                textalign="left"
                 fontSize="1.625rem"
               >
                 이메일
@@ -189,7 +189,7 @@ function FindIdPassword() {
                 width="21.875rem"
                 height="3.75rem"
                 fontSize="1.625rem"
-                borderRadius="15px"
+                borderradius="15px"
               />
               <Button
                 type="submit"
@@ -197,7 +197,7 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.25rem"
                 fontWeight="bold"
-                borderRadius="1rem"
+                borderradius="1rem"
                 border="none"
               >
                 확인

@@ -14,9 +14,9 @@ function AfterFindId() {
     <Div
       className="AfterFindContainer"
       display="flex"
-      flexDirection="column"
-      justifyContent="start"
-      alignItems="center"
+      flexdirection="column"
+      justifycontent="start"
+      alignitems="center"
       padding="12.625rem 0 1.125rem 0"
       width="100vw"
     >
@@ -24,18 +24,18 @@ function AfterFindId() {
       <Div
         className="AfterFindMainContainer"
         display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+        flexdirection="column"
+        justifycontent="center"
+        alignitems="center"
         width="56.25rem"
         height="29.438rem"
-        boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
       >
         <Div
           className="IdCheckBox"
           display="flex"
-          justifyContent="center"
-          alignItems="center"
+          justifycontent="center"
+          alignitems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -48,8 +48,8 @@ function AfterFindId() {
         <Div
           className="IdCheckBox"
           display="flex"
-          justifyContent="center"
-          alignItems="center"
+          justifycontent="center"
+          alignitems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -63,8 +63,8 @@ function AfterFindId() {
         <Div
           className="BtnContainer"
           display="flex"
-          justifyContent="space-between"
-          alignItems="center"
+          justifycontent="space-between"
+          alignitems="center"
           width="26.938rem"
         >
           <Button
@@ -73,7 +73,7 @@ function AfterFindId() {
             height="4.375rem"
             fontSize="1.5rem"
             fontWeight="bold"
-            borderRadius="1rem"
+            borderradius="1rem"
             border="none"
             onClick={() => navigate("/Login")}
           >
@@ -85,7 +85,7 @@ function AfterFindId() {
             height="4.375rem"
             fontSize="1.5rem"
             fontWeight="bold"
-            borderRadius="1rem"
+            borderradius="1rem"
             border="none"
             onClick={() => navigate("/FindIdPassword")}
           >

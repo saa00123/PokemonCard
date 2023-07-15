@@ -14,9 +14,9 @@ function EmailAuth() {
     <Div
       className="EmailAuthContainer"
       display="flex"
-      flexDirection="column"
-      justifyContent="start"
-      alignItems="center"
+      flexdirection="column"
+      justifycontent="start"
+      alignitems="center"
       padding="12.625rem 0 1.125rem 0"
       width="100vw"
     >
@@ -24,18 +24,18 @@ function EmailAuth() {
       <Div
         className="EmailAuthMainContainer"
         display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+        flexdirection="column"
+        justifycontent="center"
+        alignitems="center"
         width="56.25rem"
         height="29.438rem"
-        boxShadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
       >
         <Div
           className="EmailCheckBox"
           display="flex"
-          justifyContent="center"
-          alignItems="center"
+          justifycontent="center"
+          alignitems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -49,8 +49,8 @@ function EmailAuth() {
         <Div
           className="EmailCheckBox"
           display="flex"
-          justifyContent="center"
-          alignItems="center"
+          justifycontent="center"
+          alignitems="center"
           width="56.25rem"
           height="5.625rem"
           margin="0 0 1.125rem 0"
@@ -66,7 +66,7 @@ function EmailAuth() {
           height="4.375rem"
           fontSize="1.5rem"
           fontWeight="bold"
-          borderRadius="1rem"
+          borderradius="1rem"
           border="none"
           onClick={() => navigate("/")}
         >

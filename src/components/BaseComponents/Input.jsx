@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import Color from "./Color";
 
 const Red = Color({ color: "Red" });
@@ -9,7 +10,7 @@ const StyledInput = styled.input`
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
   border: ${(props) => props.border};
-  border-radius: ${(props) => props.borderRadius};
+  border-radius: ${(props) => props.borderradius};
   box-sizing: border-box;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -27,7 +28,7 @@ const StyledInput = styled.input`
     font-size: ${(props) => props.notebookFontSize};
     font-weight: ${(props) => props.notebookFontWeight};
     border: ${(props) => props.notebookBorder};
-    border-radius: ${(props) => props.notebookBorderRadius};
+    border-radius: ${(props) => props.notebookborderradius};
     box-sizing: border-box;
     width: ${(props) => props.notebookWidth};
     height: ${(props) => props.notebookHeight};
@@ -48,7 +49,7 @@ const Input = (props) => {
     fontSize,
     fontWeight,
     border,
-    borderRadius,
+    borderradius,
     width,
     height,
     margin,
@@ -57,7 +58,7 @@ const Input = (props) => {
     notebookFontSize,
     notebookFontWeight,
     notebookBorder,
-    notebookBorderRadius,
+    notebookborderradius,
     notebookWidth,
     notebookHeight,
     notebookMargin,
@@ -72,7 +73,7 @@ const Input = (props) => {
       fontSize={fontSize}
       fontWeight={fontWeight}
       border={border}
-      borderRadius={borderRadius}
+      borderradius={borderradius}
       width={width}
       height={height}
       margin={margin}
@@ -81,7 +82,7 @@ const Input = (props) => {
       notebookFontSize={notebookFontSize}
       notebookFontWeight={notebookFontWeight}
       notebookBorder={notebookBorder}
-      notebookBorderRadius={notebookBorderRadius}
+      notebookborderradius={notebookborderradius}
       notebookWidth={notebookWidth}
       notebookHeight={notebookHeight}
       notebookMargin={notebookMargin}
@@ -89,6 +90,30 @@ const Input = (props) => {
       {...rest}
     />
   );
+};
+
+Input.propTypes = {
+  color: PropTypes.string,
+  fontSize: PropTypes.string,
+  fontWeight: PropTypes.string,
+  border: PropTypes.string,
+  borderradius: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+  margin: PropTypes.string,
+  padding: PropTypes.string,
+};
+
+Input.defaultProps = {
+  color: "black",
+  fontSize: "1rem",
+  fontWeight: "normal",
+  border: "1px solid #ccc",
+  borderradius: "4px",
+  width: "100%",
+  height: "40px",
+  margin: "0",
+  padding: "8px",
 };
 
 export default Input;
