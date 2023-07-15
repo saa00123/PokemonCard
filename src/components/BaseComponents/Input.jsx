@@ -20,14 +20,54 @@ const StyledInput = styled.input`
     border: ${(props) => props.hoverBorder};
     border-color: ${(props) => props.hoverBorderColor};
   }
+
+  @media (min-width: 1024px,max-width: 1440px) {
+    color: ${(props) => props.notebookColor};
+    font-size: ${(props) => props.notebookFontSize};
+    font-weight: ${(props) => props.notebookFontWeight};
+    border: ${(props) => props.notebookBorder};
+    border-radius: ${(props) => props.notebookBorderRadius};
+    box-sizing: border-box;
+    width: ${(props) => props.notebookWidth};
+    height: ${(props) => props.notebookHeight};
+    margin: ${(props) => props.noteobokMargin};
+    outline: none;
+    padding: ${(props) => props.notebookPadding};
+
+    &:focus {
+      border: ${(props) => props.notebookHoverBorder};
+      border-color: ${(props) => props.notebookHoverBorderColor};
+    }
+  }
 `;
 
 const Input = (props) => {
-  const { color, fontSize, fontWeight, border, borderRadius, width, height, margin, padding, placeholder, ...rest } =
-    props;
+  const {
+    color,
+    fontSize,
+    fontWeight,
+    border,
+    borderRadius,
+    width,
+    height,
+    margin,
+    padding,
+    placeholder,
+    notebookColor,
+    notebookFontSize,
+    notebookFontWeight,
+    notebookBorder,
+    notebookBorderRadius,
+    notebookWidth,
+    notebookHeight,
+    noteobokMargin,
+    notebookPadding,
+    notebookHoverBorder,
+    notebookHoverBorderColor,
+    ...rest
+  } = props;
 
   const Red = Color({ color: "Red" });
-  const White = Color({ color: "Default" });
 
   return (
     <StyledInput
@@ -43,6 +83,17 @@ const Input = (props) => {
       placeholder={placeholder}
       hoverBorder="2px solid"
       hoverBorderColor={Red}
+      notebookColor={notebookColor}
+      notebookFontSize={notebookFontSize}
+      notebookFontWeight={notebookFontWeight}
+      notebookBorder={notebookBorder}
+      notebookBorderRadius={notebookBorderRadius}
+      notebookWidth={notebookWidth}
+      notebookHeight={notebookHeight}
+      noteobokMargin={noteobokMargin}
+      notebookPadding={notebookPadding}
+      notebookHoverBorder="2px solid"
+      notebookHoverBorderColor={notebookHoverBorderColor}
       {...rest}
     />
   );

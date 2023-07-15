@@ -18,6 +18,25 @@ const DivContainer = styled.div`
   font-weight: ${(props) => props.fontWeight};
   text-align: ${(props) => props.text};
   box-shadow: ${(props) => props.shadow};
+
+  @media (min-width: 1024px,max-width: 1440px) {
+    display: ${(props) => props.notebookDisplay};
+    flex-direction: ${(props) => props.notebookDirection};
+    justify-content: ${(props) => props.notebookJustify};
+    align-items: ${(props) => props.notebookItems};
+    margin: ${(props) => props.notebookMargin};
+    padding: ${(props) => props.notebookPadding};
+    width: ${(props) => props.notebookWidth};
+    height: ${(props) => props.notebookHeight};
+    border: ${(props) => props.notebookBorder};
+    border-radius: ${(props) => props.notebookBorderRadius};
+    color: ${(props) => props.notebookColor};
+    background: ${(props) => props.notebookBackground};
+    font-size: ${(props) => props.notebookFontSize};
+    font-weight: ${(props) => props.notebookFontWeight};
+    text-align: ${(props) => props.notebookText};
+    box-shadow: ${(props) => props.notebookShadow};
+  }
 `;
 
 const BasicDiv = (props) => {
@@ -38,6 +57,22 @@ const BasicDiv = (props) => {
     fontWeight,
     text,
     shadow,
+    notebookDisplay,
+    notebookDirection,
+    notebookJustify,
+    notebookItems,
+    notebookMargin,
+    notebookPadding,
+    notebookWidth,
+    notebookHeight,
+    notebookBorder,
+    notebookBorderRadius,
+    notebookColor,
+    notebookBackground,
+    notebookFontSize,
+    notebookFontWeight,
+    notebookText,
+    notebookShadow,
     children,
   } = props;
 
@@ -59,6 +94,22 @@ const BasicDiv = (props) => {
       fontWeight={fontWeight}
       text={text}
       shadow={shadow}
+      notebookDisplay={notebookDisplay}
+      notebookDirection={notebookDirection}
+      notebookJustify={notebookJustify}
+      notebookItems={notebookItems}
+      notebookMargin={notebookMargin}
+      notebookPadding={notebookPadding}
+      notebookWidth={notebookWidth}
+      notebookHeight={notebookHeight}
+      notebookBorder={notebookBorder}
+      notebookBorderRadius={notebookBorderRadius}
+      notebookColor={notebookColor}
+      notebookBackground={notebookBackground}
+      notebookFontSize={notebookFontSize}
+      notebookFontWeight={notebookFontWeight}
+      notebookText={notebookText}
+      notebookShadow={notebookShadow}
     >
       {children}
     </DivContainer>

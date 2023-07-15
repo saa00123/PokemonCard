@@ -24,9 +24,43 @@ const ButtonStyle = styled.button`
     border: ${(props) => props.hoverBorder};
     border-color: ${(props) => props.hoverBorderColor};
   }
+
+  @media (min-width: 1024px,max-width: 1440px) {
+    width: ${(props) => props.notebookWidth};
+    height: ${(props) => props.notebookHeight};
+    border: ${(props) => props.notebookBorder};
+    border-radius: ${(props) => props.notebookBorderRadius};
+    box-sizing: border-box;
+    font-size: ${(props) => props.notebookFontSize};
+    font-weight: bold;
+    background-color: ${(props) => props.notebookBackgroundColor};
+    color: ${(props) => props.notebookColor};
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: ${(props) => props.notebookHoverBackgroundColor};
+      color: ${(props) => props.notebookHoverColor};
+      border: ${(props) => props.notebookHoverBorder};
+      border-color: ${(props) => props.notebookHoverBorderColor};
+    }
+  }
 `;
 
-const Button = ({ children, width, height, border, borderRadius, fontSize, ...rest }) => {
+const Button = ({
+  notebookWidth,
+  notebookHeight,
+  notebookBorder,
+  notebookBorderRadius,
+  notebookFontSize,
+  children,
+  width,
+  height,
+  border,
+  borderRadius,
+  fontSize,
+  ...rest
+}) => {
   const Red = Color({ color: "Red" });
   const White = Color({ color: "Default" });
 
@@ -48,6 +82,17 @@ const Button = ({ children, width, height, border, borderRadius, fontSize, ...re
       hoverBorderColor={Red}
       onMouseEnter={() => dispatch(setIsHovered(true))}
       onMouseLeave={() => dispatch(setIsHovered(false))}
+      notebookWidth={notebookWidth}
+      notebookHeight={notebookHeight}
+      notebookBorder={notebookBorder}
+      notebookBorderRadius={notebookBorderRadius}
+      notebookFontSize={notebookFontSize}
+      notebookBackgroundColor={Red}
+      notebookColor={White}
+      notebookHoverBackgroundColor={White}
+      notebookHoverColor={Red}
+      notebookHoverBorder="2px solid"
+      notebookHoverBorderColor={Red}
       {...rest}
     >
       {children}
@@ -56,25 +101,3 @@ const Button = ({ children, width, height, border, borderRadius, fontSize, ...re
 };
 
 export default Button;
-
-// 아래는 component 사용법 예시
-
-// const App = () => {
-//     return (
-//       <div>
-//         <ButtonComponent
-//           width="200px"
-//           height="40px"
-//           border="2px solid #007bff"
-//           borderRadius="8px"
-//           fontSize="20px"
-//           backgroundColor="#ffffff"
-//           color="#000000"
-//         >
-//           Custom Button
-//         </ButtonComponent>
-//       </div>
-//     );
-//   };
-
-//   export default App;
