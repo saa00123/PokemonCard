@@ -12,7 +12,7 @@ const ButtonStyle = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border: ${(props) => props.border};
-  border-radius: ${(props) => props.borderRadius};
+  border-radius: ${(props) => props.borderradius};
   box-sizing: border-box;
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
@@ -29,12 +29,12 @@ const ButtonStyle = styled.button`
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    width: ${(props) => props.notebookWidth};
-    height: ${(props) => props.notebookHeight};
-    border: ${(props) => props.notebookBorder};
-    border-radius: ${(props) => props.notebookBorderRadius};
+    width: ${(props) => props.notebookwidth};
+    height: ${(props) => props.notebookheight};
+    border: ${(props) => props.notebookborder};
+    border-radius: ${(props) => props.notebookborderradius};
     box-sizing: border-box;
-    font-size: ${(props) => props.notebookFontSize};
+    font-size: ${(props) => props.notebookfontSize};
     font-weight: bold;
     background-color: ${Red};
     color: ${White};
@@ -52,16 +52,16 @@ const ButtonStyle = styled.button`
 
 const Button = (props) => {
   const {
-    notebookWidth,
-    notebookHeight,
-    notebookBorder,
-    notebookBorderRadius,
-    notebookFontSize,
+    notebookwidth,
+    notebookheight,
+    notebookborder,
+    notebookborderradius,
+    notebookfontSize,
     children,
     width,
     height,
     border,
-    borderRadius,
+    borderradius,
     fontSize,
     ...rest
   } = props;
@@ -73,16 +73,16 @@ const Button = (props) => {
       width={width}
       height={height}
       border={border}
-      borderRadius={borderRadius}
+      borderradius={borderradius}
       fontSize={fontSize}
       color={White}
       onMouseEnter={() => dispatch(setIsHovered(true))}
       onMouseLeave={() => dispatch(setIsHovered(false))}
-      notebookWidth={notebookWidth}
-      notebookHeight={notebookHeight}
-      notebookBorder={notebookBorder}
-      notebookBorderRadius={notebookBorderRadius}
-      notebookFontSize={notebookFontSize}
+      notebookwidth={notebookwidth}
+      notebookheight={notebookheight}
+      notebookborder={notebookborder}
+      notebookborderradius={notebookborderradius}
+      notebookfontSize={notebookfontSize}
       {...rest}
     >
       {children}

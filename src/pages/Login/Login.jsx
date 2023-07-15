@@ -85,13 +85,13 @@ function Login() {
                 <Button
                   className="SignUpBtn"
                   color={Gray2}
-                  backgroundColor={Default}
+                  backgroundcolor={Default}
                   border="none"
                   fontSize="1rem"
-                  hoverBackgroundColor="none"
-                  hoverColor="none"
-                  hoverBorder="none"
-                  hoverBorderColor="none"
+                  hoverbackgroundcolor="none"
+                  hovercolor="none"
+                  hoverborder="none"
+                  hoverbordercolor="none"
                   onClick={() => navigate("/SignUp")}
                 >
                   회원가입
@@ -100,13 +100,13 @@ function Login() {
                   className="SignUpBtn"
                   type="submit"
                   color={Gray2}
-                  backgroundColor={Default}
+                  backgroundcolor={Default}
                   border="none"
                   fontSize="1rem"
-                  hoverBackgroundColor="none"
-                  hoverColor="none"
-                  hoverBorder="none"
-                  hoverBorderColor="none"
+                  hoverbackgroundcolor="none"
+                  hovercolor="none"
+                  hoverborder="none"
+                  hoverbordercolor="none"
                   onClick={() => navigate("/FindIdPassword")}
                 >
                   아이디/비밀번호 찾기

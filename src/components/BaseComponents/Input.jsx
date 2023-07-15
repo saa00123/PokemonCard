@@ -24,17 +24,17 @@ const StyledInput = styled.input`
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    color: ${(props) => props.notebookColor};
-    font-size: ${(props) => props.notebookFontSize};
-    font-weight: ${(props) => props.notebookFontWeight};
-    border: ${(props) => props.notebookBorder};
+    color: ${(props) => props.notebookcolor};
+    font-size: ${(props) => props.notebookfontSize};
+    font-weight: ${(props) => props.notebookfontWeight};
+    border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
     box-sizing: border-box;
-    width: ${(props) => props.notebookWidth};
-    height: ${(props) => props.notebookHeight};
-    margin: ${(props) => props.notebookMargin};
+    width: ${(props) => props.notebookwidth};
+    height: ${(props) => props.notebookheight};
+    margin: ${(props) => props.notebookmargin};
     outline: none;
-    padding: ${(props) => props.notebookPadding};
+    padding: ${(props) => props.notebookpadding};
 
     &:focus {
       border: 2px solid;
@@ -54,15 +54,15 @@ const Input = (props) => {
     height,
     margin,
     padding,
-    notebookColor,
-    notebookFontSize,
-    notebookFontWeight,
-    notebookBorder,
+    notebookcolor,
+    notebookfontSize,
+    notebookfontWeight,
+    notebookborder,
     notebookborderradius,
-    notebookWidth,
-    notebookHeight,
-    notebookMargin,
-    notebookPadding,
+    notebookwidth,
+    notebookheight,
+    notebookmargin,
+    notebookpadding,
     notebookHoverBorder,
     ...rest
   } = props;
@@ -78,15 +78,15 @@ const Input = (props) => {
       height={height}
       margin={margin}
       padding={padding}
-      notebookColor={notebookColor}
-      notebookFontSize={notebookFontSize}
-      notebookFontWeight={notebookFontWeight}
-      notebookBorder={notebookBorder}
+      notebookcolor={notebookcolor}
+      notebookfontSize={notebookfontSize}
+      notebookfontWeight={notebookfontWeight}
+      notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
-      notebookWidth={notebookWidth}
-      notebookHeight={notebookHeight}
-      notebookMargin={notebookMargin}
-      notebookPadding={notebookPadding}
+      notebookwidth={notebookwidth}
+      notebookheight={notebookheight}
+      notebookmargin={notebookmargin}
+      notebookpadding={notebookpadding}
       {...rest}
     />
   );

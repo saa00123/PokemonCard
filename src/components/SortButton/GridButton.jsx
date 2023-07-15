@@ -25,8 +25,8 @@ const GridButton = () => (
     className="GridButton"
     width="2.5rem"
     height="2.5rem"
-    backgroundColor={Default}
-    borderRadius="none"
+    backgroundcolor={Default}
+    borderradius="none"
     border={`solid 1px ${Gray1}`}
   >
     <Image src={GridImage} alt="GridImage" />

@@ -22,7 +22,7 @@ const SearchInput = styled.input`
   height: 4.375rem;
   padding-left: 2rem;
   border: 4px solid;
-  border-color: ${(props) => props.borderColor};
+  border-color: ${(props) => props.bordercolor};
   border-radius: 10rem;
   font-size: 1.75rem;
   outline: none;
@@ -38,7 +38,7 @@ const SearchButtonContainer = styled.div`
 const SearchButton = styled.button`
   width: 3.5rem;
   height: 3.5rem;
-  background-color: ${(props) => props.buttonBackgroundColor};
+  background-color: ${(props) => props.buttonbackgroundcolor};
   background-image: url(${SearchImage});
   background-repeat: no-repeat;
   background-size: 4.375rem;
@@ -67,10 +67,10 @@ const Search = ({ onSearch }) => {
     <SearchContainer>
       <form onSubmit={handleSearch}>
         <SearchInputContainer>
-          <SearchInput type="text" name="searchTerm" spellCheck="false" placeholder="Search" borderColor={Red} />
+          <SearchInput type="text" name="searchTerm" spellCheck="false" placeholder="Search" bordercolor={Red} />
         </SearchInputContainer>
         <SearchButtonContainer>
-          <SearchButton type="submit" buttonBackgroundColor={White} />
+          <SearchButton type="submit" buttonbackgroundcolor={White} />
         </SearchButtonContainer>
       </form>
     </SearchContainer>

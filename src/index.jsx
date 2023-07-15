@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { StyleSheetManager } from "styled-components";
 import "./index.css";
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "bordercolor"}>
+      <App />
+    </StyleSheetManager>
   </React.StrictMode>,
   document.getElementById("root"),
 );

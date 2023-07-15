@@ -32,8 +32,8 @@ const DivContainer = styled.div`
     border-radius: ${(props) => props.notebookborderradius};
     color: ${(props) => props.notebookColor};
     background: ${(props) => props.notebookBackground};
-    font-size: ${(props) => props.notebookFontSize};
-    font-weight: ${(props) => props.notebookFontWeight};
+    font-size: ${(props) => props.notebookfontSize};
+    font-weight: ${(props) => props.notebookfontWeight};
     text-align: ${(props) => props.notebooktextalign};
     box-shadow: ${(props) => props.notebookboxshadow};
   }
@@ -69,8 +69,8 @@ const BasicDiv = (props) => {
     notebookborderradius,
     notebookColor,
     notebookBackground,
-    notebookFontSize,
-    notebookFontWeight,
+    notebookfontSize,
+    notebookfontWeight,
     notebooktextalign,
     notebookboxshadow,
     children,
@@ -107,8 +107,8 @@ const BasicDiv = (props) => {
       notebookborderradius={notebookborderradius}
       notebookColor={notebookColor}
       notebookBackground={notebookBackground}
-      notebookFontSize={notebookFontSize}
-      notebookFontWeight={notebookFontWeight}
+      notebookfontSize={notebookfontSize}
+      notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}
       notebookboxshadow={notebookboxshadow}
       {...rest}
