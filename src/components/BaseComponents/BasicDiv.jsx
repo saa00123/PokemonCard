@@ -74,6 +74,7 @@ const BasicDiv = (props) => {
     notebookTextAlign,
     notebookBoxShadow,
     children,
+    ...rest
   } = props;
 
   return (
@@ -110,6 +111,7 @@ const BasicDiv = (props) => {
       notebookFontWeight={notebookFontWeight}
       notebookTextAlign={notebookTextAlign}
       notebookBoxShadow={notebookBoxShadow}
+      {...rest}
     >
       {children}
     </DivContainer>

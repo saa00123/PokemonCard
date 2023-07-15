@@ -91,7 +91,7 @@ function Login() {
                   hoverBackgroundColor="none"
                   hoverColor="none"
                   hoverBorder="none"
-                  hoverBordercolor="none"
+                  hoverBorderColor="none"
                   onClick={() => navigate("/SignUp")}
                 >
                   회원가입
@@ -106,7 +106,7 @@ function Login() {
                   hoverBackgroundColor="none"
                   hoverColor="none"
                   hoverBorder="none"
-                  hoverBordercolor="none"
+                  hoverBorderColor="none"
                   onClick={() => navigate("/FindIdPassword")}
                 >
                   아이디/비밀번호 찾기

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Color from "./Color";
 
+const Red = Color({ color: "Red" });
+
 const StyledInput = styled.input`
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
@@ -16,8 +18,8 @@ const StyledInput = styled.input`
   padding: ${(props) => props.padding};
 
   &:focus {
-    border: ${(props) => props.hoverBorder};
-    border-color: ${(props) => props.hoverBorderColor};
+    border: 2px solid;
+    border-color: ${Red};
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
@@ -34,8 +36,8 @@ const StyledInput = styled.input`
     padding: ${(props) => props.notebookPadding};
 
     &:focus {
-      border: ${(props) => props.notebookHoverBorder};
-      border-color: ${(props) => props.notebookHoverBorderColor};
+      border: 2px solid;
+      border-color: ${Red};
     }
   }
 `;
@@ -61,11 +63,8 @@ const Input = (props) => {
     notebookMargin,
     notebookPadding,
     notebookHoverBorder,
-    notebookHoverBorderColor,
     ...rest
   } = props;
-
-  const Red = Color({ color: "Red" });
 
   return (
     <StyledInput
@@ -78,8 +77,6 @@ const Input = (props) => {
       height={height}
       margin={margin}
       padding={padding}
-      hoverBorder="2px solid"
-      hoverBorderColor={Red}
       notebookColor={notebookColor}
       notebookFontSize={notebookFontSize}
       notebookFontWeight={notebookFontWeight}
@@ -89,8 +86,6 @@ const Input = (props) => {
       notebookHeight={notebookHeight}
       notebookMargin={notebookMargin}
       notebookPadding={notebookPadding}
-      notebookHoverBorder="2px solid"
-      notebookHoverBorderColor={notebookHoverBorderColor}
       {...rest}
     />
   );

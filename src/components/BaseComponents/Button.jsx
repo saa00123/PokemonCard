@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { setIsHovered } from "../../redux/state";
 import Color from "./Color";
 
+const Red = Color({ color: "Red" });
+const White = Color({ color: "White" });
+
 const ButtonStyle = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -13,16 +16,16 @@ const ButtonStyle = styled.button`
   box-sizing: border-box;
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${Red};
   color: ${(props) => props.color};
   cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${(props) => props.hoverBackgroundColor};
-    color: ${(props) => props.hoverColor};
-    border: ${(props) => props.hoverBorder};
-    border-color: ${(props) => props.hoverBorderColor};
+    background-color: ${White};
+    color: ${Red};
+    border: 2px solid;
+    border-color: ${Red};
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
@@ -33,36 +36,35 @@ const ButtonStyle = styled.button`
     box-sizing: border-box;
     font-size: ${(props) => props.notebookFontSize};
     font-weight: bold;
-    background-color: ${(props) => props.notebookBackgroundColor};
-    color: ${(props) => props.notebookColor};
+    background-color: ${Red};
+    color: ${White};
     cursor: pointer;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: ${(props) => props.notebookHoverBackgroundColor};
-      color: ${(props) => props.notebookHoverColor};
-      border: ${(props) => props.notebookHoverBorder};
-      border-color: ${(props) => props.notebookHoverBorderColor};
+      background-color: ${White};
+      color: ${Red};
+      border: 2px solid;
+      border-color: ${Red};
     }
   }
 `;
 
-const Button = ({
-  notebookWidth,
-  notebookHeight,
-  notebookBorder,
-  notebookBorderRadius,
-  notebookFontSize,
-  children,
-  width,
-  height,
-  border,
-  borderRadius,
-  fontSize,
-  ...rest
-}) => {
-  const Red = Color({ color: "Red" });
-  const White = Color({ color: "White" });
+const Button = (props) => {
+  const {
+    notebookWidth,
+    notebookHeight,
+    notebookBorder,
+    notebookBorderRadius,
+    notebookFontSize,
+    children,
+    width,
+    height,
+    border,
+    borderRadius,
+    fontSize,
+    ...rest
+  } = props;
 
   const dispatch = useDispatch();
 
@@ -73,13 +75,7 @@ const Button = ({
       border={border}
       borderRadius={borderRadius}
       fontSize={fontSize}
-      fontWeight="bold"
-      backgroundColor={Red}
       color={White}
-      hoverBackgroundColor={White}
-      hoverColor={Red}
-      hoverBorder="2px solid"
-      hoverBorderColor={Red}
       onMouseEnter={() => dispatch(setIsHovered(true))}
       onMouseLeave={() => dispatch(setIsHovered(false))}
       notebookWidth={notebookWidth}
@@ -87,12 +83,6 @@ const Button = ({
       notebookBorder={notebookBorder}
       notebookBorderRadius={notebookBorderRadius}
       notebookFontSize={notebookFontSize}
-      notebookBackgroundColor={Red}
-      notebookColor={White}
-      notebookHoverBackgroundColor={White}
-      notebookHoverColor={Red}
-      notebookHoverBorder="2px solid"
-      notebookHoverBorderColor={Red}
       {...rest}
     >
       {children}
