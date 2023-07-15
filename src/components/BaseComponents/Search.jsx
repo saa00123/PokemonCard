@@ -6,19 +6,19 @@ import HoverSearchImage from "../../images/HoverSearchImage.png";
 
 const SearchContainer = styled.div`
   align-items: center;
-  width: 50rem;
+  width: 40rem;
   height: 4.375rem;
   display: flex;
 `;
 
 const SearchInputContainer = styled.div`
-  width: 50rem;
+  width: 40rem;
   height: 4.375rem;
 `;
 
 const SearchInput = styled.input`
   box-sizing: border-box;
-  width: 50rem;
+  width: 40rem;
   height: 4.375rem;
   padding-left: 2rem;
   border: 4px solid;
@@ -31,7 +31,7 @@ const SearchInput = styled.input`
 const SearchButtonContainer = styled.div`
   width: 4.375rem;
   height: 4.375rem;
-  margin-left: 46rem;
+  margin-left: 36rem;
   margin-top: -4rem;
 `;
 
