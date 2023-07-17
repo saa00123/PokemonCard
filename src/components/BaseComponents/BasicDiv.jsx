@@ -18,6 +18,7 @@ const DivContainer = styled.div`
   font-weight: ${(props) => props.fontWeight};
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
+  box-sizing: ${(props) => props.boxsizing};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -36,6 +37,7 @@ const DivContainer = styled.div`
     font-weight: ${(props) => props.notebookfontWeight};
     text-align: ${(props) => props.notebooktextalign};
     box-shadow: ${(props) => props.notebookboxshadow};
+    box-sizing: ${(props) => props.boxsizing};
   }
 `;
 
@@ -57,6 +59,7 @@ const BasicDiv = (props) => {
     fontWeight,
     textalign,
     boxshadow,
+    boxsizing,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -95,6 +98,7 @@ const BasicDiv = (props) => {
       fontWeight={fontWeight}
       textalign={textalign}
       boxshadow={boxshadow}
+      boxsizing={boxsizing}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
