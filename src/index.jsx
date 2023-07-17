@@ -6,7 +6,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <StyleSheetManager shouldForwardProp={(prop) => prop !== "bordercolor"}>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "bordercolor" && prop !== "notebookfontSize"}>
       <App />
     </StyleSheetManager>
   </React.StrictMode>,
