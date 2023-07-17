@@ -20,15 +20,15 @@ const DivContainer = styled.div`
   box-shadow: ${(props) => props.boxshadow};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    display: ${(props) => props.notebookDisplay};
+    display: ${(props) => props.notebookdisplay};
     flex-direction: ${(props) => props.notebookflexdirection};
     justify-content: ${(props) => props.notebookjustifycontent};
     align-items: ${(props) => props.notebookalignitems};
-    margin: ${(props) => props.notebookMargin};
-    padding: ${(props) => props.notebookPadding};
-    width: ${(props) => props.notebookWidth};
-    height: ${(props) => props.notebookHeight};
-    border: ${(props) => props.notebookBorder};
+    margin: ${(props) => props.notebookmargin};
+    padding: ${(props) => props.notebookpadding};
+    width: ${(props) => props.notebookwidth};
+    height: ${(props) => props.notebookheight};
+    border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
     color: ${(props) => props.notebookColor};
     background: ${(props) => props.notebookBackground};
@@ -57,15 +57,15 @@ const BasicDiv = (props) => {
     fontWeight,
     textalign,
     boxshadow,
-    notebookDisplay,
+    notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
     notebookalignitems,
-    notebookMargin,
-    notebookPadding,
-    notebookWidth,
-    notebookHeight,
-    notebookBorder,
+    notebookmargin,
+    notebookpadding,
+    notebookwidth,
+    notebookheight,
+    notebookborder,
     notebookborderradius,
     notebookColor,
     notebookBackground,
@@ -95,15 +95,15 @@ const BasicDiv = (props) => {
       fontWeight={fontWeight}
       textalign={textalign}
       boxshadow={boxshadow}
-      notebookDisplay={notebookDisplay}
+      notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
       notebookalignitems={notebookalignitems}
-      notebookMargin={notebookMargin}
-      notebookPadding={notebookPadding}
-      notebookWidth={notebookWidth}
-      notebookHeight={notebookHeight}
-      notebookBorder={notebookBorder}
+      notebookmargin={notebookmargin}
+      notebookpadding={notebookpadding}
+      notebookwidth={notebookwidth}
+      notebookheight={notebookheight}
+      notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
       notebookColor={notebookColor}
       notebookBackground={notebookBackground}

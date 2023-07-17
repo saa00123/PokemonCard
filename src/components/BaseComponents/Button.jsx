@@ -16,16 +16,16 @@ const ButtonStyle = styled.button`
   box-sizing: border-box;
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
-  background-color: ${Red};
+  background-color: ${(props) => props.backgroundcolor};
   color: ${(props) => props.color};
   cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${White};
-    color: ${Red};
-    border: 2px solid;
-    border-color: ${Red};
+    background-color: ${(props) => props.hoverbackgroundcolor};
+    color: ${(props) => props.hovercolor};
+    border: ${(props) => props.hoverborder};
+    border-color: ${(props) => props.hoverbordercolor};
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
@@ -36,16 +36,16 @@ const ButtonStyle = styled.button`
     box-sizing: border-box;
     font-size: ${(props) => props.notebookfontSize};
     font-weight: bold;
-    background-color: ${Red};
-    color: ${White};
+    background-color: ${(props) => props.notebookbackgroundcolor};
+    color: ${(props) => props.notebookcolor};
     cursor: pointer;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: ${White};
-      color: ${Red};
-      border: 2px solid;
-      border-color: ${Red};
+      background-color: ${(props) => props.hovernotebookbackgroundcolor};
+      color: ${(props) => props.hovernotebookcolor};
+      border: ${(props) => props.hovernotebookborder};
+      border-color: ${(props) => props.hovernotebookbordercolor};
     }
   }
 `;
@@ -76,6 +76,11 @@ const Button = (props) => {
       borderradius={borderradius}
       fontSize={fontSize}
       color={White}
+      backgroundcolor={Red}
+      hoverbackgroundcolor={White}
+      hovercolor={Red}
+      hoverborder="2px solid"
+      hoverbordercolor={Red}
       onMouseEnter={() => dispatch(setIsHovered(true))}
       onMouseLeave={() => dispatch(setIsHovered(false))}
       notebookwidth={notebookwidth}
@@ -83,6 +88,12 @@ const Button = (props) => {
       notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
       notebookfontSize={notebookfontSize}
+      notebookcolor={White}
+      notebookbackgroundcolor={Red}
+      notebookhoverbackgroundcolor={White}
+      notebookhovercolor={Red}
+      notebookhoverborder="2px solid"
+      notebookhoverbordercolor={Red}
       {...rest}
     >
       {children}

@@ -21,6 +21,7 @@ function Login() {
       alignitems="center"
       padding="14.125rem 0 0 0"
       width="100vw"
+      notebookpadding="7.688rem 0 0 0"
     >
       <Logo />
       <Div
@@ -30,9 +31,12 @@ function Login() {
         margin="5.813rem 0 0 0"
         width="37.625rem"
         height="10.188rem"
+        notebookmargin="2.465rem 0 0 0"
+        notebookwidth="31.188rem"
+        notebookheight="8.813rem"
       >
         <Div className="IdPasswordContainer" display="flex" flexdirection="column" margin="0 0.75rem 0 0">
-          <Div className="IdContainer" display="flex" margin="0 0 0.813rem 0">
+          <Div className="IdContainer" display="flex" margin="0 0 0.688rem 0">
             <Div
               className="Id"
               display="flex"
@@ -41,6 +45,9 @@ function Login() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               아이디
             </Div>
@@ -51,6 +58,9 @@ function Login() {
               height="3.75rem"
               fontSize="1.625rem"
               borderradius="15px"
+              notebookwidth="18.75rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1rem"
             />
           </Div>
           <Div className="PasswordContainer" display="flex">
@@ -62,10 +72,20 @@ function Login() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               비밀번호
             </Div>
-            <Div display="flex" flexdirection="column" alignitems="center" width="21.875rem" height="5.625rem">
+            <Div
+              display="flex"
+              flexdirection="column"
+              width="21.875rem"
+              height="5.625rem"
+              notebookwidth="18.75rem"
+              notebookheight="5rem"
+            >
               <Input
                 placeholder="Put your password"
                 padding="0 0 0 1.313rem"
@@ -73,14 +93,18 @@ function Login() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="18.75rem"
+                notebookheight="3.125rem"
+                notebookfontSize="1rem"
               />
               <Div
                 className="SignAndFindContainer"
                 display="flex"
                 justifycontent="space-between"
-                alignitems="center"
                 width="21.438rem"
                 height="1.875rem"
+                notebookwidth="18.75rem"
+                notebookheight="1.875rem"
               >
                 <Button
                   className="SignUpBtn"
@@ -93,6 +117,14 @@ function Login() {
                   hoverborder="none"
                   hoverbordercolor="none"
                   onClick={() => navigate("/SignUp")}
+                  notebookcolor={Gray2}
+                  notebookbackgroundcolor={Default}
+                  notebookborder="none"
+                  notebookfontSize="0.875rem"
+                  notebookhoverbackgroundcolor="none"
+                  notebookhovercolor="none"
+                  notebookhoverborder="none"
+                  notebookhoverbordercolor="none"
                 >
                   회원가입
                 </Button>
@@ -108,6 +140,14 @@ function Login() {
                   hoverborder="none"
                   hoverbordercolor="none"
                   onClick={() => navigate("/FindIdPassword")}
+                  notebookcolor={Gray2}
+                  notebookbackgroundcolor={Default}
+                  notebookborder="none"
+                  notebookfontSize="0.875rem"
+                  notebookhoverbackgroundcolor="none"
+                  notebookhovercolor="none"
+                  notebookhoverborder="none"
+                  notebookhoverbordercolor="none"
                 >
                   아이디/비밀번호 찾기
                 </Button>
@@ -123,6 +163,9 @@ function Login() {
           fontWeight="bold"
           borderradius="1rem"
           border="none"
+          notebookwidth="5.313rem"
+          notebookheight="6.938rem"
+          notebookfontSize="1rem"
         >
           로그인
         </Button>
