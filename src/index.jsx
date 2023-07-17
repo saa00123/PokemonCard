@@ -1,14 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { StyleSheetManager } from "styled-components";
 import "./index.css";
 import App from "./App";
 
-ReactDOM.render(
+const rootNode = document.getElementById("root");
+
+ReactDOM.createRoot(rootNode).render(
   <React.StrictMode>
     <StyleSheetManager shouldForwardProp={(prop) => prop !== "bordercolor"}>
       <App />
     </StyleSheetManager>
   </React.StrictMode>,
-  document.getElementById("root"),
+  // document.getElementById("root"),
 );
