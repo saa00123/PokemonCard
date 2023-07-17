@@ -12,7 +12,6 @@ const BgImage = styled.img`
   background-size: 100vw 100vh;
   z-index: -10;
 `;
-
 const BackgroundImage = () => <BgImage />;
 
 export default BackgroundImage;

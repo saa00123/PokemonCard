@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
+import styled from "styled-components";
 import { store } from "./redux/store";
+import BackgroundImage from "./components/ImageComponents/BackgroundImage";
 import Header from "./components/BaseComponents/Header";
 
 import Home from "./pages/main/Home";
@@ -23,6 +25,7 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
+        <BackgroundImage />
         <Routes>
           <Route
             path="/"
