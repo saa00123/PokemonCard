@@ -16,47 +16,47 @@ const ButtonStyle = styled.button`
   box-sizing: border-box;
   font-size: ${(props) => props.fontSize};
   font-weight: bold;
-  background-color: ${Red};
+  background-color: ${(props) => props.backgroundcolor};
   color: ${(props) => props.color};
   cursor: pointer;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${White};
-    color: ${Red};
-    border: 2px solid;
-    border-color: ${Red};
+    background-color: ${(props) => props.hoverbackgroundcolor};
+    color: ${(props) => props.hovercolor};
+    border: ${(props) => props.hoverborder};
+    border-color: ${(props) => props.hoverbordercolor};
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    width: ${(props) => props.notebookwidth};
-    height: ${(props) => props.notebookheight};
-    border: ${(props) => props.notebookborder};
-    border-radius: ${(props) => props.notebookborderradius};
+    width: ${(props) => props.notebookWidth};
+    height: ${(props) => props.notebookHeight};
+    border: ${(props) => props.notebookBorder};
+    border-radius: ${(props) => props.notebookBorderRadius};
     box-sizing: border-box;
-    font-size: ${(props) => props.notebookfontSize};
+    font-size: ${(props) => props.notebookFontSize};
     font-weight: bold;
-    background-color: ${Red};
-    color: ${White};
+    background-color: ${(props) => props.notebookbackgroundcolor};
+    color: ${(props) => props.notebookcolor};
     cursor: pointer;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: ${White};
-      color: ${Red};
-      border: 2px solid;
-      border-color: ${Red};
+      background-color: ${(props) => props.hovernotebookbackgroundcolor};
+      color: ${(props) => props.hovernotebookcolor};
+      border: ${(props) => props.hovernotebookborder};
+      border-color: ${(props) => props.hovernotebookbordercolor};
     }
   }
 `;
 
 const Button = (props) => {
   const {
-    notebookwidth,
-    notebookheight,
-    notebookborder,
-    notebookborderradius,
-    notebookfontSize,
+    notebookWidth,
+    notebookHeight,
+    notebookBorder,
+    notebookBorderRadius,
+    notebookFontSize,
     children,
     width,
     height,
@@ -76,13 +76,24 @@ const Button = (props) => {
       borderradius={borderradius}
       fontSize={fontSize}
       color={White}
+      backgroundcolor={Red}
+      hoverbackgroundcolor={White}
+      hovercolor={Red}
+      hoverborder="2px solid"
+      hoverbordercolor={Red}
       onMouseEnter={() => dispatch(setIsHovered(true))}
       onMouseLeave={() => dispatch(setIsHovered(false))}
-      notebookwidth={notebookwidth}
-      notebookheight={notebookheight}
-      notebookborder={notebookborder}
-      notebookborderradius={notebookborderradius}
-      notebookfontSize={notebookfontSize}
+      notebookWidth={notebookWidth}
+      notebookHeight={notebookHeight}
+      notebookBorder={notebookBorder}
+      notebookBorderRadius={notebookBorderRadius}
+      notebookFontSize={notebookFontSize}
+      notebookcolor={White}
+      notebookbackgroundcolor={Red}
+      notebookhoverbackgroundcolor={White}
+      notebookhovercolor={Red}
+      notebookhoverborder="2px solid"
+      notebookhoverbordercolor={Red}
       {...rest}
     >
       {children}
