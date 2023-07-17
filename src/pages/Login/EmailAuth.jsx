@@ -19,6 +19,7 @@ function EmailAuth() {
       alignitems="center"
       padding="12.625rem 0 1.125rem 0"
       width="100vw"
+      notebookpadding="7.938rem 0 2.84rem 0"
     >
       <Logo />
       <Div
@@ -30,6 +31,9 @@ function EmailAuth() {
         width="56.25rem"
         height="29.438rem"
         boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        notebookwidth="42.75rem"
+        notebookheight="24.313rem"
+        notebookmargin="2.84rem 0 0 0"
       >
         <Div
           className="EmailCheckBox"
@@ -42,6 +46,10 @@ function EmailAuth() {
           color={Gray2}
           fontSize="3rem"
           fontWeight="bold"
+          notebookwidth="43.75rem"
+          notebookheight="4.375rem"
+          notebookmargin="0"
+          notebookfontSize="2.25rem"
         >
           <Div className="EmailCheck">aaa@naver.com</Div>
           으로 보낸
@@ -57,6 +65,10 @@ function EmailAuth() {
           color={Gray2}
           fontSize="3rem"
           fontWeight="bold"
+          notebookwidth="43.75rem"
+          notebookheight="4.375rem"
+          notebookmargin="0 0 2rem 0"
+          notebookfontSize="2.25rem"
         >
           이메일 인증링크를 확인하세요.
         </Div>
