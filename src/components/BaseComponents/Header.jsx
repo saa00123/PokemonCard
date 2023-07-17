@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Color from "./Color";
-import Logo from "./Logo";
+import HeaderLogo from "./HeaderLogo";
 import Search from "./Search";
 
 const HeaderContainer = styled.header`
@@ -39,7 +39,7 @@ const HeaderMenu = styled.button`
 const Header = () => (
   <HeaderContainer>
     <HeaderSpaceDiv>
-      <Logo />
+      <HeaderLogo />
       <Search />
       <HeaderMenu>카드 등록</HeaderMenu>
       <HeaderMenu>마감된 경매</HeaderMenu>
