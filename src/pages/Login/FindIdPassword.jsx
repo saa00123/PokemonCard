@@ -6,6 +6,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function FindIdPassword() {
+  const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
 
   return (
@@ -40,6 +41,7 @@ function FindIdPassword() {
             width="40.75rem"
             height="22.375rem"
             boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            backgroundcolor={Default}
           >
             <Div
               className="FindIdNotice"
@@ -136,6 +138,7 @@ function FindIdPassword() {
             width="40.75rem"
             height="22.375rem"
             boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            backgroundcolor={Default}
           >
             <Div
               className="FindPasswordNotice"

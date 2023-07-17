@@ -6,6 +6,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function SignUp() {
+  const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
 
@@ -41,6 +42,7 @@ function SignUp() {
           width="40.625rem"
           height="43.063rem"
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          backgroundcolor={Default}
         >
           <Div className="NameContainer" display="flex" margin="0 0 0.688rem 0">
             <Div
