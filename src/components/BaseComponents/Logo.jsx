@@ -6,13 +6,12 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 9.375rem;
-  height: 6.25rem;
+  width: 18rem;
 `;
 
 const Image = styled.img`
   width: 100%;
-  height: 4.375rem;
+  height: 8rem;
 `;
 
 const Logo = () => (
