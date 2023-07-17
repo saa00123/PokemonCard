@@ -8,6 +8,7 @@ import Input from "../../components/BaseComponents/Input";
 function SignUp() {
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
+  const White = Color({ color: "Default" });
 
   return (
     <Div
@@ -20,7 +21,16 @@ function SignUp() {
       width="100vw"
     >
       <Logo />
-      <Div className="SignContainer" display="flex" flexdirection="column" width="40.625rem" height="46.064rem">
+      <Div
+        className="SignContainer"
+        display="flex"
+        flexdirection="column"
+        width="40.625rem"
+        height="46.064rem"
+        notebookwidth="fit-content"
+        notebookheight="fit-content"
+        border="4px solid red"
+      >
         <Div
           className="SignHeader"
           width="7.625rem"
@@ -29,6 +39,7 @@ function SignUp() {
           color={Gray2}
           fontSize="2rem"
           fontWeight="bold"
+          notebookfontSize="1.75rem"
         >
           회원가입
         </Div>
@@ -40,7 +51,11 @@ function SignUp() {
           alignitems="center"
           width="40.625rem"
           height="43.063rem"
+          background={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          notebookwidth="55.625rem"
+          notebookheight="25rem"
+          border="4px solid blue"
         >
           <Div className="NameContainer" display="flex" margin="0 0 0.688rem 0">
             <Div
@@ -51,6 +66,9 @@ function SignUp() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               이름
             </Div>
@@ -61,6 +79,9 @@ function SignUp() {
               height="3.75rem"
               fontSize="1.625rem"
               borderradius="15px"
+              notebookwidth="15.625rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1rem"
             />
           </Div>
           <Div className="NicknameContainer" display="flex" margin="0 0 0.5rem 0">
@@ -72,6 +93,9 @@ function SignUp() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               닉네임
             </Div>
@@ -83,6 +107,9 @@ function SignUp() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="15.625rem"
+                notebookheight="3.125rem"
+                notebookfontSize="1rem"
               />
               <Div
                 className="NicknameWarning"
@@ -92,10 +119,42 @@ function SignUp() {
                 height="1.5rem"
                 color={Gray1}
                 fontSize="0.75rem"
+                padding="0 0 0 0.893rem"
+                notebookwidth="11rem"
+                notebookheight="1.25rem"
+                notebookfontSize="0.625rem"
+                // notebookemargin="0 0.937rem 0 0"
               >
                 사용 불가능한 닉네임입니다.
               </Div>
             </Div>
+          </Div>
+          <Div className="EmailContainer" display="flex" margin="0 0 1.5rem 0">
+            <Div
+              className="Email"
+              display="flex"
+              alignitems="center"
+              width="11.001rem"
+              height="3.75rem"
+              textalign="left"
+              fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
+            >
+              이메일
+            </Div>
+            <Input
+              placeholder="이메일을 입력하세요."
+              padding="0 0 0 1.313rem"
+              width="21.875rem"
+              height="3.75rem"
+              fontSize="1.625rem"
+              borderradius="15px"
+              notebookwidth="15.625rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1rem"
+            />
           </Div>
           <Div className="IdContainer" display="flex" margin="0 0 0.5rem 0">
             <Div
@@ -106,6 +165,9 @@ function SignUp() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               아이디
             </Div>
@@ -117,6 +179,9 @@ function SignUp() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="15.625rem"
+                notebookheight="3.125rem"
+                notebookfontSize="1rem"
               />
               <Div
                 className="NicknameWarning"
@@ -140,6 +205,9 @@ function SignUp() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               비밀번호
             </Div>
@@ -152,6 +220,9 @@ function SignUp() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="15.625rem"
+                notebookheight="3.125rem"
+                notebookfontSize="1rem"
               />
               <Div
                 className="NicknameWarning"
@@ -175,6 +246,9 @@ function SignUp() {
               height="3.75rem"
               textalign="left"
               fontSize="1.625rem"
+              notebookwidth="6.25rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               비밀번호 확인
             </Div>
@@ -187,6 +261,9 @@ function SignUp() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="15.625rem"
+                notebookheight="3.125rem"
+                notebookfontSize="1rem"
               />
               <Div
                 className="NicknameWarning"
@@ -201,27 +278,7 @@ function SignUp() {
               </Div>
             </Div>
           </Div>
-          <Div className="EmailContainer" display="flex" margin="0 0 1.5rem 0">
-            <Div
-              className="Email"
-              display="flex"
-              alignitems="center"
-              width="11.001rem"
-              height="3.75rem"
-              textalign="left"
-              fontSize="1.625rem"
-            >
-              이메일
-            </Div>
-            <Input
-              placeholder="이메일을 입력하세요."
-              padding="0 0 0 1.313rem"
-              width="21.875rem"
-              height="3.75rem"
-              fontSize="1.625rem"
-              borderradius="15px"
-            />
-          </Div>
+
           <Button
             className="SighUpBtn"
             type="submit"
@@ -231,6 +288,9 @@ function SignUp() {
             border="none"
             fontSize="1.5rem"
             fontWeight="bold"
+            notebookwidth="7.5rem"
+            notebookheight="3.125rem"
+            notebookfontSize="1rem"
           >
             회원 가입
           </Button>
