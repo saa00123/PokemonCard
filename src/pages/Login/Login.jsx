@@ -21,7 +21,7 @@ function Login() {
       alignitems="center"
       padding="14.125rem 0 0 0"
       width="100vw"
-      notebookpadding="7.688rem 0 0 0"
+      notebookpadding="10rem 0 0 0"
     >
       <Logo />
       <Div
