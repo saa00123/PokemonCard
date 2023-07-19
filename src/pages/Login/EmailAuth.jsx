@@ -8,6 +8,7 @@ import Button from "../../components/BaseComponents/Button";
 function EmailAuth() {
   const navigate = useNavigate();
 
+  const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
 
   return (
@@ -31,6 +32,7 @@ function EmailAuth() {
         width="56.25rem"
         height="29.438rem"
         boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        backgroundcolor={Default}
         notebookwidth="42.75rem"
         notebookheight="24.313rem"
         notebookmargin="2.84rem 0 0 0"

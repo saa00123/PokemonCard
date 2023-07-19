@@ -6,6 +6,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function FindIdPassword() {
+  const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
 
   return (
@@ -19,16 +20,36 @@ function FindIdPassword() {
       width="100vw"
     >
       <Logo />
-      <Div className="MainContainer" display="flex" justifycontent="space-between" width="90.438rem">
+      <Div
+        className="MainContainer"
+        display="flex"
+        justifycontent="center"
+        alignitems="center"
+        width="90.438rem"
+        notebookwidth="60rem"
+      >
         <Div
           className="FindIdContainer"
           display="flex"
           flexdirection="column"
           width="40.625rem"
           height="46.064rem"
-          margin="5.375rem 0 0 0"
+          margin="5.375rem 2.938rem 0 0"
+          notebookwidth="31.813rem"
+          notebookheight="21.1rem"
+          notebookmargin="5.375rem 1.938rem 0 0"
         >
-          <Div className="FindIdHeader" width="13.75rem" height="5rem" color={Gray2} fontSize="2rem" fontWeight="bold">
+          <Div
+            className="FindIdHeader"
+            width="13.75rem"
+            height="5rem"
+            color={Gray2}
+            fontSize="2rem"
+            fontWeight="bold"
+            notebookwidth="9.125rem"
+            notebookheight="3.875rem"
+            notebookfontSize="1.75rem"
+          >
             아이디 찾기
           </Div>
           <Div
@@ -40,6 +61,9 @@ function FindIdPassword() {
             width="40.75rem"
             height="22.375rem"
             boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            backgroundcolor={Default}
+            notebookwidth="28.813rem"
+            notebookheight="17.25rem"
           >
             <Div
               className="FindIdNotice"
@@ -50,10 +74,19 @@ function FindIdPassword() {
               height="3.75rem"
               margin="0 0 0.813rem 0"
               fontSize="1.5rem"
+              notebookwidth="26.188rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               회원정보에 등록한 이름과 이메일을 입력해주세요.
             </Div>
-            <Div className="NameContainer" display="flex" width="35.375rem" margin="0 0 0.688rem 0">
+            <Div
+              className="NameContainer"
+              display="flex"
+              width="35.375rem"
+              margin="0 0 0.688rem 0"
+              notebookwidth="23.563rem"
+            >
               <Div
                 className="Name"
                 display="flex"
@@ -62,6 +95,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 textalign="left"
                 fontSize="1.625rem"
+                notebookwidth="5rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1.25rem"
               >
                 이름
               </Div>
@@ -72,6 +108,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="14.375rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1rem"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
@@ -83,6 +122,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 textalign="left"
                 fontSize="1.625rem"
+                notebookwidth="5rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1.25rem"
               >
                 이메일
               </Div>
@@ -94,6 +136,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="14.375rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1rem"
               />
               <Button
                 type="submit"
@@ -103,6 +148,9 @@ function FindIdPassword() {
                 fontWeight="bold"
                 borderradius="1rem"
                 border="none"
+                notebookwidth="3.75rem"
+                notebookheight="2.5rem"
+                notebookfontize="1rem"
               >
                 확인
               </Button>
@@ -116,6 +164,8 @@ function FindIdPassword() {
           width="40.625rem"
           height="46.064rem"
           margin="5.375rem 0 0 0"
+          notebookwidth="31.813rem"
+          notebookheight="21.1rem"
         >
           <Div
             className="FindPasswordHeader"
@@ -124,6 +174,9 @@ function FindIdPassword() {
             color={Gray2}
             fontSize="2rem"
             fontWeight="bold"
+            notebookwidth="10.625rem"
+            notebookheight="3.875rem"
+            notebookfontSize="1.75rem"
           >
             비밀번호 찾기
           </Div>
@@ -136,6 +189,9 @@ function FindIdPassword() {
             width="40.75rem"
             height="22.375rem"
             boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+            backgroundcolor={Default}
+            notebookwidth="28.813rem"
+            notebookheight="17.25rem"
           >
             <Div
               className="FindPasswordNotice"
@@ -146,10 +202,19 @@ function FindIdPassword() {
               height="3.75rem"
               margin="0 0 0.813rem 0"
               fontSize="1.5rem"
+              notebookwidth="26.188rem"
+              notebookheight="3.125rem"
+              notebookfontSize="1.25rem"
             >
               회원정보에 등록한 아이디와 이메일을 입력해주세요.
             </Div>
-            <Div className="IdContainer" display="flex" width="35.375rem" margin="0 0 0.688rem 0">
+            <Div
+              className="IdContainer"
+              display="flex"
+              width="35.375rem"
+              margin="0 0 0.688rem 0"
+              notebookwidth="23.563rem"
+            >
               <Div
                 className="Id"
                 display="flex"
@@ -158,6 +223,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 textalign="left"
                 fontSize="1.625rem"
+                notebookwidth="5rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1.25rem"
               >
                 아이디
               </Div>
@@ -168,6 +236,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="14.375rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1rem"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
@@ -179,6 +250,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 textalign="left"
                 fontSize="1.625rem"
+                notebookwidth="5rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1.25rem"
               >
                 이메일
               </Div>
@@ -190,6 +264,9 @@ function FindIdPassword() {
                 height="3.75rem"
                 fontSize="1.625rem"
                 borderradius="15px"
+                notebookwidth="14.375rem"
+                notebookheight="2.5rem"
+                notebookfontSize="1rem"
               />
               <Button
                 type="submit"
@@ -199,6 +276,9 @@ function FindIdPassword() {
                 fontWeight="bold"
                 borderradius="1rem"
                 border="none"
+                notebookwidth="3.75rem"
+                notebookheight="2.5rem"
+                notebookfontize="1rem"
               >
                 확인
               </Button>

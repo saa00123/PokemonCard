@@ -6,6 +6,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function ResetPassword() {
+  const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
 
@@ -47,6 +48,7 @@ function ResetPassword() {
           width="40.625rem"
           height="25rem"
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          backgroundcolor={Default}
         >
           <Div className="PasswordContainer" display="flex" margin="0 0 0.5rem 0">
             <Div

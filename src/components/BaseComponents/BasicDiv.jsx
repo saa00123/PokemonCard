@@ -13,7 +13,7 @@ const DivContainer = styled.div`
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderradius};
   color: ${(props) => props.color};
-  background: ${(props) => props.background};
+  background-color: ${(props) => props.backgroundcolor};
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
   text-align: ${(props) => props.textalign};
@@ -32,7 +32,7 @@ const DivContainer = styled.div`
     border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
     color: ${(props) => props.notebookColor};
-    background: ${(props) => props.notebookBackground};
+    backgroundcolor: ${(props) => props.notebookbackgroundcolor};
     font-size: ${(props) => props.notebookfontSize};
     font-weight: ${(props) => props.notebookfontWeight};
     text-align: ${(props) => props.notebooktextalign};
@@ -54,7 +54,7 @@ const BasicDiv = (props) => {
     border,
     borderradius,
     color,
-    background,
+    backgroundcolor,
     fontSize,
     fontWeight,
     textalign,
@@ -71,7 +71,7 @@ const BasicDiv = (props) => {
     notebookborder,
     notebookborderradius,
     notebookColor,
-    notebookBackground,
+    notebookbackgroundcolor,
     notebookfontSize,
     notebookfontWeight,
     notebooktextalign,
@@ -93,7 +93,7 @@ const BasicDiv = (props) => {
       border={border}
       borderradius={borderradius}
       color={color}
-      background={background}
+      backgroundcolor={backgroundcolor}
       fontSize={fontSize}
       fontWeight={fontWeight}
       textalign={textalign}
@@ -110,7 +110,7 @@ const BasicDiv = (props) => {
       notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
       notebookColor={notebookColor}
-      notebookBackground={notebookBackground}
+      notebookbackgroundcolor={notebookbackgroundcolor}
       notebookfontSize={notebookfontSize}
       notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}

@@ -6,6 +6,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function SignUp() {
+  const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
