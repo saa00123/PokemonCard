@@ -7,11 +7,17 @@ const LogoContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 18rem;
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 12.5rem;
+  }
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 8rem;
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    height: 5.472rem;
+  }
 `;
 
 const Logo = () => (
