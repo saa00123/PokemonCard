@@ -52,7 +52,7 @@ function SignUp() {
           // alignitems="center"
           width="40.625rem"
           height="43.063rem"
-          background={White}
+          backgroundcolor={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           boxsizing="border-box"
           // padding="2.5rem 5rem 0 5rem"
