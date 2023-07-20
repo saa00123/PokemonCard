@@ -111,6 +111,7 @@ function FindIdPassword() {
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
                 notebookfontSize="1rem"
+                notebookborderradius="10px"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
@@ -139,6 +140,7 @@ function FindIdPassword() {
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
                 notebookfontSize="1rem"
+                notebookborderradius="10px"
               />
               <Button
                 type="submit"
@@ -150,7 +152,8 @@ function FindIdPassword() {
                 border="none"
                 notebookwidth="3.75rem"
                 notebookheight="2.5rem"
-                notebookfontize="1rem"
+                notebookfontSize="1rem"
+                notebookborderradius="10px"
               >
                 확인
               </Button>
@@ -239,6 +242,7 @@ function FindIdPassword() {
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
                 notebookfontSize="1rem"
+                notebookborderradius="10px"
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
@@ -267,6 +271,7 @@ function FindIdPassword() {
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
                 notebookfontSize="1rem"
+                notebookborderradius="10px"
               />
               <Button
                 type="submit"
@@ -278,7 +283,8 @@ function FindIdPassword() {
                 border="none"
                 notebookwidth="3.75rem"
                 notebookheight="2.5rem"
-                notebookfontize="1rem"
+                notebookfontSize="1rem"
+                notebookborderradius="10px"
               >
                 확인
               </Button>
