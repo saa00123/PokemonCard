@@ -46,7 +46,7 @@ function EmailAuth() {
           height="5.625rem"
           margin="0 0 1.125rem 0"
           color={Gray2}
-          fontSize="3rem"
+          fontsize="3rem"
           fontWeight="bold"
           notebookwidth="43.75rem"
           notebookheight="4.375rem"

@@ -34,7 +34,7 @@ function ResetPassword() {
           width="13.75rem"
           height="3.75rem"
           color={Gray2}
-          fontSize="2rem"
+          fontsize="2rem"
           fontWeight="bold"
         >
           비밀번호 재설정
@@ -58,7 +58,7 @@ function ResetPassword() {
               width="11.001rem"
               height="3.75rem"
               textalign="left"
-              fontSize="1.625rem"
+              fontsize="1.625rem"
             >
               비밀번호
             </Div>
@@ -68,7 +68,7 @@ function ResetPassword() {
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
               />
               <Div
@@ -78,7 +78,7 @@ function ResetPassword() {
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
-                fontSize="0.75rem"
+                fontsize="0.75rem"
               >
                 8자 이상, 숫자, 영어, 특수분자 포함
               </Div>
@@ -92,7 +92,7 @@ function ResetPassword() {
               width="11.001rem"
               height="3.75rem"
               textalign="left"
-              fontSize="1.625rem"
+              fontsize="1.625rem"
             >
               비밀번호 확인
             </Div>
@@ -109,7 +109,7 @@ function ResetPassword() {
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
               />
               <Div
@@ -119,7 +119,7 @@ function ResetPassword() {
                 width="21.438rem"
                 height="1.5rem"
                 color={Gray1}
-                fontSize="0.75rem"
+                fontsize="0.75rem"
               >
                 비밀번호가 일치하지 않습니다.
               </Div>
@@ -129,7 +129,7 @@ function ResetPassword() {
             type="submit"
             width="12.5rem"
             height="3.75rem"
-            fontSize="1.5rem"
+            fontsize="1.5rem"
             fontWeight="bold"
             borderradius="1rem"
             border="none"

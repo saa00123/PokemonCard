@@ -14,7 +14,7 @@ const ButtonStyle = styled.button`
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderradius};
   box-sizing: border-box;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontsize};
   font-weight: bold;
   background-color: ${(props) => props.backgroundcolor};
   color: ${(props) => props.color};
@@ -34,7 +34,7 @@ const ButtonStyle = styled.button`
     border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
     box-sizing: border-box;
-    font-size: ${(props) => props.notebookfontSize};
+    font-size: ${(props) => props.notebookfontsize};
     font-weight: bold;
     background-color: ${(props) => props.notebookbackgroundcolor};
     color: ${(props) => props.notebookcolor};
@@ -56,13 +56,13 @@ const Button = (props) => {
     notebookheight,
     notebookborder,
     notebookborderradius,
-    notebookfontSize,
+    notebookfontsize,
     children,
     width,
     height,
     border,
     borderradius,
-    fontSize,
+    fontsize,
     ...rest
   } = props;
 
@@ -74,7 +74,7 @@ const Button = (props) => {
       height={height}
       border={border}
       borderradius={borderradius}
-      fontSize={fontSize}
+      fontsize={fontsize}
       color={White}
       backgroundcolor={Red}
       hoverbackgroundcolor={White}
@@ -87,7 +87,7 @@ const Button = (props) => {
       notebookheight={notebookheight}
       notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
-      notebookfontSize={notebookfontSize}
+      notebookfontsize={notebookfontsize}
       notebookcolor={White}
       notebookbackgroundcolor={Red}
       notebookhoverbackgroundcolor={White}

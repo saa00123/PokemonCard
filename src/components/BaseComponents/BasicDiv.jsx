@@ -14,7 +14,7 @@ const DivContainer = styled.div`
   border-radius: ${(props) => props.borderradius};
   color: ${(props) => props.color};
   background-color: ${(props) => props.backgroundcolor};
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontsize};
   font-weight: ${(props) => props.fontWeight};
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
@@ -32,8 +32,8 @@ const DivContainer = styled.div`
     border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
     color: ${(props) => props.notebookColor};
-    backgroundcolor: ${(props) => props.notebookbackgroundcolor};
-    font-size: ${(props) => props.notebookfontSize};
+    background-color: ${(props) => props.notebookbackgroundcolor};
+    font-size: ${(props) => props.notebookfontsize};
     font-weight: ${(props) => props.notebookfontWeight};
     text-align: ${(props) => props.notebooktextalign};
     box-shadow: ${(props) => props.notebookboxshadow};
@@ -55,7 +55,7 @@ const BasicDiv = (props) => {
     borderradius,
     color,
     backgroundcolor,
-    fontSize,
+    fontsize,
     fontWeight,
     textalign,
     boxshadow,
@@ -72,7 +72,7 @@ const BasicDiv = (props) => {
     notebookborderradius,
     notebookColor,
     notebookbackgroundcolor,
-    notebookfontSize,
+    notebookfontsize,
     notebookfontWeight,
     notebooktextalign,
     notebookboxshadow,
@@ -94,7 +94,7 @@ const BasicDiv = (props) => {
       borderradius={borderradius}
       color={color}
       backgroundcolor={backgroundcolor}
-      fontSize={fontSize}
+      fontsize={fontsize}
       fontWeight={fontWeight}
       textalign={textalign}
       boxshadow={boxshadow}
@@ -111,7 +111,7 @@ const BasicDiv = (props) => {
       notebookborderradius={notebookborderradius}
       notebookColor={notebookColor}
       notebookbackgroundcolor={notebookbackgroundcolor}
-      notebookfontSize={notebookfontSize}
+      notebookfontsize={notebookfontsize}
       notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}
       notebookboxshadow={notebookboxshadow}

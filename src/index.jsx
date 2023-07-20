@@ -8,7 +8,9 @@ const rootNode = document.getElementById("root");
 
 ReactDOM.createRoot(rootNode).render(
   <React.StrictMode>
-    <StyleSheetManager shouldForwardProp={(prop) => prop !== "bordercolor" && prop !== "notebookfontSize"}>
+    <StyleSheetManager
+      shouldForwardProp={(prop) => prop !== "bordercolor" && prop !== "notebookfontsize" && prop !== "fontsize"}
+    >
       <App />
     </StyleSheetManager>
   </React.StrictMode>,

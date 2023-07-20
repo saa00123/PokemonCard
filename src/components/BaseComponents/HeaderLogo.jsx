@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LogoImage from "../../images/Logo.png";
 
@@ -14,10 +15,18 @@ const Image = styled.img`
   height: 4.375rem;
 `;
 
-const HeaderLogo = () => (
-  <LogoContainer>
-    <Image src={LogoImage} alt="LogoImage" />
-  </LogoContainer>
-);
+const HeaderLogo = () => {
+  const navigate = useNavigate();
+
+  return (
+    <LogoContainer
+      onClick={() => {
+        navigate("/");
+      }}
+    >
+      <Image src={LogoImage} alt="LogoImage" />
+    </LogoContainer>
+  );
+};
 
 export default HeaderLogo;

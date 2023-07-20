@@ -43,11 +43,11 @@ function SignUpComplete() {
         width="59.813rem"
         height="7.188rem"
         color={Gray2}
-        fontSize="3rem"
+        fontsize="3rem"
         fontWeight="bold"
         notebookwidth="39.875rem"
         notebookheight="5.563rem"
-        notebookfontSize="2.5rem"
+        notebookfontsize="2.5rem"
       >
         회원가입이 완료되었습니다.
       </Div>
@@ -55,14 +55,14 @@ function SignUpComplete() {
         className="LoginBtn"
         width="12.5rem"
         height="4.375rem"
-        fontSize="1.5rem"
+        fontsize="1.5rem"
         fontWeight="bold"
         borderradius="1rem"
         border="none"
         onClick={() => navigate("/Login")}
         notebookwidth="9.375rem"
         notebookheight="3.75rem"
-        notebookfontSize="1rem"
+        notebookfontsize="1rem"
       >
         로그인하러 가기
       </Button>

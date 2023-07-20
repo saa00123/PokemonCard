@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LogoImage from "../../images/Logo.png";
 
@@ -20,10 +21,18 @@ const Image = styled.img`
   }
 `;
 
-const Logo = () => (
-  <LogoContainer>
-    <Image src={LogoImage} alt="LogoImage" />
-  </LogoContainer>
-);
+const Logo = () => {
+  const navigate = useNavigate();
+
+  return (
+    <LogoContainer
+      onClick={() => {
+        navigate("/");
+      }}
+    >
+      <Image src={LogoImage} alt="LogoImage" />
+    </LogoContainer>
+  );
+};
 
 export default Logo;

@@ -46,11 +46,11 @@ function AfterFindId() {
           height="5.625rem"
           margin="0 0 1.125rem 0"
           color={Gray2}
-          fontSize="3rem"
+          fontsize="3rem"
           fontWeight="bold"
           notebookwidth="37.5rem"
           notebookheight="4.313rem"
-          notebookfontSize="2.25rem"
+          notebookfontsize="2.25rem"
           notebookmargin="0"
         >
           회원님의 아이디는
@@ -64,11 +64,11 @@ function AfterFindId() {
           height="5.625rem"
           margin="0 0 1.125rem 0"
           color={Gray2}
-          fontSize="3rem"
+          fontsize="3rem"
           fontWeight="bold"
           notebookwidth="37.5rem"
           notebookheight="4.313rem"
-          notebookfontSize="2.25rem"
+          notebookfontsize="2.25rem"
           notebookmargin="0 0 3rem 0"
         >
           <Div className="IdCheck">apple134</Div>
@@ -86,14 +86,14 @@ function AfterFindId() {
             className="LoginBtn"
             width="12.5rem"
             height="4.375rem"
-            fontSize="1.5rem"
+            fontsize="1.5rem"
             fontWeight="bold"
             borderradius="1rem"
             border="none"
             onClick={() => navigate("/Login")}
             notebookwidth="8.313rem"
             notebookheight="3.375rem"
-            notebookfontSize="1rem"
+            notebookfontsize="1rem"
           >
             로그인하러 가기
           </Button>
@@ -101,14 +101,14 @@ function AfterFindId() {
             className="FindPasswordBtn"
             width="12.5rem"
             height="4.375rem"
-            fontSize="1.5rem"
+            fontsize="1.5rem"
             fontWeight="bold"
             borderradius="1rem"
             border="none"
             onClick={() => navigate("/FindIdPassword")}
             notebookwidth="8.313rem"
             notebookheight="3.375rem"
-            notebookfontSize="1rem"
+            notebookfontsize="1rem"
           >
             비밀번호 찾기
           </Button>

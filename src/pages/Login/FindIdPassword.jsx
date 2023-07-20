@@ -44,11 +44,11 @@ function FindIdPassword() {
             width="13.75rem"
             height="5rem"
             color={Gray2}
-            fontSize="2rem"
+            fontsize="2rem"
             fontWeight="bold"
             notebookwidth="9.125rem"
             notebookheight="3.875rem"
-            notebookfontSize="1.75rem"
+            notebookfontsize="1.75rem"
           >
             아이디 찾기
           </Div>
@@ -73,10 +73,10 @@ function FindIdPassword() {
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
-              fontSize="1.5rem"
+              fontsize="1.5rem"
               notebookwidth="26.188rem"
               notebookheight="3.125rem"
-              notebookfontSize="1.25rem"
+              notebookfontsize="1.25rem"
             >
               회원정보에 등록한 이름과 이메일을 입력해주세요.
             </Div>
@@ -94,10 +94,10 @@ function FindIdPassword() {
                 width="7.5rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="5rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 이름
               </Div>
@@ -106,11 +106,11 @@ function FindIdPassword() {
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               />
             </Div>
@@ -122,10 +122,10 @@ function FindIdPassword() {
                 width="7.5rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="5rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 이메일
               </Div>
@@ -135,24 +135,24 @@ function FindIdPassword() {
                 margin="0 0.375rem 0 0"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               />
               <Button
                 type="submit"
                 width="5.625rem"
                 height="3.75rem"
-                fontSize="1.25rem"
+                fontsize="1.25rem"
                 fontWeight="bold"
                 borderradius="1rem"
                 border="none"
                 notebookwidth="3.75rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               >
                 확인
@@ -175,11 +175,11 @@ function FindIdPassword() {
             width="13.75rem"
             height="5rem"
             color={Gray2}
-            fontSize="2rem"
+            fontsize="2rem"
             fontWeight="bold"
             notebookwidth="10.625rem"
             notebookheight="3.875rem"
-            notebookfontSize="1.75rem"
+            notebookfontsize="1.75rem"
           >
             비밀번호 찾기
           </Div>
@@ -204,10 +204,10 @@ function FindIdPassword() {
               width="32.25rem"
               height="3.75rem"
               margin="0 0 0.813rem 0"
-              fontSize="1.5rem"
+              fontsize="1.5rem"
               notebookwidth="26.188rem"
               notebookheight="3.125rem"
-              notebookfontSize="1.25rem"
+              notebookfontsize="1.25rem"
             >
               회원정보에 등록한 아이디와 이메일을 입력해주세요.
             </Div>
@@ -225,10 +225,10 @@ function FindIdPassword() {
                 width="7.5rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="5rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 아이디
               </Div>
@@ -237,11 +237,11 @@ function FindIdPassword() {
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               />
             </Div>
@@ -253,10 +253,10 @@ function FindIdPassword() {
                 width="7.5rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="5rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 이메일
               </Div>
@@ -266,24 +266,24 @@ function FindIdPassword() {
                 margin="0 0.375rem 0 0"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
                 notebookwidth="14.375rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               />
               <Button
                 type="submit"
                 width="5.625rem"
                 height="3.75rem"
-                fontSize="1.25rem"
+                fontsize="1.25rem"
                 fontWeight="bold"
                 borderradius="1rem"
                 border="none"
                 notebookwidth="3.75rem"
                 notebookheight="2.5rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
                 notebookborderradius="10px"
               >
                 확인

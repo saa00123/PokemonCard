@@ -7,7 +7,7 @@ const Red = Color({ color: "Red" });
 
 const StyledInput = styled.input`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontsize};
   font-weight: ${(props) => props.fontWeight};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderradius};
@@ -25,7 +25,7 @@ const StyledInput = styled.input`
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     color: ${(props) => props.notebookcolor};
-    font-size: ${(props) => props.notebookfontSize};
+    font-size: ${(props) => props.notebookfontsize};
     font-weight: ${(props) => props.notebookfontWeight};
     border: ${(props) => props.notebookborder};
     border-radius: ${(props) => props.notebookborderradius};
@@ -46,7 +46,7 @@ const StyledInput = styled.input`
 const Input = (props) => {
   const {
     color,
-    fontSize,
+    fontsize,
     fontWeight,
     border,
     borderradius,
@@ -55,7 +55,7 @@ const Input = (props) => {
     margin,
     padding,
     notebookcolor,
-    notebookfontSize,
+    notebookfontsize,
     notebookfontWeight,
     notebookborder,
     notebookborderradius,
@@ -70,7 +70,7 @@ const Input = (props) => {
   return (
     <StyledInput
       color={color}
-      fontSize={fontSize}
+      fontsize={fontsize}
       fontWeight={fontWeight}
       border={border}
       borderradius={borderradius}
@@ -79,7 +79,7 @@ const Input = (props) => {
       margin={margin}
       padding={padding}
       notebookcolor={notebookcolor}
-      notebookfontSize={notebookfontSize}
+      notebookfontsize={notebookfontsize}
       notebookfontWeight={notebookfontWeight}
       notebookborder={notebookborder}
       notebookborderradius={notebookborderradius}
@@ -94,7 +94,7 @@ const Input = (props) => {
 
 Input.propTypes = {
   color: PropTypes.string,
-  fontSize: PropTypes.string,
+  fontsize: PropTypes.string,
   fontWeight: PropTypes.string,
   border: PropTypes.string,
   borderradius: PropTypes.string,
@@ -106,7 +106,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   color: "black",
-  fontSize: "1rem",
+  fontsize: "1rem",
   fontWeight: "normal",
   border: "1px solid #ccc",
   borderradius: "4px",

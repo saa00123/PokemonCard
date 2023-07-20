@@ -47,10 +47,10 @@ function Login() {
                 width="8.75rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="6.25rem"
                 notebookheight="3.125rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 아이디
               </Div>
@@ -59,11 +59,11 @@ function Login() {
                 padding="0 0 0 1.313rem"
                 width="21.875rem"
                 height="3.75rem"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 borderradius="15px"
                 notebookwidth="18.75rem"
                 notebookheight="3.125rem"
-                notebookfontSize="1rem"
+                notebookfontsize="1rem"
               />
             </Div>
             <Div className="PasswordContainer" display="flex">
@@ -74,10 +74,10 @@ function Login() {
                 width="8.75rem"
                 height="3.75rem"
                 textalign="left"
-                fontSize="1.625rem"
+                fontsize="1.625rem"
                 notebookwidth="6.25rem"
                 notebookheight="3.125rem"
-                notebookfontSize="1.25rem"
+                notebookfontsize="1.25rem"
               >
                 비밀번호
               </Div>
@@ -94,11 +94,11 @@ function Login() {
                   padding="0 0 0 1.313rem"
                   width="21.875rem"
                   height="3.75rem"
-                  fontSize="1.625rem"
+                  fontsize="1.625rem"
                   borderradius="15px"
                   notebookwidth="18.75rem"
                   notebookheight="3.125rem"
-                  notebookfontSize="1rem"
+                  notebookfontsize="1rem"
                 />
                 <Div
                   className="SignAndFindContainer"
@@ -114,7 +114,7 @@ function Login() {
                     color={Gray2}
                     backgroundcolor="transparent"
                     border="none"
-                    fontSize="1rem"
+                    fontsize="1rem"
                     hoverbackgroundcolor="none"
                     hovercolor="none"
                     hoverborder="none"
@@ -123,7 +123,7 @@ function Login() {
                     notebookcolor={Gray2}
                     notebookbackgroundcolor="transparent"
                     notebookborder="none"
-                    notebookfontSize="0.875rem"
+                    notebookfontsize="0.875rem"
                     notebookhoverbackgroundcolor="none"
                     notebookhovercolor="none"
                     notebookhoverborder="none"
@@ -137,7 +137,7 @@ function Login() {
                     color={Gray2}
                     backgroundcolor="transparent"
                     border="none"
-                    fontSize="1rem"
+                    fontsize="1rem"
                     hoverbackgroundcolor="none"
                     hovercolor="none"
                     hoverborder="none"
@@ -146,7 +146,7 @@ function Login() {
                     notebookcolor={Gray2}
                     notebookbackgroundcolor="transparent"
                     notebookborder="none"
-                    notebookfontSize="0.875rem"
+                    notebookfontsize="0.875rem"
                     notebookhoverbackgroundcolor="none"
                     notebookhovercolor="none"
                     notebookhoverborder="none"
@@ -162,13 +162,13 @@ function Login() {
             className="LoginBtn"
             width="6.25rem"
             height="8.313rem"
-            fontSize="1.25rem"
+            fontsize="1.25rem"
             fontWeight="bold"
             borderradius="1rem"
             border="none"
             notebookwidth="5.313rem"
             notebookheight="6.938rem"
-            notebookfontSize="1rem"
+            notebookfontsize="1rem"
           >
             로그인
           </Button>
