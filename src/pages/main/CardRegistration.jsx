@@ -6,6 +6,10 @@ import Input from "../../components/BaseComponents/Input";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
 import DropDown from "../../components/BaseComponents/DropDown";
+import Checkbox from "../../components/BaseComponents/Checkbox";
+
+import CardRating from "../../components/options/CardRating";
+import CardSeries from "../../components/options/CardSeries";
 
 function CardRegistration() {
   const [value, setValue] = useState("");
@@ -17,9 +21,15 @@ function CardRegistration() {
     }
   };
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleSelect = (option) => {
+    setSelectedOption(option);
+    console.log("Selected option:", option);
+  };
+
   const MaxCharCount = 40;
   const charCount = value.length;
-  const remainingChars = MaxCharCount - charCount;
 
   const navigate = useNavigate();
 
@@ -56,7 +66,7 @@ function CardRegistration() {
         className="MainContainer"
         display="flex"
         flexdirection="column"
-        justifycontent="start"
+        justifycontent="center"
         alignitems="center"
         width="78.438rem"
         height="116.25rem"
@@ -64,62 +74,130 @@ function CardRegistration() {
         backgroundcolor={Default}
       >
         <Div
-          className="TitleContainer"
+          className="MainContainerCenter"
           display="flex"
-          justifycontent="center"
-          alignitems="center"
+          flexdirection="column"
           width="68.676rem"
-          height="4.375rem"
-          margin="1rem 0 0 0"
+          height="111.437rem"
         >
           <Div
-            className="Title"
+            className="TitleContainer"
             display="flex"
-            justfiycontent="center"
+            justifycontent="center"
             alignitems="center"
-            width="4.563rem"
-            height="4.313rem"
-            margin="0 0.688rem 0 0"
-            fontsize="2rem"
-            fontWeight="bold"
-            color={Gray2}
+            width="68.676rem"
+            height="4.375rem"
           >
-            제목
+            <Div
+              className="Title"
+              display="flex"
+              justfiycontent="center"
+              alignitems="center"
+              width="4.563rem"
+              height="4.313rem"
+              margin="0 0.688rem 0 0"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              제목
+            </Div>
+            <Div
+              className="InputContainer"
+              display="flex"
+              width="63.625rem"
+              height="4.313rem"
+              padding="0 1.063rem"
+              borderradius="15px"
+              border={`solid 1px ${Gray1}`}
+              color={Gray1}
+            >
+              <Input
+                className="TitleInput"
+                placeholder="제목을 입력하시오."
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="56.625rem"
+                height="4.313rem"
+                fontsize="1.625rem"
+                border="none"
+                value={value}
+                onChange={handleChange}
+              />
+              <Div
+                className="CharCount"
+                border="2px solid blkac"
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="5rem"
+                height="4.313rem"
+                fontsize="1.625rem"
+                color={Gray1}
+              >{`${charCount}/${MaxCharCount}`}</Div>
+            </Div>
           </Div>
           <Div
-            className="InputContainer"
+            className="CardInformationContainer"
             display="flex"
-            width="63.625rem"
-            height="4.313rem"
-            padding="0 1.063rem"
-            borderradius="15px"
-            border={`solid 1px ${Gray1}`}
-            color={Gray1}
+            flexdirection="column"
+            width="43.439rem"
+            height="8.688rem"
+            margin="0.813rem 0 0 0"
           >
-            <Input
-              className="TitleInput"
-              placeholder="제목을 입력하시오."
-              display="flex"
-              justifycontent="center"
-              alignitems="center"
-              width="56.625rem"
-              height="4.313rem"
-              fontsize="1.625rem"
-              border="none"
-              value={value}
-              onChange={handleChange}
-            />
             <Div
-              className="CharCount"
-              border="2px solid blkac"
+              className="CardInformationTitle"
+              display="flex"
+              justfiycontent="center"
+              alignitems="center"
+              width="8.75rem"
+              height="4.313rem"
+              margin="0 0.688rem 0 0"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              카드 정보
+            </Div>
+            <Div
+              className="CardInformation"
               display="flex"
               justifycontent="center"
               alignitems="center"
-              width="5rem"
-              height="4.313rem"
-              fontsize="1.625rem"
-              color={Gray1}
-            >{`${charCount}/${MaxCharCount}`}</Div>
+              width="43.439rem"
+              height="4.375rem"
+            >
+              <DropDown
+                className="CardRating"
+                options={CardRating}
+                onSelect={handleSelect}
+                width="9.375rem"
+                height="4.375rem"
+                margin="0 0.438rem 0 0"
+                buttonwidth="9.375rem"
+                buttonheight="4.375rem"
+                buttonfontsize="1.5rem"
+                menuwidth="9.375rem"
+                menufontsize="1.5rem"
+              />
+              <DropDown
+                className="CardSeries"
+                options={CardSeries}
+                onSelect={handleSelect}
+                width="21.875rem"
+                height="4.375rem"
+                margin="0 1.35rem 0 0"
+                buttonwidth="21.875rem"
+                buttonheight="4.375rem"
+                buttonfontsize="1.5rem"
+                menuwidth="21.875rem"
+                menufontsize="1.5rem"
+              />
+              <Checkbox className="TopLoaderCheckbox" width="1.563rem" height="1.563rem">
+                탑로더 유무
+              </Checkbox>
+            </Div>
           </Div>
         </Div>
       </Div>

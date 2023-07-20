@@ -9,6 +9,7 @@ const DropdownContainer = styled.div`
   justify-content: center;
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   border-radius: 15px;
   border: solid 2px ${Color({ color: "Gray2" })};
   background-color: ${Color({ color: "Default" })};
@@ -21,13 +22,14 @@ const DropdownContainer = styled.div`
 
 const DropdownButton = styled.button`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: ${(props) => props.buttonwidth};
   height: ${(props) => props.buttonheight};
+  padding: 0 1rem;
   font-family: Inter;
   font-size: ${(props) => props.buttonfontsize};
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -35,7 +37,7 @@ const DropdownButton = styled.button`
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookbuttonwidth};
     height: ${(props) => props.notebookbuttonheight};
-    height: ${(props) => props.notebookbuttonfontsize};
+    font-size: ${(props) => props.notebookbuttonfontsize};
   }
 `;
 
@@ -47,9 +49,10 @@ const DropdownMenu = styled.ul`
   padding: 0;
   margin: 0;
   width: ${(props) => props.menuwidth};
-  height: ${(props) => props.menuheight};
+  max-height: 30rem;
   margin-top: 0.313rem;
   background-color: #fff;
+  overflow-y: auto;
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookmenuwidth};
@@ -62,15 +65,15 @@ const DropdownMenuItem = styled.li`
   cursor: pointer;
   font-family: Inter;
   font-size: ${(props) => props.menufontsize};
-  text-align: center;
+  text-align: left;
   border: solid 1px black;
 
   &:hover {
-    background-color: ${Color({ color: "Gray2" })};
+    background-color: ${Color({ color: "Gray1" })};
   }
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    height: ${(props) => props.notebookmenufontsize};
+    font-size: ${(props) => props.notebookmenufontsize};
   }
 `;
 
@@ -88,11 +91,11 @@ const Dropdown = ({
   onSelect,
   width,
   height,
+  margin,
   buttonwidth,
   buttonheight,
   buttonfontsize,
   menuwidth,
-  menuheight,
   menufontsize,
   notebookwidth,
   notebookheight,
@@ -119,7 +122,13 @@ const Dropdown = ({
   }, [selectedOption]);
 
   return (
-    <DropdownContainer width={width} height={height} notebookwidth={notebookwidth} notebookheight={notebookheight}>
+    <DropdownContainer
+      width={width}
+      height={height}
+      margin={margin}
+      notebookwidth={notebookwidth}
+      notebookheight={notebookheight}
+    >
       <DropdownButton
         buttonwidth={buttonwidth}
         buttonheight={buttonheight}
@@ -135,7 +144,6 @@ const Dropdown = ({
       {isOpen && (
         <DropdownMenu
           menuwidth={menuwidth}
-          menuheight={menuheight}
           notebookmenuwidth={notebookmenuwidth}
           notebookmenuheight={notebookmenuheight}
         >
