@@ -19,6 +19,7 @@ const DivContainer = styled.div`
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
   box-sizing: ${(props) => props.boxsizing};
+  position: ${(props) => props.position};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -60,6 +61,7 @@ const BasicDiv = (props) => {
     textalign,
     boxshadow,
     boxsizing,
+    position,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -99,6 +101,7 @@ const BasicDiv = (props) => {
       textalign={textalign}
       boxshadow={boxshadow}
       boxsizing={boxsizing}
+      position={position}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
