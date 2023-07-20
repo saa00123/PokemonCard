@@ -199,6 +199,82 @@ function CardRegistration() {
               </Checkbox>
             </Div>
           </Div>
+          <Div
+            className="ImageRegistrationContainer"
+            display="flex"
+            flexdirection="column"
+            width="58.626rem"
+            height="30.688rem"
+            margin="1.813rem 0 0 0"
+          >
+            <Div
+              className="ImageRegistrationTitle"
+              display="flex"
+              justfiycontent="center"
+              alignitems="center"
+              width="14.563rem"
+              height="4.688rem"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              사진 등록
+            </Div>
+            <Div
+              className="ImageContainer"
+              display="flex"
+              justifycontent="start"
+              alignitems="center"
+              width="58.626rem"
+              height="26rem"
+              overflowx="auto"
+            >
+              <Div
+                className="ImageUpload"
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="18.75rem"
+                height="25rem"
+                minwidth="18.75rem"
+                margin="0 1.188rem 0 0"
+                border="solid 1px black"
+              />
+              <Div
+                className="ImageUpload"
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="18.75rem"
+                height="25rem"
+                minwidth="18.75rem"
+                margin="0 1.188rem 0 0"
+                border="solid 1px black"
+              />
+              <Div
+                className="ImageUpload"
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="18.75rem"
+                height="25rem"
+                minwidth="18.75rem"
+                margin="0 1.188rem 0 0"
+                border="solid 1px black"
+              />
+              <Div
+                className="ImageUpload"
+                display="flex"
+                justifycontent="center"
+                alignitems="center"
+                width="18.75rem"
+                height="25rem"
+                minwidth="18.75rem"
+                margin="0 1.188rem 0 0"
+                border="solid 1px black"
+              />
+            </Div>
+          </Div>
         </Div>
       </Div>
     </Div>
