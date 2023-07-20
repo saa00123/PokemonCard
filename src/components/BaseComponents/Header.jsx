@@ -8,6 +8,9 @@ const HeaderContainer = styled.header`
   width: 100%;
   height: 6.25rem;
   border-bottom: solid 6px ${Color({ color: "Red" })};
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    height: 4.813rem;
+  }
 `;
 
 const HeaderSpaceDiv = styled.div`
@@ -16,6 +19,10 @@ const HeaderSpaceDiv = styled.div`
   align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 `;
 
 const HeaderMenu = styled.button`
@@ -33,6 +40,12 @@ const HeaderMenu = styled.button`
   &:hover {
     background-color: ${Color({ color: "Red" })};
     color: ${Color({ color: "Default" })};
+  }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 7.813rem;
+    height: 4.813rem;
+    font-size: 1.125rem;
   }
 `;
 
