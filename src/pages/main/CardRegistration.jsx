@@ -385,6 +385,116 @@ function CardRegistration() {
               </Div>
             </Div>
           </Div>
+          <Div
+            className="PriceContainer"
+            display="flex"
+            flexdirection="column"
+            width="60.126rem"
+            height="11.813rem"
+            margin="2.063rem 0 0 0"
+          >
+            <Div
+              className="PriceTitle"
+              display="flex"
+              justifycontent="center"
+              alignitems="center"
+              width="4.375rem"
+              height="4.688rem"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              가격
+            </Div>
+            <Div
+              className="PriceMainContainer"
+              display="flex"
+              justfiycontent="center"
+              alignitems="start"
+              width="60.126rem"
+              height="7.5rem"
+            >
+              <Div className="PriceContainer" display="flex" flexdirection="column" width="31.25rem" height="7.5rem">
+                <Div
+                  className="StartPriceContainer"
+                  display="flex"
+                  width="31.25rem"
+                  height="3.125rem"
+                  margin="0 0 1.288rem"
+                >
+                  <Div
+                    className="StartPriceTitle"
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="9.375rem"
+                    height="3.125rem"
+                    fontsize="1.5rem"
+                  >
+                    시작가
+                  </Div>
+                  <Input
+                    className="StartPriceInput"
+                    placeholder="시작가를 입력하시오."
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="21.875rem"
+                    height="3.125rem"
+                    padding="0 1.313rem"
+                    fontsize="1.25rem"
+                    color={Gray2}
+                    borderradius="10px"
+                    border={`solid 1px ${Gray1}`}
+                  />
+                </Div>
+                <Div className="BidUnitContainer" display="flex" width="31.25rem" height="3.125rem">
+                  <Div
+                    className="BidUnitTitle"
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="9.375rem"
+                    height="3.125rem"
+                    fontsize="1.5rem"
+                  >
+                    입찰 단위
+                  </Div>
+                  <Input
+                    className="BidUnitInput"
+                    placeholder="입찰 단위"
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="21.875rem"
+                    height="3.125rem"
+                    padding="0 1.313rem"
+                    fontsize="1.25rem"
+                    color={Gray2}
+                    borderradius="10px"
+                    border={`solid 1px ${Gray1}`}
+                  />
+                </Div>
+              </Div>
+              <Div
+                className="NormalRatingNotice"
+                display="flex"
+                flexdirection="column"
+                width="23.313rem"
+                height="7.5rem"
+                margin="0 0 0 1.063rem"
+                fontsize="1rem"
+                color={Gray4}
+              >
+                <Div margin="none">시작가 최대는 9,999,000원 입니다.</Div>
+                <Div margin="none">입찰 단위는 시작가에 따라 결정됩니다.</Div>
+                <Div margin="none">100~9,900 -{">"} 100원</Div>
+                <Div margin="none">10,000~100,000 -{">"} 1,000원</Div>
+                <Div margin="none">100,000~1,000,000 -{">"} 5,000원</Div>
+                <Div margin="none">1,000,000이상 -{">"} 10,000원 </Div>
+              </Div>
+            </Div>
+          </Div>
         </Div>
       </Div>
     </Div>
