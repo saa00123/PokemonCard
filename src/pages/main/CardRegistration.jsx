@@ -10,6 +10,8 @@ import Checkbox from "../../components/BaseComponents/Checkbox";
 
 import CardRating from "../../components/options/CardRating";
 import CardSeries from "../../components/options/CardSeries";
+import NormalRating from "../../components/options/NormalRating";
+import brgRating from "../../components/options/brgRating";
 
 function CardRegistration() {
   const [value, setValue] = useState("");
@@ -36,6 +38,7 @@ function CardRegistration() {
   const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
+  const Gray4 = Color({ color: "Gray4" });
 
   return (
     <Div
@@ -273,6 +276,113 @@ function CardRegistration() {
                 margin="0 1.188rem 0 0"
                 border="solid 1px black"
               />
+            </Div>
+          </Div>
+          <Div
+            className="RatingContainer"
+            display="flex"
+            flexdirection="column"
+            width="41.377rem"
+            height="14.001rem"
+            margin="1.063rem 0 0 0"
+          >
+            <Div
+              className="RatingTitle"
+              display="flex"
+              justifycontent="center"
+              alignitems="center"
+              width="4.375rem"
+              height="4.688rem"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              등급
+            </Div>
+            <Div
+              className="RatingMainContainer"
+              display="flex"
+              justfiycontent="center"
+              alignitems="start"
+              width="41.377rem"
+              height="9.313rem"
+            >
+              <Div
+                className="RatingCheckboxContainer"
+                display="flex"
+                flexdirection="column"
+                width="18.001rem"
+                height="9.313rem"
+              >
+                <Div
+                  className="NormalRatingCheckboxContainer"
+                  display="flex"
+                  justifycontent="center"
+                  alignitems="center"
+                  width="18.001rem"
+                  height="3.75rem"
+                  margin="0 0 1.813rem 0"
+                >
+                  <Checkbox className="NormalRatingCheckbox" width="1.563rem" height="1.563rem">
+                    일반 등급
+                  </Checkbox>
+                  <DropDown
+                    className="NormalRating"
+                    options={NormalRating}
+                    onSelect={handleSelect}
+                    width="8.125rem"
+                    height="3.75rem"
+                    margin="0 0 0 1.013rem"
+                    buttonwidth="8.125rem"
+                    buttonheight="3.75rem"
+                    buttonfontsize="1.5rem"
+                    menuwidth="8.125rem"
+                    menufontsize="1.5rem"
+                  />
+                </Div>
+                <Div
+                  className="NormalRatingCheckboxContainer"
+                  display="flex"
+                  justifycontent="center"
+                  alignitems="center"
+                  width="18.001rem"
+                  height="3.75rem"
+                  margin="0 0 1.813rem 0"
+                >
+                  <Checkbox className="brgRatingCheckboxContainer" width="1.563rem" height="1.563rem">
+                    brg 등급
+                  </Checkbox>
+                  <DropDown
+                    className="brgRating"
+                    options={brgRating}
+                    onSelect={handleSelect}
+                    width="8.125rem"
+                    height="3.75rem"
+                    margin="0 0 0 1.4rem"
+                    buttonwidth="8.125rem"
+                    buttonheight="3.75rem"
+                    buttonfontsize="1.5rem"
+                    menuwidth="8.125rem"
+                    menufontsize="1.5rem"
+                  />
+                </Div>
+              </Div>
+              <Div
+                className="NormalRatingNotice"
+                display="flex"
+                flexdirection="column"
+                width="22.438rem"
+                height="5.938rem"
+                margin="0 0 0 0.938rem"
+                fontsize="1rem"
+                color={Gray4}
+              >
+                <Div margin="none">S급 : 미세 하자 없고 탑로더에 넣어져 있음</Div>
+                <Div margin="none">A급 : 미세 하자가 있지만 크게 문제가 없는 상태</Div>
+                <Div margin="none">B급 : 눈으로 미세한 하자가 보임 (테두리 까짐, 기스)</Div>
+                <Div margin="none">C급 : 눈으로 큰 하자가 보임 (까짐)</Div>
+                <Div margin="none">D급 : 심한 하자가 보임 (찢어짐)</Div>
+              </Div>
             </Div>
           </Div>
         </Div>

@@ -15,8 +15,8 @@ const HiddenCheckbox = styled.input.attrs({ type: "checkbox" })`
 const StyledCheckbox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  border: 2px solid ${(props) => (props.checked ? Color({ color: "Red" }) : "black")};
-  background-color: ${(props) => (props.checked ? Color({ color: "Red" }) : "transparent")};
+  border: 2px solid ${(props) => (props.checked ? Color({ color: "Red" }) : Color({ color: "Red" }))};
+  background-color: ${(props) => (props.checked ? Color({ color: "Red" }) : Color({ color: "Red" }))};
   cursor: pointer;
   position: relative;
 `;
