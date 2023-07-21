@@ -5,6 +5,7 @@ import background from "../../images/BackgroundImage.png";
 const BgImage = styled.img`
   position: absolute;
   width: 100vw;
+  /* width: "fit-content"; */
   height: 100vh;
   background-image: url(${background});
   background-position: center;

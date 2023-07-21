@@ -6,8 +6,8 @@ import ListButton from "../../components/SortButton/ListButton";
 
 const Home = () => (
   <Provider store={store}>
-    <GridButton />
-    <ListButton />
+    {/* <GridButton />
+    <ListButton /> */}
   </Provider>
 );
 
