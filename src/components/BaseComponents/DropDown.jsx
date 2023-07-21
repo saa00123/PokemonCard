@@ -66,6 +66,7 @@ const DropdownMenuItem = styled.li`
   font-family: Inter;
   font-size: ${(props) => props.menufontsize};
   text-align: left;
+  margin-bottom: -1px;
   border: solid 1px black;
 
   &:hover {
