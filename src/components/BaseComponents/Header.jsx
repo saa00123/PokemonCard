@@ -15,25 +15,18 @@ const HeaderContainer = styled.header`
 
 const HeaderSpaceDiv = styled.div`
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   padding-left: 2rem;
-  /* padding-right: 2rem; */
-  /* border: 2px solid black; */
   @media (min-width: 1024px) and (max-width: 1440px) {
     padding-left: 1rem;
-    /* padding-right: 1rem; */
   }
 `;
 
 const HeaderMenuContainer = styled.div`
   width: 37.5rem;
   height: 6.25rem;
-  /* float: right; */
   display: flex;
   margin-left: auto;
-  /* justify-content: flex-end; */
-  /* flex-direction: row-reverse; */
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 31.252rem;
     height: 4.813rem;

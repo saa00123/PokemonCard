@@ -19,6 +19,9 @@ const DivContainer = styled.div`
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
   box-sizing: ${(props) => props.boxsizing};
+  vertical-align: ${(props) => props.verticalalign};
+  grid-template-rows: ${(props) => props.gridTemplateRows};
+  grid-template-columns: ${(props) => props.gridTemplateColumns};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -38,6 +41,9 @@ const DivContainer = styled.div`
     text-align: ${(props) => props.notebooktextalign};
     box-shadow: ${(props) => props.notebookboxshadow};
     box-sizing: ${(props) => props.boxsizing};
+    vertical-align: ${(props) => props.notebookverticalalign};
+    grid-template-rows: ${(props) => props.notebookGridTemplateRows};
+    grid-template-columns: ${(props) => props.notebookGridTemplateColumns};
   }
 `;
 
@@ -60,6 +66,9 @@ const BasicDiv = (props) => {
     textalign,
     boxshadow,
     boxsizing,
+    verticalalign,
+    gridTemplateRows,
+    gridTemplateColumns,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -76,6 +85,9 @@ const BasicDiv = (props) => {
     notebookfontWeight,
     notebooktextalign,
     notebookboxshadow,
+    notebookverticalalign,
+    notebookGridTemplateRow,
+    notebookGridTemplateColumns,
     children,
     ...rest
   } = props;
@@ -99,6 +111,9 @@ const BasicDiv = (props) => {
       textalign={textalign}
       boxshadow={boxshadow}
       boxsizing={boxsizing}
+      verticalalign={verticalalign}
+      gridTemplateRows={gridTemplateRows}
+      gridTemplateColumns={gridTemplateColumns}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
@@ -115,6 +130,9 @@ const BasicDiv = (props) => {
       notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}
       notebookboxshadow={notebookboxshadow}
+      notebookverticalalign={notebookverticalalign}
+      notebookGridTemplateRow={notebookGridTemplateRow}
+      notebookGridTemplateColumns={notebookGridTemplateColumns}
       {...rest}
     >
       {children}

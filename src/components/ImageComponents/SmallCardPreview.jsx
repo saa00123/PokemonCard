@@ -9,14 +9,17 @@ const PreviewContainer = styled.div`
   align-items: center;
   width: 21.875rem;
   height: 37.5rem;
+  margin: 0 0 -1px -1px;
   border: solid 1px ${Color({ color: "Gray4" })};
+  background-color: ${Color({ color: "Default" })};
 `;
 
 const PreviewImage = styled.div`
   width: 18.75rem;
   height: 25rem;
-  margin: 0 0 1.188rem;
+  margin: -1.5rem 0 1.188rem;
   border: solid 1px ${Color({ color: "Gray4" })};
+  background-color: ${Color({ color: "Default" })};
 `;
 
 const PreviewHeader = styled.header`
@@ -51,17 +54,23 @@ const DetailHeader = styled.header`
 
 const DetailAuction = styled.div`
   display: flex;
-  width: 9.375rem;
+  width: fit-content;
   height: 2.188rem;
-  font-size: 1.5rem;
+  min-height: 2.188rem;
+  font-size: ${(props) => props.fontsize};
   font-weight: bold;
   text-align: left;
+  min-width: 2.188rem;
+  /* border: 2px solid green; */
+  align-items: ${(props) => props.alignitems};
+  /* justify-content: center; */
 `;
 
 const PriceUnit = styled.div`
   display: flex;
   align-items: end;
   font-size: 1rem;
+  margin-left: 0.3rem;
 `;
 
 const SmallCardPreview = () => (
@@ -71,11 +80,13 @@ const SmallCardPreview = () => (
     <PreviewAuctionContainer>
       <PreviewDetailContainer>
         <DetailHeader>남은 시간</DetailHeader>
-        <DetailAuction>24:03:12</DetailAuction>
+        <DetailAuction fontsize="1.5rem" alignitems="end">
+          24:03:12
+        </DetailAuction>
       </PreviewDetailContainer>
       <PreviewDetailContainer>
         <DetailHeader>현재가</DetailHeader>
-        <DetailAuction>
+        <DetailAuction fontsize="2rem">
           13,000<PriceUnit>원</PriceUnit>
         </DetailAuction>
       </PreviewDetailContainer>
