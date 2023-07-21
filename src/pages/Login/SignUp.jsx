@@ -6,7 +6,6 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function SignUp() {
-  const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
@@ -38,9 +37,9 @@ function SignUp() {
           height="2.313rem"
           margin="0 0 0.688rem 0"
           color={Gray2}
-          fontsize="2rem"
+          fontSize="2rem"
           fontWeight="bold"
-          notebookfontsize="1.75rem"
+          notebookfontSize="1.75rem"
         >
           회원가입
         </Div>
@@ -52,7 +51,7 @@ function SignUp() {
           // alignitems="center"
           width="40.625rem"
           height="43.063rem"
-          backgroundcolor={Default}
+          background={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           boxsizing="border-box"
           // padding="2.5rem 5rem 0 5rem"
@@ -85,10 +84,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookfontSize="1.25rem"
                 >
                   이름
                 </Div>
@@ -97,11 +96,11 @@ function SignUp() {
                   padding="0 0 0 1.313rem"
                   width="21.875rem"
                   height="3.75rem"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   borderradius="15px"
                   notebookwidth="15.625rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1rem"
+                  notebookfontSize="1rem"
                 />
               </Div>
               <Div className="NicknameContainer" display="flex" margin="0 0 0.5rem 0">
@@ -112,10 +111,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookfontSize="1.25rem"
                 >
                   닉네임
                 </Div>
@@ -133,11 +132,11 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontSize="1.625rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
-                    notebookfontsize="1rem"
+                    notebookfontSize="1rem"
                     notebookepadding="0 0 0 0.8rem"
                   />
                   <Div
@@ -147,12 +146,12 @@ function SignUp() {
                     width="21.438rem"
                     height="1.5rem"
                     color={Gray1}
-                    fontsize="0.75rem"
+                    fontSize="0.75rem"
                     padding="0 0 0 1.313rem"
                     boxsizing="border-box"
                     notebookwidth="15.625rem"
                     notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
+                    notebookfontSize="0.625rem"
                     notebookepadding="0 0 0 0.8rem"
                   >
                     사용 불가능한 닉네임입니다.
@@ -167,10 +166,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookfontSize="1.25rem"
                 >
                   이메일
                 </Div>
@@ -179,11 +178,11 @@ function SignUp() {
                   padding="0 0 0 1.313rem"
                   width="21.875rem"
                   height="3.75rem"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   borderradius="15px"
                   notebookwidth="15.625rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1rem"
+                  notebookfontSize="1rem"
                 />
               </Div>
             </Div>
@@ -203,10 +202,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookfontSize="1.25rem"
                 >
                   아이디
                 </Div>
@@ -224,11 +223,11 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontSize="1.625rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
-                    notebookfontsize="1rem"
+                    notebookfontSize="1rem"
                   />
                   <Div
                     className="NicknameWarning"
@@ -237,12 +236,12 @@ function SignUp() {
                     width="21.438rem"
                     height="1.5rem"
                     color={Gray1}
-                    fontsize="0.75rem"
+                    fontSize="0.75rem"
                     padding="0 0 0 1.313rem"
                     boxsizing="border-box"
                     notebookwidth="15.625rem"
                     notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
+                    notebookfontSize="0.625rem"
                     notebookepadding="0 0 0 0.8rem"
                   >
                     사용 불가능한 아이디입니다.
@@ -257,10 +256,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookfontSize="1.25rem"
                 >
                   비밀번호
                 </Div>
@@ -279,11 +278,11 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontSize="1.625rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
-                    notebookfontsize="1rem"
+                    notebookfontSize="1rem"
                   />
                   <Div
                     className="NicknameWarning"
@@ -292,12 +291,12 @@ function SignUp() {
                     width="21.438rem"
                     height="1.5rem"
                     color={Gray1}
-                    fontsize="0.75rem"
+                    fontSize="0.75rem"
                     padding="0 0 0 1.313rem"
                     boxsizing="border-box"
                     notebookwidth="15.625rem"
                     notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
+                    notebookfontSize="0.625rem"
                     notebookepadding="0 0 0 0.8rem"
                   >
                     8자 이상, 숫자, 영어, 특수분자 포함
@@ -318,10 +317,10 @@ function SignUp() {
                   width="11.001rem"
                   height="3.75rem"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontSize="1.625rem"
                   notebookwidth="6.25rem"
                   notebookheight="3.125rem"
-                  notebookfontsize="1.1rem"
+                  notebookfontSize="1.1rem"
                 >
                   비밀번호 확인
                 </Div>
@@ -340,11 +339,11 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontSize="1.625rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
-                    notebookfontsize="1rem"
+                    notebookfontSize="1rem"
                   />
                   <Div
                     className="NicknameWarning"
@@ -353,12 +352,12 @@ function SignUp() {
                     width="21.438rem"
                     height="1.5rem"
                     color={Gray1}
-                    fontsize="0.75rem"
+                    fontSize="0.75rem"
                     padding="0 0 0 1.313rem"
                     boxsizing="border-box"
                     notebookwidth="15.625rem"
                     notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
+                    notebookfontSize="0.625rem"
                     notebookepadding="0 0 0 0.8rem"
                   >
                     비밀번호가 다릅니다.
@@ -382,11 +381,11 @@ function SignUp() {
               height="4.375rem"
               borderradius="1rem"
               border="none"
-              fontsize="1.5rem"
+              fontSize="1.5rem"
               fontWeight="bold"
               notebookwidth="7.5rem"
               notebookheight="3.125rem"
-              notebookfontsize="1rem"
+              notebookfontSize="1rem"
               notebookborderradius="10px"
             >
               회원 가입
