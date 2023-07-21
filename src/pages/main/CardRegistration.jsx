@@ -495,6 +495,120 @@ function CardRegistration() {
               </Div>
             </Div>
           </Div>
+          <Div
+            className="AuctionContainer"
+            display="flex"
+            flexdirection="column"
+            width="60.126rem"
+            height="11.813rem"
+            margin="1.75rem 0 0 0"
+          >
+            <Div
+              className="AuctionDateTitle"
+              display="flex"
+              justifycontent="center"
+              alignitems="center"
+              width="8.063rem"
+              height="4.688rem"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              경매 일정
+            </Div>
+            <Div
+              className="AuctionDateMainContainer"
+              display="flex"
+              justfiycontent="center"
+              alignitems="start"
+              width="60.126rem"
+              height="7.5rem"
+            >
+              <Div
+                className="AuctionDateContainer"
+                display="flex"
+                flexdirection="column"
+                width="31.25rem"
+                height="7.5rem"
+              >
+                <Div
+                  className="AuctionStartContainer"
+                  display="flex"
+                  width="31.25rem"
+                  height="3.125rem"
+                  margin="0 0 1.288rem"
+                >
+                  <Div
+                    className="AuctionStartTitle"
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="9.375rem"
+                    height="3.125rem"
+                    fontsize="1.5rem"
+                  >
+                    경매 시작일
+                  </Div>
+                  <Input
+                    className="AuctionStartDateInput"
+                    placeholder="경매 시작일을 입력하시오."
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="21.875rem"
+                    height="3.125rem"
+                    padding="0 1.313rem"
+                    fontsize="1.25rem"
+                    color={Gray2}
+                    borderradius="10px"
+                    border={`solid 1px ${Gray1}`}
+                  />
+                </Div>
+                <Div className="AuctionEndDateContainer" display="flex" width="31.25rem" height="3.125rem">
+                  <Div
+                    className="AuctionEndTitle"
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="9.375rem"
+                    height="3.125rem"
+                    fontsize="1.5rem"
+                  >
+                    경매 종료일
+                  </Div>
+                  <Input
+                    className="AuctionEndDateInput"
+                    placeholder="경매 종료일을 입력하시오."
+                    display="flex"
+                    justfiycontent="start"
+                    alignitems="center"
+                    width="21.875rem"
+                    height="3.125rem"
+                    padding="0 1.313rem"
+                    fontsize="1.25rem"
+                    color={Gray2}
+                    borderradius="10px"
+                    border={`solid 1px ${Gray1}`}
+                  />
+                </Div>
+              </Div>
+              <Div
+                className="NormalRatingNotice"
+                display="flex"
+                flexdirection="column"
+                width="23.313rem"
+                height="4.563rem"
+                margin="0 0 0 1.063rem"
+                fontsize="1rem"
+                color={Gray4}
+              >
+                <Div margin="none">경매 시작 시간은 시작일 오전 9시부터입니다.</Div>
+                <Div margin="none">경매 마감 시간은 종료일 오후 9시까지입니다.</Div>
+                <Div margin="none">당일 경매 등록은 경매 시작 시간인 오전 9시 이전까지만</Div>
+                <Div margin="none">가능합니다.</Div>
+              </Div>
+            </Div>
+          </Div>
         </Div>
       </Div>
     </Div>
