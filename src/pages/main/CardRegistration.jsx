@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -32,6 +33,17 @@ function CardRegistration() {
 
   const MaxCharCount = 40;
   const charCount = value.length;
+
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  const handleStartDateChange = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDateChange = (e) => {
+    setEndDate(e.target.value);
+  };
 
   const navigate = useNavigate();
 
@@ -551,6 +563,7 @@ function CardRegistration() {
                   </Div>
                   <Input
                     className="AuctionStartDateInput"
+                    type="date"
                     placeholder="경매 시작일을 입력하시오."
                     display="flex"
                     justfiycontent="start"
@@ -562,6 +575,10 @@ function CardRegistration() {
                     color={Gray2}
                     borderradius="10px"
                     border={`solid 1px ${Gray1}`}
+                    value={startDate}
+                    onChange={handleStartDateChange}
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "text")}
                   />
                 </Div>
                 <Div className="AuctionEndDateContainer" display="flex" width="31.25rem" height="3.125rem">
@@ -578,6 +595,7 @@ function CardRegistration() {
                   </Div>
                   <Input
                     className="AuctionEndDateInput"
+                    type="date"
                     placeholder="경매 종료일을 입력하시오."
                     display="flex"
                     justfiycontent="start"
@@ -589,6 +607,10 @@ function CardRegistration() {
                     color={Gray2}
                     borderradius="10px"
                     border={`solid 1px ${Gray1}`}
+                    value={endDate}
+                    onChange={handleEndDateChange}
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "text")}
                   />
                 </Div>
               </Div>
