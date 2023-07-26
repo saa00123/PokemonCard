@@ -106,7 +106,7 @@ function CardRegistration() {
             <Div
               className="Title"
               display="flex"
-              justfiycontent="center"
+              justfiycontent="start"
               alignitems="center"
               width="4.563rem"
               height="4.313rem"
@@ -164,7 +164,7 @@ function CardRegistration() {
             <Div
               className="CardInformationTitle"
               display="flex"
-              justfiycontent="center"
+              justfiycontent="start"
               alignitems="center"
               width="8.75rem"
               height="4.313rem"
@@ -225,7 +225,7 @@ function CardRegistration() {
             <Div
               className="ImageRegistrationTitle"
               display="flex"
-              justfiycontent="center"
+              justfiycontent="start"
               alignitems="center"
               width="14.563rem"
               height="4.688rem"
@@ -301,7 +301,7 @@ function CardRegistration() {
             <Div
               className="RatingTitle"
               display="flex"
-              justifycontent="center"
+              justifycontent="start"
               alignitems="center"
               width="4.375rem"
               height="4.688rem"
@@ -408,7 +408,7 @@ function CardRegistration() {
             <Div
               className="PriceTitle"
               display="flex"
-              justifycontent="center"
+              justifycontent="start"
               alignitems="center"
               width="4.375rem"
               height="4.688rem"
@@ -518,7 +518,7 @@ function CardRegistration() {
             <Div
               className="AuctionDateTitle"
               display="flex"
-              justifycontent="center"
+              justifycontent="start"
               alignitems="center"
               width="8.063rem"
               height="4.688rem"
@@ -628,6 +628,83 @@ function CardRegistration() {
                 <Div margin="none">경매 마감 시간은 종료일 오후 9시까지입니다.</Div>
                 <Div margin="none">당일 경매 등록은 경매 시작 시간인 오전 9시 이전까지만</Div>
                 <Div margin="none">가능합니다.</Div>
+              </Div>
+            </Div>
+          </Div>
+          <Div
+            className="TradingMethodContainer"
+            display="flex"
+            flexdirection="column"
+            width="34.438rem"
+            height="11.939rem"
+            margin="2.688rem 0 0 0"
+          >
+            <Div
+              className="TradingMethodTitle"
+              display="flex"
+              justifycontent="start"
+              alignitems="center"
+              width="22.313rem"
+              height="4.688rem"
+              fontsize="2rem"
+              fontWeight="bold"
+              color={Gray2}
+            >
+              거래 방법 (중복 선택 가능)
+            </Div>
+            <Div
+              className="TradingMethodMainContainer"
+              display="flex"
+              flexdirection="column"
+              justfiycontent="center"
+              alignitems="start"
+              width="34.438rem"
+              height="6.188rem"
+              margin="1.063rem 0 0 0"
+            >
+              <Div
+                className="OnlineTradingContainer"
+                display="flex"
+                width="34.438rem"
+                height="2.375rem"
+                margin="0 0 1.5rem"
+              >
+                <Checkbox className="OnlineTradingCheckbox" width="1.563rem" height="1.563rem">
+                  온라인 거래
+                </Checkbox>
+                <Div
+                  className="OnlineTradingNotice"
+                  display="flex"
+                  justfiycontent="start"
+                  alignitems="center"
+                  width="11.625rem"
+                  height="1.563rem"
+                  margin="0 0 0 2.875rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                >
+                  택배비 낙찰자 부담
+                </Div>
+              </Div>
+              <Div className="OfflineTradingContainer" display="flex" width="34.438rem" height="3.125rem">
+                <Checkbox className="OfflineTradingCheckbox" width="1.563rem" height="1.563rem">
+                  오프라인 거래
+                </Checkbox>
+                <Input
+                  className="OfflineTradingPlaceInput"
+                  placeholder="거래 장소를 입력사이오."
+                  display="flex"
+                  justfiycontent="start"
+                  alignitems="center"
+                  width="21.875rem"
+                  height="3.125rem"
+                  padding="0 1.313rem"
+                  margin="0 0 0  1.25rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                  borderradius="10px"
+                  border={`solid 1px ${Gray1}`}
+                />
               </Div>
             </Div>
           </Div>
