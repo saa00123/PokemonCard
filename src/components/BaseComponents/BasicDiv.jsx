@@ -10,6 +10,7 @@ const DivContainer = styled.div`
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  min-width: ${(props) => props.minwidth};
   border: ${(props) => props.border};
   border-radius: ${(props) => props.borderradius};
   color: ${(props) => props.color};
@@ -19,6 +20,9 @@ const DivContainer = styled.div`
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
   box-sizing: ${(props) => props.boxsizing};
+  position: ${(props) => props.position};
+  overflow-x: ${(props) => props.overflowx};
+  overflow-y: ${(props) => props.overflowy};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -37,7 +41,10 @@ const DivContainer = styled.div`
     font-weight: ${(props) => props.notebookfontWeight};
     text-align: ${(props) => props.notebooktextalign};
     box-shadow: ${(props) => props.notebookboxshadow};
-    box-sizing: ${(props) => props.boxsizing};
+    box-sizing: ${(props) => props.notebookboxsizing};
+    position: ${(props) => props.notebookposition};
+    overflow-x: ${(props) => props.notebookoverflowx};
+    overflow-y: ${(props) => props.notebookoverflowy};
   }
 `;
 
@@ -51,6 +58,7 @@ const BasicDiv = (props) => {
     padding,
     width,
     height,
+    minwidth,
     border,
     borderradius,
     color,
@@ -60,6 +68,9 @@ const BasicDiv = (props) => {
     textalign,
     boxshadow,
     boxsizing,
+    position,
+    overflowx,
+    overflowy,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -76,6 +87,10 @@ const BasicDiv = (props) => {
     notebookfontWeight,
     notebooktextalign,
     notebookboxshadow,
+    notebookboxsizing,
+    notebookposition,
+    notebookoverflowx,
+    notebookoverflowy,
     children,
     ...rest
   } = props;
@@ -90,6 +105,7 @@ const BasicDiv = (props) => {
       padding={padding}
       width={width}
       height={height}
+      minwidth={minwidth}
       border={border}
       borderradius={borderradius}
       color={color}
@@ -99,6 +115,9 @@ const BasicDiv = (props) => {
       textalign={textalign}
       boxshadow={boxshadow}
       boxsizing={boxsizing}
+      position={position}
+      overflowx={overflowx}
+      overflowy={overflowy}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
@@ -115,6 +134,10 @@ const BasicDiv = (props) => {
       notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}
       notebookboxshadow={notebookboxshadow}
+      notebookboxsizing={notebookboxsizing}
+      notebookposition={notebookposition}
+      notebookoverflowx={notebookoverflowx}
+      notebookoverflowy={notebookoverflowy}
       {...rest}
     >
       {children}

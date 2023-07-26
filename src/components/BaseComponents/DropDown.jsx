@@ -7,25 +7,38 @@ const DropdownContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 11.25rem;
-  height: 3.125rem;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  margin: ${(props) => props.margin};
   border-radius: 15px;
   border: solid 2px ${Color({ color: "Gray2" })};
   background-color: ${Color({ color: "Default" })};
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: ${(props) => props.notebookwidth};
+    height: ${(props) => props.notebookheight};
+  }
 `;
 
 const DropdownButton = styled.button`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 8.313rem;
-  height: 3.125rem;
+  width: ${(props) => props.buttonwidth};
+  height: ${(props) => props.buttonheight};
+  padding: 0 1rem;
   font-family: Inter;
-  font-size: 1.25rem;
-  text-align: center;
+  font-size: ${(props) => props.buttonfontsize};
+  text-align: left;
   cursor: pointer;
   background-color: transparent;
   border: none;
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: ${(props) => props.notebookbuttonwidth};
+    height: ${(props) => props.notebookbuttonheight};
+    font-size: ${(props) => props.notebookbuttonfontsize};
+  }
 `;
 
 const DropdownMenu = styled.ul`
@@ -35,23 +48,33 @@ const DropdownMenu = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
-  width: 11.25rem;
-  height: 3.125rem;
+  width: ${(props) => props.menuwidth};
+  max-height: 30rem;
   margin-top: 0.313rem;
   background-color: #fff;
+  overflow-y: auto;
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: ${(props) => props.notebookmenuwidth};
+    height: ${(props) => props.notebookmenuheight};
+  }
 `;
 
 const DropdownMenuItem = styled.li`
   padding: 10px;
   cursor: pointer;
   font-family: Inter;
-  font-size: 1.25rem;
-  text-align: center;
-  color: #595959;
-  border: solid 1px #b8b8b8;
+  font-size: ${(props) => props.menufontsize};
+  text-align: left;
+  margin-bottom: -1px;
+  border: solid 1px black;
 
   &:hover {
-    background-color: #dddddd;
+    background-color: ${Color({ color: "Gray1" })};
+  }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    font-size: ${(props) => props.notebookmenufontsize};
   }
 `;
 
@@ -62,9 +85,34 @@ const Polygon = styled.div`
   border-right: 0.8125rem solid transparent;
   border-bottom: 1.313rem solid ${Color({ color: "Red" })};
   transform: rotate(180deg);
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    border-left: 0.6125rem solid transparent;
+    border-right: 0.6125rem solid transparent;
+    border-bottom: 1.013rem solid ${Color({ color: "Red" })};
+  }
 `;
 
-const Dropdown = ({ options, onSelect }) => {
+const Dropdown = ({
+  options,
+  onSelect,
+  width,
+  height,
+  margin,
+  buttonwidth,
+  buttonheight,
+  buttonfontsize,
+  menuwidth,
+  menufontsize,
+  notebookwidth,
+  notebookheight,
+  notebookbuttonwidth,
+  notebookbuttonheight,
+  notebookbuttonfontsize,
+  notebookmenuwidth,
+  notebookmenuheight,
+  notebookmenufontsize,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
@@ -81,18 +129,41 @@ const Dropdown = ({ options, onSelect }) => {
   }, [selectedOption]);
 
   return (
-    <DropdownContainer>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+    <DropdownContainer
+      width={width}
+      height={height}
+      margin={margin}
+      notebookwidth={notebookwidth}
+      notebookheight={notebookheight}
+    >
+      <DropdownButton
+        buttonwidth={buttonwidth}
+        buttonheight={buttonheight}
+        buttonfontsize={buttonfontsize}
+        notebookbuttonwidth={notebookbuttonwidth}
+        notebookbuttonheight={notebookbuttonheight}
+        notebookbuttonfontsize={notebookbuttonfontsize}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         {selectedOption ? selectedOption.label : options[0].label}
         <Polygon />
       </DropdownButton>
       {isOpen && (
-        <DropdownMenu>
+        <DropdownMenu
+          menuwidth={menuwidth}
+          notebookmenuwidth={notebookmenuwidth}
+          notebookmenuheight={notebookmenuheight}
+        >
           {options.map(
             (option) =>
               option !== selectedOption &&
               (!shouldShowInitialOption || option !== options[0]) && (
-                <DropdownMenuItem key={option.id} onClick={() => handleOptionClick(option)}>
+                <DropdownMenuItem
+                  menufontsize={menufontsize}
+                  notebookmenufontsize={notebookmenufontsize}
+                  key={option.id}
+                  onClick={() => handleOptionClick(option)}
+                >
                   {option.label}
                 </DropdownMenuItem>
               ),

@@ -1,8 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { setIsHovered } from "../../redux/state";
 import Color from "./Color";
 
 const Red = Color({ color: "Red" });
@@ -66,8 +64,6 @@ const Button = (props) => {
     ...rest
   } = props;
 
-  const dispatch = useDispatch();
-
   return (
     <ButtonStyle
       width={width}
@@ -81,8 +77,6 @@ const Button = (props) => {
       hovercolor={Red}
       hoverborder="2px solid"
       hoverbordercolor={Red}
-      onMouseEnter={() => dispatch(setIsHovered(true))}
-      onMouseLeave={() => dispatch(setIsHovered(false))}
       notebookwidth={notebookwidth}
       notebookheight={notebookheight}
       notebookborder={notebookborder}
