@@ -1,7 +1,6 @@
 /* eslint-disable no-return-assign */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Input from "../../components/BaseComponents/Input";
 import Color from "../../components/BaseComponents/Color";
@@ -60,7 +59,7 @@ function CardRegistration() {
       justifycontent="start"
       alignitems="start"
       margin="auto"
-      padding="4.063rem 0 0 0"
+      padding="4.063rem 0 6.125rem 0"
       width="78.438rem"
       height="123.564rem"
     >
@@ -707,6 +706,25 @@ function CardRegistration() {
                 />
               </Div>
             </Div>
+          </Div>
+          <Div
+            className="ButtonContainer"
+            display="flex"
+            justifycontent="center"
+            alignitems="center"
+            margin="3.875rem 0 3.813rem 0"
+          >
+            <Button
+              className="SubmitAuctionBtn"
+              type="submit"
+              width="12.5rem"
+              height="4.063rem"
+              fontsize="1.5rem"
+              borderradius="1rem"
+              border="none"
+            >
+              경매 등록
+            </Button>
           </Div>
         </Div>
       </Div>
