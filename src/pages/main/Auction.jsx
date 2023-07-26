@@ -109,7 +109,7 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="2.5rem"
-            margin="0.875rem 0 0 0"
+            margin="1.8rem 0 0 0"
           >
             <Div
               className="CardRating"
@@ -151,7 +151,7 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="1.875rem"
-            margin="1.313rem 0 0 0"
+            margin="1.8rem 0 0 0"
           >
             <Div
               className="OnlineTrading"
@@ -213,7 +213,7 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="3.125rem"
-            margin="1.25rem 0 0 0"
+            margin="1.8rem 0 0 0"
           >
             <Div
               className="StartPriceTitle"
@@ -400,11 +400,82 @@ function Auction() {
       </Div>
       <Div
         className="AuctionClickContainer"
+        display="flex"
+        flexdirection="column"
+        justifycontent="center"
+        alignitems="center"
         width="21.875rem"
         height="32.437rem"
         margin="0 0 0 6rem"
-        border="solid 1px"
-      />
+      >
+        <Div
+          className="RandomPokemonImage"
+          display="flex"
+          justifycontent="center"
+          alignitems="center"
+          width="18.75rem"
+          height="18.75rem"
+          border="solid 1px"
+        />
+        <Div
+          className="AuctionPriceContainer"
+          display="flex"
+          justifycontent="center"
+          alignitems="center"
+          width="21.875rem"
+          height="6.25rem"
+          boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          backgroundcolor={Default}
+          margin="2rem 0 1.375rem 0"
+        >
+          <Button
+            className="MinusBtn"
+            width="3rem"
+            height="4.688rem"
+            fontsize="3rem"
+            border="none"
+            backgroundcolor={Default}
+            color="#000000"
+          >
+            -
+          </Button>
+          <Div
+            className="AuctionPrice"
+            display="flex"
+            justifycontent="center"
+            alignitems="center"
+            width="11.25rem"
+            height="4.688rem"
+            fontsize="2rem"
+            fontWeight="bold"
+            margin="0 1.188rem"
+          >
+            9,010,000
+          </Div>
+          <Button
+            className="PlusBtn"
+            width="3rem"
+            height="4.688rem"
+            fontsize="3rem"
+            border="none"
+            backgroundcolor={Default}
+            color="#000000"
+          >
+            +
+          </Button>
+        </Div>
+        <Button
+          className="AuctinoBtn"
+          type="submit"
+          width="12.5rem"
+          height="4.063rem"
+          borderradius="1rem"
+          border="none"
+          fontsize="1.5rem"
+        >
+          입찰하기
+        </Button>
+      </Div>
     </Div>
   );
 }
