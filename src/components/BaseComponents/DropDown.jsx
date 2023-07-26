@@ -85,6 +85,12 @@ const Polygon = styled.div`
   border-right: 0.8125rem solid transparent;
   border-bottom: 1.313rem solid ${Color({ color: "Red" })};
   transform: rotate(180deg);
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    border-left: 0.6125rem solid transparent;
+    border-right: 0.6125rem solid transparent;
+    border-bottom: 1.013rem solid ${Color({ color: "Red" })};
+  }
 `;
 
 const Dropdown = ({

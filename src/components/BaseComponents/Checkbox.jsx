@@ -31,6 +31,10 @@ const CheckIcon = styled.svg`
 const CheckboxLabel = styled.span`
   font-size: 1.5rem;
   margin-left: 1.25rem;
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Checkbox = ({ width, height, children }) => {
