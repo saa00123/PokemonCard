@@ -57,7 +57,9 @@ const Home = () => {
           <Preview />
           <Preview />
         </Div>
-        <Div> 1 2 3 4 5 6 </Div>
+        <Div width="fit-content" fontsize="2rem" fontWeight="900" margin=" 1rem auto">
+          왼 1 2 3 4 5 6 오
+        </Div>
       </Div>
     </Provider>
   );
