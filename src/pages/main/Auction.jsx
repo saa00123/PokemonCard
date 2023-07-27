@@ -9,8 +9,6 @@ function Auction() {
 
   const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
-  const Gray2 = Color({ color: "Gray2" });
-  const Gray4 = Color({ color: "Gray4" });
 
   return (
     <Div

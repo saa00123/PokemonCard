@@ -2,7 +2,7 @@ import React from "react";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
-function AuctionEnd() {
+function AuctionEndNotice() {
   const Gray2 = Color({ color: "Gray2" });
 
   return (
@@ -58,4 +58,4 @@ function AuctionEnd() {
   );
 }
 
-export default AuctionEnd;
+export default AuctionEndNotice;
