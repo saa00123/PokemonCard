@@ -4,6 +4,7 @@ import { store } from "../../redux/store";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Preview from "../../components/ImageComponents/SmallCardPreview";
+import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
 
@@ -12,27 +13,45 @@ const Home = () => {
   const White = Color({ color: "Default" });
   return (
     <Provider store={store}>
-      {/* <GridButton />
-    <ListButton /> */}
-      <Div
-        className="HomeContainer"
-        width="fit-content"
-        height="fit-content"
-        margin="2rem auto"
-        // border="2px solid black"
-      >
-        <Div
-          className="MainTitle"
-          width="13.75rem"
-          height="6.25rem"
-          color={Gray2}
-          fontsize="2.5rem"
-          fontWeight="bold"
-          // border="2px solid green"
-          display="flex"
-          alignitems="center"
-        >
-          검색 결과
+      <Div className="HomeContainer" width="fit-content" height="fit-content" margin="2rem auto">
+        <Div className="TopContainer" display="flex">
+          <Div
+            className="MainTitle"
+            width="13.75rem"
+            height="6.25rem"
+            color={Gray2}
+            fontsize="2.5rem"
+            fontWeight="bold"
+            // border="2px solid green"
+            display="flex"
+            alignitems="center"
+            notebookwidth="9.125rem"
+            notebookheight="4.875rem"
+            notebookfontsize="1.75rem"
+          >
+            검색 결과
+          </Div>
+          <Div
+            className="OptionContainer"
+            height="fit-content"
+            display="flex"
+            // border="2px blue solid"
+            margin="auto 0 auto auto"
+          >
+            <GridButton />
+            <ListButton margin="0 0 0 4px" />
+          </Div>
+          <DropDown
+            margin="auto 0 auto 0.5rem"
+            options={[
+              { id: 1, label: "낮은 등급순" },
+              { id: 2, label: "마감순" },
+              { id: 3, label: "높은 가격순" },
+              { id: 4, label: "낮은 가격순" },
+              { id: 5, label: "높은 등급순" },
+              { id: 6, label: "낮은 등급순" },
+            ]}
+          />
         </Div>
         <Div
           className="HomeMainContainer"
@@ -41,7 +60,7 @@ const Home = () => {
           backgroundcolor={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           display="grid"
-          gridTemplateColumns="repeat(4, 1fr)"
+          gridtemplatecolumns="repeat(4, 1fr)"
         >
           <Preview />
           <Preview />

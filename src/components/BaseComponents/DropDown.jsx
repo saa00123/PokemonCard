@@ -12,6 +12,7 @@ const DropdownContainer = styled.div`
   border-radius: 15px;
   border: solid 2px ${Color({ color: "Gray2" })};
   background-color: ${Color({ color: "Default" })};
+  margin: ${(props) => props.margin};
 `;
 
 const DropdownButton = styled.button`
@@ -26,6 +27,7 @@ const DropdownButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
+  /* margin-right: 1rem; */
 `;
 
 const DropdownMenu = styled.ul`
@@ -49,6 +51,8 @@ const DropdownMenuItem = styled.li`
   text-align: center;
   color: #595959;
   border: solid 1px #b8b8b8;
+  margin-top: -1px;
+  background-color: ${Color({ color: "Default" })};
 
   &:hover {
     background-color: #dddddd;
@@ -56,15 +60,22 @@ const DropdownMenuItem = styled.li`
 `;
 
 const Polygon = styled.div`
+  position: absolute;
   width: 0;
   height: 0;
-  border-left: 0.8125rem solid transparent;
+  /* border-left: 0.8125rem solid transparent;
   border-right: 0.8125rem solid transparent;
-  border-bottom: 1.313rem solid ${Color({ color: "Red" })};
+  border-bottom: 1.313rem solid ${Color({ color: "Red" })}; */
+  border-left: 0.7rem solid transparent;
+  border-right: 0.7rem solid transparent;
+  border-bottom: 0.85rem solid ${Color({ color: "Red" })};
   transform: rotate(180deg);
+  right: 0.7rem;
+  /* margin-right: -1rem; */
+  /* border: 2px solid green; */
 `;
 
-const Dropdown = ({ options, onSelect }) => {
+const Dropdown = ({ margin, options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
@@ -81,7 +92,7 @@ const Dropdown = ({ options, onSelect }) => {
   }, [selectedOption]);
 
   return (
-    <DropdownContainer>
+    <DropdownContainer margin={margin}>
       <DropdownButton onClick={() => setIsOpen(!isOpen)}>
         {selectedOption ? selectedOption.label : options[0].label}
         <Polygon />

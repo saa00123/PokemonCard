@@ -21,7 +21,7 @@ const DivContainer = styled.div`
   box-sizing: ${(props) => props.boxsizing};
   vertical-align: ${(props) => props.verticalalign};
   grid-template-rows: ${(props) => props.gridTemplateRows};
-  grid-template-columns: ${(props) => props.gridTemplateColumns};
+  grid-template-columns: ${(props) => props.gridtemplatecolumns};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
