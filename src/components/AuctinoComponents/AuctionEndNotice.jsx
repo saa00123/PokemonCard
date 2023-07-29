@@ -27,6 +27,8 @@ function AuctionEndNotice() {
           width="49.688rem"
           height="20.5rem"
           backgroundcolor="#f1f1f1"
+          notebookwidth="33.1rem"
+          notebookheight="16.2rem"
         >
           <Div
             className="EndNotice"
@@ -37,6 +39,8 @@ function AuctionEndNotice() {
             fontsize="2.5rem"
             fontWeight="bold"
             color={Gray2}
+            notebookwidth="21.5rem"
+            notebookfontsize="2rem"
           >
             경매가 마감되었습니다.
           </Div>
@@ -49,6 +53,8 @@ function AuctionEndNotice() {
             fontsize="2.5rem"
             fontWeight="bold"
             color={Gray2}
+            notebookwidth="24.5rem"
+            notebookfontsize="2rem"
           >
             5초 후에 홈으로 돌아갑니다.
           </Div>
