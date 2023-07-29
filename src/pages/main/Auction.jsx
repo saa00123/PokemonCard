@@ -20,6 +20,8 @@ function Auction() {
       padding="5rem 0 0 0"
       width="100.688rem"
       height="43.125rem"
+      notebookwidth="61.313rem"
+      notebookheight="25.375rem"
     >
       <Div
         className="AuctionMainContainer"
@@ -30,8 +32,17 @@ function Auction() {
         height="43.125rem"
         boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
         backgroundcolor={Default}
+        notebookwidth="47.938rem"
+        notebookheight="25.375rem"
       >
-        <Div className="UploadImageContainer" width="24.125rem" height="37.5rem" border="solid 1px" />
+        <Div
+          className="UploadImageContainer"
+          width="24.125rem"
+          height="37.5rem"
+          border="solid 1px"
+          notebookwidth="15.625rem"
+          notebookheight="20.813rem"
+        />
         <Div
           className="AuctionDetailContainer"
           display="flex"
@@ -41,6 +52,9 @@ function Auction() {
           width="39.438rem"
           height="39.188rem"
           margin="0 0 0 2rem"
+          notebookwidth="27.438rem"
+          notebookheight="22.374rem"
+          notebookmargin="0 0 0 1.563rem"
         >
           <Div
             className="AuctionTitle"
@@ -51,6 +65,9 @@ function Auction() {
             height="4.688rem"
             fontsize="2.25rem"
             borderbottom="solid 0.188rem"
+            notebookwidth="27.438rem"
+            notebookheight="2.5rem"
+            notebookfontsize="1.5rem"
           >
             마샤도 싸게 가져가세요
           </Div>
@@ -62,6 +79,9 @@ function Auction() {
             width="39.438rem"
             height="1.875rem"
             margin="0.688rem 0 0 0"
+            notebookwidth="27.438rem"
+            notebookheight="1rem"
+            notebookmargin="0.25rem 0 0 0"
           >
             <Div
               className="StartDate"
@@ -72,6 +92,9 @@ function Auction() {
               height="1.875rem"
               fontsize="1rem"
               color={Gray1}
+              notebookwidth="8.625rem"
+              notebookheight="1rem"
+              notebookfontsize="0.563rem"
             >
               시작일 : 2023.07.19 00:09:00
             </Div>
@@ -84,6 +107,9 @@ function Auction() {
               height="1.875rem"
               color={Gray1}
               margin="0 0 0 auto"
+              notebookwidth="18.813rem"
+              notebookheight="1rem"
+              notebookfontsize="0.563rem"
             >
               판매자 : apple134
             </Div>
@@ -97,6 +123,9 @@ function Auction() {
             height="1.875rem"
             fontsize="1rem"
             color={Gray1}
+            notebookwidth="27.438rem"
+            notebookheight="1rem"
+            notebookfontsize="0.563rem"
           >
             종료일 2023.07.22 00:21:00
           </Div>
@@ -108,28 +137,43 @@ function Auction() {
             width="39.438rem"
             height="2.5rem"
             margin="1.8rem 0 0 0"
+            notebookwidth="27.438rem"
+            notebookheight="1.625rem"
+            notebookmargin="0.875rem 0 0 0"
           >
-            <Div
-              className="CardRating"
-              display="flex"
-              justifycontent="start"
-              alignitems="center"
-              width="4.375rem"
-              height="2.5rem"
-              fontsize="1.5rem"
-            >
-              RRR
-            </Div>
             <Div
               className="Toploader"
               display="flex"
-              justifycontent="start"
+              justifycontent="center"
               alignitems="center"
               width="6.25rem"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="3.5rem"
+              notebookheight="1.625rem"
+              notebookfontsize="0.75rem"
+              notebookborder="solid 1px #000"
+              notebookborderradius="5px"
+              notebookmargin="0 0.188rem 0 0"
             >
               탑로더 X
+            </Div>
+            <Div
+              className="CardRating"
+              display="flex"
+              justifycontent="center"
+              alignitems="center"
+              width="4.375rem"
+              height="2.5rem"
+              fontsize="1.5rem"
+              notebookwidth="2.188rem"
+              notebookheight="1.625rem"
+              notebookfontsize="0.75rem"
+              notebookborder="solid 1px #000"
+              notebookborderradius="5px"
+              notebookmargin="0 0.188rem 0 0"
+            >
+              RRR
             </Div>
             <Div
               className="CardSeries"
@@ -138,6 +182,12 @@ function Auction() {
               alignitems="center"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="fit-content"
+              notebookheight="1.625rem"
+              notebookfontsize="0.75rem"
+              notebookborder="solid 1px #000"
+              notebookborderradius="5px"
+              notebookpadding="0 0.313rem"
             >
               [S5a] 쌍벽의 파이터
             </Div>
@@ -150,6 +200,9 @@ function Auction() {
             width="39.438rem"
             height="1.875rem"
             margin="1.8rem 0 0 0"
+            notebookwidth="27.438rem"
+            notebookheight="1.75rem"
+            notebookmargin="0.813rem 0 0 0"
           >
             <Div
               className="OnlineTrading"
@@ -159,6 +212,9 @@ function Auction() {
               width="7.5rem"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="4.4rem"
+              notebookheight="1.75rem"
+              notebookfontsize="0.875rem"
             >
               온라인 거래
             </Div>
@@ -170,6 +226,9 @@ function Auction() {
               width="4rem"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="4rem"
+              notebookheight="1.75rem"
+              notebookfontsize="0.875rem"
             >
               가능
             </Div>
@@ -181,6 +240,8 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="1.875rem"
+            notebookwidth="27.438rem"
+            notebookheight="1.75rem"
           >
             <Div
               className="OfflineTrading"
@@ -190,6 +251,9 @@ function Auction() {
               width="12.5rem"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="7.938rem"
+              notebookheight="1.75rem"
+              notebookfontsize="0.875rem"
             >
               오프라인 거래 장소 :
             </Div>
@@ -200,6 +264,9 @@ function Auction() {
               alignitems="center"
               height="2.5rem"
               fontsize="1.5rem"
+              notebookwidth="19.5rem"
+              notebookheight="1.75rem"
+              notebookfontsize="0.875rem"
             >
               강동구 천호동 피의 사거리
             </Div>
@@ -212,6 +279,9 @@ function Auction() {
             width="39.438rem"
             height="3.125rem"
             margin="1.8rem 0 0 0"
+            notebookwidth="27.438rem"
+            notebookheight="1.875rem"
+            notebookmargin="0.5rem 0 0 0"
           >
             <Div
               className="StartPriceTitle"
@@ -221,6 +291,9 @@ function Auction() {
               width="9.375rem"
               height="3.125rem"
               fontsize="1.5rem"
+              notebookwidth="3.063rem"
+              notebookheight="1.875rem"
+              notebookfontsize="0.875rem"
             >
               시작가
             </Div>
@@ -231,6 +304,8 @@ function Auction() {
               alignitems="center"
               width="13.75rem"
               height="3.125rem"
+              notebookwidth="11.75rem"
+              notebookheight="1.875rem"
             >
               <Div
                 className="StartPirce"
@@ -241,6 +316,9 @@ function Auction() {
                 height="3.125rem"
                 fontsize="2rem"
                 fontWeight="bold"
+                notebookwidth="10rem"
+                notebookheight="1.875rem"
+                notebookfontsize="1.375rem"
               >
                 9,000,000
               </Div>
@@ -252,6 +330,9 @@ function Auction() {
                 width="2rem"
                 height="3.125rem"
                 fontsize="1.5rem"
+                notebookwidth="1rem"
+                notebookheight="1.875rem"
+                notebookfontsize="0.875rem"
               >
                 원
               </Div>
@@ -264,6 +345,8 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="3.125rem"
+            notebookwidth="27.438rem"
+            notebookheight="1.875rem"
           >
             <Div
               className="BidUnitTitle"
@@ -273,6 +356,9 @@ function Auction() {
               width="9.375rem"
               height="3.125rem"
               fontsize="1.5rem"
+              notebookwidth="3.813rem"
+              notebookheight="1.875rem"
+              notebookfontsize="0.875rem"
             >
               입찰단위
             </Div>
@@ -283,6 +369,8 @@ function Auction() {
               alignitems="center"
               width="13.75rem"
               height="3.125rem"
+              notebookwidth="11rem"
+              notebookheight="1.875rem"
             >
               <Div
                 className="BidUnitPrice"
@@ -293,6 +381,9 @@ function Auction() {
                 height="3.125rem"
                 fontsize="2rem"
                 fontWeight="bold"
+                notebookwidth="9.5rem"
+                notebookheight="1.875rem"
+                notebookfontsize="1.375rem"
               >
                 10,000
               </Div>
@@ -304,6 +395,9 @@ function Auction() {
                 width="2rem"
                 height="3.125rem"
                 fontsize="1.5rem"
+                notebookwidth="1rem"
+                notebookheight="1.875rem"
+                notebookfontsize="0.875rem"
               >
                 원
               </Div>
@@ -317,15 +411,21 @@ function Auction() {
             width="39.438rem"
             height="3.125rem"
             margin="3.063rem 0 0 0"
+            notebookwidth="27.438rem"
+            notebookheight="2.188rem"
+            notebookmargin="1.25rem 0 0 0"
           >
             <Div
               className="TimeLimitTitle"
               display="flex"
-              justifycontent="start"
-              alignitems="center"
+              justifycontent="end"
+              alignitems="end"
               width="9.375rem"
               height="3.125rem"
               fontsize="1.5rem"
+              notebookwidth="4.625rem"
+              notebookheight="2.188rem"
+              notebookfontsize="0.875rem"
             >
               남은시간
             </Div>
@@ -338,6 +438,9 @@ function Auction() {
               height="3.125rem"
               fontsize="2.5rem"
               fontWeight="bold"
+              notebookwidth="9.5rem"
+              notebookheight="2.188rem"
+              notebookfontsize="1.375rem"
             >
               24 : 03 : 12
             </Div>
@@ -349,6 +452,8 @@ function Auction() {
             alignitems="center"
             width="39.438rem"
             height="5.313rem"
+            notebookwidth="27.438rem"
+            notebookheight="3rem"
           >
             <Div
               className="PresentPriceTitle"
@@ -358,6 +463,9 @@ function Auction() {
               width="5.5rem"
               height="5.313rem"
               fontsize="2rem"
+              notebookwidth="5.188rem"
+              notebookheight="3rem"
+              notebookfontsize="1.375rem"
             >
               현재가
             </Div>
@@ -368,6 +476,8 @@ function Auction() {
               alignitems="center"
               width="22.125rem"
               height="5.313rem"
+              notebookwidth="12.5rem"
+              notebookheight="3rem"
             >
               <Div
                 className="PresentPrice"
@@ -378,6 +488,9 @@ function Auction() {
                 height="5.313rem"
                 fontsize="3.75rem"
                 fontWeight="bold"
+                notebookwidth="11rem"
+                notebookheight="3rem"
+                notebookfontsize="1.875rem"
               >
                 9,000,000
               </Div>
@@ -389,6 +502,9 @@ function Auction() {
                 width="2.25rem"
                 height="5.313rem"
                 fontsize="2.25rem"
+                notebookwidth="1.5rem"
+                notebookheight="3rem"
+                notebookfontsize="1.375rem"
               >
                 원
               </Div>
