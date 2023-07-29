@@ -64,10 +64,12 @@ const DropdownMenuItem = styled.li`
   padding: 10px;
   cursor: pointer;
   font-family: Inter;
+  color: #595959;
+  border: solid 1px #b8b8b8;
+  margin-top: -1px;
+  background-color: ${Color({ color: "Default" })};
   font-size: ${(props) => props.menufontsize};
-  text-align: left;
-  margin-bottom: -1px;
-  border: solid 1px black;
+  text-align: center;
 
   &:hover {
     background-color: ${Color({ color: "Gray1" })};
@@ -79,12 +81,17 @@ const DropdownMenuItem = styled.li`
 `;
 
 const Polygon = styled.div`
+  position: absolute;
   width: 0;
   height: 0;
-  border-left: 0.8125rem solid transparent;
+  /* border-left: 0.8125rem solid transparent;
   border-right: 0.8125rem solid transparent;
-  border-bottom: 1.313rem solid ${Color({ color: "Red" })};
+  border-bottom: 1.313rem solid ${Color({ color: "Red" })}; */
+  border-left: 0.7rem solid transparent;
+  border-right: 0.7rem solid transparent;
+  border-bottom: 0.85rem solid ${Color({ color: "Red" })};
   transform: rotate(180deg);
+  right: 0.7rem;
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     border-left: 0.6125rem solid transparent;
