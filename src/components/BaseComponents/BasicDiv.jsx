@@ -12,6 +12,7 @@ const DivContainer = styled.div`
   height: ${(props) => props.height};
   min-width: ${(props) => props.minwidth};
   border: ${(props) => props.border};
+  border-bottom: ${(props) => props.borderbottom};
   border-radius: ${(props) => props.borderradius};
   color: ${(props) => props.color};
   background-color: ${(props) => props.backgroundcolor};
@@ -60,6 +61,7 @@ const BasicDiv = (props) => {
     height,
     minwidth,
     border,
+    borderbottom,
     borderradius,
     color,
     backgroundcolor,
@@ -107,6 +109,7 @@ const BasicDiv = (props) => {
       height={height}
       minwidth={minwidth}
       border={border}
+      borderbottom={borderbottom}
       borderradius={borderradius}
       color={color}
       backgroundcolor={backgroundcolor}
