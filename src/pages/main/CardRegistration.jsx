@@ -63,8 +63,8 @@ function CardRegistration() {
       width="78.438rem"
       height="123.564rem"
       notebookwidth="61.438rem"
-      notebookheight="118.375rem"
-      notebookpadding="0"
+      notebookheight="fit-content"
+      notebookpadding="2rem 0 6.125rem 0"
     >
       <Div
         className="CardRegistrationTitle"
@@ -76,6 +76,7 @@ function CardRegistration() {
         margin="0 0 1.063rem 0"
         fontsize="2.5rem"
         fontWeight="bold"
+        color={Gray2}
         notebookwidth="11.25rem"
         notebookheight="4.875rem"
         notebookfontsize="1.75rem"
@@ -146,7 +147,7 @@ function CardRegistration() {
             >
               <Input
                 className="TitleInput"
-                placeholder="제목을 입력하시오."
+                placeholder="제목을 입력하세요"
                 display="flex"
                 justifycontent="center"
                 alignitems="center"
@@ -560,7 +561,7 @@ function CardRegistration() {
                   </Div>
                   <Input
                     className="StartPriceInput"
-                    placeholder="시작가를 입력하시오."
+                    placeholder="시작가를 입력하세요"
                     display="flex"
                     justfiycontent="start"
                     alignitems="center"
@@ -702,7 +703,7 @@ function CardRegistration() {
                   <Input
                     className="AuctionStartDateInput"
                     type="date"
-                    placeholder="경매 시작일을 입력하시오."
+                    placeholder="경매 시작일을 입력하세요"
                     display="flex"
                     justfiycontent="start"
                     alignitems="center"
@@ -740,7 +741,7 @@ function CardRegistration() {
                   <Input
                     className="AuctionEndDateInput"
                     type="date"
-                    placeholder="경매 종료일을 입력하시오."
+                    placeholder="경매 종료일을 입력하세요"
                     display="flex"
                     justfiycontent="start"
                     alignitems="center"
@@ -858,7 +859,7 @@ function CardRegistration() {
                 </Checkbox>
                 <Input
                   className="OfflineTradingPlaceInput"
-                  placeholder="거래 장소를 입력사이오."
+                  placeholder="거래 장소를 입력하세요"
                   display="flex"
                   justfiycontent="start"
                   alignitems="center"
