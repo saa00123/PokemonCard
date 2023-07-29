@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
@@ -405,6 +405,9 @@ function Auction() {
         width="21.875rem"
         height="32.437rem"
         margin="0 0 0 6rem"
+        notebookwidth="12.25rem"
+        notebookheight="19.375rem"
+        notebookmargin="0 0 0 1.125rem"
       >
         <Div
           className="RandomPokemonImage"
@@ -414,6 +417,8 @@ function Auction() {
           width="18.75rem"
           height="18.75rem"
           border="solid 1px"
+          notebookwidth="9.188rem"
+          notebookheight="9.125rem"
         />
         <Div
           className="AuctionPriceContainer"
@@ -425,6 +430,9 @@ function Auction() {
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           backgroundcolor={Default}
           margin="2rem 0 1.375rem 0"
+          notebookwidth="12.25rem"
+          notebookheight="3.75rem"
+          notebookmargin="1.813rem 0 1.125rem 0"
         >
           <Button
             className="MinusBtn"
@@ -434,6 +442,12 @@ function Auction() {
             border="none"
             backgroundcolor={Default}
             color="#000000"
+            notebookwidth="1.688rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor={Default}
+            notebookcolor="#000000"
           >
             -
           </Button>
@@ -447,6 +461,10 @@ function Auction() {
             fontsize="2rem"
             fontWeight="bold"
             margin="0 1.188rem"
+            notebookwidth="7.75rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.25rem"
+            notebookmargin="0"
           >
             9,010,000
           </Div>
@@ -458,6 +476,12 @@ function Auction() {
             border="none"
             backgroundcolor={Default}
             color="#000000"
+            notebookwidth="1.688rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor={Default}
+            notebookcolor="#000000"
           >
             +
           </Button>
@@ -470,6 +494,10 @@ function Auction() {
           borderradius="1rem"
           border="none"
           fontsize="1.5rem"
+          notebookwidth="6rem"
+          notebookheight="2.25rem"
+          notebookfontsize="0.875rem"
+          notebookborderradius="0.5rem"
         >
           입찰하기
         </Button>
