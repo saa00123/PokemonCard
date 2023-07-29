@@ -7,6 +7,12 @@ import ListImage from "../../images/List.png";
 const Default = Color({ color: "Default" });
 const Gray1 = Color({ color: "Gray1" });
 
+const ButtonConatiner = styled.div`
+  width: fit-content;
+  height: fit-content;
+  margin: ${(props) => props.margin};
+`;
+
 const CenteredButton = styled(Button)`
   display: flex;
   align-items: center;
@@ -20,17 +26,19 @@ const Image = styled.img`
   opacity: 0.5;
 `;
 
-const ListButton = () => (
-  <CenteredButton
-    className="ListButton"
-    width="2.5rem"
-    height="2.5rem"
-    backgroundcolor={Default}
-    borderradius="none"
-    border={`solid 1px ${Gray1}`}
-  >
-    <Image src={ListImage} alt="ListImage" />
-  </CenteredButton>
+const ListButton = ({ margin }) => (
+  <ButtonConatiner margin={margin}>
+    <CenteredButton
+      className="ListButton"
+      width="2.5rem"
+      height="2.5rem"
+      backgroundcolor={Default}
+      borderradius="none"
+      border={`solid 1px ${Gray1}`}
+    >
+      <Image src={ListImage} alt="ListImage" />
+    </CenteredButton>
+  </ButtonConatiner>
 );
 
 export default ListButton;

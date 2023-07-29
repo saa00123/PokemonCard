@@ -6,7 +6,6 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function SignUp() {
-  const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
@@ -30,7 +29,6 @@ function SignUp() {
         height="46.064rem"
         notebookwidth="fit-content"
         notebookheight="fit-content"
-        // border="4px solid red"
       >
         <Div
           className="SignHeader"
@@ -46,21 +44,13 @@ function SignUp() {
         </Div>
         <Div
           className="SignMainContainer"
-          // display="flex"
-          // flexdirection="column"
-          // justifycontent="center"
-          // alignitems="center"
           width="40.625rem"
           height="43.063rem"
-          backgroundcolor={Default}
+          backgroundcolor={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           boxsizing="border-box"
-          // padding="2.5rem 5rem 0 5rem"
           notebookwidth="55.625rem"
           notebookheight="25rem"
-          // border="4px solid blue"
-          // notebookdisplay="flex"
-          // notebooktextalign="center"
         >
           <Div
             className="WrapContainer"
@@ -71,7 +61,6 @@ function SignUp() {
           >
             <Div
               className="LeftContainer"
-              // border="2px solid green"
               width="fit-content"
               height="fit-content"
               margin="0 auto"
@@ -189,7 +178,6 @@ function SignUp() {
             </Div>
             <Div
               className="RightContainer"
-              // border="2px solid green"
               width="fit-content"
               height="fit-content"
               margin="0 auto"
@@ -367,14 +355,7 @@ function SignUp() {
               </Div>
             </Div>
           </Div>
-          <Div
-            className="ButtonContainer"
-            width="fit-content"
-            height="fit-content"
-            margin="2rem auto"
-            // border="2px solid black"
-            // notebookmargin="17rem -10rem 0 0"
-          >
+          <Div className="ButtonContainer" width="fit-content" height="fit-content" margin="2rem auto">
             <Button
               className="SighUpBtn"
               type="submit"

@@ -15,18 +15,26 @@ const HeaderContainer = styled.header`
 
 const HeaderSpaceDiv = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding-left: 2rem;
-  padding-right: 2rem;
   @media (min-width: 1024px) and (max-width: 1440px) {
     padding-left: 1rem;
-    padding-right: 1rem;
+  }
+`;
+
+const HeaderMenuContainer = styled.div`
+  width: 37.5rem;
+  height: 6.25rem;
+  display: flex;
+  margin-left: auto;
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 31.252rem;
+    height: 4.813rem;
+    font-size: 1.125rem;
   }
 `;
 
 const HeaderMenu = styled.button`
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 9.375rem;
@@ -54,10 +62,12 @@ const Header = () => (
     <HeaderSpaceDiv>
       <HeaderLogo />
       <Search />
-      <HeaderMenu>카드 등록</HeaderMenu>
-      <HeaderMenu>마감된 경매</HeaderMenu>
-      <HeaderMenu>마이 페이지</HeaderMenu>
-      <HeaderMenu>로그인</HeaderMenu>
+      <HeaderMenuContainer>
+        <HeaderMenu>카드 등록</HeaderMenu>
+        <HeaderMenu>마감된 경매</HeaderMenu>
+        <HeaderMenu>마이 페이지</HeaderMenu>
+        <HeaderMenu>로그인</HeaderMenu>
+      </HeaderMenuContainer>
     </HeaderSpaceDiv>
   </HeaderContainer>
 );

@@ -1,12 +1,83 @@
 import React from "react";
+import Color from "../../components/BaseComponents/Color";
+import Div from "../../components/BaseComponents/BasicDiv";
+import Preview from "../../components/ImageComponents/SmallCardPreview";
+import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
 
-const Home = () => (
-  <div>
-    <GridButton />
-    <ListButton />
-  </div>
-);
+const Home = () => {
+  const Gray2 = Color({ color: "Gray2" });
+  const White = Color({ color: "Default" });
+  return (
+    <Div className="HomeContainer" width="fit-content" height="fit-content" margin="2rem auto">
+      <Div className="TopContainer" display="flex">
+        <Div
+          className="MainTitle"
+          width="13.75rem"
+          height="6.25rem"
+          color={Gray2}
+          fontsize="2.5rem"
+          fontWeight="bold"
+          // border="2px solid green"
+          display="flex"
+          alignitems="center"
+          notebookwidth="9.125rem"
+          notebookheight="4.875rem"
+          notebookfontsize="1.75rem"
+        >
+          검색 결과
+        </Div>
+        <Div
+          className="OptionContainer"
+          height="fit-content"
+          display="flex"
+          // border="2px blue solid"
+          margin="auto 0 auto auto"
+        >
+          <GridButton />
+          <ListButton margin="0 0 0 4px" />
+        </Div>
+        <DropDown
+          margin="auto 0 auto 0.5rem"
+          options={[
+            { id: 1, label: "낮은 등급순" },
+            { id: 2, label: "마감순" },
+            { id: 3, label: "높은 가격순" },
+            { id: 4, label: "낮은 가격순" },
+            { id: 5, label: "높은 등급순" },
+            { id: 6, label: "낮은 등급순" },
+          ]}
+        />
+      </Div>
+      <Div
+        className="HomeMainContainer"
+        width="fit-content"
+        height="fit-content"
+        backgroundcolor={White}
+        boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+        display="grid"
+        gridtemplatecolumns="repeat(4, 1fr)"
+      >
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+        <Preview />
+      </Div>
+      <Div width="fit-content" fontsize="2rem" fontWeight="900" margin=" 1rem auto">
+        왼 1 2 3 4 5 6 오
+      </Div>
+    </Div>
+  );
+};
 
 export default Home;

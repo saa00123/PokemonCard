@@ -21,6 +21,9 @@ const DivContainer = styled.div`
   text-align: ${(props) => props.textalign};
   box-shadow: ${(props) => props.boxshadow};
   box-sizing: ${(props) => props.boxsizing};
+  vertical-align: ${(props) => props.verticalalign};
+  grid-template-rows: ${(props) => props.gridTemplateRows};
+  grid-template-columns: ${(props) => props.gridtemplatecolumns};
   position: ${(props) => props.position};
   overflow-x: ${(props) => props.overflowx};
   overflow-y: ${(props) => props.overflowy};
@@ -46,6 +49,9 @@ const DivContainer = styled.div`
     position: ${(props) => props.notebookposition};
     overflow-x: ${(props) => props.notebookoverflowx};
     overflow-y: ${(props) => props.notebookoverflowy};
+    vertical-align: ${(props) => props.notebookverticalalign};
+    grid-template-rows: ${(props) => props.notebookGridTemplateRows};
+    grid-template-columns: ${(props) => props.notebookGridTemplateColumns};
   }
 `;
 
@@ -70,6 +76,9 @@ const BasicDiv = (props) => {
     textalign,
     boxshadow,
     boxsizing,
+    verticalalign,
+    gridTemplateRows,
+    gridTemplateColumns,
     position,
     overflowx,
     overflowy,
@@ -93,6 +102,9 @@ const BasicDiv = (props) => {
     notebookposition,
     notebookoverflowx,
     notebookoverflowy,
+    notebookverticalalign,
+    notebookGridTemplateRow,
+    notebookGridTemplateColumns,
     children,
     ...rest
   } = props;
@@ -118,6 +130,9 @@ const BasicDiv = (props) => {
       textalign={textalign}
       boxshadow={boxshadow}
       boxsizing={boxsizing}
+      verticalalign={verticalalign}
+      gridTemplateRows={gridTemplateRows}
+      gridTemplateColumns={gridTemplateColumns}
       position={position}
       overflowx={overflowx}
       overflowy={overflowy}
@@ -137,6 +152,9 @@ const BasicDiv = (props) => {
       notebookfontWeight={notebookfontWeight}
       notebooktextalign={notebooktextalign}
       notebookboxshadow={notebookboxshadow}
+      notebookverticalalign={notebookverticalalign}
+      notebookGridTemplateRow={notebookGridTemplateRow}
+      notebookGridTemplateColumns={notebookGridTemplateColumns}
       notebookboxsizing={notebookboxsizing}
       notebookposition={notebookposition}
       notebookoverflowx={notebookoverflowx}
