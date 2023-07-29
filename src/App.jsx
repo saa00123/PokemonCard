@@ -8,6 +8,7 @@ import CardRegistration from "./pages/main/CardRegistration";
 import Auction from "./pages/main/Auction";
 import FinishAuction from "./pages/main/FinishAuction";
 import FinishAuctionDetail from "./pages/main/FinishAuctionDetail";
+import FinishAuctionDetailGeneral from "./pages/main/FinishAuctionDetailGeneral";
 import MyPage from "./pages/main/MyPage";
 
 import Login from "./pages/Login/Login";
@@ -66,6 +67,15 @@ function App() {
             <>
               <Header />
               <FinishAuctionDetail />
+            </>
+          }
+        />
+        <Route
+          path="/FinishAuctionDetailGeneral"
+          element={
+            <>
+              <Header />
+              <FinishAuctionDetailGeneral />
             </>
           }
         />
