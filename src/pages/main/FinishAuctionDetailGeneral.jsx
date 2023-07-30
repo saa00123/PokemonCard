@@ -20,6 +20,7 @@ function FinishAuctionDetailGeneral() {
       backgroundcolor={Default}
       notebookwidth="47.938rem"
       notebookheight="25.375rem"
+      notebookmargin="4rem auto 0 auto"
     >
       <Div
         className="UploadImageContainer"
