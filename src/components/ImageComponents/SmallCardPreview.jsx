@@ -22,22 +22,25 @@ const PreviewContainer = styled.div`
 const PreviewImage = styled.div`
   width: 18.75rem;
   height: 25rem;
-  margin: -1.5rem 0 1.188rem;
+  margin: 0 0 1.188rem;
   border: solid 1px ${Color({ color: "Gray4" })};
   background-color: ${Color({ color: "Default" })};
+
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
     height: 16.668rem;
-    margin: 1rem auto;
+    margin-bottom: 0.7rem;
   }
 `;
 
-const PreviewHeader = styled.header`
+const PreviewHeader = styled.div`
   width: 18.75rem;
-  height: 1.875rem;
+  height: 3.5rem;
   font-size: 1.25rem;
   text-align: left;
   word-wrap: break-word;
+  /* border: 2px solid blue; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
     height: 2.876rem;
@@ -50,53 +53,65 @@ const PreviewAuctionContainer = styled.div`
   display: flex;
   width: 18.75rem;
   height: 3.438rem;
-  margin-bottom: 1.063rem;
-  /* border: 2px solid red; */
+  margin-top: 1.063rem;
+  /* margin-bottom: 1.063rem; */
+  /* border: 2px solid orange; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
     height: 2.626rem;
+    margin-top: 0.5rem;
   }
 `;
 
 const PreviewDetailContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* width: 9.375rem;
-  height: 3.438rem; */
-  width: fit-content;
-  height: fit-content;
-  border: 2px solid black;
+  /* display: flex;
+  flex-direction: column; */
+  width: 9.375rem;
+  height: 3.438rem;
+  /* width: fit-content; */
+  height: 3.438rem;
+  /* border: 2px solid black; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: fit-content;
     height: fit-content;
   }
 `;
 
-const DetailHeader = styled.header`
+const DetailHeader = styled.div`
   width: 4.063rem;
   height: 1.25rem;
 
-  margin: 3.5rem 5.875rem 0 0;
+  /* margin: 3.5rem 5.875rem 0 0; */
   font-size: 0.875rem;
   text-align: left;
-  border: 2px solid red;
+  /* border: 2px solid red; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 2.75rem;
+    height: 0.938rem;
+    font-size: 0.625rem;
   }
 `;
 
 const DetailAuction = styled.div`
   display: flex;
-  width: fit-content;
+  width: ${(props) => props.width};
   height: 2.188rem;
-  min-height: 2.188rem;
+  /* min-height: 2.188rem; */
   font-size: ${(props) => props.fontsize};
   font-weight: bold;
   text-align: left;
-  min-width: 2.188rem;
-  border: 2px solid green;
+  /* min-width: 2.188rem; */
+  /* border: 2px solid green; */
   align-items: ${(props) => props.alignitems};
   /* justify-content: center; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
+    width: ${(props) => props.notebookwidth};
+    height: 1.5rem;
+    font-size: ${(props) => props.notebookfontsize};
   }
 `;
 
@@ -106,6 +121,7 @@ const PriceUnit = styled.div`
   font-size: 1rem;
   margin-left: 0.3rem;
   @media (min-width: 1024px) and (max-width: 1440px) {
+    font-size: 0.75rem;
   }
 `;
 
@@ -116,13 +132,19 @@ const SmallCardPreview = () => (
     <PreviewAuctionContainer>
       <PreviewDetailContainer>
         <DetailHeader>남은 시간</DetailHeader>
-        <DetailAuction fontsize="1.5rem" alignitems="end">
-          24:03:12
+        <DetailAuction width="7.5rem" notebookwidth="6rem" fontsize="1.5rem" notebookfontsize="1rem" alignitems="end">
+          99:99:99
         </DetailAuction>
       </PreviewDetailContainer>
       <PreviewDetailContainer>
         <DetailHeader>현재가</DetailHeader>
-        <DetailAuction fontsize="2rem">
+        <DetailAuction
+          width="8.813rem"
+          notebookwidth="6.5rem"
+          fontsize="2rem"
+          notebookfontsize="1.25rem"
+          alignitems="end"
+        >
           13,000<PriceUnit>원</PriceUnit>
         </DetailAuction>
       </PreviewDetailContainer>
