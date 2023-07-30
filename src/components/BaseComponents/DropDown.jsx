@@ -10,13 +10,14 @@ const DropdownContainer = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   margin: ${(props) => props.margin};
-  border-radius: 15px;
+  border-radius: ${(props) => props.borderradius};
   border: solid 2px ${Color({ color: "Gray2" })};
   background-color: ${Color({ color: "Default" })};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookwidth};
     height: ${(props) => props.notebookheight};
+    border-radius: ${(props) => props.notebookborderradius};
   }
 `;
 
@@ -38,6 +39,8 @@ const DropdownButton = styled.button`
     width: ${(props) => props.notebookbuttonwidth};
     height: ${(props) => props.notebookbuttonheight};
     font-size: ${(props) => props.notebookbuttonfontsize};
+    text-align: center;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -49,7 +52,8 @@ const DropdownMenu = styled.ul`
   padding: 0;
   margin: 0;
   width: ${(props) => props.menuwidth};
-  max-height: 30rem;
+  /* max-height: 30.1rem; */
+  height: 15.375rem;
   margin-top: 0.313rem;
   background-color: #fff;
   overflow-y: auto;
@@ -66,7 +70,7 @@ const DropdownMenuItem = styled.li`
   font-family: Inter;
   color: #595959;
   border: solid 1px #b8b8b8;
-  margin-top: -1px;
+  margin-bottom: -1px;
   background-color: ${Color({ color: "Default" })};
   font-size: ${(props) => props.menufontsize};
   text-align: center;
@@ -84,19 +88,16 @@ const Polygon = styled.div`
   position: absolute;
   width: 0;
   height: 0;
-  /* border-left: 0.8125rem solid transparent;
-  border-right: 0.8125rem solid transparent;
-  border-bottom: 1.313rem solid ${Color({ color: "Red" })}; */
   border-left: 0.7rem solid transparent;
   border-right: 0.7rem solid transparent;
   border-bottom: 0.85rem solid ${Color({ color: "Red" })};
   transform: rotate(180deg);
-  right: 0.7rem;
+  right: 1rem;
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    border-left: 0.6125rem solid transparent;
-    border-right: 0.6125rem solid transparent;
-    border-bottom: 1.013rem solid ${Color({ color: "Red" })};
+    border-left: 0.4rem solid transparent;
+    border-right: 0.4rem solid transparent;
+    border-bottom: 0.5rem solid ${Color({ color: "Red" })};
   }
 `;
 
@@ -111,6 +112,7 @@ const Dropdown = ({
   buttonfontsize,
   menuwidth,
   menufontsize,
+  borderradius,
   notebookwidth,
   notebookheight,
   notebookbuttonwidth,
@@ -119,6 +121,7 @@ const Dropdown = ({
   notebookmenuwidth,
   notebookmenuheight,
   notebookmenufontsize,
+  notebookborderradius,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -140,8 +143,10 @@ const Dropdown = ({
       width={width}
       height={height}
       margin={margin}
+      borderradius={borderradius}
       notebookwidth={notebookwidth}
       notebookheight={notebookheight}
+      notebookborderradius={notebookborderradius}
     >
       <DropdownButton
         buttonwidth={buttonwidth}
