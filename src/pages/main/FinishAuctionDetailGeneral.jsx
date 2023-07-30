@@ -1,7 +1,6 @@
 import React from "react";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
-import Button from "../../components/BaseComponents/Button";
 
 function FinishAuctionDetailGeneral() {
   const Default = Color({ color: "Default" });
