@@ -19,7 +19,6 @@ const Home = () => {
           color={Gray2}
           fontsize="2.5rem"
           fontWeight="bold"
-          // border="2px solid green"
           display="flex"
           alignitems="center"
           notebookwidth="9.125rem"

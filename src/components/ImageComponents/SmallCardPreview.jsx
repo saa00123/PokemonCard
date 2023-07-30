@@ -39,7 +39,6 @@ const PreviewHeader = styled.div`
   font-size: 1.25rem;
   text-align: left;
   word-wrap: break-word;
-  /* border: 2px solid blue; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
@@ -54,8 +53,6 @@ const PreviewAuctionContainer = styled.div`
   width: 18.75rem;
   height: 3.438rem;
   margin-top: 1.063rem;
-  /* margin-bottom: 1.063rem; */
-  /* border: 2px solid orange; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
@@ -65,13 +62,9 @@ const PreviewAuctionContainer = styled.div`
 `;
 
 const PreviewDetailContainer = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   width: 9.375rem;
   height: 3.438rem;
-  /* width: fit-content; */
   height: 3.438rem;
-  /* border: 2px solid black; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: fit-content;
@@ -82,11 +75,8 @@ const PreviewDetailContainer = styled.div`
 const DetailHeader = styled.div`
   width: 4.063rem;
   height: 1.25rem;
-
-  /* margin: 3.5rem 5.875rem 0 0; */
   font-size: 0.875rem;
   text-align: left;
-  /* border: 2px solid red; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 2.75rem;
@@ -99,14 +89,10 @@ const DetailAuction = styled.div`
   display: flex;
   width: ${(props) => props.width};
   height: 2.188rem;
-  /* min-height: 2.188rem; */
   font-size: ${(props) => props.fontsize};
   font-weight: bold;
   text-align: left;
-  /* min-width: 2.188rem; */
-  /* border: 2px solid green; */
   align-items: ${(props) => props.alignitems};
-  /* justify-content: center; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookwidth};
