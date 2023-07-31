@@ -96,8 +96,8 @@ const DetailHeader = styled.div`
   /* border: 1px solid red; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 2.75rem;
-    height: 0.938rem;
+    width: 2.4rem;
+    height: 0.8rem;
     /* right: 2.75rem; */
     font-size: 0.625rem;
   }
