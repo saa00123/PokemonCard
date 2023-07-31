@@ -96,62 +96,95 @@ function FinishAuctionDetail() {
             마샤도 싸게 가져가세요
           </Div>
           <Div
-            className="StartDateAndSeller"
+            className="DateAndSellerContainer"
             display="flex"
             justifycontent="between"
             alignitems="center"
-            width="39.438rem"
-            height="1.875rem"
             margin="0.688rem 0 0 0"
+            width="39.438rem"
             notebookwidth="27.438rem"
-            notebookheight="1rem"
             notebookmargin="0.25rem 0 0 0"
           >
             <Div
-              className="StartDate"
+              className="StartDateAndEndDate"
               display="flex"
+              flexdirection="column"
               justifycontent="start"
               alignitems="center"
               width="15rem"
-              height="1.875rem"
-              fontsize="1rem"
-              color={Gray1}
+              height="3.75rem"
               notebookwidth="8.625rem"
-              notebookheight="1rem"
-              notebookfontsize="0.563rem"
+              notebookheight="2rem"
             >
-              시작일 : 2023.07.19 00:09:00
+              <Div
+                className="StartDate"
+                display="flex"
+                justifycontent="start"
+                alignitems="center"
+                width="15rem"
+                height="1.875rem"
+                fontsize="1rem"
+                color={Gray1}
+                notebookwidth="8.625rem"
+                notebookheight="1rem"
+                notebookfontsize="0.563rem"
+              >
+                시작일 : 2023.07.19 00:09:00
+              </Div>
+              <Div
+                className="EndDate"
+                display="flex"
+                justifycontent="start"
+                alignitems="center"
+                width="15rem"
+                height="1.875rem"
+                fontsize="1rem"
+                color={Gray1}
+                notebookwidth="8.625rem"
+                notebookheight="1rem"
+                notebookfontsize="0.563rem"
+              >
+                종료일 : 2023.07.22 00:21:00
+              </Div>
             </Div>
             <Div
-              className="Seller"
+              className="SellerAndBuyer"
               display="flex"
-              justifycontent="end"
-              alignitems="center"
-              width="15.938rem"
-              height="1.875rem"
-              color={Gray1}
+              flexdirection="column"
+              justifycontent="start"
+              alignitems="start"
+              width="fit-content"
+              height="3.75rem"
               margin="0 0 0 auto"
-              notebookwidth="18.813rem"
-              notebookheight="1rem"
-              notebookfontsize="0.563rem"
+              notebookheight="2rem"
             >
-              판매자 : apple134
+              <Div
+                className="Seller"
+                display="flex"
+                justifycontent="start"
+                alignitems="center"
+                width="fit-content"
+                height="1.875rem"
+                color={Gray1}
+                notebookheight="1rem"
+                notebookfontsize="0.563rem"
+              >
+                판매자 : apple134
+              </Div>
+              <Div
+                className="Buyer"
+                display="flex"
+                justifycontent="start"
+                alignitems="center"
+                width="fit-content"
+                height="1.875rem"
+                color={Gray1}
+                notebookheight="1rem"
+                notebookfontsize="0.563rem"
+              >
+                낙찰자 : apple13444
+              </Div>
             </Div>
-          </Div>
-          <Div
-            className="EndDate"
-            display="flex"
-            justifycontent="start"
-            alignitems="center"
-            width="39.438rem"
-            height="1.875rem"
-            fontsize="1rem"
-            color={Gray1}
-            notebookwidth="27.438rem"
-            notebookheight="1rem"
-            notebookfontsize="0.563rem"
-          >
-            종료일 : 2023.07.22 00:21:00
           </Div>
           <Div
             className="CardInformation"
@@ -274,8 +307,10 @@ function FinishAuctionDetail() {
             alignitems="center"
             width="39.438rem"
             height="1.875rem"
+            margin="0.5rem 0 0 0"
             notebookwidth="27.438rem"
             notebookheight="1.75rem"
+            notebookmargin="-0.3rem 0 0 0"
           >
             <Div
               className="OfflineTrading"
@@ -438,59 +473,19 @@ function FinishAuctionDetail() {
             </Div>
           </Div>
           <Div
-            className="TimeLimitContainer"
-            display="flex"
-            justifycontent="end"
-            alignitems="center"
-            width="39.438rem"
-            height="3.125rem"
-            margin="3.063rem 0 0 0"
-            notebookwidth="27.438rem"
-            notebookheight="2.188rem"
-            notebookmargin="1.25rem 0 0 0"
-          >
-            <Div
-              className="TimeLimitTitle"
-              display="flex"
-              justifycontent="end"
-              alignitems="end"
-              width="9.375rem"
-              height="3.125rem"
-              fontsize="1.5rem"
-              notebookwidth="4.625rem"
-              notebookheight="2.188rem"
-              notebookfontsize="0.875rem"
-            >
-              남은시간
-            </Div>
-            <Div
-              className="TimeLimit"
-              display="flex"
-              justifycontent="end"
-              alignitems="end"
-              width="12.75rem"
-              height="3.125rem"
-              fontsize="2.5rem"
-              fontWeight="bold"
-              notebookwidth="9.5rem"
-              notebookheight="2.188rem"
-              notebookfontsize="1.375rem"
-            >
-              24 : 03 : 12
-            </Div>
-          </Div>
-          <Div
             className="PresentPriceContainer"
             display="flex"
             justifycontent="end"
             alignitems="center"
             width="39.438rem"
             height="5.313rem"
+            margin="6.188rem 0 0 0"
             notebookwidth="27.438rem"
             notebookheight="3rem"
+            notebookmargin="3.438rem 0 0 0"
           >
             <Div
-              className="PresentPriceTitle"
+              className="AuctionPriceTitle"
               display="flex"
               justifycontent="start"
               alignitems="end"
@@ -501,7 +496,7 @@ function FinishAuctionDetail() {
               notebookheight="3rem"
               notebookfontsize="1.375rem"
             >
-              현재가
+              낙찰가
             </Div>
             <Div
               className="PriceContainer"
@@ -664,9 +659,11 @@ function FinishAuctionDetail() {
             width="26.875rem"
             height="3.125rem"
             fontsize="1.25rem"
+            border="none"
             notebookwidth="46.188rem"
             notebookheight="1.75rem"
             notebookfontsize="0.875rem"
+            notebookborder="none"
           />
           <Button
             className="ChatBtn"
