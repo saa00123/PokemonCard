@@ -53,6 +53,7 @@ const PreviewAuctionContainer = styled.div`
   width: 18.75rem;
   height: 3.438rem;
   margin-top: 1.063rem;
+  /* border: 1px solid orange; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 12.5rem;
@@ -62,9 +63,11 @@ const PreviewAuctionContainer = styled.div`
 `;
 
 const PreviewDetailContainer = styled.div`
-  width: 9.375rem;
+  width: "fit-content";
   height: 3.438rem;
-  height: 3.438rem;
+  float: ${(props) => props.float};
+  margin-left: ${(props) => props.marginleft};
+  /* border: 1px solid black; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: fit-content;
@@ -77,6 +80,7 @@ const DetailHeader = styled.div`
   height: 1.25rem;
   font-size: 0.875rem;
   text-align: left;
+  /* border: 1px solid red; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 2.75rem;
@@ -93,6 +97,7 @@ const DetailAuction = styled.div`
   font-weight: bold;
   text-align: left;
   align-items: ${(props) => props.alignitems};
+  /* border: 1px solid blue; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookwidth};
@@ -106,6 +111,8 @@ const PriceUnit = styled.div`
   align-items: end;
   font-size: 1rem;
   margin-left: 0.3rem;
+  /* border: 1px solid green; */
+
   @media (min-width: 1024px) and (max-width: 1440px) {
     font-size: 0.75rem;
   }
@@ -116,17 +123,25 @@ const SmallCardPreview = () => (
     <PreviewImage />
     <PreviewHeader>완전기이이이이이이이이이이이이이인 제목</PreviewHeader>
     <PreviewAuctionContainer>
-      <PreviewDetailContainer>
+      <PreviewDetailContainer float="left">
         <DetailHeader>남은 시간</DetailHeader>
-        <DetailAuction width="7.5rem" notebookwidth="6rem" fontsize="1.5rem" notebookfontsize="1rem" alignitems="end">
+        <DetailAuction
+          width="fit-content"
+          notebookwidth="fit-content"
+          fontsize="1.5rem"
+          notebookfontsize="1rem"
+          alignitems="end"
+        >
           99:99:99
         </DetailAuction>
       </PreviewDetailContainer>
-      <PreviewDetailContainer>
+      <PreviewDetailContainer float="right" marginleft="auto">
         <DetailHeader>현재가</DetailHeader>
         <DetailAuction
-          width="8.813rem"
-          notebookwidth="6.5rem"
+          // width="8.813rem"
+          width="fit-content"
+          // notebookwidth="6.5rem"
+          notebookwidth="fit-content"
           fontsize="2rem"
           notebookfontsize="1.25rem"
           alignitems="end"
