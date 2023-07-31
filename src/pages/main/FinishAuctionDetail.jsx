@@ -1,8 +1,31 @@
 import React from "react";
+import styled from "styled-components";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Input from "../../components/BaseComponents/Input";
 import Button from "../../components/BaseComponents/Button";
+import Send from "../../images/Send.png";
+import SendHover from "../../images/SendHover.png";
+
+const SendImage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-image: url(${Send});
+  background-repeat: no-repeat;
+  background-size: 2.5rem 2.5rem;
+  &:hover {
+    background-image: url(${SendHover});
+  }
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 1.3rem;
+    height: 1.3rem;
+    background-size: 1.1rem 1.3rem;
+  }
+`;
 
 function FinishAuctionDetail() {
   const Default = Color({ color: "Default" });
@@ -19,8 +42,10 @@ function FinishAuctionDetail() {
       padding="5rem 0 0 0"
       width="102.563rem"
       height="43.125rem"
-      notebookwidth="61.313rem"
-      notebookheight="25.375rem"
+      notebookflexdirection="column"
+      notebookwidth="47.938rem"
+      notebookheight="41.2rem"
+      notebookpadding="2rem 0 2rem 0"
     >
       <Div
         className="FinishAuctionMainContainer"
@@ -126,7 +151,7 @@ function FinishAuctionDetail() {
             notebookheight="1rem"
             notebookfontsize="0.563rem"
           >
-            종료일 2023.07.22 00:21:00
+            종료일 : 2023.07.22 00:21:00
           </Div>
           <Div
             className="CardInformation"
@@ -532,6 +557,9 @@ function FinishAuctionDetail() {
         margin="0 0 0 1.313rem"
         boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
         backgroundcolor={Default}
+        notebookwidth="47.938rem"
+        notebookheight="15rem"
+        notebookmargin="0.813rem 0 0 0"
       >
         <Div
           className="ChatLogContainer"
@@ -543,8 +571,18 @@ function FinishAuctionDetail() {
           height="36rem"
           margin="2rem 2.313rem"
           overflowy="auto"
+          notebookwidth="44.812rem"
+          notebookheight="11.374rem"
+          notebookmargin="0.938rem 1.563rem"
         >
-          <Div className="ChatLog" width="25.374rem" height="5rem" borderbottom={`solid 1px ${Gray1}`}>
+          <Div
+            className="ChatLog"
+            width="25.374rem"
+            height="5rem"
+            borderbottom={`solid 1px ${Gray1}`}
+            notebookwidth="44.812rem"
+            notebookheight="3.5rem"
+          >
             <Div
               className="Nickname"
               width="fit-content"
@@ -552,6 +590,8 @@ function FinishAuctionDetail() {
               borderbottom={`solid 0.188rem ${Red}`}
               fontsize="1.25rem"
               margin="0.3rem 0 0 0"
+              notebookheight="1.313rem"
+              notebookfontsize="0.875rem"
             >
               apple134
             </Div>
@@ -563,11 +603,20 @@ function FinishAuctionDetail() {
               width="fit-content"
               height="2.5rem"
               fontsize="1rem"
+              notebookheight="1.5rem"
+              notebookfontsize="0.75rem"
             >
               안녕하세요
             </Div>
           </Div>
-          <Div className="ChatLog" width="25.374rem" height="5rem" borderbottom={`solid 1px ${Gray1}`}>
+          <Div
+            className="ChatLog"
+            width="25.374rem"
+            height="5rem"
+            borderbottom={`solid 1px ${Gray1}`}
+            notebookwidth="44.812rem"
+            notebookheight="3.5rem"
+          >
             <Div
               className="Nickname"
               width="fit-content"
@@ -575,6 +624,8 @@ function FinishAuctionDetail() {
               borderbottom={`solid 0.188rem ${Red}`}
               fontsize="1.25rem"
               margin="0.3rem 0 0 0"
+              notebookheight="1.313rem"
+              notebookfontsize="0.875rem"
             >
               apple134
             </Div>
@@ -586,6 +637,8 @@ function FinishAuctionDetail() {
               width="fit-content"
               height="2.5rem"
               fontsize="1rem"
+              notebookheight="1.5rem"
+              notebookfontsize="0.75rem"
             >
               안녕하세요
             </Div>
@@ -599,6 +652,8 @@ function FinishAuctionDetail() {
           width="30rem"
           height="3.125rem"
           border={`solid 1px ${Gray1}`}
+          notebookwidth="47.938rem"
+          notebookheight="1.75rem"
         >
           <Input
             className="ChatInput"
@@ -609,9 +664,20 @@ function FinishAuctionDetail() {
             width="26.875rem"
             height="3.125rem"
             fontsize="1.25rem"
+            notebookwidth="46.188rem"
+            notebookheight="1.75rem"
+            notebookfontsize="0.875rem"
           />
-          <Button className="ChatBtn" type="submit" width="3.125rem" height="3.125rem" border="none">
-            입력
+          <Button
+            className="ChatBtn"
+            type="submit"
+            width="3.125rem"
+            height="3.125rem"
+            border="none"
+            notebookwidth="1.75rem"
+            notebookheight="1.75rem"
+          >
+            <SendImage />
           </Button>
         </Div>
       </Div>

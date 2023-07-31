@@ -113,7 +113,7 @@ function FinishAuctionDetailGeneral() {
           notebookheight="1rem"
           notebookfontsize="0.563rem"
         >
-          종료일 2023.07.22 00:21:00
+          종료일 : 2023.07.22 00:21:00
         </Div>
         <Div
           className="CardInformation"
