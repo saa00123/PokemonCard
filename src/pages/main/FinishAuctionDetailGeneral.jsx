@@ -1,7 +1,6 @@
 import React from "react";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
-import Button from "../../components/BaseComponents/Button";
 
 function FinishAuctionDetailGeneral() {
   const Default = Color({ color: "Default" });
@@ -114,7 +113,7 @@ function FinishAuctionDetailGeneral() {
           notebookheight="1rem"
           notebookfontsize="0.563rem"
         >
-          종료일 2023.07.22 00:21:00
+          종료일 : 2023.07.22 00:21:00
         </Div>
         <Div
           className="CardInformation"
