@@ -82,8 +82,6 @@ const PreviewDetailContainer = styled.div`
   /* border: 1px solid black; */
 
   @media (min-width: 1024px) and (max-width: 1440px) {
-    /* width: fit-content;
-    height: fit-content; */
   }
 `;
 
@@ -98,7 +96,6 @@ const DetailHeader = styled.div`
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: 2.4rem;
     height: 0.8rem;
-    /* right: 2.75rem; */
     font-size: 0.625rem;
   }
 `;
