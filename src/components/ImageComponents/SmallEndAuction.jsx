@@ -136,7 +136,7 @@ const SmallCardPreview = () => (
       <PreviewHeader>완전기이이dㄹㄴㄹㅇㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ이이이인 제목</PreviewHeader>
       <DeadLine>종료일 2023.07.23</DeadLine>
       <PreviewDetailContainer float="right">
-        <DetailHeader>현재가</DetailHeader>
+        <DetailHeader>낙찰가</DetailHeader>
         <DetailAuction
           width="fit-content"
           notebookwidth="fit-content"
