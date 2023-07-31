@@ -89,7 +89,14 @@ const Home = () => {
         <Preview />
         <Preview />
       </Div>
-      <Div width="fit-content" fontsize="2rem" fontWeight="900" margin=" 1rem auto">
+      <Div
+        className="Paging"
+        width="fit-content"
+        fontsize="2rem"
+        fontWeight="700"
+        margin=" 1.5rem auto 3rem auto"
+        notebookfontsize="1.5rem"
+      >
         {"<"} 1 2 3 4 5 6 {">"}
       </Div>
     </Div>
