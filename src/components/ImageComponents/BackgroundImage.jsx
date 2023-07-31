@@ -3,9 +3,11 @@ import styled from "styled-components";
 import background from "../../images/BackgroundImage.png";
 
 const BgImage = styled.img`
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
-  height: fit-content;
+  height: 100vh;
   background-image: url(${background});
   background-position: center;
   background-repeat: no-repeat;
