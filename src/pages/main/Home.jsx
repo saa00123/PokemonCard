@@ -19,7 +19,6 @@ const Home = () => {
           color={Gray2}
           fontsize="2.5rem"
           fontWeight="bold"
-          // border="2px solid green"
           display="flex"
           alignitems="center"
           notebookwidth="9.125rem"
@@ -40,6 +39,23 @@ const Home = () => {
         </Div>
         <DropDown
           margin="auto 0 auto 0.5rem"
+          width="11.25rem"
+          height="3.125rem"
+          buttonwidth="9.375rem"
+          buttonheight="3.125rem"
+          buttonfontsize="1.25rem"
+          menuwidth="11.25rem"
+          menufontsize="1.25rem"
+          borderradius="15px"
+          notebookwidth="7.5rem"
+          notebookheight="2.375rem"
+          notebookbuttonwidth="6.25rem"
+          notebookbuttonheight="2.375ßßrem"
+          notebookbuttonfontsize="0.875rem"
+          notebookmenuwidth="7.5rem"
+          notebookmenuheight="11.7rem"
+          notebookmenufontsize="0.875rem"
+          notebookborderradius="10px"
           options={[
             { id: 1, label: "낮은 등급순" },
             { id: 2, label: "마감순" },
@@ -74,7 +90,7 @@ const Home = () => {
         <Preview />
       </Div>
       <Div width="fit-content" fontsize="2rem" fontWeight="900" margin=" 1rem auto">
-        왼 1 2 3 4 5 6 오
+        {"<"} 1 2 3 4 5 6 {">"}
       </Div>
     </Div>
   );

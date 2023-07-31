@@ -13,10 +13,14 @@ const ButtonConatiner = styled.div`
   margin: ${(props) => props.margin};
 `;
 
-const CenteredButton = styled(Button)`
+const CenteredButton = styled.button`
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${Default};
+  border: solid 1px ${Gray1};
 `;
 
 const Image = styled.img`
@@ -28,14 +32,7 @@ const Image = styled.img`
 
 const ListButton = ({ margin }) => (
   <ButtonConatiner margin={margin}>
-    <CenteredButton
-      className="ListButton"
-      width="2.5rem"
-      height="2.5rem"
-      backgroundcolor={Default}
-      borderradius="none"
-      border={`solid 1px ${Gray1}`}
-    >
+    <CenteredButton className="ListButton">
       <Image src={ListImage} alt="ListImage" />
     </CenteredButton>
   </ButtonConatiner>
