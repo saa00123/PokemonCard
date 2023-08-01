@@ -9,6 +9,7 @@ import ListButton from "../../components/SortButton/ListButton";
 const Home = () => {
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
+
   return (
     <Div className="HomeContainer" width="fit-content" height="fit-content" margin="2rem auto">
       <Div className="TopContainer" display="flex">
