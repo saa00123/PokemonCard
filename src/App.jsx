@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import firebase from "firebase/compat/app";
 import { firestore } from "./firebase";
+
 import BackgroundImage from "./components/ImageComponents/BackgroundImage";
 import Header from "./components/BaseComponents/Header";
 
@@ -24,14 +27,19 @@ function App() {
   useEffect(() => {
     const test = firestore.collection("test");
 
-    test
-      .doc("test_item")
-      .get()
-      .then((doc) => {
-        console.log(doc.data());
+    test.doc("info").update({ name: firebase.firestore.FieldValue.delete() });
 
-        console.log(doc.id);
-      });
+    // firestore test
+    // test
+    //   .doc("test_item")
+    //   .get()
+    //   .then((doc) => {
+    //     if (doc.exists) {
+    //       console.log(doc.data());
+
+    //       console.log(doc.id);
+    //     }
+    //   });
   });
 
   return (
