@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     const test = firestore.collection("test");
 
-    test.doc("info").update({ name: firebase.firestore.FieldValue.delete() });
+    test.doc("L9mWBMx8ksYKvtKn6OFH").delete();
 
     // firestore test
     // test
