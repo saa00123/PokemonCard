@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/database";
 import "firebase/compat/storage";
+import "firebase/compat/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -20,13 +21,12 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
+const firestore = app.firestore();
+
 const database = app.database();
 
 const storage = app.storage();
 
-// firebase의 firestore 인스턴스를 변수에 저장
-const firestore = firebase.firestore();
-
 // 필요한 곳에서 사용할 수 있도록 내보내기
-export { firestore, storage };
-export default database;
+export { firestore, storage, database };
+export default app;
