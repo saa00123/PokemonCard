@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import auth from "../Firebase/auth"; // firebase.js 파일에서 Firebase 인스턴스를 가져옵니다.
+import app from "../Firebase/firebase"; // firebase.js 파일에서 Firebase 인스턴스를 가져옵니다.
 
 function AuthTest() {
   const [email, setEmail] = useState("");
@@ -7,7 +7,7 @@ function AuthTest() {
   const [error, setError] = useState(null);
 
   const handleSignUp = () => {
-    auth
+    app
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -21,7 +21,7 @@ function AuthTest() {
   };
 
   const handleSignIn = () => {
-    auth
+    app
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
