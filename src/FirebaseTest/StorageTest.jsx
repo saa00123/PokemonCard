@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { storage } from "../firebase"; // firebase.js 파일에서 storage 인스턴스를 가져옵니다.
+import storage from "../Firebase/storage"; // firebase.js 파일에서 storage 인스턴스를 가져옵니다.
 
 function StorageTest() {
   const [selectedFile, setSelectedFile] = useState(null);

@@ -21,12 +21,5 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-const firestore = app.firestore();
-
-const database = app.database();
-
-const storage = app.storage();
-
 // 필요한 곳에서 사용할 수 있도록 내보내기
-export { firestore, storage, database };
 export default app;

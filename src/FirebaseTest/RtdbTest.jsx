@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import database from "../firebase";
+import database from "../Firebase/database";
 
 function RtdbTest() {
   const [dataKey, setDataKey] = useState(null);

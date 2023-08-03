@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import firebase from "firebase/compat/app";
-import { firestore } from "./firebase";
+import firestore from "./Firebase/firestore";
 
 import BackgroundImage from "./components/ImageComponents/BackgroundImage";
 import Header from "./components/BaseComponents/Header";
