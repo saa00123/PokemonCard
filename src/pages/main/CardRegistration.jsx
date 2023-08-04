@@ -295,72 +295,7 @@ function CardRegistration() {
             >
               사진 등록
             </Div>
-            <Div
-              className="ImageContainer"
-              display="flex"
-              justifycontent="start"
-              alignitems="center"
-              width="58.626rem"
-              height="28rem"
-              padding="1rem 0"
-              overflowx="auto"
-              notebookwidth="58.626rem"
-              notebookheight="27rem"
-            >
-              <ImageUpload />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-            </Div>
+            <ImageUpload />
           </Div>
           <Div
             className="RatingContainer"
