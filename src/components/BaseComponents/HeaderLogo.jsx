@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-// import LogoImage from "../../images/Logo.png";
 import HeaderLogoImage from "../../images/HeaderLogo.png";
 
 const LogoContainer = styled.div`
@@ -21,7 +20,6 @@ const LogoContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  /* height: 4.375rem; */
 `;
 
 const HeaderLogo = () => {
