@@ -273,10 +273,10 @@ function CardRegistration() {
             className="ImageRegistrationContainer"
             display="flex"
             flexdirection="column"
-            width="58.626rem"
+            width="68rem"
             height="30.688rem"
             margin="1.813rem 0 0 0"
-            notebookwidth="58.626rem"
+            notebookwidth="56.5rem"
             notebookheight="30.75rem"
           >
             <Div

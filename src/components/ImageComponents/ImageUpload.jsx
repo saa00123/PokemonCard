@@ -1,8 +1,32 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from "react";
+import styled from "styled-components";
 import storage from "../../Firebase/storage"; // firebase.js 파일에서 storage 인스턴스를 가져옵니다.
 import Div from "../BaseComponents/BasicDiv";
+import Input from "../BaseComponents/Input";
 import Button from "../BaseComponents/Button";
+import Color from "../BaseComponents/Color";
+
+const Red = Color({ color: "Red" });
+
+const ImageUploadLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18.75rem;
+  height: 22rem;
+  min-width: 18.75rem;
+  font-size: 5.5rem;
+  font-weight: bolder;
+  color: ${Red};
+  border: solid 1px black;
+
+  @media (min-width: 1024px) and (max-width: 1440px) {
+    width: 17rem;
+    height: 22rem;
+    min-width: 18.75rem;
+  }
+`;
 
 function ImageUpload() {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -66,32 +90,31 @@ function ImageUpload() {
       display="flex"
       justifycontent="start"
       alignitems="center"
-      width="fit-content"
-      height="28rem"
+      width="68rem"
+      height="32rem"
       padding="1rem 0"
       overflowx="auto"
-      notebookwidth="58.626rem"
+      notebookwidth="56.5rem"
       notebookheight="27rem"
     >
-      <input type="file" multiple onChange={handleFileChange} />
-      <Div
-        className="ImageUpload"
-        display="flex"
-        justifycontent="center"
-        alignitems="center"
-        width="fit-content"
-        height="25rem"
-        minwidth="18.75rem"
-        margin="0 1.188rem 0 0"
-        notebookwidth="18.75rem"
-        notebookheight="25rem"
-      >
+      <ImageUploadLabel htmlFor="fileInput">
+        <Input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          multiple
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
+        +
+      </ImageUploadLabel>
+      <Div className="ImageUpload" display="flex" justifycontent="center" alignitems="center" margin="0 1.188rem 0 0">
         {previewUrls.map((url, index) => (
-          <div key={index} style={{ width: "18.75rem", height: "25rem", margin: "1rem" }}>
+          <div key={index} style={{ width: "18.75rem", height: "22rem", margin: "1rem" }}>
             <img src={url} alt={`Preview ${index}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            <button type="button" onClick={() => handleDelete(index)}>
+            <Button type="button" width="3rem" height="1.5rem" border="none" onClick={() => handleDelete(index)}>
               삭제
-            </button>
+            </Button>
           </div>
         ))}
       </Div>
