@@ -8,6 +8,8 @@ import Button from "../../components/BaseComponents/Button";
 import DropDown from "../../components/BaseComponents/DropDown";
 import Checkbox from "../../components/BaseComponents/Checkbox";
 
+import ImageUpload from "../../components/ImageComponents/ImageUpload";
+
 import CardRating from "../../components/options/CardRating";
 import CardSeries from "../../components/options/CardSeries";
 import NormalRating from "../../components/options/NormalRating";
@@ -271,10 +273,10 @@ function CardRegistration() {
             className="ImageRegistrationContainer"
             display="flex"
             flexdirection="column"
-            width="58.626rem"
+            width="68rem"
             height="30.688rem"
             margin="1.813rem 0 0 0"
-            notebookwidth="58.626rem"
+            notebookwidth="56.5rem"
             notebookheight="30.75rem"
           >
             <Div
@@ -293,71 +295,7 @@ function CardRegistration() {
             >
               사진 등록
             </Div>
-            <Div
-              className="ImageContainer"
-              display="flex"
-              justifycontent="start"
-              alignitems="center"
-              width="58.626rem"
-              height="28rem"
-              padding="1rem 0"
-              overflowx="auto"
-              notebookwidth="58.626rem"
-              notebookheight="27rem"
-            >
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-              <Div
-                className="ImageUpload"
-                display="flex"
-                justifycontent="center"
-                alignitems="center"
-                width="18.75rem"
-                height="25rem"
-                minwidth="18.75rem"
-                margin="0 1.188rem 0 0"
-                border="solid 1px black"
-                notebookwidth="18.75rem"
-                notebookheight="25rem"
-              />
-            </Div>
+            <ImageUpload />
           </Div>
           <Div
             className="RatingContainer"
