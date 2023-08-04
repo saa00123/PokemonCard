@@ -8,6 +8,8 @@ import Button from "../../components/BaseComponents/Button";
 import DropDown from "../../components/BaseComponents/DropDown";
 import Checkbox from "../../components/BaseComponents/Checkbox";
 
+import ImageUpload from "../../components/ImageComponents/ImageUpload";
+
 import CardRating from "../../components/options/CardRating";
 import CardSeries from "../../components/options/CardSeries";
 import NormalRating from "../../components/options/NormalRating";
@@ -305,6 +307,7 @@ function CardRegistration() {
               notebookwidth="58.626rem"
               notebookheight="27rem"
             >
+              <ImageUpload />
               <Div
                 className="ImageUpload"
                 display="flex"
