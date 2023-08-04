@@ -62,6 +62,7 @@ const Button = (props) => {
     border,
     borderradius,
     fontsize,
+    onClick,
     ...rest
   } = props;
 
@@ -89,6 +90,7 @@ const Button = (props) => {
       notebookhovercolor={Red}
       notebookhoverborder="2px solid"
       notebookhoverbordercolor={Red}
+      onClick={onClick}
       {...rest}
     >
       {children}

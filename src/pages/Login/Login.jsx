@@ -1,17 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import app from "../../Firebase/firebase"; // firebase.js 파일에서 Firebase 인스턴스를 가져옵니다.
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
-import BackgroundImage from "../../components/ImageComponents/BackgroundImage";
 
 function Login() {
   const navigate = useNavigate();
 
   const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
+
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleSignIn = () => {
+    app
+      .auth()
+      .signInWithEmailAndPassword(id, password)
+      .then((userCredential) => {
+        // 로그인 성공 시 처리
+        console.log("로그인 성공:", userCredential.user);
+        setError(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
 
   return (
     <Div
@@ -62,6 +81,9 @@ function Login() {
               notebookwidth="18.75rem"
               notebookheight="3.125rem"
               notebookfontsize="1rem"
+              onChange={(e) => {
+                setId(e.target.value);
+              }}
             />
           </Div>
           <Div className="PasswordContainer" display="flex">
@@ -97,6 +119,7 @@ function Login() {
                 notebookwidth="18.75rem"
                 notebookheight="3.125rem"
                 notebookfontsize="1rem"
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Div
                 className="SignAndFindContainer"
@@ -167,6 +190,7 @@ function Login() {
           notebookwidth="5.313rem"
           notebookheight="6.938rem"
           notebookfontsize="1rem"
+          onClick={handleSignIn}
         >
           로그인
         </Button>
