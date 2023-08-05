@@ -35,14 +35,16 @@ function ImageUpload() {
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
 
-    // 선택한 파일들의 미리보기 URL 배열 생성
-    const previewUrls = files.map((file) => URL.createObjectURL(file));
-    setPreviewUrls((prevUrls) => [...prevUrls, ...previewUrls]);
-
-    setSelectedFiles((prevFiles) => [...prevFiles, ...files]);
+    // 선택한 파일들과 이미 삭제한 파일들을 합친 배열 생성
+    const updatedFiles = [...selectedFiles, ...files];
+    setSelectedFiles(updatedFiles);
 
     // 선택한 파일들을 바로 업로드
     files.forEach(handleUpload);
+
+    // 선택한 파일들의 미리보기 URL 배열 생성
+    const previewUrls = updatedFiles.map((file) => URL.createObjectURL(file));
+    setPreviewUrls(previewUrls);
   };
 
   const handleUpload = (file) => {
