@@ -13,6 +13,8 @@ const DropdownContainer = styled.div`
   border-radius: ${(props) => props.borderradius};
   border: solid 2px ${Color({ color: "Gray2" })};
   background-color: ${Color({ color: "Default" })};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     width: ${(props) => props.notebookwidth};
@@ -122,6 +124,7 @@ const Dropdown = ({
   notebookmenuheight,
   notebookmenufontsize,
   notebookborderradius,
+  disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -147,6 +150,7 @@ const Dropdown = ({
       notebookwidth={notebookwidth}
       notebookheight={notebookheight}
       notebookborderradius={notebookborderradius}
+      disabled={disabled}
     >
       <DropdownButton
         buttonwidth={buttonwidth}

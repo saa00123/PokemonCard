@@ -17,6 +17,8 @@ const StyledInput = styled.input`
   margin: ${(props) => props.margin};
   outline: none;
   padding: ${(props) => props.padding};
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
 
   &:focus {
     border: 2px solid;
@@ -64,6 +66,7 @@ const Input = (props) => {
     notebookmargin,
     notebookpadding,
     notebookHoverBorder,
+    disabled,
     ...rest
   } = props;
 
@@ -87,6 +90,7 @@ const Input = (props) => {
       notebookheight={notebookheight}
       notebookmargin={notebookmargin}
       notebookpadding={notebookpadding}
+      disabled={disabled}
       {...rest}
     />
   );
