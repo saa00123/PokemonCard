@@ -37,24 +37,16 @@ const CheckboxLabel = styled.span`
   }
 `;
 
-const Checkbox = ({ width, height, children }) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  return (
-    <CheckboxContainer>
-      <HiddenCheckbox checked={isChecked} onChange={handleChange} />
-      <StyledCheckbox width={width} height={height} checked={isChecked}>
-        <CheckIcon viewBox="0 0 24 24" checked={isChecked}>
-          <polyline points="20 6 9 17 4 12" />
-        </CheckIcon>
-      </StyledCheckbox>
-      <CheckboxLabel>{children}</CheckboxLabel>
-    </CheckboxContainer>
-  );
-};
+const Checkbox = ({ checked, onChange, width, height, children }) => (
+  <CheckboxContainer>
+    <HiddenCheckbox checked={checked} onChange={onChange} />
+    <StyledCheckbox width={width} height={height} checked={checked}>
+      <CheckIcon viewBox="0 0 24 24" checked={checked}>
+        <polyline points="20 6 9 17 4 12" />
+      </CheckIcon>
+    </StyledCheckbox>
+    <CheckboxLabel>{children}</CheckboxLabel>
+  </CheckboxContainer>
+);
 
 export default Checkbox;

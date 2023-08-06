@@ -53,6 +53,39 @@ function CardRegistration() {
   const Gray2 = Color({ color: "Gray2" });
   const Gray4 = Color({ color: "Gray4" });
 
+  /** 체크박스 상태관리 */
+  const [isToploaderChecked, setIsToploaderChecked] = useState(false);
+
+  const handleToploaderCheckboxClick = () => {
+    setIsToploaderChecked(!isToploaderChecked);
+  };
+
+  const [isNormalRatingChecked, setIsNormalRatingChecked] = useState(false);
+  const [isBrgRatingChecked, setIsBrgRatingChecked] = useState(false);
+
+  const handleNormalCheckboxClick = () => {
+    setIsNormalRatingChecked(!isNormalRatingChecked);
+    setIsBrgRatingChecked(false);
+  };
+
+  const handleBrgCheckboxClick = () => {
+    setIsBrgRatingChecked(!isBrgRatingChecked);
+    setIsNormalRatingChecked(false);
+  };
+
+  const [isOnlineChecked, setIsOnlineChecked] = useState(false);
+  const [isOfflineChecked, setIsOfflineChecked] = useState(false);
+
+  const handleOnlineCheckboxClick = () => {
+    setIsOnlineChecked(!isOnlineChecked);
+    setIsOfflineChecked(false);
+  };
+
+  const handleOfflineCheckboxClick = () => {
+    setIsOfflineChecked(!isOfflineChecked);
+    setIsOnlineChecked(false);
+  };
+
   return (
     <Div
       className="CardRegistrationContainer"
@@ -264,7 +297,13 @@ function CardRegistration() {
                 notebookmenuheight="10.125rem"
                 notebookmenufontsize="1.25rem"
               />
-              <Checkbox className="TopLoaderCheckbox" width="1.563rem" height="1.563rem">
+              <Checkbox
+                className="TopLoaderCheckbox"
+                width="1.563rem"
+                height="1.563rem"
+                checked={isToploaderChecked}
+                onChange={handleToploaderCheckboxClick}
+              >
                 탑로더 유무
               </Checkbox>
             </Div>
@@ -352,7 +391,13 @@ function CardRegistration() {
                   notebookwidth="16.126rem"
                   notebookheight="3.125rem"
                 >
-                  <Checkbox className="NormalRatingCheckbox" width="1.563rem" height="1.563rem">
+                  <Checkbox
+                    className="NormalRatingCheckbox"
+                    width="1.563rem"
+                    height="1.563rem"
+                    checked={isNormalRatingChecked}
+                    onChange={handleNormalCheckboxClick}
+                  >
                     일반 등급
                   </Checkbox>
                   <DropDown
@@ -375,6 +420,7 @@ function CardRegistration() {
                     notebookmenuwidth="6.25rem"
                     notebookmenuheight="10.125rem"
                     notebookmenufontsize="1.25rem"
+                    disabled={!isNormalRatingChecked}
                   />
                 </Div>
                 <Div
@@ -388,7 +434,13 @@ function CardRegistration() {
                   notebookwidth="16.126rem"
                   notebookheight="3.125rem"
                 >
-                  <Checkbox className="brgRatingCheckboxContainer" width="1.563rem" height="1.563rem">
+                  <Checkbox
+                    className="brgRatingCheckboxContainer"
+                    width="1.563rem"
+                    height="1.563rem"
+                    checked={isBrgRatingChecked}
+                    onChange={handleBrgCheckboxClick}
+                  >
                     brg 등급
                   </Checkbox>
                   <DropDown
@@ -411,6 +463,7 @@ function CardRegistration() {
                     notebookmenuwidth="6.25rem"
                     notebookmenuheight="10.125rem"
                     notebookmenufontsize="1.25rem"
+                    disabled={!isBrgRatingChecked}
                   />
                 </Div>
               </Div>
@@ -770,7 +823,13 @@ function CardRegistration() {
                 notebookwidth="32.501rem"
                 notebookheight="2.5rem"
               >
-                <Checkbox className="OnlineTradingCheckbox" width="1.563rem" height="1.563rem">
+                <Checkbox
+                  className="OnlineTradingCheckbox"
+                  width="1.563rem"
+                  height="1.563rem"
+                  checked={isOnlineChecked}
+                  onChange={handleOnlineCheckboxClick}
+                >
                   온라인 거래
                 </Checkbox>
                 <Div
@@ -796,7 +855,13 @@ function CardRegistration() {
                 notebookwidth="33.501rem"
                 notebookheight="2.5rem"
               >
-                <Checkbox className="OfflineTradingCheckbox" width="1.563rem" height="1.563rem">
+                <Checkbox
+                  className="OfflineTradingCheckbox"
+                  width="1.563rem"
+                  height="1.563rem"
+                  checked={isOfflineChecked}
+                  onChange={handleOfflineCheckboxClick}
+                >
                   오프라인 거래
                 </Checkbox>
                 <Input
@@ -815,6 +880,7 @@ function CardRegistration() {
                   border={`solid 1px ${Gray1}`}
                   notebookheight="2.5rem"
                   notebookfontsize="1rem"
+                  disabled={!isOfflineChecked}
                 />
               </Div>
             </Div>
