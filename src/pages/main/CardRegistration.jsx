@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Input from "../../components/BaseComponents/Input";
@@ -49,6 +49,7 @@ function CardRegistration() {
   const navigate = useNavigate();
 
   const Default = Color({ color: "Default" });
+  const Red = Color({ color: "Red" });
   const Gray1 = Color({ color: "Gray1" });
   const Gray2 = Color({ color: "Gray2" });
   const Gray4 = Color({ color: "Gray4" });
@@ -85,6 +86,40 @@ function CardRegistration() {
     setIsOfflineChecked(!isOfflineChecked);
     setIsOnlineChecked(false);
   };
+
+  /** 시작가에 따른 입찰가 자동 설정 */
+  const [startPrice, setStartPrice] = useState("");
+  const [bidUnit, setBidUnit] = useState("");
+  const [showWarning, setShowWarning] = useState(false);
+
+  const handleStartPriceChange = (e) => {
+    const { value } = e.target;
+
+    // 입력 값이 100 미만인 경우 경고문을 활성화
+    if (parseInt(value, 10) < 100) {
+      setShowWarning(true);
+    } else {
+      setShowWarning(false);
+    }
+
+    setStartPrice(value);
+  };
+
+  useEffect(() => {
+    const price = parseInt(startPrice, 10);
+
+    if (price >= 100 && price <= 9900) {
+      setBidUnit("100");
+    } else if (price >= 10000 && price <= 100000) {
+      setBidUnit("1000");
+    } else if (price >= 100000 && price <= 1000000) {
+      setBidUnit("5000");
+    } else if (price >= 1000000) {
+      setBidUnit("10000");
+    } else {
+      setBidUnit("");
+    }
+  }, [startPrice]);
 
   return (
     <Div
@@ -538,7 +573,7 @@ function CardRegistration() {
                   margin="0 0 1.288rem 0"
                   notebookwidth="26.875rem"
                   notebookheight="2.5rem"
-                  notebookmargin="0 0 0.688rem 0"
+                  notebookmargin="0 0 1rem 0"
                 >
                   <Div
                     className="StartPriceTitle"
@@ -554,23 +589,38 @@ function CardRegistration() {
                   >
                     시작가
                   </Div>
-                  <Input
-                    className="StartPriceInput"
-                    placeholder="시작가를 입력하세요"
-                    display="flex"
-                    justfiycontent="start"
-                    alignitems="center"
-                    width="21.875rem"
-                    height="3.125rem"
-                    padding="0 1.313rem"
-                    fontsize="1.25rem"
-                    color={Gray2}
-                    borderradius="10px"
-                    border={`solid 1px ${Gray1}`}
-                    notebookwidth="18.75rem"
-                    notebookheight="2.5rem"
-                    notebookfontsize="1rem"
-                  />
+                  <Div className="InputWrapper" position="absolyte" width="fit-content">
+                    <Input
+                      className="StartPriceInput"
+                      placeholder="시작가를 입력하세요"
+                      display="flex"
+                      justfiycontent="start"
+                      alignitems="center"
+                      width="21.875rem"
+                      height="3.125rem"
+                      padding="0 1.313rem"
+                      fontsize="1.25rem"
+                      color={Gray2}
+                      borderradius="10px"
+                      border={`solid 1px ${Gray1}`}
+                      notebookwidth="18.75rem"
+                      notebookheight="2.5rem"
+                      notebookfontsize="1rem"
+                      value={startPrice}
+                      onChange={handleStartPriceChange}
+                    />
+                    {showWarning && (
+                      <Div
+                        className="Warning"
+                        position="absolute"
+                        fontsize="0.8rem"
+                        color={Red}
+                        notebookfontsize="0.4rem"
+                      >
+                        시작가는 100 이상이어야 합니다.
+                      </Div>
+                    )}
+                  </Div>
                 </Div>
                 <Div className="BidUnitContainer" display="flex" width="31.25rem" height="3.125rem">
                   <Div
@@ -603,6 +653,7 @@ function CardRegistration() {
                     notebookwidth="18.75rem"
                     notebookheight="2.5rem"
                     notebookfontsize="1rem"
+                    value={bidUnit}
                   />
                 </Div>
               </Div>

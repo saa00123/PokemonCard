@@ -19,6 +19,7 @@ const StyledInput = styled.input`
   padding: ${(props) => props.padding};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
+  min:100
 
   &:focus {
     border: 2px solid;
