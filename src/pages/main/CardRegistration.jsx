@@ -70,8 +70,12 @@ function CardRegistration() {
   const handleEndDateChange = (e) => {
     const { value } = e.target;
 
+    if (!startDate) {
+      return; // startDate가 없으면 아무 작업도 수행하지 않음
+    }
+
+    // 유효하지 않은 날짜를 설정하는 시도를 감지하면 아무 것도 변경하지 않습니다.
     if (new Date(value) < new Date(startDate)) {
-      setEndDate(startDate);
       return;
     }
 
