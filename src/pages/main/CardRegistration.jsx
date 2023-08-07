@@ -16,6 +16,14 @@ import NormalRating from "../../components/options/NormalRating";
 import brgRating from "../../components/options/brgRating";
 
 function CardRegistration() {
+  const navigate = useNavigate();
+
+  const Default = Color({ color: "Default" });
+  const Red = Color({ color: "Red" });
+  const Gray1 = Color({ color: "Gray1" });
+  const Gray2 = Color({ color: "Gray2" });
+  const Gray4 = Color({ color: "Gray4" });
+
   const [value, setValue] = useState("");
 
   const handleChange = (e) => {
@@ -35,24 +43,46 @@ function CardRegistration() {
   const MaxCharCount = 40;
   const charCount = value.length;
 
+  /** 경매 시작일과 종료일 */
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
   const handleStartDateChange = (e) => {
-    setStartDate(e.target.value);
+    const { value } = e.target;
+    let endValue = endDate;
+
+    // endDate가 startDate를 넘지 못하게 하는 로직
+    if (new Date(value) > new Date(endDate)) {
+      endValue = value;
+      setEndDate(endValue);
+    }
+
+    // endDate와 startDate 사이의 간격이 3일보다 크면 endDate를 startDate로부터 3일 후로 설정
+    if (new Date(endValue).getTime() - new Date(value).getTime() > 3 * 24 * 60 * 60 * 1000) {
+      const maxEndDate = new Date(value);
+      maxEndDate.setDate(maxEndDate.getDate() + 3);
+      setEndDate(maxEndDate.toISOString().split("T")[0]);
+    }
+
+    setStartDate(value);
   };
 
   const handleEndDateChange = (e) => {
-    setEndDate(e.target.value);
+    const { value } = e.target;
+
+    if (new Date(value) < new Date(startDate)) {
+      setEndDate(startDate);
+      return;
+    }
+
+    if (new Date(value).getTime() - new Date(startDate).getTime() <= 3 * 24 * 60 * 60 * 1000) {
+      setEndDate(value);
+    } else {
+      const maxEndDate = new Date(startDate);
+      maxEndDate.setDate(maxEndDate.getDate() + 3);
+      setEndDate(maxEndDate.toISOString().split("T")[0]);
+    }
   };
-
-  const navigate = useNavigate();
-
-  const Default = Color({ color: "Default" });
-  const Red = Color({ color: "Red" });
-  const Gray1 = Color({ color: "Gray1" });
-  const Gray2 = Color({ color: "Gray2" });
-  const Gray4 = Color({ color: "Gray4" });
 
   /** 체크박스 상태관리 */
   const [isToploaderChecked, setIsToploaderChecked] = useState(false);
@@ -823,6 +853,7 @@ function CardRegistration() {
                 <Div margin="none">경매 마감 시간은 종료일 오후 9시까지입니다.</Div>
                 <Div margin="none">당일 경매 등록은 경매 시작 시간인 오전 9시 이전까지만</Div>
                 <Div margin="none">가능합니다.</Div>
+                <Div margin="none">경매 기간은 최대 3일입니다.</Div>
               </Div>
             </Div>
           </Div>
