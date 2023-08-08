@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
+import Input from "../../components/BaseComponents/Input";
 
 function Auction() {
   const navigate = useNavigate();
 
   const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
+
+  /** 입찰 버튼 */
+  const [auctionPrice, setAuctionPrice] = useState(9010000);
+
+  const handlePriceIncrease = () => {
+    setAuctionPrice((prevPrice) => prevPrice + 100);
+  };
+
+  const handlePriceDecrease = () => {
+    setAuctionPrice((prevPrice) => prevPrice - 100);
+  };
+
+  const handlePriceChange = (e) => {
+    setAuctionPrice(Number(e.target.value));
+  };
 
   return (
     <Div
@@ -574,10 +590,11 @@ function Auction() {
             notebookborder="none"
             notebookbackgroundcolor={Default}
             notebookcolor="#000000"
+            onClick={handlePriceDecrease}
           >
             -
           </Button>
-          <Div
+          <Input
             className="AuctionPrice"
             display="flex"
             justifycontent="center"
@@ -586,14 +603,15 @@ function Auction() {
             height="4.688rem"
             fontsize="2rem"
             fontWeight="bold"
+            border="none"
             margin="0 1.188rem"
             notebookwidth="7.75rem"
             notebookheight="3.25rem"
             notebookfontsize="1.25rem"
             notebookmargin="0"
-          >
-            9,010,000
-          </Div>
+            value={auctionPrice.toLocaleString()}
+            onChange={handlePriceChange}
+          />
           <Button
             className="PlusBtn"
             width="3rem"
@@ -608,6 +626,7 @@ function Auction() {
             notebookborder="none"
             notebookbackgroundcolor={Default}
             notebookcolor="#000000"
+            onClick={handlePriceIncrease}
           >
             +
           </Button>
