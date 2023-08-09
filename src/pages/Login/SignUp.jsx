@@ -11,6 +11,8 @@ const Gray2 = Color({ color: "Gray2" });
 const White = Color({ color: "Default" });
 
 function SignUp() {
+  const resPass = /^(?=.*[A-Za-z])(?=.*[0-9]).{8,16}$/;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
@@ -21,15 +23,16 @@ function SignUp() {
   const [checkRepassword, setCheckRepassword] = useState(false);
 
   useEffect(() => {
-    if (password === repassword) {
-      console.log("before change : ", password, repassword, checkRepassword);
-      setRepassword(true);
-      console.log("after change : ", password, repassword, checkRepassword);
-    }
+    if (password === repassword) setCheckRepassword(true);
+    else setCheckRepassword(false);
+    if (resPass.test(password)) setCheckPassword(true);
+    else setCheckPassword(false);
+    // console.log(app.auth().fetchSignInMethodsForEmail(email));
   }, [email, password, repassword, name, nickname]);
 
   const onClickSignUp = () => {
     console.log(email, password, name, nickname);
+    console.log("checkPassword : ", checkPassword, "checkEmail : ", checkEmail, "checkRepassword : ", checkRepassword);
     app
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -45,6 +48,7 @@ function SignUp() {
         console.log("errorCode : ", errorCode);
         console.error("Login error:", errorMessage);
         if (errorCode === "auth/email-already-in-use") alert("이미 존재하는 이메일입니다.");
+        if (errorCode === "auth/invalid-email") alert("이메일을 다시 입력해주세요.");
       });
   };
   return (
@@ -276,23 +280,43 @@ function SignUp() {
                     notebookfontsize="1rem"
                     onChange={(e) => setPassword(e.target.value)}
                   />
-                  <Div
-                    className="NicknameWarning"
-                    display="flex"
-                    alignitems="center"
-                    width="21.438rem"
-                    height="1.5rem"
-                    color={Gray1}
-                    fontsize="0.75rem"
-                    padding="0 0 0 1.313rem"
-                    boxsizing="border-box"
-                    notebookwidth="15.625rem"
-                    notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
-                    notebookepadding="0 0 0 0.8rem"
-                  >
-                    숫자, 영어 조합 8자 이상으로 만들어주세요.
-                  </Div>
+                  {checkPassword ? (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Gray1}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      사용 가능한 비밀번호 입니다.
+                    </Div>
+                  ) : (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Gray1}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      숫자, 영어 조합 8자 이상으로 만들어주세요.
+                    </Div>
+                  )}
                 </Div>
               </Div>
               <Div className="PasswordCheckContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 2rem">
@@ -334,6 +358,25 @@ function SignUp() {
                     notebookfontsize="1rem"
                     onChange={(e) => setRepassword(e.target.value)}
                   />
+
+                  <Div
+                    className="NicknameWarning"
+                    display="flex"
+                    alignitems="center"
+                    width="21.438rem"
+                    height="1.5rem"
+                    color={Gray1}
+                    fontsize="0.75rem"
+                    padding="0 0 0 1.313rem"
+                    boxsizing="border-box"
+                    notebookwidth="15.625rem"
+                    notebookheight="1.25rem"
+                    notebookfontsize="0.625rem"
+                    notebookepadding="0 0 0 0.8rem"
+                  >
+                    비밀번호가 일치합니다.
+                  </Div>
+
                   <Div
                     className="NicknameWarning"
                     display="flex"
