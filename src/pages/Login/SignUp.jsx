@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
+import app from "../../Firebase/firebase";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
-function SignUp() {
-  const Gray1 = Color({ color: "Gray1" });
-  const Gray2 = Color({ color: "Gray2" });
-  const White = Color({ color: "Default" });
+const Gray1 = Color({ color: "Gray1" });
+const Gray2 = Color({ color: "Gray2" });
+const White = Color({ color: "Default" });
 
+function SignUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const onClickSignUp = () => {
+    console.log(email, password, name, nickname);
+    app
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // 로그인 성공
+        const { user } = userCredential;
+        console.log("Logged in user:", user);
+      })
+      .catch((error) => {
+        // 로그인 실패
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error("Login error:", errorMessage);
+      });
+  };
   return (
     <Div
       className="SignUpContainer"
@@ -18,6 +42,7 @@ function SignUp() {
       justifycontent="start"
       alignitems="center"
       padding="3.875rem 0 0 0"
+      margin="0 0 3rem 0"
       width="100vw"
     >
       <Logo />
@@ -25,8 +50,8 @@ function SignUp() {
         className="SignContainer"
         display="flex"
         flexdirection="column"
-        width="40.625rem"
-        height="46.064rem"
+        width="fit-content"
+        height="fit-content"
         notebookwidth="fit-content"
         notebookheight="fit-content"
       >
@@ -34,77 +59,77 @@ function SignUp() {
           className="SignHeader"
           width="7.625rem"
           height="2.313rem"
-          margin="0 0 0.688rem 0"
           color={Gray2}
-          fontsize="2rem"
+          fontsize="1.7rem"
           fontWeight="bold"
-          notebookfontsize="1.75rem"
+          notebookheight="40px"
+          notebookfontsize="1.25rem"
         >
           회원가입
         </Div>
         <Div
           className="SignMainContainer"
-          width="40.625rem"
-          height="43.063rem"
+          width="32rem"
+          height="fit-content"
           backgroundcolor={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
           boxsizing="border-box"
-          notebookwidth="55.625rem"
-          notebookheight="25rem"
+          notebookwidth="45rem"
+          notebookheight="fit-content"
         >
-          <Div
-            className="WrapContainer"
-            width="fit-content"
-            height="fit-content"
-            notebookdisplay="flex"
-            margin="2.5rem auto 0 auto"
-          >
+          <Div className="WrapContainer" width="fit-content" height="fit-content" margin="2.5rem auto 0 auto">
             <Div
-              className="LeftContainer"
+              className="TopContainer"
               width="fit-content"
               height="fit-content"
+              notebookdisplay="flex"
               margin="0 auto"
-              notebookmargin="0 1.375rem 0 0"
+              notebookmargin="0 0 0 0"
             >
-              <Div className="NameContainer" display="flex" margin="0 0 1.75rem 0">
+              <Div className="NameContainer" margin="0 0 1.75rem 0">
                 <Div
                   className="Name"
                   display="flex"
                   alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
+                  width="fit-content"
+                  height="50px"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                  fontWeight="bold"
                   notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookheight="35px"
+                  notebookfontsize="1rem"
                 >
                   이름
                 </Div>
                 <Input
                   placeholder="이름을 입력하세요."
                   padding="0 0 0 1.313rem"
-                  width="21.875rem"
-                  height="3.75rem"
-                  fontsize="1.625rem"
+                  width="350px"
+                  height="55px"
+                  fontsize="1rem"
                   borderradius="15px"
                   notebookwidth="15.625rem"
                   notebookheight="3.125rem"
                   notebookfontsize="1rem"
+                  onChange={(e) => setName(e.target.value)}
                 />
               </Div>
-              <Div className="NicknameContainer" display="flex" margin="0 0 0.5rem 0">
+              <Div className="NicknameContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 2rem">
                 <Div
                   className="Nickname"
                   display="flex"
                   alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
+                  width="fit-content"
+                  height="50px"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                  fontWeight="bold"
                   notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookheight="35px"
+                  notebookfontsize="1rem"
                 >
                   닉네임
                 </Div>
@@ -122,12 +147,13 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontsize="1rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
                     notebookfontsize="1rem"
                     notebookepadding="0 0 0 0.8rem"
+                    onChange={(e) => setNickname(e.target.value)}
                   />
                   <Div
                     className="NicknameWarning"
@@ -148,107 +174,70 @@ function SignUp() {
                   </Div>
                 </Div>
               </Div>
-              <Div className="EmailContainer" display="flex" margin="0 0 0.5rem 0">
-                <Div
-                  className="Email"
-                  display="flex"
-                  alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
-                  textalign="left"
-                  fontsize="1.625rem"
-                  notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
-                >
-                  이메일
-                </Div>
-                <Input
-                  placeholder="이메일을 입력하세요."
-                  padding="0 0 0 1.313rem"
-                  width="21.875rem"
-                  height="3.75rem"
-                  fontsize="1.625rem"
-                  borderradius="15px"
-                  notebookwidth="15.625rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1rem"
-                />
+            </Div>
+            <Div className="EmailContainer" margin="0 0 0.5rem 0" width="fit-content" height="fit-content">
+              <Div
+                className="Email"
+                display="flex"
+                alignitems="center"
+                width="fit-content"
+                height="50px"
+                textalign="left"
+                fontsize="1.25rem"
+                color={Gray2}
+                fontWeight="bold"
+                notebookwidth="6.25rem"
+                notebookheight="35px"
+                notebookfontsize="1rem"
+              >
+                이메일
+              </Div>
+              <Input
+                placeholder="이메일을 입력하세요."
+                padding="0 0 0 1.313rem"
+                width="21.875rem"
+                height="3.75rem"
+                fontsize="1rem"
+                borderradius="15px"
+                notebookwidth="15.625rem"
+                notebookheight="3.125rem"
+                notebookfontsize="1rem"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Div
+                className="EmailWarning"
+                display="flex"
+                alignitems="center"
+                width="21.438rem"
+                height="1.5rem"
+                color={Gray1}
+                fontsize="0.75rem"
+                padding="0 0 0 1.313rem"
+                boxsizing="border-box"
+                notebookwidth="15.625rem"
+                notebookheight="1.25rem"
+                notebookfontsize="0.625rem"
+                notebookepadding="0 0 0 0.8rem"
+              >
+                사용 불가능한 이메일입니다.
               </Div>
             </Div>
-            <Div
-              className="RightContainer"
-              width="fit-content"
-              height="fit-content"
-              margin="0 auto"
-              notebookmargin="0 0 0 1.375rem"
-            >
-              <Div className="IdContainer" display="flex" margin="0 0 0.5rem 0">
-                <Div
-                  className="Id"
-                  display="flex"
-                  alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
-                  textalign="left"
-                  fontsize="1.625rem"
-                  notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
-                >
-                  아이디
-                </Div>
-                <Div
-                  display="flex"
-                  flexdirection="column"
-                  alignitems="center"
-                  width="21.875rem"
-                  height="5.25rem"
-                  notebookwidth="fit-content"
-                  notebookheight="fit-content"
-                >
-                  <Input
-                    placeholder="아이디를 입력하세요."
-                    padding="0 0 0 1.313rem"
-                    width="21.875rem"
-                    height="3.75rem"
-                    fontsize="1.625rem"
-                    borderradius="15px"
-                    notebookwidth="15.625rem"
-                    notebookheight="3.125rem"
-                    notebookfontsize="1rem"
-                  />
-                  <Div
-                    className="NicknameWarning"
-                    display="flex"
-                    alignitems="center"
-                    width="21.438rem"
-                    height="1.5rem"
-                    color={Gray1}
-                    fontsize="0.75rem"
-                    padding="0 0 0 1.313rem"
-                    boxsizing="border-box"
-                    notebookwidth="15.625rem"
-                    notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
-                    notebookepadding="0 0 0 0.8rem"
-                  >
-                    사용 불가능한 아이디입니다.
-                  </Div>
-                </Div>
-              </Div>
-              <Div className="PasswordContainer" display="flex" margin="0 0 0.5rem 0">
+
+            <Div className="BottomContainer" width="fit-content" height="fit-content" notebookdisplay="flex">
+              <Div className="PasswordContainer" margin="0 0 0.5rem 0">
                 <Div
                   className="Password"
                   display="flex"
                   alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
+                  width="fit-content"
+                  height="50px"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                  fontWeight="bold"
                   notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.25rem"
+                  notebookheight="35px"
+                  notebookfontsize="1rem"
                 >
                   비밀번호
                 </Div>
@@ -267,11 +256,12 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontsize="1rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
                     notebookfontsize="1rem"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <Div
                     className="NicknameWarning"
@@ -288,28 +278,24 @@ function SignUp() {
                     notebookfontsize="0.625rem"
                     notebookepadding="0 0 0 0.8rem"
                   >
-                    8자 이상, 숫자, 영어, 특수분자 포함
+                    숫자, 영어 조합 8자 이상으로 만들어주세요.
                   </Div>
                 </Div>
               </Div>
-              <Div
-                className="PasswordCheckContainer"
-                display="flex"
-                margin="0 0 0 0"
-                notebookwidth="fit-content"
-                notebookheight="fit-content"
-              >
+              <Div className="PasswordCheckContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 2rem">
                 <Div
                   className="PasswordCheck"
                   display="flex"
                   alignitems="center"
-                  width="11.001rem"
-                  height="3.75rem"
+                  width="fit-content"
+                  height="50px"
                   textalign="left"
-                  fontsize="1.625rem"
+                  fontsize="1.25rem"
+                  color={Gray2}
+                  fontWeight="bold"
                   notebookwidth="6.25rem"
-                  notebookheight="3.125rem"
-                  notebookfontsize="1.1rem"
+                  notebookheight="35px"
+                  notebookfontsize="1rem"
                 >
                   비밀번호 확인
                 </Div>
@@ -328,11 +314,12 @@ function SignUp() {
                     padding="0 0 0 1.313rem"
                     width="21.875rem"
                     height="3.75rem"
-                    fontsize="1.625rem"
+                    fontsize="1rem"
                     borderradius="15px"
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
                     notebookfontsize="1rem"
+                    onChange={(e) => setPasswordCheck(e.target.value)}
                   />
                   <Div
                     className="NicknameWarning"
@@ -359,8 +346,8 @@ function SignUp() {
             <Button
               className="SighUpBtn"
               type="submit"
-              width="12.5rem"
-              height="4.375rem"
+              width="350px"
+              height="70px"
               borderradius="1rem"
               border="none"
               fontsize="1.5rem"
@@ -369,6 +356,7 @@ function SignUp() {
               notebookheight="3.125rem"
               notebookfontsize="1rem"
               notebookborderradius="10px"
+              onclick={onClickSignUp}
             >
               회원 가입
             </Button>
