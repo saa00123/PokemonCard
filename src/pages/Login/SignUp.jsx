@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import app from "../../Firebase/firebase";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
@@ -13,25 +13,38 @@ const White = Color({ color: "Default" });
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
+  const [repassword, setRepassword] = useState("");
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
+  const [checkPassword, setCheckPassword] = useState(false);
+  const [checkEmail, setCheckEmail] = useState(false);
+  const [checkRepassword, setCheckRepassword] = useState(false);
+
+  useEffect(() => {
+    if (password === repassword) {
+      console.log("before change : ", password, repassword, checkRepassword);
+      setRepassword(true);
+      console.log("after change : ", password, repassword, checkRepassword);
+    }
+  }, [email, password, repassword, name, nickname]);
 
   const onClickSignUp = () => {
     console.log(email, password, name, nickname);
     app
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // 로그인 성공
-        const { user } = userCredential;
+        // 회원가입 성공
+        const { user } = userCredential.user;
         console.log("Logged in user:", user);
       })
       .catch((error) => {
-        // 로그인 실패
+        // 회원가입 실패
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log("errorCode : ", errorCode);
         console.error("Login error:", errorMessage);
+        if (errorCode === "auth/email-already-in-use") alert("이미 존재하는 이메일입니다.");
       });
   };
   return (
@@ -319,7 +332,7 @@ function SignUp() {
                     notebookwidth="15.625rem"
                     notebookheight="3.125rem"
                     notebookfontsize="1rem"
-                    onChange={(e) => setPasswordCheck(e.target.value)}
+                    onChange={(e) => setRepassword(e.target.value)}
                   />
                   <Div
                     className="NicknameWarning"
@@ -356,7 +369,7 @@ function SignUp() {
               notebookheight="3.125rem"
               notebookfontsize="1rem"
               notebookborderradius="10px"
-              onclick={onClickSignUp}
+              onClick={onClickSignUp}
             >
               회원 가입
             </Button>
