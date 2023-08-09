@@ -19,7 +19,8 @@ const StyledInput = styled.input`
   padding: ${(props) => props.padding};
   opacity: ${(props) => (props.disabled ? 0.5 : 1)};
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-  min:100
+  min: 100;
+  text-align: ${(props) => props.textalign};
 
   &:focus {
     border: 2px solid;
@@ -57,6 +58,7 @@ const Input = (props) => {
     height,
     margin,
     padding,
+    textalign,
     notebookcolor,
     notebookfontsize,
     notebookfontWeight,
@@ -82,6 +84,7 @@ const Input = (props) => {
       height={height}
       margin={margin}
       padding={padding}
+      textalign={textalign}
       notebookcolor={notebookcolor}
       notebookfontsize={notebookfontsize}
       notebookfontWeight={notebookfontWeight}

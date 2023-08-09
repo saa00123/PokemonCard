@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
+import Input from "../../components/BaseComponents/Input";
+import PokemonImage from "../../components/ImageComponents/PokemonImage";
 import Header from "../../components/BaseComponents/Header";
 
 function Auction() {
@@ -11,6 +13,52 @@ function Auction() {
   const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });
 
+  /** 입찰 버튼 */
+  const [auctionPrice, setAuctionPrice] = useState(100);
+
+  const handlePriceIncrease = () => {
+    if (auctionPrice < 10000) {
+      setAuctionPrice((prevPrice) => prevPrice + 100);
+    } else if (auctionPrice < 100000) {
+      setAuctionPrice((prevPrice) => prevPrice + 1000);
+    } else if (auctionPrice < 1000000) {
+      setAuctionPrice((prevPrice) => prevPrice + 5000);
+    } else {
+      setAuctionPrice((prevPrice) => prevPrice + 10000);
+    }
+  };
+
+  const handlePriceDecrease = () => {
+    if (auctionPrice <= 100) return;
+
+    if (auctionPrice <= 10000) {
+      setAuctionPrice((prevPrice) => prevPrice - 100);
+    } else if (auctionPrice <= 100000) {
+      setAuctionPrice((prevPrice) => prevPrice - 1000);
+    } else if (auctionPrice <= 1000000) {
+      setAuctionPrice((prevPrice) => prevPrice - 5000);
+    } else {
+      setAuctionPrice((prevPrice) => prevPrice - 10000);
+    }
+  };
+
+  const handlePriceChange = (e) => {
+    setAuctionPrice(Number(e.target.value));
+  };
+
+  /** 포켓몬 이미지 랜덤 생성 */
+  const [randomId, setRandomId] = useState(null);
+
+  useEffect(() => {
+    setRandomId(Math.floor(Math.random() * 151) + 1);
+  }, []);
+
+  const { data, isLoading, error } = PokemonImage(randomId);
+
+  if (isLoading || !randomId) return <div>Loading...</div>;
+  if (error) return <div>Error loading image</div>;
+
+  const pokemonImageUrl = data?.sprites?.front_default;
   return (
     <Div className="MainContainer">
       <Header />
@@ -531,6 +579,17 @@ function Auction() {
           flexdirection="column"
           justifycontent="center"
           alignitems="center"
+          width="18.75rem"
+          height="18.75rem"
+          notebookwidth="9.188rem"
+          notebookheight="9.125rem"
+          style={{ backgroundImage: `url(${pokemonImageUrl})`, backgroundSize: "cover" }}
+        />
+        <Div
+          className="AuctionPriceContainer"
+          display="flex"
+          justifycontent="center"
+          alignitems="center"
           width="21.875rem"
           height="32.437rem"
           margin="0 0 0 6rem"
@@ -538,83 +597,43 @@ function Auction() {
           notebookheight="19.375rem"
           notebookmargin="0 0 0 1.125rem"
         >
-          <Div
-            className="RandomPokemonImage"
-            display="flex"
-            justifycontent="center"
-            alignitems="center"
-            width="18.75rem"
-            height="18.75rem"
-            border="solid 1px"
-            notebookwidth="9.188rem"
-            notebookheight="9.125rem"
-          />
-          <Div
-            className="AuctionPriceContainer"
-            display="flex"
-            justifycontent="center"
-            alignitems="center"
-            width="21.875rem"
-            height="6.25rem"
-            boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
+          <Button
+            className="MinusBtn"
+            width="3rem"
+            height="4.688rem"
+            fontsize="3rem"
+            border="none"
             backgroundcolor={Default}
-            margin="2rem 0 1.375rem 0"
-            notebookwidth="12.25rem"
-            notebookheight="3.75rem"
-            notebookmargin="1.813rem 0 1.125rem 0"
+            color="#000000"
+            notebookwidth="1.688rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor={Default}
+            notebookcolor="#000000"
+            onClick={handlePriceDecrease}
           >
-            <Button
-              className="MinusBtn"
-              width="3rem"
-              height="4.688rem"
-              fontsize="3rem"
-              border="none"
-              backgroundcolor={Default}
-              color="#000000"
-              notebookwidth="1.688rem"
-              notebookheight="3.25rem"
-              notebookfontsize="1.5rem"
-              notebookborder="none"
-              notebookbackgroundcolor={Default}
-              notebookcolor="#000000"
-            >
-              -
-            </Button>
-            <Div
-              className="AuctionPrice"
-              display="flex"
-              justifycontent="center"
-              alignitems="center"
-              width="11.25rem"
-              height="4.688rem"
-              fontsize="2rem"
-              fontWeight="bold"
-              margin="0 1.188rem"
-              notebookwidth="7.75rem"
-              notebookheight="3.25rem"
-              notebookfontsize="1.25rem"
-              notebookmargin="0"
-            >
-              9,010,000
-            </Div>
-            <Button
-              className="PlusBtn"
-              width="3rem"
-              height="4.688rem"
-              fontsize="3rem"
-              border="none"
-              backgroundcolor={Default}
-              color="#000000"
-              notebookwidth="1.688rem"
-              notebookheight="3.25rem"
-              notebookfontsize="1.5rem"
-              notebookborder="none"
-              notebookbackgroundcolor={Default}
-              notebookcolor="#000000"
-            >
-              +
-            </Button>
-          </Div>
+            -
+          </Button>
+          <Input
+            className="AuctionPrice"
+            display="flex"
+            justifycontent="center"
+            alignitems="center"
+            width="11.25rem"
+            height="4.688rem"
+            fontsize="2rem"
+            fontWeight="bold"
+            textalign="center"
+            border="none"
+            margin="0 1.188rem"
+            notebookwidth="7.75rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.25rem"
+            notebookmargin="0"
+            value={auctionPrice.toLocaleString()}
+            onChange={handlePriceChange}
+          />
           <Button
             className="AuctinoBtn"
             type="submit"
@@ -622,11 +641,15 @@ function Auction() {
             height="4.063rem"
             borderradius="1rem"
             border="none"
-            fontsize="1.5rem"
-            notebookwidth="6rem"
-            notebookheight="2.25rem"
-            notebookfontsize="0.875rem"
-            notebookborderradius="0.5rem"
+            backgroundcolor={Default}
+            color="#000000"
+            notebookwidth="1.688rem"
+            notebookheight="3.25rem"
+            notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor={Default}
+            notebookcolor="#000000"
+            onClick={handlePriceIncrease}
           >
             입찰하기
           </Button>
