@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Color from "./Color";
 import HeaderLogo from "./HeaderLogo";
@@ -57,19 +58,35 @@ const HeaderMenu = styled.button`
   }
 `;
 
-const Header = () => (
-  <HeaderContainer>
-    <HeaderSpaceDiv>
-      <HeaderLogo />
-      <Search />
-      <HeaderMenuContainer>
-        <HeaderMenu>카드 등록</HeaderMenu>
-        <HeaderMenu>마감된 경매</HeaderMenu>
-        <HeaderMenu>마이 페이지</HeaderMenu>
-        <HeaderMenu>로그인</HeaderMenu>
-      </HeaderMenuContainer>
-    </HeaderSpaceDiv>
-  </HeaderContainer>
-);
+const Header = () => {
+  const navigate = useNavigate();
+
+  const navigateCardRegistration = () => {
+    navigate("/CardRegistration");
+  };
+
+  const navigatFinishAuction = () => {
+    navigate("/FinishAuction");
+  };
+
+  const navigateMyPage = () => {
+    navigate("/MyPage");
+  };
+
+  return (
+    <HeaderContainer>
+      <HeaderSpaceDiv>
+        <HeaderLogo />
+        <Search />
+        <HeaderMenuContainer>
+          <HeaderMenu onClick={navigateCardRegistration}>카드 등록</HeaderMenu>
+          <HeaderMenu onClick={navigatFinishAuction}>마감된 경매</HeaderMenu>
+          <HeaderMenu onClick={navigateMyPage}>마이 페이지</HeaderMenu>
+          <HeaderMenu>로그인</HeaderMenu>
+        </HeaderMenuContainer>
+      </HeaderSpaceDiv>
+    </HeaderContainer>
+  );
+};
 
 export default Header;

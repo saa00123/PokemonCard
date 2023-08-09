@@ -46,70 +46,14 @@ function App() {
     <BrowserRouter>
       <BackgroundImage />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Home />
-            </>
-          }
-        />
+        <Route path="/" element={<Home />} />
         {/** Main */}
-        <Route
-          path="/CardRegistration"
-          element={
-            <>
-              <Header />
-              <CardRegistration />
-            </>
-          }
-        />
-        <Route
-          path="/Auction"
-          element={
-            <>
-              <Header />
-              <Auction />
-            </>
-          }
-        />
-        <Route
-          path="/FinishAuction"
-          element={
-            <>
-              <Header />
-              <FinishAuction />
-            </>
-          }
-        />
-        <Route
-          path="/FinishAuctionDetail"
-          element={
-            <>
-              <Header />
-              <FinishAuctionDetail />
-            </>
-          }
-        />
-        <Route
-          path="/FinishAuctionDetailGeneral"
-          element={
-            <>
-              <Header />
-              <FinishAuctionDetailGeneral />
-            </>
-          }
-        />
-        <Route
-          path="/MyPage"
-          element={
-            <>
-              <Header />
-              <MyPage />
-            </>
-          }
-        />
+        <Route path="/CardRegistration" element={<CardRegistration />} />
+        <Route path="/Auction" element={<Auction />} />
+        <Route path="/FinishAuction" element={<FinishAuction />} />
+        <Route path="/FinishAuctionDetail" element={<FinishAuctionDetail />} />
+        <Route path="/FinishAuctionDetailGeneral" element={<FinishAuctionDetailGeneral />} />
+        <Route path="/MyPage" element={<MyPage />} />
 
         {/** Login */}
         <Route path="/Login" element={<Login />} />
