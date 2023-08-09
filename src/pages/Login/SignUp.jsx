@@ -23,6 +23,7 @@ function SignUp() {
   const [checkRepassword, setCheckRepassword] = useState(false);
 
   useEffect(() => {
+    // if(repassword.length===0)setCheckPepassword(true);
     if (password === repassword) setCheckRepassword(true);
     else setCheckRepassword(false);
     if (resPass.test(password)) setCheckPassword(true);
@@ -358,42 +359,44 @@ function SignUp() {
                     notebookfontsize="1rem"
                     onChange={(e) => setRepassword(e.target.value)}
                   />
-
-                  <Div
-                    className="NicknameWarning"
-                    display="flex"
-                    alignitems="center"
-                    width="21.438rem"
-                    height="1.5rem"
-                    color={Gray1}
-                    fontsize="0.75rem"
-                    padding="0 0 0 1.313rem"
-                    boxsizing="border-box"
-                    notebookwidth="15.625rem"
-                    notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
-                    notebookepadding="0 0 0 0.8rem"
-                  >
-                    비밀번호가 일치합니다.
-                  </Div>
-
-                  <Div
-                    className="NicknameWarning"
-                    display="flex"
-                    alignitems="center"
-                    width="21.438rem"
-                    height="1.5rem"
-                    color={Gray1}
-                    fontsize="0.75rem"
-                    padding="0 0 0 1.313rem"
-                    boxsizing="border-box"
-                    notebookwidth="15.625rem"
-                    notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
-                    notebookepadding="0 0 0 0.8rem"
-                  >
-                    비밀번호가 다릅니다.
-                  </Div>
+                  {repassword.length > 0 && checkRepassword && (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Gray1}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      비밀번호가 일치합니다.
+                    </Div>
+                  )}
+                  {repassword.length > 0 && !checkRepassword && (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Gray1}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      비밀번호가 다릅니다.
+                    </Div>
+                  )}
                 </Div>
               </Div>
             </Div>
