@@ -12,14 +12,30 @@ function Auction() {
   const Gray1 = Color({ color: "Gray1" });
 
   /** 입찰 버튼 */
-  const [auctionPrice, setAuctionPrice] = useState(9010000);
+  const [auctionPrice, setAuctionPrice] = useState(100);
 
   const handlePriceIncrease = () => {
-    setAuctionPrice((prevPrice) => prevPrice + 100);
+    if (auctionPrice < 10000) {
+      setAuctionPrice((prevPrice) => prevPrice + 100);
+    } else if (auctionPrice < 100000) {
+      setAuctionPrice((prevPrice) => prevPrice + 1000);
+    } else if (auctionPrice < 1000000) {
+      setAuctionPrice((prevPrice) => prevPrice + 5000);
+    } else {
+      setAuctionPrice((prevPrice) => prevPrice + 10000);
+    }
   };
 
   const handlePriceDecrease = () => {
-    setAuctionPrice((prevPrice) => prevPrice - 100);
+    if (auctionPrice <= 10000) {
+      setAuctionPrice((prevPrice) => prevPrice - 100);
+    } else if (auctionPrice <= 100000) {
+      setAuctionPrice((prevPrice) => prevPrice - 1000);
+    } else if (auctionPrice <= 1000000) {
+      setAuctionPrice((prevPrice) => prevPrice - 5000);
+    } else {
+      setAuctionPrice((prevPrice) => prevPrice - 10000);
+    }
   };
 
   const handlePriceChange = (e) => {
@@ -603,6 +619,7 @@ function Auction() {
             height="4.688rem"
             fontsize="2rem"
             fontWeight="bold"
+            textalign="center"
             border="none"
             margin="0 1.188rem"
             notebookwidth="7.75rem"
