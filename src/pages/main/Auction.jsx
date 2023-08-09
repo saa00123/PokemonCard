@@ -50,7 +50,7 @@ function Auction() {
   const [randomId, setRandomId] = useState(null);
 
   useEffect(() => {
-    setRandomId(Math.floor(Math.random() * 151) + 1);
+    setRandomId(Math.floor(Math.random() * 1000) + 1);
   }, []);
 
   const { data, isLoading, error } = PokemonImage(randomId);

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const fetchPokemon = async (id) => {
   const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id || ""}`, {
-    params: { limit: 151 },
+    params: { limit: 1000 },
   });
   return response.data;
 };
