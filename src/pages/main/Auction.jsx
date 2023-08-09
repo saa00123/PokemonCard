@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
+import PokemonImage from "../../components/ImageComponents/PokemonImage";
 
 function Auction() {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ function Auction() {
   };
 
   const handlePriceDecrease = () => {
+    if (auctionPrice <= 100) return;
+
     if (auctionPrice <= 10000) {
       setAuctionPrice((prevPrice) => prevPrice - 100);
     } else if (auctionPrice <= 100000) {
@@ -42,6 +45,19 @@ function Auction() {
     setAuctionPrice(Number(e.target.value));
   };
 
+  /** 포켓몬 이미지 랜덤 생성 */
+  const [randomId, setRandomId] = useState(null);
+
+  useEffect(() => {
+    setRandomId(Math.floor(Math.random() * 151) + 1);
+  }, []);
+
+  const { data, isLoading, error } = PokemonImage(randomId);
+
+  if (isLoading || !randomId) return <div>Loading...</div>;
+  if (error) return <div>Error loading image</div>;
+
+  const pokemonImageUrl = data?.sprites?.front_default;
   return (
     <Div
       className="AuctionContainer"
@@ -574,9 +590,9 @@ function Auction() {
           alignitems="center"
           width="18.75rem"
           height="18.75rem"
-          border="solid 1px"
           notebookwidth="9.188rem"
           notebookheight="9.125rem"
+          style={{ backgroundImage: `url(${pokemonImageUrl})`, backgroundSize: "cover" }}
         />
         <Div
           className="AuctionPriceContainer"
