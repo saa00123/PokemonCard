@@ -619,6 +619,8 @@ function Auction() {
               border="none"
               backgroundcolor={Default}
               color="#000000"
+              hovercolor="#000"
+              hoverborder="none"
               notebookwidth="1.688rem"
               notebookheight="3.25rem"
               notebookfontsize="1.5rem"
@@ -656,6 +658,8 @@ function Auction() {
               border="none"
               backgroundcolor={Default}
               color="#000000"
+              hovercolor="#000"
+              hoverborder="none"
               notebookwidth="1.688rem"
               notebookheight="3.25rem"
               notebookfontsize="1.5rem"
