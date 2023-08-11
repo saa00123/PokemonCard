@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import database from "../Firebase/database";
 
-function AuctionPriceRtdb() {
+function PricePost() {
   const [dataKey, setDataKey] = useState(null);
   const [price, setPrice] = useState("");
 
@@ -60,4 +60,4 @@ function AuctionPriceRtdb() {
   );
 }
 
-export default AuctionPriceRtdb;
+export default PricePost;
