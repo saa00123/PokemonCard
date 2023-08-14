@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import app from "../../Firebase/firebase";
+import firestore from "../../Firebase/firestore";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
+const Red = Color({ color: "Red" });
 const Gray1 = Color({ color: "Gray1" });
 const Gray2 = Color({ color: "Gray2" });
 const White = Color({ color: "Default" });
@@ -13,27 +15,71 @@ const White = Color({ color: "Default" });
 function SignUp() {
   const resPass = /^(?=.*[A-Za-z])(?=.*[0-9]).{8,16}$/;
 
+  // 이메일, 비밀번호, 이름, 닉네임, 비밀번호 확인 저장
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
+
+  const [data, setData] = useState([]);
+
+  // 이메일, 비밀번호, 닉네임, 비밀번호 확인 조건에 맞는지 확인
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkRepassword, setCheckRepassword] = useState(false);
+  const [checkNickname, setCheckNickname] = useState(false);
 
   useEffect(() => {
-    // if(repassword.length===0)setCheckPepassword(true);
     if (password === repassword) setCheckRepassword(true);
     else setCheckRepassword(false);
     if (resPass.test(password)) setCheckPassword(true);
     else setCheckPassword(false);
-    // console.log(app.auth().fetchSignInMethodsForEmail(email));
   }, [email, password, repassword, name, nickname]);
+
+  // 이메일 사용가능 여부 확인
+  useEffect(() => {
+    const checkEmailAvailability = async () => {
+      try {
+        const signInMethods = await app.auth().fetchSignInMethodsForEmail(email);
+        console.log(signInMethods);
+        setCheckEmail(signInMethods.length === 0);
+      } catch (error) {
+        console.error("Error checking email availability:", error);
+        setCheckEmail(false);
+      }
+    };
+
+    // 이메일 입력이 변경될 때마다 확인
+    if (email) {
+      checkEmailAvailability();
+    }
+  }, [email]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const collectionRef = firestore.collection("user");
+        console.log(collectionRef.get().docs);
+        // const snapshot = await collectionRef.get();
+        // const dataArray = snapshot.docs.map((doc) => {
+        //   console.log(doc);
+        // });
+        // setData(dataArray);
+        // console.log(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const onClickSignUp = () => {
     console.log(email, password, name, nickname);
     console.log("checkPassword : ", checkPassword, "checkEmail : ", checkEmail, "checkRepassword : ", checkRepassword);
+    if (name.length === "" || !checkPassword || !checkEmail || !checkNickname) alert("입력란을 다시 확인해 주세요.");
+
     app
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -50,6 +96,7 @@ function SignUp() {
         console.error("Login error:", errorMessage);
         if (errorCode === "auth/email-already-in-use") alert("이미 존재하는 이메일입니다.");
         if (errorCode === "auth/invalid-email") alert("이메일을 다시 입력해주세요.");
+        if (errorCode === "auth/missing-password") alert("비밀번호를 입력해주세요.");
       });
   };
   return (
@@ -173,23 +220,43 @@ function SignUp() {
                     notebookepadding="0 0 0 0.8rem"
                     onChange={(e) => setNickname(e.target.value)}
                   />
-                  <Div
-                    className="NicknameWarning"
-                    display="flex"
-                    alignitems="center"
-                    width="21.438rem"
-                    height="1.5rem"
-                    color={Gray1}
-                    fontsize="0.75rem"
-                    padding="0 0 0 1.313rem"
-                    boxsizing="border-box"
-                    notebookwidth="15.625rem"
-                    notebookheight="1.25rem"
-                    notebookfontsize="0.625rem"
-                    notebookepadding="0 0 0 0.8rem"
-                  >
-                    사용 불가능한 닉네임입니다.
-                  </Div>
+                  {checkNickname ? (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Gray1}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      사용 가능한 닉네임입니다.
+                    </Div>
+                  ) : (
+                    <Div
+                      className="NicknameWarning"
+                      display="flex"
+                      alignitems="center"
+                      width="21.438rem"
+                      height="1.5rem"
+                      color={Red}
+                      fontsize="0.75rem"
+                      padding="0 0 0 1.313rem"
+                      boxsizing="border-box"
+                      notebookwidth="15.625rem"
+                      notebookheight="1.25rem"
+                      notebookfontsize="0.625rem"
+                      notebookepadding="0 0 0 0.8rem"
+                    >
+                      사용 불가능한 닉네임입니다.
+                    </Div>
+                  )}
                 </Div>
               </Div>
             </Div>
@@ -220,25 +287,47 @@ function SignUp() {
                 notebookwidth="15.625rem"
                 notebookheight="3.125rem"
                 notebookfontsize="1rem"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
-              <Div
-                className="EmailWarning"
-                display="flex"
-                alignitems="center"
-                width="21.438rem"
-                height="1.5rem"
-                color={Gray1}
-                fontsize="0.75rem"
-                padding="0 0 0 1.313rem"
-                boxsizing="border-box"
-                notebookwidth="15.625rem"
-                notebookheight="1.25rem"
-                notebookfontsize="0.625rem"
-                notebookepadding="0 0 0 0.8rem"
-              >
-                사용 불가능한 이메일입니다.
-              </Div>
+              {checkEmail ? (
+                <Div
+                  className="EmailWarning"
+                  display="flex"
+                  alignitems="center"
+                  width="21.438rem"
+                  height="1.5rem"
+                  color={Gray1}
+                  fontsize="0.75rem"
+                  padding="0 0 0 1.313rem"
+                  boxsizing="border-box"
+                  notebookwidth="15.625rem"
+                  notebookheight="1.25rem"
+                  notebookfontsize="0.625rem"
+                  notebookepadding="0 0 0 0.8rem"
+                >
+                  사용 가능한 이메일입니다.
+                </Div>
+              ) : (
+                <Div
+                  className="EmailWarning"
+                  display="flex"
+                  alignitems="center"
+                  width="21.438rem"
+                  height="1.5rem"
+                  color={Red}
+                  fontsize="0.75rem"
+                  padding="0 0 0 1.313rem"
+                  boxsizing="border-box"
+                  notebookwidth="15.625rem"
+                  notebookheight="1.25rem"
+                  notebookfontsize="0.625rem"
+                  notebookepadding="0 0 0 0.8rem"
+                >
+                  사용 불가능한 이메일입니다.
+                </Div>
+              )}
             </Div>
 
             <Div className="BottomContainer" width="fit-content" height="fit-content" notebookdisplay="flex">
@@ -306,7 +395,7 @@ function SignUp() {
                       alignitems="center"
                       width="21.438rem"
                       height="1.5rem"
-                      color={Gray1}
+                      color={Red}
                       fontsize="0.75rem"
                       padding="0 0 0 1.313rem"
                       boxsizing="border-box"
@@ -385,7 +474,7 @@ function SignUp() {
                       alignitems="center"
                       width="21.438rem"
                       height="1.5rem"
-                      color={Gray1}
+                      color={Red}
                       fontsize="0.75rem"
                       padding="0 0 0 1.313rem"
                       boxsizing="border-box"
