@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import database from "../../Firebase/database";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
@@ -45,6 +46,39 @@ function Auction() {
   const handlePriceChange = (e) => {
     setAuctionPrice(Number(e.target.value));
   };
+
+  /** 입찰가를 Firebase RealtimeDatabase에 저장 */
+  const writeData = () => {
+    const data = {
+      price: auctionPrice,
+    };
+
+    const newDataRef = database.ref("price").push();
+    newDataRef
+      .set(data)
+      .then(() => {
+        console.log("데이터 쓰기 성공!");
+      })
+      .catch((error) => {
+        console.error("데이터 쓰기 실패:", error);
+      });
+    database.ref("currentPrice").set(data);
+  };
+
+  /** 실시간 현재가 */
+  const [startPrice, setStartPrice] = useState(0);
+
+  useEffect(() => {
+    const priceRef = database.ref("currentPrice");
+    priceRef.on("value", (snapshot) => {
+      const latestPrice = snapshot.val()?.price || 0;
+      setStartPrice((prev) => prev + latestPrice);
+    });
+
+    return () => {
+      priceRef.off();
+    };
+  }, []);
 
   /** 포켓몬 이미지 랜덤 생성 */
   const [randomId, setRandomId] = useState(null);
@@ -553,7 +587,7 @@ function Auction() {
                   notebookheight="3rem"
                   notebookfontsize="1.875rem"
                 >
-                  9,000,000
+                  {startPrice.toLocaleString()}
                 </Div>
                 <Div
                   className="PriceUnit"
@@ -672,7 +706,7 @@ function Auction() {
             </Button>
           </Div>
           <Button
-            className="AuctinoBtn"
+            className="AuctionBtn"
             type="submit"
             width="12.5rem"
             height="4.063rem"
@@ -683,6 +717,7 @@ function Auction() {
             notebookheight="2.25rem"
             notebookfontsize="0.875rem"
             notebookborderradius="0.5rem"
+            onClick={writeData}
           >
             입찰하기
           </Button>
@@ -693,3 +728,55 @@ function Auction() {
 }
 
 export default Auction;
+
+// 아래 코드는 로그인 처리 후 입찰가 상태관리 코드
+// /** 입찰가를 Firebase RealtimeDatabase에 저장 */
+// const writeData = () => {
+//   const data = {
+//     price: auctionPrice,
+//   };
+
+//   // 새로운 입찰가 저장
+//   const newDataRef = database.ref("price").push();
+//   newDataRef
+//     .set(data)
+//     .then(() => {
+//       console.log("데이터 쓰기 성공!");
+//     })
+//     .catch((error) => {
+//       console.error("데이터 쓰기 실패:", error);
+//     });
+
+//   // currentPrice 업데이트
+//   database.ref("currentPrice").transaction((currentValue) => {
+//     return (currentValue || 0) + auctionPrice;
+//   });
+// };
+
+// /** 실시간 현재가 */
+// const [startPrice, setStartPrice] = useState(0);
+
+// useEffect(() => {
+//   const priceRef = database.ref("currentPrice");
+//   priceRef.on("value", (snapshot) => {
+//     const latestPrice = snapshot.val() || 0;
+//     setStartPrice(latestPrice);
+//   });
+
+//   return () => {
+//     priceRef.off();
+//   };
+// }, []);
+
+// 아래 규칙은 후에 로그인이 구현되면 사용할 RealtimeDatabase 규칙
+// {
+//   "rules": {
+//     ".read": "auth != null",
+//     "bids": {
+//       ".write": "auth != null"
+//     },
+//     "currentBid": {
+//       ".write": "auth != null"
+//     }
+//   }
+// }
