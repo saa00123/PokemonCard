@@ -127,7 +127,7 @@ const Dropdown = ({
   disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
   const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
 
   const handleOptionClick = (option) => {

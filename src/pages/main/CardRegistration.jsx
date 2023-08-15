@@ -43,13 +43,10 @@ function CardRegistration() {
 
   /** 카드 정보 */
   const [information, setInformation] = useState({
-    rating: null,
-    series: null,
+    rating: CardRating[0].label,
+    series: CardSeries[0].label,
     toploader: false,
   });
-
-  const [selectedRating, setSelectedRating] = useState(null);
-  const [selectedSeries, setSelectedSeries] = useState(null);
 
   const handleSelect = (selectedOption, dropdownType) => {
     switch (dropdownType) {
@@ -117,7 +114,7 @@ function CardRegistration() {
     }
   };
 
-  /** 체크박스 상태관리 */
+  /** 카드 등급 */
   const [isNormalRatingChecked, setIsNormalRatingChecked] = useState(false);
   const [isBrgRatingChecked, setIsBrgRatingChecked] = useState(false);
 
@@ -129,19 +126,6 @@ function CardRegistration() {
   const handleBrgCheckboxClick = () => {
     setIsBrgRatingChecked(!isBrgRatingChecked);
     setIsNormalRatingChecked(false);
-  };
-
-  const [isOnlineChecked, setIsOnlineChecked] = useState(false);
-  const [isOfflineChecked, setIsOfflineChecked] = useState(false);
-
-  const handleOnlineCheckboxClick = () => {
-    setIsOnlineChecked(!isOnlineChecked);
-    setIsOfflineChecked(false);
-  };
-
-  const handleOfflineCheckboxClick = () => {
-    setIsOfflineChecked(!isOfflineChecked);
-    setIsOnlineChecked(false);
   };
 
   /** 시작가에 따른 입찰가 자동 설정 */
@@ -179,11 +163,41 @@ function CardRegistration() {
   }, [startPrice]);
 
   /** 거래 방법 */
-  const [trading, setTrading] = useState("");
+  const [isOnlineChecked, setIsOnlineChecked] = useState(false);
+  const [isOfflineChecked, setIsOfflineChecked] = useState(false);
+  const [offlineTradingPlace, setOfflineTradingPlace] = useState("");
+
+  const handleOnlineCheckboxClick = () => {
+    setIsOnlineChecked(!isOnlineChecked);
+    setIsOfflineChecked(false);
+  };
+
+  const handleOfflineCheckboxClick = () => {
+    setIsOfflineChecked(!isOfflineChecked);
+    setIsOnlineChecked(false);
+  };
+
+  const handleOfflineTradingPlaceChange = (e) => {
+    setOfflineTradingPlace(e.target.value);
+  };
 
   /** firestore에 카드 등록 정보 저장 */
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const tradingMethods = [];
+
+    if (isOnlineChecked) {
+      tradingMethods.push("온라인 거래");
+    }
+
+    if (isOfflineChecked) {
+      const offlineInfo = {
+        method: "오프라인 거래",
+        place: offlineTradingPlace,
+      };
+      tradingMethods.push(offlineInfo);
+    }
 
     const cardData = {
       title,
@@ -193,9 +207,11 @@ function CardRegistration() {
         startPrice,
         bidUnit,
       },
-      startDate,
-      endDate,
-      trading,
+      date: {
+        startDate,
+        endDate,
+      },
+      trading: tradingMethods,
     };
 
     try {
@@ -349,7 +365,8 @@ function CardRegistration() {
                 notebookwidth="37.313rem"
                 notebookheight="6.875rem"
               >
-                <Div
+                <Label
+                  htmlFor="informationInput"
                   className="CardInformationTitle"
                   display="flex"
                   justfiycontent="start"
@@ -366,7 +383,7 @@ function CardRegistration() {
                   notebookmargin="0"
                 >
                   카드 정보
-                </Div>
+                </Label>
                 <Div
                   className="CardInformation"
                   display="flex"
@@ -444,7 +461,8 @@ function CardRegistration() {
                 notebookwidth="56.5rem"
                 notebookheight="30.75rem"
               >
-                <Div
+                <Label
+                  htmlFor="imageInput"
                   className="ImageRegistrationTitle"
                   display="flex"
                   justfiycontent="start"
@@ -459,8 +477,8 @@ function CardRegistration() {
                   notebookfontsize="1.5rem"
                 >
                   사진 등록
-                </Div>
-                <ImageUpload onImageUrlsUpdate={setImageUrls} />
+                </Label>
+                <ImageUpload id="imageUpload" onImageUrlsUpdate={setImageUrls} />
               </Div>
               <Div
                 className="RatingContainer"
@@ -471,7 +489,8 @@ function CardRegistration() {
                 margin="1.063rem 0 0 0"
                 notebookwidth=""
               >
-                <Div
+                <Label
+                  htmlFor="ratingInput"
                   className="RatingTitle"
                   display="flex"
                   justifycontent="start"
@@ -486,8 +505,9 @@ function CardRegistration() {
                   notebookfontsize="1.5rem"
                 >
                   등급
-                </Div>
+                </Label>
                 <Div
+                  id="rating"
                   className="RatingMainContainer"
                   display="flex"
                   justfiycontent="center"
@@ -622,7 +642,8 @@ function CardRegistration() {
                 notebookwidth="51.563rem"
                 notebookheight="9.501rem"
               >
-                <Div
+                <Label
+                  htmlFor="priceInput"
                   className="PriceTitle"
                   display="flex"
                   justifycontent="start"
@@ -636,7 +657,7 @@ function CardRegistration() {
                   notebookfontsize="1.5rem"
                 >
                   가격
-                </Div>
+                </Label>
                 <Div
                   className="PriceMainContainer"
                   display="flex"
@@ -680,8 +701,9 @@ function CardRegistration() {
                       >
                         시작가
                       </Div>
-                      <Div className="InputWrapper" position="absolyte" width="fit-content">
+                      <Div className="InputWrapper" width="fit-content">
                         <Input
+                          id="startPrice"
                           className="StartPriceInput"
                           placeholder="시작가를 입력하세요"
                           display="flex"
@@ -729,6 +751,7 @@ function CardRegistration() {
                         입찰 단위
                       </Div>
                       <Input
+                        id="bidUnit"
                         className="BidUnitInput"
                         placeholder="입찰 단위"
                         display="flex"
@@ -778,7 +801,8 @@ function CardRegistration() {
                 notebookwidth="51.563rem"
                 notebookheight="9.501rem"
               >
-                <Div
+                <Label
+                  htmlFor="auctionInput"
                   className="AuctionDateTitle"
                   display="flex"
                   justifycontent="start"
@@ -793,7 +817,7 @@ function CardRegistration() {
                   notebookfontsize="1.5rem"
                 >
                   경매 일정
-                </Div>
+                </Label>
                 <Div
                   className="AuctionDateMainContainer"
                   display="flex"
@@ -838,6 +862,7 @@ function CardRegistration() {
                         경매 시작일
                       </Div>
                       <Input
+                        id="auctionStartDate"
                         className="AuctionStartDateInput"
                         type="date"
                         placeholder="경매 시작일을 입력하세요"
@@ -876,6 +901,7 @@ function CardRegistration() {
                         경매 종료일
                       </Div>
                       <Input
+                        id="auctionEndDate"
                         className="AuctionEndDateInput"
                         type="date"
                         placeholder="경매 종료일을 입력하세요"
@@ -928,7 +954,8 @@ function CardRegistration() {
                 notebookwidth="32.501rem"
                 notebookheight="9.501rem"
               >
-                <Div
+                <Label
+                  htmlFor="tradingInput"
                   className="TradingMethodTitle"
                   display="flex"
                   justifycontent="start"
@@ -942,7 +969,7 @@ function CardRegistration() {
                   notebookfontsize="1.5rem"
                 >
                   거래 방법 (중복 선택 가능)
-                </Div>
+                </Label>
                 <Div
                   className="TradingMethodMainContainer"
                   display="flex"
@@ -1008,6 +1035,7 @@ function CardRegistration() {
                       오프라인 거래
                     </Checkbox>
                     <Input
+                      id="offlineTrading"
                       className="OfflineTradingPlaceInput"
                       placeholder="거래 장소를 입력하세요"
                       display="flex"
@@ -1024,6 +1052,7 @@ function CardRegistration() {
                       notebookheight="2.5rem"
                       notebookfontsize="1rem"
                       disabled={!isOfflineChecked}
+                      onChange={handleOfflineTradingPlaceChange}
                     />
                   </Div>
                 </Div>
