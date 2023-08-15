@@ -217,6 +217,7 @@ function CardRegistration() {
     try {
       await firestore.collection("CardRegistration").add(cardData);
       console.log("Card added successfully");
+      navigate("/");
     } catch (error) {
       console.error("Error adding card:", error);
     }

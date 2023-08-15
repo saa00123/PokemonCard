@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Color from "./Color";
 
@@ -130,16 +130,28 @@ const Dropdown = ({
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option, e) => {
+    e.stopPropagation();
+    e.preventDefault();
     onSelect(option);
     setSelectedOption(option);
     setIsOpen(false);
   };
+
+  const dropdownRef = useRef(null);
+
   useEffect(() => {
-    if (selectedOption) {
-      setShouldShowInitialOption(false);
-    }
-  }, [selectedOption]);
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <DropdownContainer
@@ -151,8 +163,10 @@ const Dropdown = ({
       notebookheight={notebookheight}
       notebookborderradius={notebookborderradius}
       disabled={disabled}
+      ref={dropdownRef}
     >
       <DropdownButton
+        type="button"
         buttonwidth={buttonwidth}
         buttonheight={buttonheight}
         buttonfontsize={buttonfontsize}
@@ -178,7 +192,7 @@ const Dropdown = ({
                   menufontsize={menufontsize}
                   notebookmenufontsize={notebookmenufontsize}
                   key={option.id}
-                  onClick={() => handleOptionClick(option)}
+                  onClick={(e) => handleOptionClick(option, e)}
                 >
                   {option.label}
                 </DropdownMenuItem>
