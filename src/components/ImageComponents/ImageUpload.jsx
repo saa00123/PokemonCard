@@ -28,7 +28,7 @@ const ImageUploadLabel = styled.label`
   }
 `;
 
-function ImageUpload() {
+function ImageUpload({ onImageUrlsUpdate }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
 
@@ -53,7 +53,9 @@ function ImageUpload() {
 
     storageRef
       .put(file)
-      .then(() => {
+      .then(() => storageRef.getDownloadURL())
+      .then((url) => {
+        onImageUrlsUpdate((prevUrls) => [...prevUrls, url]); // URL을 상위 컴포넌트에 전달
         console.log("File uploaded successfully.");
       })
       .catch((error) => {

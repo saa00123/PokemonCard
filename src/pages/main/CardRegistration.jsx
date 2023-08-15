@@ -1,6 +1,8 @@
 /* eslint-disable no-return-assign */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import firestore from "../../Firebase/firestore";
+
 import Header from "../../components/BaseComponents/Header";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Input from "../../components/BaseComponents/Input";
@@ -25,24 +27,49 @@ function CardRegistration() {
   const Gray2 = Color({ color: "Gray2" });
   const Gray4 = Color({ color: "Gray4" });
 
-  const [value, setValue] = useState("");
+  /** 제목 */
+  const [title, setTitle] = useState("");
 
-  const handleChange = (e) => {
+  const handleTitleChange = (e) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 40) {
-      setValue(inputValue);
+      setTitle(inputValue);
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const MaxCharCount = 40;
+  const charCount = title.length;
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    console.log("Selected option:", option);
+  /** 카드 정보 */
+  const [information, setInformation] = useState({
+    rating: null,
+    series: null,
+    toploader: false,
+  });
+
+  const [selectedRating, setSelectedRating] = useState(null);
+  const [selectedSeries, setSelectedSeries] = useState(null);
+
+  const handleSelect = (selectedOption, dropdownType) => {
+    switch (dropdownType) {
+      case "rating":
+        setInformation((prev) => ({ ...prev, rating: selectedOption }));
+        break;
+      case "series":
+        setInformation((prev) => ({ ...prev, series: selectedOption }));
+        break;
+      default:
+        console.error("Unknown dropdown type:", dropdownType);
+    }
+    console.log("Selected option:", selectedOption);
   };
 
-  const MaxCharCount = 40;
-  const charCount = value.length;
+  const handleToploaderCheckboxClick = () => {
+    setInformation((prev) => ({ ...prev, toploader: !prev.toploader }));
+  };
+
+  /** 사진 등록 */
+  const [imageUrls, setImageUrls] = useState([]);
 
   /** 경매 시작일과 종료일 */
   const [startDate, setStartDate] = useState("");
@@ -90,12 +117,6 @@ function CardRegistration() {
   };
 
   /** 체크박스 상태관리 */
-  const [isToploaderChecked, setIsToploaderChecked] = useState(false);
-
-  const handleToploaderCheckboxClick = () => {
-    setIsToploaderChecked(!isToploaderChecked);
-  };
-
   const [isNormalRatingChecked, setIsNormalRatingChecked] = useState(false);
   const [isBrgRatingChecked, setIsBrgRatingChecked] = useState(false);
 
@@ -155,6 +176,34 @@ function CardRegistration() {
       setBidUnit("");
     }
   }, [startPrice]);
+
+  /** 거래 방법 */
+  const [trading, setTrading] = useState("");
+
+  /** firestore에 카드 등록 정보 저장 */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const cardData = {
+      title,
+      information,
+      imageUrls,
+      price: {
+        startPrice,
+        bidUnit,
+      },
+      startDate,
+      endDate,
+      trading,
+    };
+
+    try {
+      await firestore.collection("CardRegistration").add(cardData);
+      console.log("Card added successfully");
+    } catch (error) {
+      console.error("Error adding card:", error);
+    }
+  };
 
   return (
     <Div className="Container">
@@ -254,6 +303,7 @@ function CardRegistration() {
               >
                 <Input
                   className="TitleInput"
+                  type="text"
                   placeholder="제목을 입력하세요"
                   display="flex"
                   justifycontent="center"
@@ -262,8 +312,8 @@ function CardRegistration() {
                   height="4.313rem"
                   fontsize="1.625rem"
                   border="none"
-                  value={value}
-                  onChange={handleChange}
+                  value={title}
+                  onChange={handleTitleChange}
                   notebookwidth="51.5rem"
                   notebookheight="3.125rem"
                   notebookfontsize="1rem"
@@ -326,7 +376,7 @@ function CardRegistration() {
                 <DropDown
                   className="CardRating"
                   options={CardRating}
-                  onSelect={handleSelect}
+                  onSelect={(option) => handleSelect(option, "rating")}
                   width="9.375rem"
                   height="4.375rem"
                   margin="0 0.438rem 0 0"
@@ -349,7 +399,7 @@ function CardRegistration() {
                 <DropDown
                   className="CardSeries"
                   options={CardSeries}
-                  onSelect={handleSelect}
+                  onSelect={(option) => handleSelect(option, "series")}
                   width="21.875rem"
                   height="4.375rem"
                   margin="0 1.35rem 0 0"
@@ -373,7 +423,7 @@ function CardRegistration() {
                   className="TopLoaderCheckbox"
                   width="1.563rem"
                   height="1.563rem"
-                  checked={isToploaderChecked}
+                  checked={information.toploader}
                   onChange={handleToploaderCheckboxClick}
                 >
                   탑로더 유무
