@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import firebase from "firebase/compat/app";
-import firestore from "./Firebase/firestore";
-
 import BackgroundImage from "./components/ImageComponents/BackgroundImage";
-import Header from "./components/BaseComponents/Header";
 
 import Home from "./pages/main/Home";
 import CardRegistration from "./pages/main/CardRegistration";
@@ -24,24 +20,6 @@ import AfterFindId from "./pages/Login/AfterFindId";
 import ResetPassword from "./pages/Login/ResetPassword";
 
 function App() {
-  useEffect(() => {
-    const test = firestore.collection("test");
-
-    test.doc("L9mWBMx8ksYKvtKn6OFH").delete();
-
-    // firestore test
-    // test
-    //   .doc("test_item")
-    //   .get()
-    //   .then((doc) => {
-    //     if (doc.exists) {
-    //       console.log(doc.data());
-
-    //       console.log(doc.id);
-    //     }
-    //   });
-  });
-
   return (
     <BrowserRouter>
       <BackgroundImage />

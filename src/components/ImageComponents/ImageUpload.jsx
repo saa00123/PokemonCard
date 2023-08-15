@@ -1,6 +1,6 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useState } from "react";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 import storage from "../../Firebase/storage"; // firebase.js 파일에서 storage 인스턴스를 가져옵니다.
 import Div from "../BaseComponents/BasicDiv";
 import Input from "../BaseComponents/Input";
@@ -48,7 +48,7 @@ function ImageUpload() {
   };
 
   const handleUpload = (file) => {
-    const fileName = file.name;
+    const fileName = `${uuidv4()}_${file.name}`;
     const storageRef = storage.ref(fileName);
 
     storageRef
@@ -112,7 +112,7 @@ function ImageUpload() {
       </ImageUploadLabel>
       <Div className="ImageUpload" display="flex" justifycontent="center" alignitems="center" margin="0 1.188rem 0 0">
         {previewUrls.map((url, index) => (
-          <div key={index} style={{ width: "18.75rem", height: "22rem", margin: "1rem" }}>
+          <div key={url} style={{ width: "18.75rem", height: "22rem", margin: "1rem" }}>
             <img src={url} alt={`Preview ${index}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             <Button type="button" width="3rem" height="1.5rem" border="none" onClick={() => handleDelete(index)}>
               삭제
