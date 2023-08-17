@@ -5,8 +5,10 @@ import Color from "../BaseComponents/Color";
 
 const SmallCardPreview = ({ card }) => {
   const Default = Color({ color: "Default" });
+  const Red = Color({ color: "Red" });
   const Gray4 = Color({ color: "Gray4" });
 
+  /** 카드 정보 불러오기 */
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -28,6 +30,53 @@ const SmallCardPreview = ({ card }) => {
 
     fetchAllCards();
   }, []);
+
+  /** 남은 시간 */
+  const [remainingTime, setRemainingTime] = useState("");
+  const [timeColor, setTimeColor] = useState(Default);
+
+  useEffect(() => {
+    const updateRemainingTime = () => {
+      const now = new Date();
+
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        setRemainingTime(
+          `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`,
+        );
+
+        if (hours < 1) {
+          setTimeColor(Red);
+        } else {
+          setTimeColor(Default);
+        }
+      } else {
+        setRemainingTime("경매 대기 중");
+      }
+    };
+
+    updateRemainingTime();
+    const intervalId = setInterval(updateRemainingTime, 1000); // 1초마다 업데이트
+
+    return () => clearInterval(intervalId); // 컴포넌트가 언마운트되거나 재렌더링될 때 타이머를 정리합니다.
+  }, [card.startDate, card.endDate]);
 
   return (
     <Div
@@ -113,8 +162,9 @@ const SmallCardPreview = ({ card }) => {
             notebookwidth="fit-content"
             notebookheight="1.5rem"
             notebookfontsize="1rem"
+            color={timeColor}
           >
-            99:99:99
+            {remainingTime}
           </Div>
         </Div>
         <Div
