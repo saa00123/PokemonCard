@@ -5,6 +5,7 @@ import Color from "../BaseComponents/Color";
 
 const SmallCardPreview = ({ card }) => {
   const Default = Color({ color: "Default" });
+  const Black = Color({ color: "Black" });
   const Red = Color({ color: "Red" });
   const Gray4 = Color({ color: "Gray4" });
 
@@ -38,7 +39,6 @@ const SmallCardPreview = ({ card }) => {
   useEffect(() => {
     const updateRemainingTime = () => {
       const now = new Date();
-
       const startTime = new Date(`${card.date.startDate}T09:00:00`);
       const endTime = new Date(`${card.date.endDate}T21:00:00`);
 
@@ -61,22 +61,47 @@ const SmallCardPreview = ({ card }) => {
             .toString()
             .padStart(2, "0")}`,
         );
-
-        if (hours < 1) {
-          setTimeColor(Red);
-        } else {
-          setTimeColor(Default);
-        }
       } else {
         setRemainingTime("경매 대기 중");
       }
     };
 
-    updateRemainingTime();
-    const intervalId = setInterval(updateRemainingTime, 1000); // 1초마다 업데이트
+    const checkRemainingTimeColor = () => {
+      const now = new Date();
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
 
-    return () => clearInterval(intervalId); // 컴포넌트가 언마운트되거나 재렌더링될 때 타이머를 정리합니다.
-  }, [card.startDate, card.endDate]);
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        if (hours < 1) {
+          setTimeColor(Red);
+        } else {
+          setTimeColor(Black);
+        }
+      } else {
+        setTimeColor(Black);
+      }
+    };
+
+    updateRemainingTime();
+    checkRemainingTimeColor();
+
+    const intervalId = setInterval(() => {
+      updateRemainingTime();
+      checkRemainingTimeColor();
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [card.date.startDate, card.date.endDate]);
 
   return (
     <Div
