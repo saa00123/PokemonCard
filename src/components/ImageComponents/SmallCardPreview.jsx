@@ -3,7 +3,7 @@ import firestore from "../../Firebase/firestore";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
-const SmallCardPreview = () => {
+const SmallCardPreview = ({ card }) => {
   const Default = Color({ color: "Default" });
   const Gray4 = Color({ color: "Gray4" });
 
@@ -28,8 +28,6 @@ const SmallCardPreview = () => {
 
     fetchAllCards();
   }, []);
-
-  const card = cards[0] || {};
 
   return (
     <Div

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import firestore from "../../Firebase/firestore";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -10,6 +11,28 @@ import ListButton from "../../components/SortButton/ListButton";
 const Home = () => {
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
+
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setCards(cardData);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, []);
 
   return (
     <Div className="MainContainer">
@@ -31,13 +54,7 @@ const Home = () => {
           >
             검색 결과
           </Div>
-          <Div
-            className="OptionContainer"
-            height="fit-content"
-            display="flex"
-            // border="2px blue solid"
-            margin="auto 0 auto auto"
-          >
+          <Div className="OptionContainer" height="fit-content" display="flex" margin="auto 0 auto auto">
             <GridButton />
             <ListButton margin="0 0 0 4px" />
           </Div>
@@ -79,7 +96,9 @@ const Home = () => {
           display="grid"
           gridtemplatecolumns="repeat(4, 1fr)"
         >
-          <Preview />
+          {cards.map((card) => (
+            <Preview key={card.id} card={card} />
+          ))}
         </Div>
         <Div
           className="Paging"
