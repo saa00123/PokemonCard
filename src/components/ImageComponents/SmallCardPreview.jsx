@@ -1,5 +1,4 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import firestore from "../../Firebase/firestore";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
@@ -8,26 +7,29 @@ const SmallCardPreview = () => {
   const Default = Color({ color: "Default" });
   const Gray4 = Color({ color: "Gray4" });
 
-  const fetchAllCards = async () => {
-    try {
-      const querySnapshot = await firestore.collection("CardRegistration").get();
-      const cards = [];
-      querySnapshot.forEach((doc) => {
-        cards.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
-      return cards;
-    } catch (error) {
-      console.error("Error fetching cards:", error);
-      return [];
-    }
-  };
+  const [cards, setCards] = useState([]);
 
-  fetchAllCards().then((cards) => {
-    console.log(cards); // 카드 데이터 배열 출력
-  });
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setCards(cardData);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, []);
+
+  const card = cards[0] || {};
 
   return (
     <Div
@@ -54,6 +56,11 @@ const SmallCardPreview = () => {
         notebookwidth="12.5rem"
         notebookheight="16.668rem"
         notebookmargin="0 0 0.7rem 0"
+        style={{
+          backgroundImage: `url(${card.imageUrls?.[0] || ""})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       />
       <Div
         className="PreviewHeader"
@@ -66,7 +73,7 @@ const SmallCardPreview = () => {
         notebookheight="2.876rem"
         notebookfontsize="0.875rem"
       >
-        완전기이이이이이이이이이이이이이인 제목
+        {card.title || "제목을 불러올 수 없습니다."}
       </Div>
       <Div
         className="PreviewAuctionContainer"
@@ -133,7 +140,8 @@ const SmallCardPreview = () => {
             현재가
           </Div>
           <Div
-            className="DetailTime"
+            className="DetailPrice"
+            display="flex"
             alignitems="end"
             width="fit-content"
             height="2.188rem"
@@ -144,7 +152,7 @@ const SmallCardPreview = () => {
             notebookheight="1.25rem"
             notebookfontsize="1rem"
           >
-            13,000
+            {card.price?.startPrice || "0"}
             <Div
               className="PriceUnit"
               display="flex"

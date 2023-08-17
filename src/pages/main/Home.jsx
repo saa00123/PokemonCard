@@ -80,18 +80,6 @@ const Home = () => {
           gridtemplatecolumns="repeat(4, 1fr)"
         >
           <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
-          <Preview />
         </Div>
         <Div
           className="Paging"
