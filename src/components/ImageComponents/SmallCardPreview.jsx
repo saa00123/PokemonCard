@@ -4,110 +4,8 @@ import firestore from "../../Firebase/firestore";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
-const PreviewImage = styled.div`
-  width: 18.75rem;
-  height: 25rem;
-  margin: 0 0 1.188rem;
-  border: solid 1px ${Color({ color: "Gray4" })};
-  background-color: ${Color({ color: "Default" })};
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 12.5rem;
-    height: 16.668rem;
-    margin-bottom: 0.7rem;
-  }
-`;
-
-const PreviewHeader = styled.div`
-  width: 18.75rem;
-  height: 3.5rem;
-  font-size: 1.25rem;
-  text-align: left;
-  word-wrap: break-word;
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 12.5rem;
-    height: 2.876rem;
-    font-size: 0.875rem;
-    font-weight: normal;
-  }
-`;
-
-const PreviewAuctionContainer = styled.div`
-  display: flex;
-  width: 18.75rem;
-  height: 3.438rem;
-  margin-top: 1.063rem;
-  /* border: 1px solid orange; */
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 12.5rem;
-    height: 2.626rem;
-    margin-top: 0.5rem;
-  }
-`;
-
-const PreviewDetailContainer = styled.div`
-  width: "fit-content";
-  height: 3.438rem;
-  float: ${(props) => props.float};
-  margin-left: ${(props) => props.marginleft};
-  /* border: 1px solid black; */
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: fit-content;
-    height: fit-content;
-  }
-`;
-
-const DetailHeader = styled.div`
-  width: 4.063rem;
-  height: 1.25rem;
-  font-size: 0.875rem;
-  text-align: left;
-  /* border: 1px solid red; */
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 2.75rem;
-    height: 0.938rem;
-    font-size: 0.625rem;
-  }
-`;
-
-const DetailAuction = styled.div`
-  display: flex;
-  width: ${(props) => props.width};
-  height: 2.188rem;
-  font-size: ${(props) => props.fontsize};
-  font-weight: bold;
-  text-align: left;
-  align-items: ${(props) => props.alignitems};
-  /* border: 1px solid blue; */
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: ${(props) => props.notebookwidth};
-    height: 1.5rem;
-    font-size: ${(props) => props.notebookfontsize};
-  }
-`;
-
-const PriceUnit = styled.div`
-  display: flex;
-  align-items: end;
-  font-size: 1rem;
-  margin-left: 0.3rem;
-  /* border: 1px solid green; */
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    font-size: 0.75rem;
-  }
-`;
-
 const SmallCardPreview = () => {
   const Default = Color({ color: "Default" });
-  const Red = Color({ color: "Red" });
-  const Gray1 = Color({ color: "Gray1" });
-  const Gray2 = Color({ color: "Gray2" });
   const Gray4 = Color({ color: "Gray4" });
 
   const fetchAllCards = async () => {
@@ -146,36 +44,120 @@ const SmallCardPreview = () => {
       notebookwidth="14.563rem"
       notebookheight="25.438rem"
     >
-      <PreviewImage />
-      <PreviewHeader>완전기이이이이이이이이이이이이이인 제목</PreviewHeader>
-      <PreviewAuctionContainer>
-        <PreviewDetailContainer float="left">
-          <DetailHeader>남은 시간</DetailHeader>
-          <DetailAuction
-            width="fit-content"
-            notebookwidth="fit-content"
-            fontsize="1.5rem"
-            notebookfontsize="1rem"
+      <Div
+        className="PreviewImage"
+        width="18.75rem"
+        height="25rem"
+        margin="0 0 1.188rem 0"
+        border={`solid 1px ${Gray4}`}
+        backgroundcolor={Default}
+        notebookwidth="12.5rem"
+        notebookheight="16.668rem"
+        notebookmargin="0 0 0.7rem 0"
+      />
+      <Div
+        className="PreviewHeader"
+        width="18.75rem"
+        height="3.5rem"
+        fontsize="1.25rem"
+        textalign="left"
+        wordwrap="break-word"
+        notebookwidth="12.5rem"
+        notebookheight="2.876rem"
+        notebookfontsize="0.875rem"
+      >
+        완전기이이이이이이이이이이이이이인 제목
+      </Div>
+      <Div
+        className="PreviewAuctionContainer"
+        display="flex"
+        width="18.75rem"
+        height="3.438rem"
+        margin="1.063rem 0 0 0"
+        notebookwidth="12.5rem"
+        notebookheight="2.626rem"
+        notebookmargin="0.5rem 0 0 0"
+      >
+        <Div
+          className="PreviewTimeContainer"
+          width="fit-content"
+          height="3.438rem"
+          textalign="left"
+          notebookheight="fit-content"
+        >
+          <Div
+            className="DetailTimeHeader"
+            width="4.063rem"
+            height="1.25rem"
+            fontsize="0.875rem"
+            textalign="left"
+            notebookwidth="2.75rem"
+            notebookheight="0.938rem"
+            notebookfontsize="0.625rem"
+          >
+            남은 시간
+          </Div>
+          <Div
+            className="DetailTime"
             alignitems="end"
+            width="fit-content"
+            height="2.188rem"
+            fonteweight="bold"
+            textalign="left"
+            fontsize="1.5rem"
+            notebookwidth="fit-content"
+            notebookheight="1.5rem"
+            notebookfontsize="1rem"
           >
             99:99:99
-          </DetailAuction>
-        </PreviewDetailContainer>
-        <PreviewDetailContainer float="right" marginleft="auto">
-          <DetailHeader>현재가</DetailHeader>
-          <DetailAuction
-            // width="8.813rem"
-            width="fit-content"
-            // notebookwidth="6.5rem"
-            notebookwidth="fit-content"
-            fontsize="2rem"
-            notebookfontsize="1.25rem"
-            alignitems="end"
+          </Div>
+        </Div>
+        <Div
+          className="PreviewPriceContainer"
+          width="fit-content"
+          height="3.438rem"
+          margin="0 0 0 auto"
+          textalign="right"
+          notebookheight="fit-content"
+        >
+          <Div
+            className="DetailPriceHeader"
+            width="4.063rem"
+            height="1.25rem"
+            fontsize="0.875rem"
+            textalign="left"
+            notebookwidth="2.75rem"
+            notebookheight="0.938rem"
+            notebookfontsize="0.625rem"
           >
-            13,000<PriceUnit>원</PriceUnit>
-          </DetailAuction>
-        </PreviewDetailContainer>
-      </PreviewAuctionContainer>
+            현재가
+          </Div>
+          <Div
+            className="DetailTime"
+            alignitems="end"
+            width="fit-content"
+            height="2.188rem"
+            fonteweight="bold"
+            textalign="left"
+            fontsize="2rem"
+            notebookwidth="fit-content"
+            notebookheight="1.25rem"
+            notebookfontsize="1rem"
+          >
+            13,000
+            <Div
+              className="PriceUnit"
+              display="flex"
+              alignitems="end"
+              fontsize="1rem"
+              margin="0 0 0 0.3rem"
+              notebookfontsize="0.75rem"
+            >
+              원
+            </Div>
+          </Div>
+        </Div>
+      </Div>
     </Div>
   );
 };

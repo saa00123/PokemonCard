@@ -27,6 +27,7 @@ const DivContainer = styled.div`
   position: ${(props) => props.position};
   overflow-x: ${(props) => props.overflowx};
   overflow-y: ${(props) => props.overflowy};
+  word-wrap: ${(props) => props.wordwrap};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -82,6 +83,7 @@ const BasicDiv = (props) => {
     position,
     overflowx,
     overflowy,
+    wordwrap,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -136,6 +138,7 @@ const BasicDiv = (props) => {
       position={position}
       overflowx={overflowx}
       overflowy={overflowy}
+      wordwrap={wordwrap}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
