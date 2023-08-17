@@ -1,23 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import firestore from "../../Firebase/firestore";
+import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
-
-const PreviewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 21.875rem;
-  height: 37.5rem;
-  margin: 0 0 -1px -1px;
-  border: solid 1px ${Color({ color: "Gray4" })};
-  background-color: ${Color({ color: "Default" })};
-
-  @media (min-width: 1024px) and (max-width: 1440px) {
-    width: 14.563rem;
-    height: 25.438rem;
-  }
-`;
 
 const PreviewImage = styled.div`
   width: 18.75rem;
@@ -118,39 +103,81 @@ const PriceUnit = styled.div`
   }
 `;
 
-const SmallCardPreview = () => (
-  <PreviewContainer>
-    <PreviewImage />
-    <PreviewHeader>완전기이이이이이이이이이이이이이인 제목</PreviewHeader>
-    <PreviewAuctionContainer>
-      <PreviewDetailContainer float="left">
-        <DetailHeader>남은 시간</DetailHeader>
-        <DetailAuction
-          width="fit-content"
-          notebookwidth="fit-content"
-          fontsize="1.5rem"
-          notebookfontsize="1rem"
-          alignitems="end"
-        >
-          99:99:99
-        </DetailAuction>
-      </PreviewDetailContainer>
-      <PreviewDetailContainer float="right" marginleft="auto">
-        <DetailHeader>현재가</DetailHeader>
-        <DetailAuction
-          // width="8.813rem"
-          width="fit-content"
-          // notebookwidth="6.5rem"
-          notebookwidth="fit-content"
-          fontsize="2rem"
-          notebookfontsize="1.25rem"
-          alignitems="end"
-        >
-          13,000<PriceUnit>원</PriceUnit>
-        </DetailAuction>
-      </PreviewDetailContainer>
-    </PreviewAuctionContainer>
-  </PreviewContainer>
-);
+const SmallCardPreview = () => {
+  const Default = Color({ color: "Default" });
+  const Red = Color({ color: "Red" });
+  const Gray1 = Color({ color: "Gray1" });
+  const Gray2 = Color({ color: "Gray2" });
+  const Gray4 = Color({ color: "Gray4" });
+
+  const fetchAllCards = async () => {
+    try {
+      const querySnapshot = await firestore.collection("CardRegistration").get();
+      const cards = [];
+      querySnapshot.forEach((doc) => {
+        cards.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      return cards;
+    } catch (error) {
+      console.error("Error fetching cards:", error);
+      return [];
+    }
+  };
+
+  fetchAllCards().then((cards) => {
+    console.log(cards); // 카드 데이터 배열 출력
+  });
+
+  return (
+    <Div
+      className="PreviewContainer"
+      display="flex"
+      flexdirection="column"
+      justifycontent="center"
+      alignitems="center"
+      width="21.875rem"
+      height="37.5rem"
+      margin="0 0 -1px -1px"
+      border={`solid 1px ${Gray4}`}
+      backgroundcolor={Default}
+      notebookwidth="14.563rem"
+      notebookheight="25.438rem"
+    >
+      <PreviewImage />
+      <PreviewHeader>완전기이이이이이이이이이이이이이인 제목</PreviewHeader>
+      <PreviewAuctionContainer>
+        <PreviewDetailContainer float="left">
+          <DetailHeader>남은 시간</DetailHeader>
+          <DetailAuction
+            width="fit-content"
+            notebookwidth="fit-content"
+            fontsize="1.5rem"
+            notebookfontsize="1rem"
+            alignitems="end"
+          >
+            99:99:99
+          </DetailAuction>
+        </PreviewDetailContainer>
+        <PreviewDetailContainer float="right" marginleft="auto">
+          <DetailHeader>현재가</DetailHeader>
+          <DetailAuction
+            // width="8.813rem"
+            width="fit-content"
+            // notebookwidth="6.5rem"
+            notebookwidth="fit-content"
+            fontsize="2rem"
+            notebookfontsize="1.25rem"
+            alignitems="end"
+          >
+            13,000<PriceUnit>원</PriceUnit>
+          </DetailAuction>
+        </PreviewDetailContainer>
+      </PreviewAuctionContainer>
+    </Div>
+  );
+};
 
 export default SmallCardPreview;

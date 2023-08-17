@@ -1,5 +1,4 @@
 import React from "react";
-import firestore from "../../Firebase/firestore";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -11,27 +10,6 @@ import ListButton from "../../components/SortButton/ListButton";
 const Home = () => {
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
-
-  const fetchAllCards = async () => {
-    try {
-      const querySnapshot = await firestore.collection("CardRegistration").get();
-      const cards = [];
-      querySnapshot.forEach((doc) => {
-        cards.push({
-          id: doc.id,
-          ...doc.data(),
-        });
-      });
-      return cards;
-    } catch (error) {
-      console.error("Error fetching cards:", error);
-      return [];
-    }
-  };
-
-  fetchAllCards().then((cards) => {
-    console.log(cards); // 카드 데이터 배열 출력
-  });
 
   return (
     <Div className="MainContainer">
