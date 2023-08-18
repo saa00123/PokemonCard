@@ -248,6 +248,11 @@ function Auction() {
             border="solid 1px"
             notebookwidth="15.625rem"
             notebookheight="20.813rem"
+            style={{
+              backgroundImage: `url(${card?.imageUrls?.[0] || ""})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           />
           <Div
             className="AuctionDetailContainer"
@@ -298,7 +303,7 @@ function Auction() {
                 height="1.875rem"
                 fontsize="1rem"
                 color={Gray1}
-                notebookwidth="8.625rem"
+                notebookwidth="9.625rem"
                 notebookheight="1rem"
                 notebookfontsize="0.563rem"
               >
