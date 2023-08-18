@@ -27,7 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         {/** Main */}
         <Route path="/CardRegistration" element={<CardRegistration />} />
-        <Route path="/Auction" element={<Auction />} />
+        <Route path="/Auction/:id" element={<Auction />} />
         <Route path="/FinishAuction" element={<FinishAuction />} />
         <Route path="/FinishAuctionDetail" element={<FinishAuctionDetail />} />
         <Route path="/FinishAuctionDetailGeneral" element={<FinishAuctionDetailGeneral />} />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import firestore from "../../Firebase/firestore";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
@@ -9,6 +10,12 @@ import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/Auction/${id}`);
+  };
+
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
 
@@ -97,7 +104,7 @@ const Home = () => {
           gridtemplatecolumns="repeat(4, 1fr)"
         >
           {cards.map((card) => (
-            <Preview key={card.id} card={card} />
+            <Preview key={card.id} card={card} onClick={() => handleCardClick(card.id)} />
           ))}
         </Div>
         <Div

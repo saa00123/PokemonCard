@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import database from "../../Firebase/database";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
@@ -9,7 +9,7 @@ import Header from "../../components/BaseComponents/Header";
 import PokemonImage from "../../components/ImageComponents/PokemonImage";
 
 function Auction() {
-  const navigate = useNavigate();
+  const { id } = useParams();
 
   const Default = Color({ color: "Default" });
   const Gray1 = Color({ color: "Gray1" });

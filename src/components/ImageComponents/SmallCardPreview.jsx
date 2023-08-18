@@ -3,7 +3,7 @@ import firestore from "../../Firebase/firestore";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
-const SmallCardPreview = ({ card }) => {
+const SmallCardPreview = ({ card, onClick }) => {
   const Default = Color({ color: "Default" });
   const Black = Color({ color: "Black" });
   const Red = Color({ color: "Red" });
@@ -117,6 +117,7 @@ const SmallCardPreview = ({ card }) => {
       backgroundcolor={Default}
       notebookwidth="14.563rem"
       notebookheight="25.438rem"
+      onClick={onClick}
     >
       <Div
         className="PreviewImage"
