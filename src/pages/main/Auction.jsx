@@ -1,6 +1,9 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import database from "../../Firebase/database";
+import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
@@ -12,45 +15,161 @@ function Auction() {
   const { id } = useParams();
 
   const Default = Color({ color: "Default" });
+  const Black = Color({ color: "Black" });
+  const Red = Color({ color: "Red" });
   const Gray1 = Color({ color: "Gray1" });
 
+  /** 카드 정보 불러오기 */
+  const [cards, setCards] = useState([]);
+  const [card, setCard] = useState(null);
+
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setCards(cardData);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, []);
+
+  useEffect(() => {
+    const selectedCard = cards.find((c) => c.id === id);
+    setCard(selectedCard);
+  }, [cards, id]);
+
+  /** 남은 시간 */
+  const [remainingTime, setRemainingTime] = useState("");
+  const [timeColor, setTimeColor] = useState(Default);
+
+  useEffect(() => {
+    if (!card) return;
+
+    const updateRemainingTime = () => {
+      const now = new Date();
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        setRemainingTime(
+          `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`,
+        );
+      } else if (now > endTime) {
+        setRemainingTime("경매 종료");
+      } else {
+        setRemainingTime("경매 대기 중");
+      }
+    };
+
+    const checkRemainingTimeColor = () => {
+      const now = new Date();
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        if (hours < 0.5) {
+          setTimeColor(Red);
+        } else {
+          setTimeColor(Black);
+        }
+      } else {
+        setTimeColor(Black);
+      }
+    };
+
+    updateRemainingTime();
+    checkRemainingTimeColor();
+
+    const intervalId = setInterval(() => {
+      updateRemainingTime();
+      checkRemainingTimeColor();
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [card?.date?.startDate, card?.date?.endDate]);
+
   /** 입찰 버튼 */
-  const [auctionPrice, setAuctionPrice] = useState(100);
+  const [auctionPrice, setAuctionPrice] = useState(0); // 초기값 설정
 
-  const handlePriceIncrease = () => {
-    if (auctionPrice < 10000) {
-      setAuctionPrice((prevPrice) => prevPrice + 100);
-    } else if (auctionPrice < 100000) {
-      setAuctionPrice((prevPrice) => prevPrice + 1000);
-    } else if (auctionPrice < 1000000) {
-      setAuctionPrice((prevPrice) => prevPrice + 5000);
-    } else {
-      setAuctionPrice((prevPrice) => prevPrice + 10000);
+  useEffect(() => {
+    if (card) {
+      setAuctionPrice(card.price.bidUnit);
+    }
+  }, [card]);
+
+  const getBidUnitBasedOnCurrentPrice = () => {
+    if (currentPrice < 10000) {
+      return 100;
+    }
+    if (currentPrice < 100000) {
+      return 1000;
+    }
+    if (currentPrice < 1000000) {
+      return 5000;
+    }
+    return 10000;
+  };
+
+  const handleAuctionPriceIncrease = () => {
+    const bidUnit = getBidUnitBasedOnCurrentPrice();
+    setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit); // Ensure numbers are added
+  };
+
+  const handleAuctionPriceDecrease = () => {
+    const bidUnit = getBidUnitBasedOnCurrentPrice();
+    if (auctionPrice > bidUnit) {
+      setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit); // Ensure numbers are subtracted
     }
   };
 
-  const handlePriceDecrease = () => {
-    if (auctionPrice <= 100) return;
-
-    if (auctionPrice <= 10000) {
-      setAuctionPrice((prevPrice) => prevPrice - 100);
-    } else if (auctionPrice <= 100000) {
-      setAuctionPrice((prevPrice) => prevPrice - 1000);
-    } else if (auctionPrice <= 1000000) {
-      setAuctionPrice((prevPrice) => prevPrice - 5000);
-    } else {
-      setAuctionPrice((prevPrice) => prevPrice - 10000);
-    }
-  };
-
-  const handlePriceChange = (e) => {
-    setAuctionPrice(Number(e.target.value));
+  const handleAuctionPriceChange = (e) => {
+    setAuctionPrice(Number(e.target.value.replace(/,/g, ""))); // ,를 제거하고 숫자로 변환
   };
 
   /** 입찰가를 Firebase RealtimeDatabase에 저장 */
   const writeData = () => {
+    const updatedPrice = Number(currentPrice) + Number(auctionPrice); // Ensure numbers are added, not concatenated as strings
+    setCurrentPrice(updatedPrice);
+
     const data = {
-      price: auctionPrice,
+      price: currentPrice + auctionPrice,
     };
 
     const newDataRef = database.ref("price").push();
@@ -66,19 +185,23 @@ function Auction() {
   };
 
   /** 실시간 현재가 */
-  const [startPrice, setStartPrice] = useState(0);
+  const [currentPrice, setCurrentPrice] = useState(card ? Number(card.price.startPrice) : 0);
 
   useEffect(() => {
     const priceRef = database.ref("currentPrice");
     priceRef.on("value", (snapshot) => {
-      const latestPrice = snapshot.val()?.price || 0;
-      setStartPrice((prev) => prev + latestPrice);
+      const latestPrice = snapshot.val()?.price
+        ? Number(snapshot.val().price)
+        : card
+        ? Number(card.price.startPrice)
+        : 0;
+      setCurrentPrice(latestPrice);
     });
 
     return () => {
       priceRef.off();
     };
-  }, []);
+  }, [card]);
 
   /** 포켓몬 이미지 랜덤 생성 */
   const [randomId, setRandomId] = useState(null);
@@ -87,12 +210,10 @@ function Auction() {
     setRandomId(Math.floor(Math.random() * 1000) + 1);
   }, []);
 
-  const { data, isLoading, error } = PokemonImage(randomId);
-
-  if (isLoading || !randomId) return <div>Loading...</div>;
-  if (error) return <div>Error loading image</div>;
+  const { data } = PokemonImage(randomId);
 
   const pokemonImageUrl = data?.sprites?.front_default;
+
   return (
     <div>
       <Header />
@@ -154,7 +275,7 @@ function Auction() {
               notebookheight="2.5rem"
               notebookfontsize="1.5rem"
             >
-              마샤도 싸게 가져가세요
+              {card?.title}
             </Div>
             <Div
               className="StartDateAndSeller"
@@ -181,7 +302,7 @@ function Auction() {
                 notebookheight="1rem"
                 notebookfontsize="0.563rem"
               >
-                시작일 : 2023.07.19 00:09:00
+                시작일 : {card?.date.startDate} 09:00:00
               </Div>
               <Div
                 className="Seller"
@@ -212,7 +333,7 @@ function Auction() {
               notebookheight="1rem"
               notebookfontsize="0.563rem"
             >
-              종료일 : 2023.07.22 00:21:00
+              종료일 : {card?.date.endDate} 21:00:00
             </Div>
             <Div
               className="CardInformation"
@@ -264,7 +385,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookmargin="0 0.188rem 0 0"
               >
-                RRR
+                {card?.information.rating.label}
               </Div>
               <Div
                 className="CardSeries"
@@ -284,7 +405,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookpadding="0 0.313rem"
               >
-                [S5a] 쌍벽의 파이터
+                {card?.information.series}
               </Div>
             </Div>
             <Div
@@ -363,7 +484,7 @@ function Auction() {
                 notebookheight="1.75rem"
                 notebookfontsize="0.875rem"
               >
-                강동구 천호동 피의 사거리
+                {card?.trading}
               </Div>
             </Div>
             <Div
@@ -415,7 +536,7 @@ function Auction() {
                   notebookheight="1.875rem"
                   notebookfontsize="1.375rem"
                 >
-                  9,000,000
+                  {card?.price.startPrice}
                 </Div>
                 <Div
                   className="StartPirceUnit"
@@ -480,7 +601,7 @@ function Auction() {
                   notebookheight="1.875rem"
                   notebookfontsize="1.375rem"
                 >
-                  10,000
+                  {card?.price.bidUnit}
                 </Div>
                 <Div
                   className="BidUnit"
@@ -536,8 +657,9 @@ function Auction() {
                 notebookwidth="9.5rem"
                 notebookheight="2.188rem"
                 notebookfontsize="1.375rem"
+                color={timeColor}
               >
-                24 : 03 : 12
+                {remainingTime}
               </Div>
             </Div>
             <Div
@@ -587,7 +709,7 @@ function Auction() {
                   notebookheight="3rem"
                   notebookfontsize="1.875rem"
                 >
-                  {startPrice.toLocaleString()}
+                  {typeof currentPrice === "number" ? currentPrice.toLocaleString() : "0"}
                 </Div>
                 <Div
                   className="PriceUnit"
@@ -661,7 +783,7 @@ function Auction() {
               notebookborder="none"
               notebookbackgroundcolor={Default}
               notebookcolor="#000000"
-              onClick={handlePriceDecrease}
+              onClick={handleAuctionPriceDecrease}
             >
               -
             </Button>
@@ -681,8 +803,8 @@ function Auction() {
               notebookheight="3.25rem"
               notebookfontsize="1.25rem"
               notebookmargin="0"
-              value={auctionPrice.toLocaleString()}
-              onChange={handlePriceChange}
+              value={auctionPrice ? auctionPrice.toLocaleString() : ""}
+              onChange={handleAuctionPriceChange}
             />
             <Button
               className="PlusBtn"
@@ -700,7 +822,7 @@ function Auction() {
               notebookborder="none"
               notebookbackgroundcolor={Default}
               notebookcolor="#000000"
-              onClick={handlePriceIncrease}
+              onClick={handleAuctionPriceIncrease}
             >
               +
             </Button>

@@ -61,6 +61,8 @@ const SmallCardPreview = ({ card, onClick }) => {
             .toString()
             .padStart(2, "0")}`,
         );
+      } else if (now > endTime) {
+        setRemainingTime("경매 종료");
       } else {
         setRemainingTime("경매 대기 중");
       }
@@ -82,7 +84,7 @@ const SmallCardPreview = ({ card, onClick }) => {
 
       if (diff > 0) {
         const hours = Math.floor(diff / (1000 * 60 * 60));
-        if (hours < 1) {
+        if (hours < 0.5) {
           setTimeColor(Red);
         } else {
           setTimeColor(Black);

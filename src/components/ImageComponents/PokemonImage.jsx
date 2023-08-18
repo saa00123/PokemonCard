@@ -8,7 +8,7 @@ const fetchPokemon = async (id) => {
   return response.data;
 };
 
-const PokemonImage = (id) => {
+const usePokemonImage = (id) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,4 +31,4 @@ const PokemonImage = (id) => {
   return { data, error, isLoading };
 };
 
-export default PokemonImage;
+export default usePokemonImage;
