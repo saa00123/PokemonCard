@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const DivContainer = styled.div`
+const LabelContainer = styled.div`
   display: ${(props) => props.display};
   flex-direction: ${(props) => props.flexdirection};
   justify-content: ${(props) => props.justifycontent};
@@ -27,7 +27,6 @@ const DivContainer = styled.div`
   position: ${(props) => props.position};
   overflow-x: ${(props) => props.overflowx};
   overflow-y: ${(props) => props.overflowy};
-  word-wrap: ${(props) => props.wordwrap};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -56,7 +55,7 @@ const DivContainer = styled.div`
   }
 `;
 
-const BasicDiv = (props) => {
+const Label = (props) => {
   const {
     display,
     flexdirection,
@@ -83,7 +82,6 @@ const BasicDiv = (props) => {
     position,
     overflowx,
     overflowy,
-    wordwrap,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -112,7 +110,7 @@ const BasicDiv = (props) => {
   } = props;
 
   return (
-    <DivContainer
+    <LabelContainer
       display={display}
       flexdirection={flexdirection}
       justifycontent={justifycontent}
@@ -138,7 +136,6 @@ const BasicDiv = (props) => {
       position={position}
       overflowx={overflowx}
       overflowy={overflowy}
-      wordwrap={wordwrap}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
@@ -165,8 +162,8 @@ const BasicDiv = (props) => {
       {...rest}
     >
       {children}
-    </DivContainer>
+    </LabelContainer>
   );
 };
 
-export default BasicDiv;
+export default Label;

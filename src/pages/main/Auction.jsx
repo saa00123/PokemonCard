@@ -1,50 +1,218 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Slider from "react-slick";
+import database from "../../Firebase/database";
+import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
 import Color from "../../components/BaseComponents/Color";
 import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 import Header from "../../components/BaseComponents/Header";
 import PokemonImage from "../../components/ImageComponents/PokemonImage";
+import ImageSlider from "../../components/ImageComponents/ImageSlider";
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  adaptiveHeight: true,
+};
 
 function Auction() {
-  const navigate = useNavigate();
+  const { id } = useParams();
 
   const Default = Color({ color: "Default" });
+  const Black = Color({ color: "Black" });
+  const Red = Color({ color: "Red" });
   const Gray1 = Color({ color: "Gray1" });
 
+  /** 카드 정보 불러오기 */
+  const [cards, setCards] = useState([]);
+  const [card, setCard] = useState(null);
+
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        setCards(cardData);
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, []);
+
+  useEffect(() => {
+    const selectedCard = cards.find((c) => c.id === id);
+    setCard(selectedCard);
+  }, [cards, id]);
+
+  /** 남은 시간 */
+  const [remainingTime, setRemainingTime] = useState("");
+  const [timeColor, setTimeColor] = useState(Default);
+
+  useEffect(() => {
+    if (!card) return;
+
+    const updateRemainingTime = () => {
+      const now = new Date();
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        setRemainingTime(
+          `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`,
+        );
+      } else if (now > endTime) {
+        setRemainingTime("경매 종료");
+      } else {
+        setRemainingTime("경매 대기 중");
+      }
+    };
+
+    const checkRemainingTimeColor = () => {
+      const now = new Date();
+      const startTime = new Date(`${card.date.startDate}T09:00:00`);
+      const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+      let diff;
+      if (now < startTime) {
+        diff = 0;
+      } else if (now >= startTime && now <= endTime) {
+        diff = endTime - now;
+      } else {
+        diff = 0;
+      }
+
+      if (diff > 0) {
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        if (hours < 0.5) {
+          setTimeColor(Red);
+        } else {
+          setTimeColor(Black);
+        }
+      } else {
+        setTimeColor(Black);
+      }
+    };
+
+    updateRemainingTime();
+    checkRemainingTimeColor();
+
+    const intervalId = setInterval(() => {
+      updateRemainingTime();
+      checkRemainingTimeColor();
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [card?.date?.startDate, card?.date?.endDate]);
+
   /** 입찰 버튼 */
-  const [auctionPrice, setAuctionPrice] = useState(100);
+  const [auctionPrice, setAuctionPrice] = useState(0); // 초기값 설정
 
-  const handlePriceIncrease = () => {
-    if (auctionPrice < 10000) {
-      setAuctionPrice((prevPrice) => prevPrice + 100);
-    } else if (auctionPrice < 100000) {
-      setAuctionPrice((prevPrice) => prevPrice + 1000);
-    } else if (auctionPrice < 1000000) {
-      setAuctionPrice((prevPrice) => prevPrice + 5000);
-    } else {
-      setAuctionPrice((prevPrice) => prevPrice + 10000);
+  useEffect(() => {
+    if (card) {
+      setAuctionPrice(card.price.bidUnit);
+    }
+  }, [card]);
+
+  const getBidUnitBasedOnCurrentPrice = () => {
+    if (currentPrice < 10000) {
+      return 100;
+    }
+    if (currentPrice < 100000) {
+      return 1000;
+    }
+    if (currentPrice < 1000000) {
+      return 5000;
+    }
+    return 10000;
+  };
+
+  const handleAuctionPriceIncrease = () => {
+    const bidUnit = getBidUnitBasedOnCurrentPrice();
+    setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit); // Ensure numbers are added
+  };
+
+  const handleAuctionPriceDecrease = () => {
+    const bidUnit = getBidUnitBasedOnCurrentPrice();
+    if (auctionPrice > bidUnit) {
+      setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit); // Ensure numbers are subtracted
     }
   };
 
-  const handlePriceDecrease = () => {
-    if (auctionPrice <= 100) return;
-
-    if (auctionPrice <= 10000) {
-      setAuctionPrice((prevPrice) => prevPrice - 100);
-    } else if (auctionPrice <= 100000) {
-      setAuctionPrice((prevPrice) => prevPrice - 1000);
-    } else if (auctionPrice <= 1000000) {
-      setAuctionPrice((prevPrice) => prevPrice - 5000);
-    } else {
-      setAuctionPrice((prevPrice) => prevPrice - 10000);
-    }
+  const handleAuctionPriceChange = (e) => {
+    setAuctionPrice(Number(e.target.value.replace(/,/g, ""))); // ,를 제거하고 숫자로 변환
   };
 
-  const handlePriceChange = (e) => {
-    setAuctionPrice(Number(e.target.value));
+  /** 입찰가를 Firebase RealtimeDatabase에 저장 */
+  const writeData = () => {
+    const updatedPrice = Number(currentPrice) + Number(auctionPrice); // Ensure numbers are added, not concatenated as strings
+    setCurrentPrice(updatedPrice);
+
+    const data = {
+      price: currentPrice + auctionPrice,
+    };
+
+    const newDataRef = database.ref("price").push();
+    newDataRef
+      .set(data)
+      .then(() => {
+        console.log("데이터 쓰기 성공!");
+      })
+      .catch((error) => {
+        console.error("데이터 쓰기 실패:", error);
+      });
+    database.ref("currentPrice").set(data);
   };
+
+  /** 실시간 현재가 */
+  const [currentPrice, setCurrentPrice] = useState(card ? Number(card.price.startPrice) : 0);
+
+  useEffect(() => {
+    const priceRef = database.ref("currentPrice");
+    priceRef.on("value", (snapshot) => {
+      const latestPrice = snapshot.val()?.price
+        ? Number(snapshot.val().price)
+        : card
+        ? Number(card.price.startPrice)
+        : 0;
+      setCurrentPrice(latestPrice);
+    });
+
+    return () => {
+      priceRef.off();
+    };
+  }, [card]);
 
   /** 포켓몬 이미지 랜덤 생성 */
   const [randomId, setRandomId] = useState(null);
@@ -53,12 +221,10 @@ function Auction() {
     setRandomId(Math.floor(Math.random() * 1000) + 1);
   }, []);
 
-  const { data, isLoading, error } = PokemonImage(randomId);
-
-  if (isLoading || !randomId) return <div>Loading...</div>;
-  if (error) return <div>Error loading image</div>;
+  const { data } = PokemonImage(randomId);
 
   const pokemonImageUrl = data?.sprites?.front_default;
+
   return (
     <div>
       <Header />
@@ -86,14 +252,26 @@ function Auction() {
           notebookwidth="47.938rem"
           notebookheight="25.375rem"
         >
-          <Div
-            className="UploadImageContainer"
-            width="24.125rem"
-            height="37.5rem"
-            border="solid 1px"
-            notebookwidth="15.625rem"
-            notebookheight="20.813rem"
-          />
+          {card?.imageUrls?.length === 1 ? (
+            <Div
+              className="UploadImageContainer"
+              width="24.125rem"
+              height="37.5rem"
+              border="solid 1px"
+              notebookwidth="15.625rem"
+              notebookheight="20.813rem"
+              style={{
+                backgroundImage: `url(${card.imageUrls[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          ) : card?.imageUrls?.length > 1 ? (
+            <ImageSlider images={card.imageUrls} />
+          ) : (
+            <p>이미지가 없습니다.</p>
+          )}
+
           <Div
             className="AuctionDetailContainer"
             display="flex"
@@ -120,7 +298,7 @@ function Auction() {
               notebookheight="2.5rem"
               notebookfontsize="1.5rem"
             >
-              마샤도 싸게 가져가세요
+              {card?.title}
             </Div>
             <Div
               className="StartDateAndSeller"
@@ -143,11 +321,11 @@ function Auction() {
                 height="1.875rem"
                 fontsize="1rem"
                 color={Gray1}
-                notebookwidth="8.625rem"
+                notebookwidth="9.625rem"
                 notebookheight="1rem"
                 notebookfontsize="0.563rem"
               >
-                시작일 : 2023.07.19 00:09:00
+                시작일 : {card?.date.startDate} 09:00:00
               </Div>
               <Div
                 className="Seller"
@@ -178,7 +356,7 @@ function Auction() {
               notebookheight="1rem"
               notebookfontsize="0.563rem"
             >
-              종료일 : 2023.07.22 00:21:00
+              종료일 : {card?.date.endDate} 21:00:00
             </Div>
             <Div
               className="CardInformation"
@@ -230,7 +408,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookmargin="0 0.188rem 0 0"
               >
-                RRR
+                {card?.information.rating.label}
               </Div>
               <Div
                 className="CardSeries"
@@ -250,7 +428,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookpadding="0 0.313rem"
               >
-                [S5a] 쌍벽의 파이터
+                {card?.information.series.label}
               </Div>
             </Div>
             <Div
@@ -291,7 +469,7 @@ function Auction() {
                 notebookheight="1.75rem"
                 notebookfontsize="0.875rem"
               >
-                가능
+                {card?.trading[0] === "온라인 거래" ? "가능" : "불가능"}
               </Div>
             </Div>
             <Div
@@ -329,7 +507,7 @@ function Auction() {
                 notebookheight="1.75rem"
                 notebookfontsize="0.875rem"
               >
-                강동구 천호동 피의 사거리
+                {card?.trading[1]?.method === "오프라인 거래" ? card?.trading[1]?.place : "불가능"}
               </Div>
             </Div>
             <Div
@@ -369,7 +547,7 @@ function Auction() {
                 notebookheight="1.875rem"
               >
                 <Div
-                  className="StartPirce"
+                  className="StartPrice"
                   display="flex"
                   justifycontent="end"
                   alignitems="end"
@@ -381,7 +559,7 @@ function Auction() {
                   notebookheight="1.875rem"
                   notebookfontsize="1.375rem"
                 >
-                  9,000,000
+                  {card?.price.startPrice}
                 </Div>
                 <Div
                   className="StartPirceUnit"
@@ -446,7 +624,7 @@ function Auction() {
                   notebookheight="1.875rem"
                   notebookfontsize="1.375rem"
                 >
-                  10,000
+                  {card?.price.bidUnit}
                 </Div>
                 <Div
                   className="BidUnit"
@@ -502,8 +680,9 @@ function Auction() {
                 notebookwidth="9.5rem"
                 notebookheight="2.188rem"
                 notebookfontsize="1.375rem"
+                color={timeColor}
               >
-                24 : 03 : 12
+                {remainingTime}
               </Div>
             </Div>
             <Div
@@ -553,7 +732,7 @@ function Auction() {
                   notebookheight="3rem"
                   notebookfontsize="1.875rem"
                 >
-                  9,000,000
+                  {typeof currentPrice === "number" ? currentPrice.toLocaleString() : "0"}
                 </Div>
                 <Div
                   className="PriceUnit"
@@ -627,7 +806,7 @@ function Auction() {
               notebookborder="none"
               notebookbackgroundcolor={Default}
               notebookcolor="#000000"
-              onClick={handlePriceDecrease}
+              onClick={handleAuctionPriceDecrease}
             >
               -
             </Button>
@@ -647,8 +826,8 @@ function Auction() {
               notebookheight="3.25rem"
               notebookfontsize="1.25rem"
               notebookmargin="0"
-              value={auctionPrice.toLocaleString()}
-              onChange={handlePriceChange}
+              value={auctionPrice ? auctionPrice.toLocaleString() : ""}
+              onChange={handleAuctionPriceChange}
             />
             <Button
               className="PlusBtn"
@@ -666,13 +845,13 @@ function Auction() {
               notebookborder="none"
               notebookbackgroundcolor={Default}
               notebookcolor="#000000"
-              onClick={handlePriceIncrease}
+              onClick={handleAuctionPriceIncrease}
             >
               +
             </Button>
           </Div>
           <Button
-            className="AuctinoBtn"
+            className="AuctionBtn"
             type="submit"
             width="12.5rem"
             height="4.063rem"
@@ -683,6 +862,7 @@ function Auction() {
             notebookheight="2.25rem"
             notebookfontsize="0.875rem"
             notebookborderradius="0.5rem"
+            onClick={writeData}
           >
             입찰하기
           </Button>
@@ -693,3 +873,55 @@ function Auction() {
 }
 
 export default Auction;
+
+// 아래 코드는 로그인 처리 후 입찰가 상태관리 코드
+// /** 입찰가를 Firebase RealtimeDatabase에 저장 */
+// const writeData = () => {
+//   const data = {
+//     price: auctionPrice,
+//   };
+
+//   // 새로운 입찰가 저장
+//   const newDataRef = database.ref("price").push();
+//   newDataRef
+//     .set(data)
+//     .then(() => {
+//       console.log("데이터 쓰기 성공!");
+//     })
+//     .catch((error) => {
+//       console.error("데이터 쓰기 실패:", error);
+//     });
+
+//   // currentPrice 업데이트
+//   database.ref("currentPrice").transaction((currentValue) => {
+//     return (currentValue || 0) + auctionPrice;
+//   });
+// };
+
+// /** 실시간 현재가 */
+// const [startPrice, setStartPrice] = useState(0);
+
+// useEffect(() => {
+//   const priceRef = database.ref("currentPrice");
+//   priceRef.on("value", (snapshot) => {
+//     const latestPrice = snapshot.val() || 0;
+//     setStartPrice(latestPrice);
+//   });
+
+//   return () => {
+//     priceRef.off();
+//   };
+// }, []);
+
+// 아래 규칙은 후에 로그인이 구현되면 사용할 RealtimeDatabase 규칙
+// {
+//   "rules": {
+//     ".read": "auth != null",
+//     "bids": {
+//       ".write": "auth != null"
+//     },
+//     "currentBid": {
+//       ".write": "auth != null"
+//     }
+//   }
+// }
