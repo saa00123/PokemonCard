@@ -2,6 +2,7 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Slider from "react-slick";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -10,6 +11,15 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 import Header from "../../components/BaseComponents/Header";
 import PokemonImage from "../../components/ImageComponents/PokemonImage";
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  adaptiveHeight: true,
+};
 
 function Auction() {
   const { id } = useParams();
@@ -241,19 +251,43 @@ function Auction() {
           notebookwidth="47.938rem"
           notebookheight="25.375rem"
         >
-          <Div
-            className="UploadImageContainer"
-            width="24.125rem"
-            height="37.5rem"
-            border="solid 1px"
-            notebookwidth="15.625rem"
-            notebookheight="20.813rem"
-            style={{
-              backgroundImage: `url(${card?.imageUrls?.[0] || ""})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          />
+          {card?.imageUrls?.length === 1 ? (
+            <Div
+              className="UploadImageContainer"
+              width="24.125rem"
+              height="37.5rem"
+              border="solid 1px"
+              notebookwidth="15.625rem"
+              notebookheight="20.813rem"
+              style={{
+                backgroundImage: `url(${card.imageUrls[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          ) : card?.imageUrls?.length > 1 ? (
+            <Slider {...settings}>
+              {card.imageUrls.map((image) => (
+                <Div
+                  key={image}
+                  className="UploadImageContainer"
+                  width="24.125rem"
+                  height="37.5rem"
+                  border="solid 1px"
+                  notebookwidth="15.625rem"
+                  notebookheight="20.813rem"
+                  style={{
+                    backgroundImage: `url(${image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+              ))}
+            </Slider>
+          ) : (
+            <p>이미지가 없습니다.</p>
+          )}
+
           <Div
             className="AuctionDetailContainer"
             display="flex"
