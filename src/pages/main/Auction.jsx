@@ -444,7 +444,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookpadding="0 0.313rem"
               >
-                {card?.information.series}
+                {card?.information.series.label}
               </Div>
             </Div>
             <Div
@@ -563,7 +563,7 @@ function Auction() {
                 notebookheight="1.875rem"
               >
                 <Div
-                  className="StartPirce"
+                  className="StartPrice"
                   display="flex"
                   justifycontent="end"
                   alignitems="end"
