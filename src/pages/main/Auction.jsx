@@ -11,6 +11,7 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 import Header from "../../components/BaseComponents/Header";
 import PokemonImage from "../../components/ImageComponents/PokemonImage";
+import ImageSlider from "../../components/ImageComponents/ImageSlider";
 
 const settings = {
   dots: true,
@@ -266,24 +267,7 @@ function Auction() {
               }}
             />
           ) : card?.imageUrls?.length > 1 ? (
-            <Slider {...settings}>
-              {card.imageUrls.map((image) => (
-                <Div
-                  key={image}
-                  className="UploadImageContainer"
-                  width="24.125rem"
-                  height="37.5rem"
-                  border="solid 1px"
-                  notebookwidth="15.625rem"
-                  notebookheight="20.813rem"
-                  style={{
-                    backgroundImage: `url(${image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                />
-              ))}
-            </Slider>
+            <ImageSlider images={card.imageUrls} />
           ) : (
             <p>이미지가 없습니다.</p>
           )}
@@ -485,7 +469,7 @@ function Auction() {
                 notebookheight="1.75rem"
                 notebookfontsize="0.875rem"
               >
-                가능
+                {card?.trading[0] === "온라인 거래" ? "가능" : "불가능"}
               </Div>
             </Div>
             <Div
@@ -523,7 +507,7 @@ function Auction() {
                 notebookheight="1.75rem"
                 notebookfontsize="0.875rem"
               >
-                {card?.trading}
+                {card?.trading[1]?.method === "오프라인 거래" ? card?.trading[1]?.place : "불가능"}
               </Div>
             </Div>
             <Div

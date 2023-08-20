@@ -169,12 +169,10 @@ function CardRegistration() {
 
   const handleOnlineCheckboxClick = () => {
     setIsOnlineChecked(!isOnlineChecked);
-    setIsOfflineChecked(false);
   };
 
   const handleOfflineCheckboxClick = () => {
     setIsOfflineChecked(!isOfflineChecked);
-    setIsOnlineChecked(false);
   };
 
   const handleOfflineTradingPlaceChange = (e) => {

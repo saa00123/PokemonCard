@@ -127,8 +127,7 @@ const Dropdown = ({
   disabled,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [shouldShowInitialOption, setShouldShowInitialOption] = useState(true);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleOptionClick = (option, e) => {
     e.stopPropagation();
@@ -175,7 +174,7 @@ const Dropdown = ({
         notebookbuttonfontsize={notebookbuttonfontsize}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {selectedOption ? selectedOption.label : options[0].label}
+        {selectedOption ? selectedOption.label : "선택"} {/* 선택하지 않았을 때 기본값 */}
         <Polygon />
       </DropdownButton>
       {isOpen && (
@@ -186,8 +185,7 @@ const Dropdown = ({
         >
           {options.map(
             (option) =>
-              option !== selectedOption &&
-              (!shouldShowInitialOption || option !== options[0]) && (
+              option !== selectedOption && (
                 <DropdownMenuItem
                   menufontsize={menufontsize}
                   notebookmenufontsize={notebookmenufontsize}
