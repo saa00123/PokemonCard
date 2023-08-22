@@ -8,6 +8,7 @@ import EndPreview from "../../components/ImageComponents/SmallEndAuction";
 const MyPage = () => {
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
+
   return (
     <Div className="MainContainer">
       <Header />

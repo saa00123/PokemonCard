@@ -129,7 +129,7 @@ const PriceUnit = styled.div`
   }
 `;
 
-const SmallCardPreview = () => (
+const EndPreview = () => (
   <PreviewContainer>
     <PreviewImage />
     <DetailContainer>
@@ -151,4 +151,4 @@ const SmallCardPreview = () => (
   </PreviewContainer>
 );
 
-export default SmallCardPreview;
+export default EndPreview;
