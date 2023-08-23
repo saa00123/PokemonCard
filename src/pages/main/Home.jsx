@@ -1,9 +1,11 @@
+/* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import firestore from "../../Firebase/firestore";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
+import Button from "../../components/BaseComponents/Button";
 import Preview from "../../components/ImageComponents/SmallCardPreview";
 import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
@@ -18,6 +20,7 @@ const Home = () => {
 
   const Gray2 = Color({ color: "Gray2" });
   const White = Color({ color: "Default" });
+  const Red = Color({ color: "Red" });
 
   const [cards, setCards] = useState([]);
 
@@ -40,6 +43,31 @@ const Home = () => {
 
     fetchAllCards();
   }, []);
+
+  /** 페이징 */
+  const [currentPage, setCurrentPage] = useState(1);
+  const perPage = 16;
+
+  const indexOfLastCard = currentPage * perPage;
+  const indexOfFirstCard = indexOfLastCard - perPage;
+  const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
+
+  const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
+  const handleNextPage = () => {
+    if (currentPage < Math.ceil(cards.length / perPage)) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(cards.length / perPage); i++) {
+    pageNumbers.push(i);
+  }
 
   return (
     <Div className="MainContainer">
@@ -115,7 +143,52 @@ const Home = () => {
           margin=" 1.5rem auto 3rem auto"
           notebookfontsize="1.5rem"
         >
-          {"<"} 1 2 3 4 5 6 {">"}
+          <Button
+            type="button"
+            width="fit-content"
+            fontsize="2rem"
+            fontWeight="700"
+            border="none"
+            backgroundcolor="none"
+            color="#000"
+            margin=" 1.5rem auto 3rem auto"
+            notebookfontsize="1.5rem"
+            onClick={handlePrevPage}
+          >
+            {"<"}
+          </Button>
+          {pageNumbers.map((number) => (
+            <Button
+              type="button"
+              className={number === currentPage ? "paging-button active" : "paging-button"}
+              width="fit-content"
+              fontsize="2rem"
+              fontWeight="700"
+              border="none"
+              backgroundcolor="none"
+              color={number === currentPage ? Red : "#000"}
+              margin=" 1.5rem auto 3rem auto"
+              notebookfontsize="1.5rem"
+              key={number}
+              onClick={() => handlePageClick(number)}
+            >
+              {number}
+            </Button>
+          ))}
+          <Button
+            type="button"
+            width="fit-content"
+            fontsize="2rem"
+            fontWeight="700"
+            border="none"
+            backgroundcolor="none"
+            color="#000"
+            margin=" 1.5rem auto 3rem auto"
+            notebookfontsize="1.5rem"
+            onClick={handleNextPage}
+          >
+            {">"}
+          </Button>
         </Div>
       </Div>
     </Div>
