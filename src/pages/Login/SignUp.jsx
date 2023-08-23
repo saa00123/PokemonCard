@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
 import app from "../../Firebase/firebase";
 import firestore from "../../Firebase/firestore";
 import Color from "../../components/BaseComponents/Color";
@@ -31,8 +33,9 @@ function SignUp() {
   const [checkRepassword, setCheckRepassword] = useState(false);
   const [checkNickname, setCheckNickname] = useState("");
 
-  const { FieldValue } = app.firestore;
+  const navigate = useNavigate();
 
+  // password 조건 확인, repassword와 password가 같은지 확인
   useEffect(() => {
     if (password === repassword && checkPassword) setCheckRepassword(true);
     else setCheckRepassword(false);
@@ -56,6 +59,7 @@ function SignUp() {
       });
   }, []);
 
+  // 회원가입
   const onClickSignUp = () => {
     console.log(email, password, name, nickname);
     console.log("checkPassword : ", checkPassword, "checkEmail : ", checkEmail, "checkRepassword : ", checkRepassword);
@@ -65,9 +69,8 @@ function SignUp() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // 회원가입 성공
-        // const { user } = userCredential.user;
-        // console.log("Logged in user:", user);
+        // 회원가입 성공시
+        // user collection에 담아서 보낼 형식
         const docData = {
           name,
           nickname,
@@ -75,17 +78,26 @@ function SignUp() {
           buy: [],
           write: [],
         };
+
+        // user collection 접근
         firestore
           .collection("user")
           .doc(email)
           .set(docData)
           .then(() => {
             console.log("Document successfully written!");
+
+            // nickname collection 접근
+            const nicknamesRef = firestore.collection("nickname").doc("nickname");
+            nicknamesRef.update({
+              nicknameArray: firebase.firestore.FieldValue.arrayUnion(nickname),
+            });
+            alert("회원가입이 완료되었습니다");
+            navigate("/Login");
+          })
+          .catch(() => {
+            console.log("Document write fail!");
           });
-        const nicknames = app.firestore.collection("nickname").doc("nickname");
-        nicknames.update({
-          nicknameArray: firestore.FieldValue.arrayUnion(nickname),
-        });
       })
       .catch((error) => {
         // 회원가입 실패
@@ -96,10 +108,9 @@ function SignUp() {
         if (errorCode === "auth/email-already-in-use") alert("이미 존재하는 이메일입니다.");
         if (errorCode === "auth/invalid-email") alert("이메일을 다시 입력해주세요.");
       });
-
-    console.log(data);
   };
 
+  // nickname 중복 확인
   const onClickCheckNickname = () => {
     const nicknameRef = firestore.collection("nickname").doc("nickname");
     nicknameRef
@@ -122,6 +133,7 @@ function SignUp() {
       });
   };
 
+  // email 중복 확인
   const onClickCheckEmail = async () => {
     console.log(email);
     try {
