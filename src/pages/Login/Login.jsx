@@ -18,20 +18,20 @@ function Login() {
   const [error, setError] = useState(null);
 
   const handleSignIn = () => {
-    // app
-    //   .auth()
-    //   .signInWithEmailAndPassword(id, password)
-    //   .then((userCredential) => {
-    //     // 로그인 성공 시 처리
-    //     console.log("로그인 성공:", userCredential.user.multiFactor.user);
-    //     setError(null);
-    //     navigate("/");
-    //   })
-    //   .catch((error) => {
-    //     setError(error.message);
-    //   });
-    // const auth = getAuth();
-    // signInWithCustomToken(auth, token)
+    app
+      .auth()
+      .signInWithEmailAndPassword(id, password)
+      .then((userCredential) => {
+        // 로그인 성공 시 처리
+        console.log("로그인 성공:", userCredential.user.multiFactor.user);
+        setError(null);
+        navigate("/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+    // const auth = getAuth()
+    //   .signInWithCustomToken(auth, token)
     //   .then((userCredential) => {
     //     // Signed in
     //     const { user } = userCredential;
