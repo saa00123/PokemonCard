@@ -35,6 +35,7 @@ module.exports = {
     "no-empty-pattern": 0,
     "no-alert": 0,
     "react-hooks/exhaustive-deps": 0,
+    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "jsx-a11y/label-has-associated-control": [
       2,
       {

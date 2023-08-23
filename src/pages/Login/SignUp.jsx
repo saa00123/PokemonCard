@@ -23,56 +23,37 @@ function SignUp() {
   const [nickname, setNickname] = useState("");
 
   const [data, setData] = useState([]);
+  const [getNicknameArray, setGetNicknameArray] = useState([]);
 
   // 이메일, 비밀번호, 닉네임, 비밀번호 확인 조건에 맞는지 확인
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkEmail, setCheckEmail] = useState(false);
   const [checkRepassword, setCheckRepassword] = useState(false);
-  const [checkNickname, setCheckNickname] = useState(false);
+  const [checkNickname, setCheckNickname] = useState("");
+
+  const { FieldValue } = app.firestore;
 
   useEffect(() => {
-    if (password === repassword) setCheckRepassword(true);
+    if (password === repassword && checkPassword) setCheckRepassword(true);
     else setCheckRepassword(false);
     if (resPass.test(password)) setCheckPassword(true);
     else setCheckPassword(false);
-  }, [email, password, repassword, name, nickname]);
+  }, [password, repassword]);
 
-  // 이메일 사용가능 여부 확인
+  // firestore 닉네임 연결
   useEffect(() => {
-    const checkEmailAvailability = async () => {
-      try {
-        const signInMethods = await app.auth().fetchSignInMethodsForEmail(email);
-        console.log(signInMethods);
-        setCheckEmail(signInMethods.length === 0);
-      } catch (error) {
-        console.error("Error checking email availability:", error);
-        setCheckEmail(false);
-      }
-    };
-
-    // 이메일 입력이 변경될 때마다 확인
-    if (email) {
-      checkEmailAvailability();
-    }
-  }, [email]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const collectionRef = firestore.collection("user");
-        console.log(collectionRef.get().docs);
-        // const snapshot = await collectionRef.get();
-        // const dataArray = snapshot.docs.map((doc) => {
-        //   console.log(doc);
-        // });
-        // setData(dataArray);
-        // console.log(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    const nicknameRef = firestore.collection("nickname").doc("nickname");
+    nicknameRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setGetNicknameArray(doc.data().nicknameArray);
+          console.log("document data : ", getNicknameArray);
+        } else console.log("no such document!");
+      })
+      .catch((error) => {
+        console.log("Error getting document : ", error);
+      });
   }, []);
 
   const onClickSignUp = () => {
@@ -85,8 +66,26 @@ function SignUp() {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // 회원가입 성공
-        const { user } = userCredential.user;
-        console.log("Logged in user:", user);
+        // const { user } = userCredential.user;
+        // console.log("Logged in user:", user);
+        const docData = {
+          name,
+          nickname,
+          email,
+          buy: [],
+          write: [],
+        };
+        firestore
+          .collection("user")
+          .doc(email)
+          .set(docData)
+          .then(() => {
+            console.log("Document successfully written!");
+          });
+        const nicknames = app.firestore.collection("nickname").doc("nickname");
+        nicknames.update({
+          nicknameArray: firestore.FieldValue.arrayUnion(nickname),
+        });
       })
       .catch((error) => {
         // 회원가입 실패
@@ -96,9 +95,45 @@ function SignUp() {
         console.error("Login error:", errorMessage);
         if (errorCode === "auth/email-already-in-use") alert("이미 존재하는 이메일입니다.");
         if (errorCode === "auth/invalid-email") alert("이메일을 다시 입력해주세요.");
-        if (errorCode === "auth/missing-password") alert("비밀번호를 입력해주세요.");
+      });
+
+    console.log(data);
+  };
+
+  const onClickCheckNickname = () => {
+    const nicknameRef = firestore.collection("nickname").doc("nickname");
+    nicknameRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setGetNicknameArray(doc.data().nicknameArray);
+          console.log("document data : ", getNicknameArray);
+          if (nickname.length > 0 && doc.data().nicknameArray.includes(nickname)) {
+            console.log("nope");
+            setCheckNickname("nope");
+          } else {
+            console.log("ok");
+            setCheckNickname("ok");
+          }
+        } else console.log("no such document!");
+      })
+      .catch((error) => {
+        console.log("Error getting document : ", error);
       });
   };
+
+  const onClickCheckEmail = async () => {
+    console.log(email);
+    try {
+      const signInMethods = await app.auth().fetchSignInMethodsForEmail(email);
+      console.log(signInMethods);
+      setCheckEmail(signInMethods.length === 0);
+    } catch (error) {
+      console.error("Error checking email availability:", error);
+      setCheckEmail(false);
+    }
+  };
+
   return (
     <Div
       className="SignUpContainer"
@@ -150,8 +185,9 @@ function SignUp() {
               notebookdisplay="flex"
               margin="0 auto"
               notebookmargin="0 0 0 0"
+              // border="2px black solid"
             >
-              <Div className="NameContainer" margin="0 0 1.75rem 0">
+              <Div className="NameContainer" margin="0 0 1.75rem 0" float="left">
                 <Div
                   className="Name"
                   display="flex"
@@ -181,7 +217,13 @@ function SignUp() {
                   onChange={(e) => setName(e.target.value)}
                 />
               </Div>
-              <Div className="NicknameContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 2rem">
+              <Div
+                className="NicknameContainer"
+                margin="0 0 0.5rem 0"
+                height="fit-content"
+                notebookheight="fit-content"
+                notebookmargin=" 0 0 0 4rem"
+              >
                 <Div
                   className="Nickname"
                   display="flex"
@@ -195,69 +237,103 @@ function SignUp() {
                   notebookwidth="6.25rem"
                   notebookheight="35px"
                   notebookfontsize="1rem"
+                  // border="2px solid yellow"
                 >
                   닉네임
                 </Div>
                 <Div
+                  className="InputButtonContainer"
+                  position="relative"
                   display="flex"
                   flexdirection="column"
                   alignitems="center"
                   width="21.875rem"
-                  height="5.25rem"
+                  // height="5.25rem"
                   notebookwidth="fit-content"
                   notebookheight="fit-content"
                 >
-                  <Input
-                    placeholder="닉네임을 입력하세요."
-                    padding="0 0 0 1.313rem"
-                    width="21.875rem"
-                    height="3.75rem"
-                    fontsize="1rem"
-                    borderradius="15px"
-                    notebookwidth="15.625rem"
-                    notebookheight="3.125rem"
-                    notebookfontsize="1rem"
-                    notebookepadding="0 0 0 0.8rem"
-                    onChange={(e) => setNickname(e.target.value)}
-                  />
-                  {checkNickname ? (
-                    <Div
-                      className="NicknameWarning"
-                      display="flex"
-                      alignitems="center"
-                      width="21.438rem"
-                      height="1.5rem"
-                      color={Gray1}
-                      fontsize="0.75rem"
-                      padding="0 0 0 1.313rem"
-                      boxsizing="border-box"
+                  <Div className="InputContainer">
+                    <Input
+                      placeholder="닉네임을 입력하세요."
+                      padding="0 3.5rem 0 1.313rem"
+                      width="21.875rem"
+                      height="3.75rem"
+                      fontsize="1rem"
+                      borderradius="15px"
                       notebookwidth="15.625rem"
-                      notebookheight="1.25rem"
-                      notebookfontsize="0.625rem"
+                      notebookheight="3.125rem"
+                      notebookfontsize="1rem"
                       notebookepadding="0 0 0 0.8rem"
+                      onChange={(e) => setNickname(e.target.value)}
+                      // onBlur={handleBlur}
+                    />
+                  </Div>
+                  <Div
+                    className="ButtonContainer"
+                    position="absolute"
+                    width="fit-content"
+                    height="fit-content"
+                    right="0.4rem"
+                    top="0.36rem"
+                    notebooktop="0.45rem"
+                    notebookright="0.35rem"
+                    // border="2px solid blue"
+                  >
+                    <Button
+                      width="3rem"
+                      height="3rem"
+                      border="none"
+                      borderradius="10px"
+                      fontWeight="bold"
+                      notebookwidth="2.3rem"
+                      notebookheight="2.3rem"
+                      notebookfontsize="12px"
+                      onClick={onClickCheckNickname}
                     >
-                      사용 가능한 닉네임입니다.
-                    </Div>
-                  ) : (
-                    <Div
-                      className="NicknameWarning"
-                      display="flex"
-                      alignitems="center"
-                      width="21.438rem"
-                      height="1.5rem"
-                      color={Red}
-                      fontsize="0.75rem"
-                      padding="0 0 0 1.313rem"
-                      boxsizing="border-box"
-                      notebookwidth="15.625rem"
-                      notebookheight="1.25rem"
-                      notebookfontsize="0.625rem"
-                      notebookepadding="0 0 0 0.8rem"
-                    >
-                      사용 불가능한 닉네임입니다.
-                    </Div>
-                  )}
+                      확인
+                    </Button>
+                  </Div>
                 </Div>
+                {nickname.length > 0 && checkNickname === "ok" && (
+                  <Div
+                    className="NicknameWarning"
+                    display="flex"
+                    alignitems="center"
+                    width="100%"
+                    height="1.5rem"
+                    color={Gray1}
+                    fontsize="0.75rem"
+                    padding="0 0 0 1.313rem"
+                    boxsizing="border-box"
+                    notebookwidth="15.625rem"
+                    notebookheight="1.25rem"
+                    notebookfontsize="0.625rem"
+                    notebookepadding="0 0 0 0.8rem"
+                    // border="2px solid red"
+                  >
+                    사용 가능한 닉네임입니다.
+                  </Div>
+                )}
+                {nickname.length > 0 && checkNickname === "nope" && (
+                  <Div
+                    className="NicknameWarning"
+                    display="flex"
+                    alignitems="center"
+                    width="100%"
+                    height="1.5rem"
+                    color={Red}
+                    fontsize="0.75rem"
+                    padding="0 0 0 1.313rem"
+                    boxsizing="border-box"
+                    notebookwidth="15.625rem"
+                    notebookheight="1.25rem"
+                    notebookfontsize="0.625rem"
+                    notebookepadding="0 0 0 0.8rem"
+                    // border="2px solid red"
+                  >
+                    이미 사용중인 닉네임입니다.
+                  </Div>
+                )}
               </Div>
             </Div>
             <Div className="EmailContainer" margin="0 0 0.5rem 0" width="fit-content" height="fit-content">
@@ -277,20 +353,59 @@ function SignUp() {
               >
                 이메일
               </Div>
-              <Input
-                placeholder="이메일을 입력하세요."
-                padding="0 0 0 1.313rem"
+              <Div
+                className="InputButtonContainer"
+                position="relative"
+                display="flex"
+                flexdirection="column"
+                alignitems="center"
                 width="21.875rem"
-                height="3.75rem"
-                fontsize="1rem"
-                borderradius="15px"
-                notebookwidth="15.625rem"
-                notebookheight="3.125rem"
-                notebookfontsize="1rem"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
+                // height="5.25rem"
+                notebookwidth="fit-content"
+                notebookheight="fit-content"
+              >
+                <Div className="InputContainer">
+                  <Input
+                    placeholder="이메일을 입력하세요."
+                    padding="0 0 0 1.313rem"
+                    width="21.875rem"
+                    height="3.75rem"
+                    fontsize="1rem"
+                    borderradius="15px"
+                    notebookwidth="15.625rem"
+                    notebookheight="3.125rem"
+                    notebookfontsize="1rem"
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                  />
+                </Div>
+                <Div
+                  className="ButtonContainer"
+                  position="absolute"
+                  width="fit-content"
+                  height="fit-content"
+                  right="0.4rem"
+                  top="0.36rem"
+                  notebooktop="0.45rem"
+                  notebookright="0.35rem"
+                  // border="2px solid blue"
+                >
+                  <Button
+                    width="3rem"
+                    height="3rem"
+                    border="none"
+                    borderradius="10px"
+                    fontWeight="bold"
+                    notebookwidth="2.3rem"
+                    notebookheight="2.3rem"
+                    notebookfontsize="12px"
+                    onClick={onClickCheckEmail}
+                  >
+                    확인
+                  </Button>
+                </Div>
+              </Div>
               {checkEmail ? (
                 <Div
                   className="EmailWarning"
@@ -409,7 +524,7 @@ function SignUp() {
                   )}
                 </Div>
               </Div>
-              <Div className="PasswordCheckContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 2rem">
+              <Div className="PasswordCheckContainer" margin="0 0 0.5rem 0" notebookmargin="0 0 0 4rem">
                 <Div
                   className="PasswordCheck"
                   display="flex"
