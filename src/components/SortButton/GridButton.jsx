@@ -24,8 +24,8 @@ const Image = styled.img`
   opacity: 0.5;
 `;
 
-const GridButton = () => (
-  <CenteredButton className="GridButton">
+const GridButton = ({ onClick }) => (
+  <CenteredButton className="GridButton" onClick={onClick}>
     <Image src={GridImage} alt="GridImage" />
   </CenteredButton>
 );

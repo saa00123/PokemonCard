@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Color from "../BaseComponents/Color";
-import Button from "../BaseComponents/Button";
 import ListImage from "../../images/List.png";
 
 const Default = Color({ color: "Default" });
@@ -30,9 +29,9 @@ const Image = styled.img`
   opacity: 0.5;
 `;
 
-const ListButton = ({ margin }) => (
+const ListButton = ({ margin, onClick }) => (
   <ButtonConatiner margin={margin}>
-    <CenteredButton className="ListButton">
+    <CenteredButton className="ListButton" onClick={onClick}>
       <Image src={ListImage} alt="ListImage" />
     </CenteredButton>
   </ButtonConatiner>

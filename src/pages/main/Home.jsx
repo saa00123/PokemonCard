@@ -69,6 +69,9 @@ const Home = () => {
     pageNumbers.push(i);
   }
 
+  /** 정렬 */
+  const [viewMode, setViewMode] = useState("grid");
+
   return (
     <Div className="MainContainer">
       <Header />
@@ -90,8 +93,8 @@ const Home = () => {
             검색 결과
           </Div>
           <Div className="OptionContainer" height="fit-content" display="flex" margin="auto 0 auto auto">
-            <GridButton />
-            <ListButton margin="0 0 0 4px" />
+            <GridButton onClick={() => setViewMode("grid")} />
+            <ListButton margin="0 0 0 4px" onClick={() => setViewMode("list")} />
           </Div>
           <DropDown
             margin="auto 0 auto 0.5rem"
@@ -128,11 +131,12 @@ const Home = () => {
           height="fit-content"
           backgroundcolor={White}
           boxshadow="4px 4px 20px 6px rgba(0,0,0,0.25)"
-          display="grid"
-          gridtemplatecolumns="repeat(4, 1fr)"
+          display={viewMode === "grid" ? "grid" : "flex"}
+          flexdirection={viewMode === "list" ? "column" : "row"}
+          gridtemplatecolumns={viewMode === "grid" ? "repeat(4, 1fr)" : "none"}
         >
           {cards.map((card) => (
-            <Preview key={card.id} card={card} onClick={() => handleCardClick(card.id)} />
+            <Preview key={card.id} card={card} isListView onClick={() => handleCardClick(card.id)} />
           ))}
         </Div>
         <Div
