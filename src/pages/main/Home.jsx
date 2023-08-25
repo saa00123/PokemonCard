@@ -135,8 +135,13 @@ const Home = () => {
           flexdirection={viewMode === "list" ? "column" : "row"}
           gridtemplatecolumns={viewMode === "grid" ? "repeat(4, 1fr)" : "none"}
         >
-          {cards.map((card) => (
-            <Preview key={card.id} card={card} isListView onClick={() => handleCardClick(card.id)} />
+          {currentCards.map((card) => (
+            <Preview
+              key={card.id}
+              card={card}
+              isListView={viewMode === "list"}
+              onClick={() => handleCardClick(card.id)}
+            />
           ))}
         </Div>
         <Div

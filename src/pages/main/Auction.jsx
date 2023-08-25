@@ -388,7 +388,7 @@ function Auction() {
                 notebookborderradius="5px"
                 notebookmargin="0 0.188rem 0 0"
               >
-                탑로더 X
+                탑로더 {card?.information.toploader === true ? "O" : "X"}
               </Div>
               <Div
                 className="CardRating"
