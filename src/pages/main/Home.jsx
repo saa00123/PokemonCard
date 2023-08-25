@@ -93,8 +93,8 @@ const Home = () => {
             검색 결과
           </Div>
           <Div className="OptionContainer" height="fit-content" display="flex" margin="auto 0 auto auto">
-            <GridButton onClick={() => setViewMode("grid")} />
-            <ListButton margin="0 0 0 4px" onClick={() => setViewMode("list")} />
+            <GridButton isActive={viewMode === "grid"} onClick={() => setViewMode("grid")} />
+            <ListButton isActive={viewMode === "list"} margin="0 0 0 4px" onClick={() => setViewMode("list")} />
           </Div>
           <DropDown
             margin="auto 0 auto 0.5rem"
