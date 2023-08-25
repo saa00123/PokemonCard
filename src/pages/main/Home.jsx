@@ -157,6 +157,9 @@ const Home = () => {
             color="#000"
             margin=" 1.5rem auto 3rem auto"
             notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor="none"
+            notebookcolor="#000"
             onClick={handlePrevPage}
           >
             {"<"}
@@ -173,6 +176,9 @@ const Home = () => {
               color={number === currentPage ? Red : "#000"}
               margin=" 1.5rem auto 3rem auto"
               notebookfontsize="1.5rem"
+              notebookborder="none"
+              notebookbackgroundcolor="none"
+              notebookcolor={number === currentPage ? Red : "#000"}
               key={number}
               onClick={() => handlePageClick(number)}
             >
@@ -189,6 +195,9 @@ const Home = () => {
             color="#000"
             margin=" 1.5rem auto 3rem auto"
             notebookfontsize="1.5rem"
+            notebookborder="none"
+            notebookbackgroundcolor="none"
+            notebookcolor="#000"
             onClick={handleNextPage}
           >
             {">"}
