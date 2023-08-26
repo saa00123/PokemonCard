@@ -10,7 +10,6 @@ import Preview from "../../components/ImageComponents/SmallCardPreview";
 import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
-import Sort from "../../components/options/Sort";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -73,13 +72,42 @@ const Home = () => {
   /** 정렬 */
   const [viewMode, setViewMode] = useState("grid");
 
-  const [sort, setSort] = useState({
-    sort: Sort[0].label,
-  });
+  const [previews, setPreviews] = useState([]);
 
-  const handleSelect = (selectedOption) => {
-    setSort((prev) => ({ ...prev, sort: selectedOption }));
-    console.log("Selected option:", selectedOption);
+  const Sort = [
+    { id: 1, label: "마감순" },
+    { id: 2, label: "낮은 가격순" },
+    { id: 3, label: "높은 가격순" },
+    { id: 4, label: "낮은 등급순" },
+    { id: 5, label: "높은 등급순" },
+  ];
+
+  const handleSelect = (selectedOption, type) => {
+    if (type === "sort") {
+      const sortedPreviews = [...previews];
+
+      switch (selectedOption) {
+        case 1:
+          sortedPreviews.sort();
+          break;
+        case 2:
+          sortedPreviews.sort();
+          break;
+        case 3:
+          sortedPreviews.sort();
+          break;
+        case 4:
+          sortedPreviews.sort();
+          break;
+        case 5:
+          sortedPreviews.sort();
+          break;
+        default:
+          break;
+      }
+
+      setPreviews(sortedPreviews);
+    }
   };
 
   return (
