@@ -3,7 +3,7 @@ import firestore from "../../Firebase/firestore";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
-const SmallCardPreview = ({ card, onClick, isListView }) => {
+const SmallCardPreview = ({ card, onClick, isListView, sortOrder }) => {
   const Default = Color({ color: "Default" });
   const Black = Color({ color: "Black" });
   const Red = Color({ color: "Red" });
@@ -15,7 +15,14 @@ const SmallCardPreview = ({ card, onClick, isListView }) => {
   useEffect(() => {
     const fetchAllCards = async () => {
       try {
-        const querySnapshot = await firestore.collection("CardRegistration").get();
+        let cardsRef = firestore.collection("CardRegistration");
+        if (sortOrder === "lowToHigh") {
+          cardsRef = cardsRef.orderBy("price.startPrice", "asc");
+        } else if (sortOrder === "highToLow") {
+          cardsRef = cardsRef.orderBy("price.startPrice", "desc");
+        }
+        const querySnapshot = await cardsRef.get();
+
         const cardData = [];
         querySnapshot.forEach((doc) => {
           cardData.push({
@@ -30,7 +37,7 @@ const SmallCardPreview = ({ card, onClick, isListView }) => {
     };
 
     fetchAllCards();
-  }, []);
+  }, [sortOrder]);
 
   /** 남은 시간 */
   const [remainingTime, setRemainingTime] = useState("");

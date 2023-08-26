@@ -72,41 +72,44 @@ const Home = () => {
   /** 정렬 */
   const [viewMode, setViewMode] = useState("grid");
 
-  const [previews, setPreviews] = useState([]);
+  const [sortOrder, setSortOrder] = useState("마감순");
 
   const Sort = [
     { id: 1, label: "마감순" },
-    { id: 2, label: "낮은 가격순" },
-    { id: 3, label: "높은 가격순" },
-    { id: 4, label: "낮은 등급순" },
-    { id: 5, label: "높은 등급순" },
+    { id: 2, label: "높은 가격순" },
+    { id: 3, label: "낮은 가격순" },
+    { id: 4, label: "높은 등급순" },
+    { id: 5, label: "낮은 등급순" },
   ];
+
+  useEffect(() => {
+    const sortedCards = [...cards];
+
+    switch (sortOrder) {
+      case "마감순":
+        break;
+      case "높은 가격순":
+        sortedCards.sort((a, b) => b.price.startPrice - a.price.startPrice);
+        break;
+      case "낮은 가격순":
+        sortedCards.sort((a, b) => a.price.startPrice - b.price.startPrice);
+        break;
+      case "높은 등급순":
+        sortedCards.sort((a, b) => b.grade - a.grade);
+        break;
+      case "낮은 등급순":
+        sortedCards.sort((a, b) => a.grade - b.grade);
+        break;
+      default:
+        break;
+    }
+
+    setCards(sortedCards);
+  }, [sortOrder]);
 
   const handleSelect = (selectedOption, type) => {
     if (type === "sort") {
-      const sortedPreviews = [...previews];
-
-      switch (selectedOption) {
-        case 1:
-          sortedPreviews.sort();
-          break;
-        case 2:
-          sortedPreviews.sort();
-          break;
-        case 3:
-          sortedPreviews.sort();
-          break;
-        case 4:
-          sortedPreviews.sort();
-          break;
-        case 5:
-          sortedPreviews.sort();
-          break;
-        default:
-          break;
-      }
-
-      setPreviews(sortedPreviews);
+      setSortOrder(selectedOption.label);
     }
   };
 
