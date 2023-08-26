@@ -10,6 +10,7 @@ import Preview from "../../components/ImageComponents/SmallCardPreview";
 import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
+import Sort from "../../components/options/Sort";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -72,6 +73,15 @@ const Home = () => {
   /** 정렬 */
   const [viewMode, setViewMode] = useState("grid");
 
+  const [sort, setSort] = useState({
+    sort: Sort[0].label,
+  });
+
+  const handleSelect = (selectedOption) => {
+    setSort((prev) => ({ ...prev, sort: selectedOption }));
+    console.log("Selected option:", selectedOption);
+  };
+
   return (
     <Div className="MainContainer">
       <Header />
@@ -115,14 +125,8 @@ const Home = () => {
             notebookmenuheight="11.7rem"
             notebookmenufontsize="0.875rem"
             notebookborderradius="10px"
-            options={[
-              { id: 1, label: "낮은 등급순" },
-              { id: 2, label: "마감순" },
-              { id: 3, label: "높은 가격순" },
-              { id: 4, label: "낮은 가격순" },
-              { id: 5, label: "높은 등급순" },
-              { id: 6, label: "낮은 등급순" },
-            ]}
+            onSelect={(selectedOption) => handleSelect(selectedOption, "sort")}
+            options={Sort}
           />
         </Div>
         <Div

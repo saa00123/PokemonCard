@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import Color from "../BaseComponents/Color";
-import Button from "../BaseComponents/Button";
 import GridImage from "../../images/Grid.png";
 
 const Default = Color({ color: "Default" });
 const Gray1 = Color({ color: "Gray1" });
 const Red = Color({ color: "Red" });
-const White = Color({ color: "White" });
 
 const CenteredButton = styled.button`
   width: 2.5rem;

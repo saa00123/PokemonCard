@@ -6,7 +6,6 @@ import ListImage from "../../images/List.png";
 const Default = Color({ color: "Default" });
 const Gray1 = Color({ color: "Gray1" });
 const Red = Color({ color: "Red" });
-const White = Color({ color: "White" });
 
 const ButtonConatiner = styled.div`
   width: fit-content;
