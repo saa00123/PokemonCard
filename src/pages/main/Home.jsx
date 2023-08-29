@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,76 @@ import Preview from "../../components/ImageComponents/SmallCardPreview";
 import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
+
+const Sort = [
+  { id: 1, label: "마감순" },
+  { id: 2, label: "높은 가격순" },
+  { id: 3, label: "낮은 가격순" },
+  { id: 4, label: "높은 등급순" },
+  { id: 5, label: "낮은 등급순" },
+];
+
+const sortItems = (items) =>
+  items.sort((a, b) => {
+    const remainingTimeA = a.remainingTime || "";
+    const remainingTimeB = b.remainingTime || "";
+
+    if (remainingTimeA === "경매 종료" && remainingTimeB !== "경매 종료") {
+      return 1;
+    }
+    if (remainingTimeB === "경매 종료" && remainingTimeA !== "경매 종료") {
+      return -1;
+    }
+
+    if (remainingTimeA === "경매 대기중" && remainingTimeB !== "경매 대기중") {
+      return 1;
+    }
+    if (remainingTimeB === "경매 대기중" && remainingTimeA !== "경매 대기중") {
+      return -1;
+    }
+
+    if (
+      remainingTimeA !== "경매 종료" &&
+      remainingTimeA !== "경매 대기중" &&
+      remainingTimeB !== "경매 종료" &&
+      remainingTimeB !== "경매 대기중"
+    ) {
+      const timeA = remainingTimeA.split(":").map(Number);
+      const timeB = remainingTimeB.split(":").map(Number);
+      const secondsA = timeA[0] * 3600 + timeA[1] * 60 + timeA[2];
+      const secondsB = timeB[0] * 3600 + timeB[1] * 60 + timeB[2];
+
+      return secondsA - secondsB;
+    }
+
+    return 0;
+  });
+
+const calculateRemainingTimeForCards = (cards) =>
+  cards.map((card) => {
+    const now = new Date();
+    const startTime = new Date(`${card.date.startDate}T09:00:00`);
+    const endTime = new Date(`${card.date.endDate}T21:00:00`);
+
+    let diff;
+    let remainingTime;
+
+    if (now < startTime) {
+      remainingTime = "경매 대기중";
+    } else if (now >= startTime && now <= endTime) {
+      diff = endTime - now;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      remainingTime = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+        .toString()
+        .padStart(2, "0")}`;
+    } else {
+      remainingTime = "경매 종료";
+    }
+
+    return { ...card, remainingTime };
+  });
 
 const Home = () => {
   const navigate = useNavigate();
@@ -36,6 +107,8 @@ const Home = () => {
           });
         });
         setCards(cardData);
+        const cardDataWithRemainingTime = calculateRemainingTimeForCards(cardData);
+        setCards(cardDataWithRemainingTime);
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
@@ -71,22 +144,14 @@ const Home = () => {
 
   /** 정렬 */
   const [viewMode, setViewMode] = useState("grid");
-
   const [sortOrder, setSortOrder] = useState("마감순");
 
-  const Sort = [
-    { id: 1, label: "마감순" },
-    { id: 2, label: "높은 가격순" },
-    { id: 3, label: "낮은 가격순" },
-    { id: 4, label: "높은 등급순" },
-    { id: 5, label: "낮은 등급순" },
-  ];
-
   useEffect(() => {
-    const sortedCards = [...cards];
+    let sortedCards = [...cards];
 
     switch (sortOrder) {
       case "마감순":
+        sortedCards = sortItems(sortedCards);
         break;
       case "높은 가격순":
         sortedCards.sort((a, b) => b.price.startPrice - a.price.startPrice);
