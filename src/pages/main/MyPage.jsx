@@ -2,7 +2,6 @@ import React from "react";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
-import Preview from "../../components/ImageComponents/SmallCardPreview";
 import EndPreview from "../../components/ImageComponents/SmallEndAuction";
 
 const MyPage = () => {
@@ -101,10 +100,8 @@ const MyPage = () => {
             gridtemplatecolumns="repeat(4, 1fr)"
           >
             <EndPreview />
-            <Preview />
             <EndPreview />
             <EndPreview />
-            <Preview />
             <EndPreview />
             <EndPreview />
           </Div>
