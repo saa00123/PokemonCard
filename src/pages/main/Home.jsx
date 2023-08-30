@@ -32,13 +32,6 @@ const sortItems = (items) =>
       return -1;
     }
 
-    if (remainingTimeA === "경매 대기중" && remainingTimeB !== "경매 대기중") {
-      return 1;
-    }
-    if (remainingTimeB === "경매 대기중" && remainingTimeA !== "경매 대기중") {
-      return -1;
-    }
-
     if (
       remainingTimeA !== "경매 종료" &&
       remainingTimeA !== "경매 대기중" &&
@@ -49,8 +42,14 @@ const sortItems = (items) =>
       const timeB = remainingTimeB.split(":").map(Number);
       const secondsA = timeA[0] * 3600 + timeA[1] * 60 + timeA[2];
       const secondsB = timeB[0] * 3600 + timeB[1] * 60 + timeB[2];
-
       return secondsA - secondsB;
+    }
+
+    if (remainingTimeA === "경매 대기중" && remainingTimeB !== "경매 대기중") {
+      return 1;
+    }
+    if (remainingTimeB === "경매 대기중" && remainingTimeA !== "경매 대기중") {
+      return -1;
     }
 
     return 0;
