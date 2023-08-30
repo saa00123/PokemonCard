@@ -31,6 +31,7 @@ const SmallCardPreview = ({ card, onClick, isListView, sortOrder }) => {
           });
         });
         setCards(cardData);
+        console.log(cardData);
       } catch (error) {
         console.error("Error fetching cards:", error);
       }

@@ -11,6 +11,7 @@ import Preview from "../../components/ImageComponents/SmallCardPreview";
 import DropDown from "../../components/BaseComponents/DropDown";
 import GridButton from "../../components/SortButton/GridButton";
 import ListButton from "../../components/SortButton/ListButton";
+import CardRating from "../../components/options/CardRating";
 
 const Sort = [
   { id: 1, label: "마감순" },
@@ -145,6 +146,8 @@ const Home = () => {
   const [viewMode, setViewMode] = useState("grid");
   const [sortOrder, setSortOrder] = useState("마감순");
 
+  const ratingToId = Object.fromEntries(CardRating.map((rating) => [rating.label, rating.id]));
+
   useEffect(() => {
     let sortedCards = [...cards];
 
@@ -159,10 +162,18 @@ const Home = () => {
         sortedCards.sort((a, b) => a.price.startPrice - b.price.startPrice);
         break;
       case "높은 등급순":
-        sortedCards.sort((a, b) => b.grade - a.grade);
+        sortedCards.sort((a, b) => {
+          const ratingA = a.information.rating.label;
+          const ratingB = b.information.rating.label;
+          return ratingB.localeCompare(ratingA);
+        });
         break;
       case "낮은 등급순":
-        sortedCards.sort((a, b) => a.grade - b.grade);
+        sortedCards.sort((a, b) => {
+          const ratingA = a.information.rating.label;
+          const ratingB = b.information.rating.label;
+          return ratingA.localeCompare(ratingB);
+        });
         break;
       default:
         break;
