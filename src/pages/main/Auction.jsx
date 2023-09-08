@@ -2,7 +2,6 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Slider from "react-slick";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -183,7 +182,7 @@ function Auction() {
       price: currentPrice + auctionPrice,
     };
 
-    const newDataRef = database.ref("price").push();
+    const newDataRef = database.ref(`auctions/${id}/price`).push();
     newDataRef
       .set(data)
       .then(() => {
@@ -192,14 +191,14 @@ function Auction() {
       .catch((error) => {
         console.error("데이터 쓰기 실패:", error);
       });
-    database.ref("currentPrice").set(data);
+    database.ref(`auctions/${id}/currentPrice`).set(data);
   };
 
   /** 실시간 현재가 */
   const [currentPrice, setCurrentPrice] = useState(card ? Number(card.price.startPrice) : 0);
 
   useEffect(() => {
-    const priceRef = database.ref("currentPrice");
+    const priceRef = database.ref(`auctions/${id}/currentPrice`);
     priceRef.on("value", (snapshot) => {
       const latestPrice = snapshot.val()?.price
         ? Number(snapshot.val().price)
@@ -212,7 +211,7 @@ function Auction() {
     return () => {
       priceRef.off();
     };
-  }, [card]);
+  }, [card, id]);
 
   /** 포켓몬 이미지 랜덤 생성 */
   const [randomId, setRandomId] = useState(null);
