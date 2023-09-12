@@ -2,6 +2,16 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCards,
+  setCard,
+  setRemainingTime,
+  setTimeColor,
+  setAuctionPrice,
+  setCurrentPrice,
+  setRandomId,
+} from "../../actions/index";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -29,9 +39,12 @@ function Auction() {
   const Red = Color({ color: "Red" });
   const Gray1 = Color({ color: "Gray1" });
 
+  /** redux 상태관리 */
+  const dispatch = useDispatch();
+
   /** 카드 정보 불러오기 */
-  const [cards, setCards] = useState([]);
-  const [card, setCard] = useState(null);
+  const cards = useSelector((state) => state.cards);
+  const card = useSelector((state) => state.card);
 
   useEffect(() => {
     const fetchAllCards = async () => {
@@ -59,8 +72,8 @@ function Auction() {
   }, [cards, id]);
 
   /** 남은 시간 */
-  const [remainingTime, setRemainingTime] = useState("");
-  const [timeColor, setTimeColor] = useState(Default);
+  const remainingTime = useSelector((state) => state.remainingTime);
+  const timeColor = useSelector((state) => state.timeColor);
 
   useEffect(() => {
     if (!card) return;
@@ -136,7 +149,7 @@ function Auction() {
   }, [card?.date?.startDate, card?.date?.endDate]);
 
   /** 입찰 버튼 */
-  const [auctionPrice, setAuctionPrice] = useState(0); // 초기값 설정
+  const auctionPrice = useSelector((state) => state.auctionPrice); // 초기값 설정
 
   useEffect(() => {
     if (card) {
@@ -195,7 +208,7 @@ function Auction() {
   };
 
   /** 실시간 현재가 */
-  const [currentPrice, setCurrentPrice] = useState(card ? Number(card.price.startPrice) : 0);
+  const currentPrice = useSelector((state) => state.currentPrice);
 
   useEffect(() => {
     const priceRef = database.ref(`auctions/${id}/currentPrice`);
@@ -214,11 +227,11 @@ function Auction() {
   }, [card, id]);
 
   /** 포켓몬 이미지 랜덤 생성 */
-  const [randomId, setRandomId] = useState(null);
+  const randomId = useSelector((state) => state.randomId);
 
   useEffect(() => {
-    setRandomId(Math.floor(Math.random() * 1000) + 1);
-  }, []);
+    dispatch(setRandomId(Math.floor(Math.random() * 1000) + 1));
+  }, [dispatch]);
 
   const { data } = PokemonImage(randomId);
 
