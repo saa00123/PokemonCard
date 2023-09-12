@@ -57,7 +57,7 @@ function Auction() {
             ...doc.data(),
           });
         });
-        setCards(cardData);
+        dispatch(setCards(cardData));
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
@@ -68,7 +68,7 @@ function Auction() {
 
   useEffect(() => {
     const selectedCard = cards.find((c) => c.id === id);
-    setCard(selectedCard);
+    dispatch(setCard(selectedCard));
   }, [cards, id]);
 
   /** 남은 시간 */
@@ -97,15 +97,17 @@ function Auction() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        setRemainingTime(
-          `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
-            .toString()
-            .padStart(2, "0")}`,
+        dispatch(
+          setRemainingTime(
+            `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+              .toString()
+              .padStart(2, "0")}`,
+          ),
         );
       } else if (now > endTime) {
-        setRemainingTime("경매 종료");
+        dispatch(setRemainingTime("경매 종료"));
       } else {
-        setRemainingTime("경매 대기 중");
+        dispatch(setRemainingTime("경매 대기 중"));
       }
     };
 
@@ -126,12 +128,12 @@ function Auction() {
       if (diff > 0) {
         const hours = Math.floor(diff / (1000 * 60 * 60));
         if (hours < 0.5) {
-          setTimeColor(Red);
+          dispatch(setTimeColor(Red));
         } else {
-          setTimeColor(Black);
+          dispatch(setTimeColor(Black));
         }
       } else {
-        setTimeColor(Black);
+        dispatch(setTimeColor(Black));
       }
     };
 
@@ -153,7 +155,7 @@ function Auction() {
 
   useEffect(() => {
     if (card) {
-      setAuctionPrice(card.price.bidUnit);
+      dispatch(setAuctionPrice(card.price.bidUnit));
     }
   }, [card]);
 
@@ -172,24 +174,24 @@ function Auction() {
 
   const handleAuctionPriceIncrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
-    setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit); // Ensure numbers are added
+    dispatch(setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit)); // Ensure numbers are added
   };
 
   const handleAuctionPriceDecrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
     if (auctionPrice > bidUnit) {
-      setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit); // Ensure numbers are subtracted
+      dispatch(setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit)); // Ensure numbers are subtracted
     }
   };
 
   const handleAuctionPriceChange = (e) => {
-    setAuctionPrice(Number(e.target.value.replace(/,/g, ""))); // ,를 제거하고 숫자로 변환
+    dispatch(setAuctionPrice(Number(e.target.value.replace(/,/g, "")))); // ,를 제거하고 숫자로 변환
   };
 
   /** 입찰가를 Firebase RealtimeDatabase에 저장 */
   const writeData = () => {
     const updatedPrice = Number(currentPrice) + Number(auctionPrice); // Ensure numbers are added, not concatenated as strings
-    setCurrentPrice(updatedPrice);
+    dispatch(setCurrentPrice(updatedPrice));
 
     const data = {
       price: currentPrice + auctionPrice,
@@ -218,7 +220,7 @@ function Auction() {
         : card
         ? Number(card.price.startPrice)
         : 0;
-      setCurrentPrice(latestPrice);
+      dispatch(setCurrentPrice(latestPrice));
     });
 
     return () => {
