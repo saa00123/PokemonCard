@@ -174,13 +174,13 @@ function Auction() {
 
   const handleAuctionPriceIncrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
-    dispatch(setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit)); // Ensure numbers are added
+    dispatch(setAuctionPrice(Number(auctionPrice) + bidUnit));
   };
 
   const handleAuctionPriceDecrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
     if (auctionPrice > bidUnit) {
-      dispatch(setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit)); // Ensure numbers are subtracted
+      dispatch(setAuctionPrice(Number(auctionPrice) - bidUnit));
     }
   };
 
