@@ -1,0 +1,7 @@
+export const SET_CARDS = "SET_CARDS";
+export const SET_CARD = "SET_CARD";
+export const SET_REMAINING_TIME = "SET_REMAINING_TIME";
+export const SET_TIME_COLOR = "SET_TIME_COLOR";
+export const SET_AUCTION_PRICE = "SET_AUCTION_PRICE";
+export const SET_CURRENT_PRICE = "SET_CURRENT_PRICE";
+export const SET_RANDOM_ID = "SET_RANDOM_ID";

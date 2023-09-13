@@ -2,7 +2,16 @@
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Slider from "react-slick";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCards,
+  setCard,
+  setRemainingTime,
+  setTimeColor,
+  setAuctionPrice,
+  setCurrentPrice,
+  setRandomId,
+} from "../../actions/index";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -30,9 +39,12 @@ function Auction() {
   const Red = Color({ color: "Red" });
   const Gray1 = Color({ color: "Gray1" });
 
+  /** redux 상태관리 */
+  const dispatch = useDispatch();
+
   /** 카드 정보 불러오기 */
-  const [cards, setCards] = useState([]);
-  const [card, setCard] = useState(null);
+  const cards = useSelector((state) => state.cards);
+  const card = useSelector((state) => state.card);
 
   useEffect(() => {
     const fetchAllCards = async () => {
@@ -45,7 +57,7 @@ function Auction() {
             ...doc.data(),
           });
         });
-        setCards(cardData);
+        dispatch(setCards(cardData));
       } catch (error) {
         console.error("Error fetching cards:", error);
       }
@@ -56,12 +68,12 @@ function Auction() {
 
   useEffect(() => {
     const selectedCard = cards.find((c) => c.id === id);
-    setCard(selectedCard);
+    dispatch(setCard(selectedCard));
   }, [cards, id]);
 
   /** 남은 시간 */
-  const [remainingTime, setRemainingTime] = useState("");
-  const [timeColor, setTimeColor] = useState(Default);
+  const remainingTime = useSelector((state) => state.remainingTime);
+  const timeColor = useSelector((state) => state.timeColor);
 
   useEffect(() => {
     if (!card) return;
@@ -85,15 +97,17 @@ function Auction() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        setRemainingTime(
-          `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
-            .toString()
-            .padStart(2, "0")}`,
+        dispatch(
+          setRemainingTime(
+            `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+              .toString()
+              .padStart(2, "0")}`,
+          ),
         );
       } else if (now > endTime) {
-        setRemainingTime("경매 종료");
+        dispatch(setRemainingTime("경매 종료"));
       } else {
-        setRemainingTime("경매 대기 중");
+        dispatch(setRemainingTime("경매 대기 중"));
       }
     };
 
@@ -114,12 +128,12 @@ function Auction() {
       if (diff > 0) {
         const hours = Math.floor(diff / (1000 * 60 * 60));
         if (hours < 0.5) {
-          setTimeColor(Red);
+          dispatch(setTimeColor(Red));
         } else {
-          setTimeColor(Black);
+          dispatch(setTimeColor(Black));
         }
       } else {
-        setTimeColor(Black);
+        dispatch(setTimeColor(Black));
       }
     };
 
@@ -137,11 +151,11 @@ function Auction() {
   }, [card?.date?.startDate, card?.date?.endDate]);
 
   /** 입찰 버튼 */
-  const [auctionPrice, setAuctionPrice] = useState(0); // 초기값 설정
+  const auctionPrice = useSelector((state) => state.auctionPrice); // 초기값 설정
 
   useEffect(() => {
     if (card) {
-      setAuctionPrice(card.price.bidUnit);
+      dispatch(setAuctionPrice(card.price.bidUnit));
     }
   }, [card]);
 
@@ -160,30 +174,30 @@ function Auction() {
 
   const handleAuctionPriceIncrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
-    setAuctionPrice((prevPrice) => Number(prevPrice) + bidUnit); // Ensure numbers are added
+    dispatch(setAuctionPrice(Number(auctionPrice) + bidUnit));
   };
 
   const handleAuctionPriceDecrease = () => {
     const bidUnit = getBidUnitBasedOnCurrentPrice();
     if (auctionPrice > bidUnit) {
-      setAuctionPrice((prevPrice) => Number(prevPrice) - bidUnit); // Ensure numbers are subtracted
+      dispatch(setAuctionPrice(Number(auctionPrice) - bidUnit));
     }
   };
 
   const handleAuctionPriceChange = (e) => {
-    setAuctionPrice(Number(e.target.value.replace(/,/g, ""))); // ,를 제거하고 숫자로 변환
+    dispatch(setAuctionPrice(Number(e.target.value.replace(/,/g, "")))); // ,를 제거하고 숫자로 변환
   };
 
   /** 입찰가를 Firebase RealtimeDatabase에 저장 */
   const writeData = () => {
     const updatedPrice = Number(currentPrice) + Number(auctionPrice); // Ensure numbers are added, not concatenated as strings
-    setCurrentPrice(updatedPrice);
+    dispatch(setCurrentPrice(updatedPrice));
 
     const data = {
       price: currentPrice + auctionPrice,
     };
 
-    const newDataRef = database.ref("price").push();
+    const newDataRef = database.ref(`auctions/${id}/price`).push();
     newDataRef
       .set(data)
       .then(() => {
@@ -192,34 +206,34 @@ function Auction() {
       .catch((error) => {
         console.error("데이터 쓰기 실패:", error);
       });
-    database.ref("currentPrice").set(data);
+    database.ref(`auctions/${id}/currentPrice`).set(data);
   };
 
   /** 실시간 현재가 */
-  const [currentPrice, setCurrentPrice] = useState(card ? Number(card.price.startPrice) : 0);
+  const currentPrice = useSelector((state) => state.currentPrice);
 
   useEffect(() => {
-    const priceRef = database.ref("currentPrice");
+    const priceRef = database.ref(`auctions/${id}/currentPrice`);
     priceRef.on("value", (snapshot) => {
       const latestPrice = snapshot.val()?.price
         ? Number(snapshot.val().price)
         : card
         ? Number(card.price.startPrice)
         : 0;
-      setCurrentPrice(latestPrice);
+      dispatch(setCurrentPrice(latestPrice));
     });
 
     return () => {
       priceRef.off();
     };
-  }, [card]);
+  }, [card, id]);
 
   /** 포켓몬 이미지 랜덤 생성 */
-  const [randomId, setRandomId] = useState(null);
+  const randomId = useSelector((state) => state.randomId);
 
   useEffect(() => {
-    setRandomId(Math.floor(Math.random() * 1000) + 1);
-  }, []);
+    dispatch(setRandomId(Math.floor(Math.random() * 1000) + 1));
+  }, [dispatch]);
 
   const { data } = PokemonImage(randomId);
 
