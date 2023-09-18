@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import firestore from "../../Firebase/firestore";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
@@ -11,6 +11,9 @@ import ListButton from "../../components/SortButton/ListButton";
 
 const Home = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // console.log("home uuid : ", location.state.uid);
 
   const handleCardClick = (id) => {
     navigate(`/Auction/${id}`);
@@ -20,6 +23,7 @@ const Home = () => {
   const White = Color({ color: "Default" });
 
   const [cards, setCards] = useState([]);
+  const [userUid, setUserUid] = useState("");
 
   useEffect(() => {
     const fetchAllCards = async () => {

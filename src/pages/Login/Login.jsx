@@ -17,31 +17,44 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
     app
       .auth()
-      .signInWithEmailAndPassword(id, password)
-      .then((userCredential) => {
-        // 로그인 성공 시 처리
-        console.log("로그인 성공:", userCredential.user.multiFactor.user);
-        setError(null);
-        navigate("/");
-      })
+      .setPersistence(app.auth.Auth.Persistence.SESSION)
+      .then(() => app.auth().signInWithEmailAndPassword(id, password))
       .catch((error) => {
-        setError(error.message);
+        console.error(error.code);
+        console.error(error.message);
       });
-    // const auth = getAuth()
-    //   .signInWithCustomToken(auth, token)
+
+    // try {
+    //   const userCredential = await app.auth().signInWithEmailAndPassword(id, password);
+    //   const { user } = userCredential;
+    //   const { uid } = user;
+    //   console.log("login uid : ", uid);
+    //   navigate("/", { state: { uid } });
+    // } catch (error) {
+    //   console.error("Login error : ", error);
+    // }
+    // app
+    //   .auth()
+    //   .signInWithEmailAndPassword(id, password)
     //   .then((userCredential) => {
-    //     // Signed in
+    //     // 로그인 성공 시 처리
     //     const { user } = userCredential;
-    //     // ...
+    //     return user.getIdToken();
     //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ...
+    // .then((token) => {
+    //   console.log("User Token : ", token);
+    //   navigate("/", {
+    //     state: {
+    //       token,
+    //     },
     //   });
+    // })
+    // .catch((error) => {
+    //   setError(error.message);
+    // });
   };
 
   return (

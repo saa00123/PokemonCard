@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import firebase from "../../Firebase/firebase";
 import Color from "./Color";
 import HeaderLogo from "./HeaderLogo";
 import Search from "./Search";
@@ -59,6 +60,23 @@ const HeaderMenu = styled.button`
 `;
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState("");
+  useEffect((e) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      console.log("header uid : ", user.uid);
+      if (user) {
+        // e.preventDefault();
+        setIsLoggedIn(true);
+        console.log(isLoggedIn);
+      } else {
+        setIsLoggedIn(false);
+        console.log(isLoggedIn);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   const navigate = useNavigate();
 
   const navigateCardRegistration = () => {
@@ -73,6 +91,18 @@ const Header = () => {
     navigate("/MyPage");
   };
 
+  const navigateLogin = () => {
+    navigate("/Login");
+  };
+
+  const onClickLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+    } catch (error) {
+      console.error("Logout error : ", error);
+    }
+  };
+
   return (
     <HeaderContainer>
       <HeaderSpaceDiv>
@@ -82,7 +112,11 @@ const Header = () => {
           <HeaderMenu onClick={navigateCardRegistration}>카드 등록</HeaderMenu>
           <HeaderMenu onClick={navigatFinishAuction}>마감된 경매</HeaderMenu>
           <HeaderMenu onClick={navigateMyPage}>마이 페이지</HeaderMenu>
-          <HeaderMenu>로그인</HeaderMenu>
+          {isLoggedIn ? (
+            <HeaderMenu onClick={onClickLogout}>로그아웃</HeaderMenu>
+          ) : (
+            <HeaderMenu onClick={navigateLogin}>로그인</HeaderMenu>
+          )}
         </HeaderMenuContainer>
       </HeaderSpaceDiv>
     </HeaderContainer>
