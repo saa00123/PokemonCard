@@ -20,13 +20,24 @@ function Login() {
   const handleSignIn = async () => {
     app
       .auth()
-      .setPersistence(app.auth.Auth.Persistence.SESSION)
-      .then(() => app.auth().signInWithEmailAndPassword(id, password))
-      .catch((error) => {
-        console.error(error.code);
-        console.error(error.message);
+      .signInWithEmailAndPassword(id, password)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log("user uid : ", user.uid);
+        sessionStorage.setItem("uid", JSON.stringify(user.uid));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-
+    // app
+    //   .auth()
+    //   .setPersistence(app.auth.Auth.Persistence.SESSION)
+    //   .then((res) => app.auth().signInWithEmailAndPassword(id, password))
+    //   .catch((error) => {
+    //     console.error(error.code);
+    //     console.error(error.message);
+    //   });
     // try {
     //   const userCredential = await app.auth().signInWithEmailAndPassword(id, password);
     //   const { user } = userCredential;

@@ -60,21 +60,24 @@ const HeaderMenu = styled.button`
 `;
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState("");
-  useEffect((e) => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      console.log("header uid : ", user.uid);
-      if (user) {
-        // e.preventDefault();
-        setIsLoggedIn(true);
-        console.log(isLoggedIn);
-      } else {
-        setIsLoggedIn(false);
-        console.log(isLoggedIn);
-      }
-    });
-
-    return () => unsubscribe();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    console.log("header uid", JSON.parse(sessionStorage.getItem("uid")));
+    const state = JSON.parse(sessionStorage.getItem("uid"));
+    if (state === null) setIsLoggedIn(false);
+    else setIsLoggedIn(true);
+    // const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    //   console.log("header uid : ", user.uid);
+    //   if (user) {
+    //     // e.preventDefault();
+    //     setIsLoggedIn(true);
+    //     console.log(isLoggedIn);
+    //   } else {
+    //     setIsLoggedIn(false);
+    //     console.log(isLoggedIn);
+    //   }
+    // });
+    // return () => unsubscribe();
   }, []);
 
   const navigate = useNavigate();
