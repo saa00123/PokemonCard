@@ -1,6 +1,10 @@
-import { createStore } from "redux";
-import rootReducer from "./reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducers/cardSlice";
 
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: {
+    card: rootReducer,
+  },
+});
 
 export default store;
