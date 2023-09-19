@@ -84,8 +84,8 @@ function CardRegistration() {
   const imageUrls = useSelector((state) => state.card.imageUrls);
 
   const handleImageUrlsUpdate = (newImageUrls) => {
-    console.log("New image URLs: ", newImageUrls); // 로깅
-    setImageUrls(newImageUrls); // 액션 발행
+    console.log("New image URLs: ", newImageUrls);
+    dispatch(setImageUrls(newImageUrls));
   };
 
   /** 경매 시작일과 종료일 */

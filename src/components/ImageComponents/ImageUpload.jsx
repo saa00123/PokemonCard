@@ -31,6 +31,7 @@ const ImageUploadLabel = styled.label`
 function ImageUpload({ onImageUrlsUpdate }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
+  const [uploadedUrls, setUploadedUrls] = useState([]);
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -55,7 +56,11 @@ function ImageUpload({ onImageUrlsUpdate }) {
       .put(file)
       .then(() => storageRef.getDownloadURL())
       .then((url) => {
-        onImageUrlsUpdate((prevUrls) => [...prevUrls, url]); // URL을 상위 컴포넌트에 전달
+        setUploadedUrls((prevUrls) => {
+          const newUrls = [...prevUrls, url];
+          onImageUrlsUpdate(newUrls);
+          return newUrls;
+        });
         console.log("File uploaded successfully.");
       })
       .catch((error) => {
@@ -71,6 +76,12 @@ function ImageUpload({ onImageUrlsUpdate }) {
     storageRef
       .delete()
       .then(() => {
+        setUploadedUrls((prevUrls) => {
+          const newUrls = [...prevUrls];
+          newUrls.splice(index, 1);
+          onImageUrlsUpdate(newUrls); // 삭제 후의 URL 배열을 상위 컴포넌트에 전달
+          return newUrls;
+        });
         console.log("File deleted successfully.");
       })
       .catch((error) => {
