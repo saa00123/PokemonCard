@@ -33,6 +33,7 @@ const cardSlice = createSlice({
   name: "card",
   initialState,
   reducers: {
+    resetState: () => initialState,
     setCards(state, action) {
       state.cards = action.payload;
     },
@@ -99,6 +100,7 @@ const cardSlice = createSlice({
 });
 
 export const {
+  resetState,
   setCards,
   setCard,
   setRemainingTime,

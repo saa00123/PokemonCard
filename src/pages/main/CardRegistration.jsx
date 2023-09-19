@@ -1,9 +1,10 @@
 /* eslint-disable no-return-assign */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import firestore from "../../Firebase/firestore";
 import {
+  resetState,
   setTitle,
   setInformation,
   setImageUrls,
@@ -45,23 +46,9 @@ function CardRegistration() {
   const Gray2 = Color({ color: "Gray2" });
   const Gray4 = Color({ color: "Gray4" });
 
-  const {
-    title,
-    information,
-    imageUrls,
-    startDate,
-    endDate,
-    isNormalRatingChecked,
-    isBrgRatingChecked,
-    startPrice,
-    bidUnit,
-    showWarning,
-    isOnlineChecked,
-    isOfflineChecked,
-    offlineTradingPlace,
-  } = useSelector((state) => state.card);
-
   /** 제목 */
+  const title = useSelector((state) => state.card.title);
+
   const handleTitleChange = (e) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 40) {
@@ -73,6 +60,8 @@ function CardRegistration() {
   const charCount = title.length;
 
   /** 카드 정보 */
+  const information = useSelector((state) => state.card.information);
+
   const handleSelect = (selectedOption, dropdownType) => {
     switch (dropdownType) {
       case "rating":
@@ -91,7 +80,18 @@ function CardRegistration() {
     dispatch(setInformation({ toploader: !information.toploader }));
   };
 
+  /** 사진 */
+  const imageUrls = useSelector((state) => state.card.imageUrls);
+
+  const handleImageUrlsUpdate = (newImageUrls) => {
+    console.log("New image URLs: ", newImageUrls); // 로깅
+    setImageUrls(newImageUrls); // 액션 발행
+  };
+
   /** 경매 시작일과 종료일 */
+  const startDate = useSelector((state) => state.card.startDate);
+  const endDate = useSelector((state) => state.card.endDate);
+
   const handleStartDateChange = (e) => {
     const { value } = e.target;
     let endValue = endDate;
@@ -134,6 +134,9 @@ function CardRegistration() {
   };
 
   /** 카드 등급 */
+  const isNormalRatingChecked = useSelector((state) => state.card.isNormalRatingChecked);
+  const isBrgRatingChecked = useSelector((state) => state.card.isBrgRatingChecked);
+
   const handleNormalCheckboxClick = () => {
     dispatch(toggleNormalRating()); // normal rating 체크박스 클릭시, toggleNormalRating 액션을 디스패치 합니다
   };
@@ -143,6 +146,10 @@ function CardRegistration() {
   };
 
   /** 시작가에 따른 입찰가 자동 설정 */
+  const startPrice = useSelector((state) => state.card.startPrice);
+  const bidUnit = useSelector((state) => state.card.bidUnit);
+  const showWarning = useSelector((state) => state.card.showWarning);
+
   const handleStartPriceChange = (e) => {
     const { value } = e.target;
 
@@ -173,6 +180,10 @@ function CardRegistration() {
   }, [startPrice, dispatch]);
 
   /** 거래 방법 */
+  const isOnlineChecked = useSelector((state) => state.card.isOnlineChecked);
+  const isOfflineChecked = useSelector((state) => state.card.isOfflineChecked);
+  const offlineTradingPlace = useSelector((state) => state.card.offlineTradingPlace);
+
   const handleOnlineCheckboxClick = () => {
     dispatch(toggleIsOnlineChecked());
   };
@@ -221,6 +232,7 @@ function CardRegistration() {
     try {
       await firestore.collection("CardRegistration").add(cardData);
       console.log("Card added successfully");
+      dispatch(resetState());
       navigate("/");
     } catch (error) {
       console.error("Error adding card:", error);
@@ -483,7 +495,7 @@ function CardRegistration() {
                 >
                   사진 등록
                 </Label>
-                <ImageUpload id="imageUpload" onImageUrlsUpdate={setImageUrls} />
+                <ImageUpload id="imageUpload" onImageUrlsUpdate={handleImageUrlsUpdate} />
               </Div>
               <Div
                 className="RatingContainer"
