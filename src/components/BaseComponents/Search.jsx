@@ -96,14 +96,20 @@ const SearchButton = styled.button`
   }
 `;
 
-const Search = ({ onSearch }) => {
+const Search = ({ onSearch, data }) => {
   const Red = Color({ color: "Red" });
   const White = Color({ color: "Default" });
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const searchTerm = e.target.elements.searchTerm.value;
-    onSearch(searchTerm);
+    const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
+
+    if (data && data.length > 0) {
+      const filteredData = data.filter((item) => item.name.toLowerCase().includes(searchTerm));
+      onSearch(filteredData);
+    } else {
+      console.error("검색한 내용이 없습니다.");
+    }
   };
 
   return (

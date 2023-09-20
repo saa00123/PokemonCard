@@ -11,7 +11,7 @@ import {
   setAuctionPrice,
   setCurrentPrice,
   setRandomId,
-} from "../../actions/index";
+} from "../../store/reducers/cardSlice";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -43,8 +43,8 @@ function Auction() {
   const dispatch = useDispatch();
 
   /** 카드 정보 불러오기 */
-  const cards = useSelector((state) => state.cards);
-  const card = useSelector((state) => state.card);
+  const cards = useSelector((state) => state.card.cards);
+  const card = useSelector((state) => state.card.card);
 
   useEffect(() => {
     const fetchAllCards = async () => {
@@ -72,8 +72,8 @@ function Auction() {
   }, [cards, id]);
 
   /** 남은 시간 */
-  const remainingTime = useSelector((state) => state.remainingTime);
-  const timeColor = useSelector((state) => state.timeColor);
+  const remainingTime = useSelector((state) => state.card.remainingTime);
+  const timeColor = useSelector((state) => state.card.timeColor);
 
   useEffect(() => {
     if (!card) return;
@@ -151,7 +151,7 @@ function Auction() {
   }, [card?.date?.startDate, card?.date?.endDate]);
 
   /** 입찰 버튼 */
-  const auctionPrice = useSelector((state) => state.auctionPrice); // 초기값 설정
+  const auctionPrice = useSelector((state) => state.card.auctionPrice); // 초기값 설정
 
   useEffect(() => {
     if (card) {
@@ -210,7 +210,7 @@ function Auction() {
   };
 
   /** 실시간 현재가 */
-  const currentPrice = useSelector((state) => state.currentPrice);
+  const currentPrice = useSelector((state) => state.card.currentPrice);
 
   useEffect(() => {
     const priceRef = database.ref(`auctions/${id}/currentPrice`);
@@ -229,7 +229,7 @@ function Auction() {
   }, [card, id]);
 
   /** 포켓몬 이미지 랜덤 생성 */
-  const randomId = useSelector((state) => state.randomId);
+  const randomId = useSelector((state) => state.card.randomId);
 
   useEffect(() => {
     dispatch(setRandomId(Math.floor(Math.random() * 1000) + 1));

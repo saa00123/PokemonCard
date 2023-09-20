@@ -1,7 +1,24 @@
 /* eslint-disable no-return-assign */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import firestore from "../../Firebase/firestore";
+import {
+  resetState,
+  setTitle,
+  setInformation,
+  setImageUrls,
+  setStartDate,
+  setEndDate,
+  toggleNormalRating,
+  toggleBrgRating,
+  setStartPrice,
+  setBidUnit,
+  toggleShowWarning,
+  toggleIsOnlineChecked,
+  toggleIsOfflineChecked,
+  setOfflineTradingPlace,
+} from "../../store/reducers/cardSlice";
 
 import Header from "../../components/BaseComponents/Header";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -17,10 +34,11 @@ import ImageUpload from "../../components/ImageComponents/ImageUpload";
 import CardRating from "../../components/options/CardRating";
 import CardSeries from "../../components/options/CardSeries";
 import NormalRating from "../../components/options/NormalRating";
-import brgRating from "../../components/options/brgRating";
+import BrgRating from "../../components/options/brgRating";
 
 function CardRegistration() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const Default = Color({ color: "Default" });
   const Red = Color({ color: "Red" });
@@ -29,12 +47,12 @@ function CardRegistration() {
   const Gray4 = Color({ color: "Gray4" });
 
   /** 제목 */
-  const [title, setTitle] = useState("");
+  const title = useSelector((state) => state.card.title);
 
   const handleTitleChange = (e) => {
     const inputValue = e.target.value;
     if (inputValue.length <= 40) {
-      setTitle(inputValue);
+      dispatch(setTitle(inputValue));
     }
   };
 
@@ -42,19 +60,15 @@ function CardRegistration() {
   const charCount = title.length;
 
   /** 카드 정보 */
-  const [information, setInformation] = useState({
-    rating: CardRating[0].label,
-    series: CardSeries[0].label,
-    toploader: false,
-  });
+  const information = useSelector((state) => state.card.information);
 
   const handleSelect = (selectedOption, dropdownType) => {
     switch (dropdownType) {
       case "rating":
-        setInformation((prev) => ({ ...prev, rating: selectedOption }));
+        dispatch(setInformation({ rating: selectedOption }));
         break;
       case "series":
-        setInformation((prev) => ({ ...prev, series: selectedOption }));
+        dispatch(setInformation({ series: selectedOption }));
         break;
       default:
         console.error("Unknown dropdown type:", dropdownType);
@@ -63,15 +77,20 @@ function CardRegistration() {
   };
 
   const handleToploaderCheckboxClick = () => {
-    setInformation((prev) => ({ ...prev, toploader: !prev.toploader }));
+    dispatch(setInformation({ toploader: !information.toploader }));
   };
 
-  /** 사진 등록 */
-  const [imageUrls, setImageUrls] = useState([]);
+  /** 사진 */
+  const imageUrls = useSelector((state) => state.card.imageUrls);
+
+  const handleImageUrlsUpdate = (newImageUrls) => {
+    console.log("New image URLs: ", newImageUrls);
+    dispatch(setImageUrls(newImageUrls));
+  };
 
   /** 경매 시작일과 종료일 */
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const startDate = useSelector((state) => state.card.startDate);
+  const endDate = useSelector((state) => state.card.endDate);
 
   const handleStartDateChange = (e) => {
     const { value } = e.target;
@@ -80,17 +99,17 @@ function CardRegistration() {
     // endDate가 startDate를 넘지 못하게 하는 로직
     if (new Date(value) > new Date(endDate)) {
       endValue = value;
-      setEndDate(endValue);
+      dispatch(setEndDate(endValue));
     }
 
     // endDate와 startDate 사이의 간격이 3일보다 크면 endDate를 startDate로부터 3일 후로 설정
     if (new Date(endValue).getTime() - new Date(value).getTime() > 3 * 24 * 60 * 60 * 1000) {
       const maxEndDate = new Date(value);
       maxEndDate.setDate(maxEndDate.getDate() + 3);
-      setEndDate(maxEndDate.toISOString().split("T")[0]);
+      dispatch(setEndDate(maxEndDate.toISOString().split("T")[0]));
     }
 
-    setStartDate(value);
+    dispatch(setStartDate(value));
   };
 
   const handleEndDateChange = (e) => {
@@ -106,77 +125,75 @@ function CardRegistration() {
     }
 
     if (new Date(value).getTime() - new Date(startDate).getTime() <= 3 * 24 * 60 * 60 * 1000) {
-      setEndDate(value);
+      dispatch(setEndDate(value));
     } else {
       const maxEndDate = new Date(startDate);
       maxEndDate.setDate(maxEndDate.getDate() + 3);
-      setEndDate(maxEndDate.toISOString().split("T")[0]);
+      dispatch(setEndDate(maxEndDate.toISOString().split("T")[0]));
     }
   };
 
   /** 카드 등급 */
-  const [isNormalRatingChecked, setIsNormalRatingChecked] = useState(false);
-  const [isBrgRatingChecked, setIsBrgRatingChecked] = useState(false);
+  const isNormalRatingChecked = useSelector((state) => state.card.isNormalRatingChecked);
+  const isBrgRatingChecked = useSelector((state) => state.card.isBrgRatingChecked);
 
   const handleNormalCheckboxClick = () => {
-    setIsNormalRatingChecked(!isNormalRatingChecked);
-    setIsBrgRatingChecked(false);
+    dispatch(toggleNormalRating()); // normal rating 체크박스 클릭시, toggleNormalRating 액션을 디스패치 합니다
   };
 
   const handleBrgCheckboxClick = () => {
-    setIsBrgRatingChecked(!isBrgRatingChecked);
-    setIsNormalRatingChecked(false);
+    dispatch(toggleBrgRating()); // brg rating 체크박스 클릭시, toggleBrgRating 액션을 디스패치 합니다
   };
 
   /** 시작가에 따른 입찰가 자동 설정 */
-  const [startPrice, setStartPrice] = useState("");
-  const [bidUnit, setBidUnit] = useState("");
-  const [showWarning, setShowWarning] = useState(false);
+  const startPrice = useSelector((state) => state.card.startPrice);
+  const bidUnit = useSelector((state) => state.card.bidUnit);
+  const showWarning = useSelector((state) => state.card.showWarning);
 
   const handleStartPriceChange = (e) => {
     const { value } = e.target;
 
     // 입력 값이 100 미만인 경우 경고문을 활성화
     if (parseInt(value, 10) < 100) {
-      setShowWarning(true);
+      dispatch(toggleShowWarning(true));
     } else {
-      setShowWarning(false);
+      dispatch(toggleShowWarning(false));
     }
 
-    setStartPrice(value);
+    dispatch(setStartPrice(value));
   };
 
   useEffect(() => {
     const price = parseInt(startPrice, 10);
 
     if (price >= 100 && price <= 9900) {
-      setBidUnit("100");
+      dispatch(setBidUnit("100"));
     } else if (price >= 10000 && price <= 100000) {
-      setBidUnit("1000");
+      dispatch(setBidUnit("1000"));
     } else if (price >= 100000 && price <= 1000000) {
-      setBidUnit("5000");
+      dispatch(setBidUnit("5000"));
     } else if (price >= 1000000) {
-      setBidUnit("10000");
+      dispatch(setBidUnit("10000"));
     } else {
-      setBidUnit("");
+      dispatch(setBidUnit(""));
     }
-  }, [startPrice]);
+  }, [startPrice, dispatch]);
 
   /** 거래 방법 */
-  const [isOnlineChecked, setIsOnlineChecked] = useState(false);
-  const [isOfflineChecked, setIsOfflineChecked] = useState(false);
-  const [offlineTradingPlace, setOfflineTradingPlace] = useState("");
+  const isOnlineChecked = useSelector((state) => state.card.isOnlineChecked);
+  const isOfflineChecked = useSelector((state) => state.card.isOfflineChecked);
+  const offlineTradingPlace = useSelector((state) => state.card.offlineTradingPlace);
 
   const handleOnlineCheckboxClick = () => {
-    setIsOnlineChecked(!isOnlineChecked);
+    dispatch(toggleIsOnlineChecked());
   };
 
   const handleOfflineCheckboxClick = () => {
-    setIsOfflineChecked(!isOfflineChecked);
+    dispatch(toggleIsOfflineChecked());
   };
 
   const handleOfflineTradingPlaceChange = (e) => {
-    setOfflineTradingPlace(e.target.value);
+    dispatch(setOfflineTradingPlace(e.target.value));
   };
 
   /** firestore에 카드 등록 정보 저장 */
@@ -215,6 +232,7 @@ function CardRegistration() {
     try {
       await firestore.collection("CardRegistration").add(cardData);
       console.log("Card added successfully");
+      dispatch(resetState());
       navigate("/");
     } catch (error) {
       console.error("Error adding card:", error);
@@ -477,7 +495,7 @@ function CardRegistration() {
                 >
                   사진 등록
                 </Label>
-                <ImageUpload id="imageUpload" onImageUrlsUpdate={setImageUrls} />
+                <ImageUpload id="imageUpload" onImageUrlsUpdate={handleImageUrlsUpdate} />
               </Div>
               <Div
                 className="RatingContainer"
@@ -590,7 +608,7 @@ function CardRegistration() {
                       </Checkbox>
                       <DropDown
                         className="brgRating"
-                        options={brgRating}
+                        options={BrgRating}
                         onSelect={handleSelect}
                         width="8.125rem"
                         height="3.75rem"
