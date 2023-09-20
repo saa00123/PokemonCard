@@ -96,7 +96,7 @@ const Home = () => {
   const White = Color({ color: "Default" });
   const Red = Color({ color: "Red" });
 
-  const [cards, setCards] = useState([]);
+  const cards = useSelector((state) => state.card.cards);
 
   useEffect(() => {
     const fetchAllCards = async () => {
