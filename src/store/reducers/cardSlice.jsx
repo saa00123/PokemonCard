@@ -3,6 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  /** 경매 */
   cards: [],
   card: null,
   remainingTime: "",
@@ -10,6 +11,8 @@ const initialState = {
   auctionPrice: 0,
   currentPrice: 0,
   randomId: null,
+
+  /** 카드 등록 */
   title: "",
   information: {
     rating: "",
@@ -27,13 +30,24 @@ const initialState = {
   isOnlineChecked: false,
   isOfflineChecked: false,
   offlineTradingPlace: "",
+
+  /** 페이징 */
+  currentPage: 1,
+  perPage: 16,
+
+  /** 정렬 */
+  viewMode: "grid",
+  sortOrder: "마감순",
 };
 
 const cardSlice = createSlice({
   name: "card",
   initialState,
   reducers: {
+    /** 상태 초기화 */
     resetState: () => initialState,
+
+    /** 경매 */
     setCards(state, action) {
       state.cards = action.payload;
     },
@@ -55,6 +69,8 @@ const cardSlice = createSlice({
     setRandomId(state, action) {
       state.randomId = action.payload;
     },
+
+    /** 카드 등록 */
     setTitle(state, action) {
       state.title = action.payload;
     },
@@ -96,6 +112,28 @@ const cardSlice = createSlice({
     setOfflineTradingPlace(state, action) {
       state.offlineTradingPlace = action.payload;
     },
+
+    /** 페이징 */
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    setPerPage(state, action) {
+      state.perPage = action.payload;
+    },
+    nextPage(state) {
+      state.currentPage += 1;
+    },
+    prevPage(state) {
+      state.currentPage -= 1;
+    },
+
+    /** 정렬 */
+    setViewMode: (state, action) => {
+      state.viewMode = action.payload;
+    },
+    setSortOrder: (state, action) => {
+      state.sortOrder = action.payload;
+    },
   },
 });
 
@@ -121,6 +159,12 @@ export const {
   toggleIsOnlineChecked,
   toggleIsOfflineChecked,
   setOfflineTradingPlace,
+  setCurrentPage,
+  setPerPage,
+  nextPage,
+  prevPage,
+  setViewMode,
+  setSortOrder,
 } = cardSlice.actions;
 
 export default cardSlice.reducer;
