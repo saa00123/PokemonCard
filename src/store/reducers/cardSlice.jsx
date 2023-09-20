@@ -34,6 +34,10 @@ const initialState = {
   /** 페이징 */
   currentPage: 1,
   perPage: 16,
+
+  /** 정렬 */
+  viewMode: "grid",
+  sortOrder: "마감순",
 };
 
 const cardSlice = createSlice({
@@ -122,6 +126,14 @@ const cardSlice = createSlice({
     prevPage(state) {
       state.currentPage -= 1;
     },
+
+    /** 정렬 */
+    setViewMode: (state, action) => {
+      state.viewMode = action.payload;
+    },
+    setSortOrder: (state, action) => {
+      state.sortOrder = action.payload;
+    },
   },
 });
 
@@ -151,6 +163,8 @@ export const {
   setPerPage,
   nextPage,
   prevPage,
+  setViewMode,
+  setSortOrder,
 } = cardSlice.actions;
 
 export default cardSlice.reducer;

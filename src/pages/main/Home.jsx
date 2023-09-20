@@ -4,7 +4,14 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import firestore from "../../Firebase/firestore";
-import { setCards, setCurrentPage, nextPage, prevPage } from "../../store/reducers/cardSlice";
+import {
+  setCards,
+  setCurrentPage,
+  nextPage,
+  prevPage,
+  setViewMode,
+  setSortOrder,
+} from "../../store/reducers/cardSlice";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -159,8 +166,8 @@ const Home = () => {
   }
 
   /** 정렬 */
-  const [viewMode, setViewMode] = useState("grid");
-  const [sortOrder, setSortOrder] = useState("마감순");
+  const viewMode = useSelector((state) => state.card.viewMode);
+  const sortOrder = useSelector((state) => state.card.sortOrder);
 
   const ratingToId = Object.fromEntries(CardRating.map((rating) => [rating.label, rating.id]));
 
@@ -196,11 +203,11 @@ const Home = () => {
     }
 
     setCards(sortedCards);
-  }, [sortOrder]);
+  }, [sortOrder, dispatch]);
 
   const handleSelect = (selectedOption, type) => {
     if (type === "sort") {
-      setSortOrder(selectedOption.label);
+      dispatch(setSortOrder(selectedOption.label));
     }
   };
 
