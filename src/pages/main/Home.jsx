@@ -2,7 +2,9 @@
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import firestore from "../../Firebase/firestore";
+import { setCards, setCurrentPage, nextPage, prevPage } from "../../store/reducers/cardSlice";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -84,6 +86,7 @@ const calculateRemainingTimeForCards = (cards) =>
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCardClick = (id) => {
     navigate(`/Auction/${id}`);
@@ -118,24 +121,37 @@ const Home = () => {
   }, []);
 
   /** 페이징 */
-  const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 16;
+  const currentPage = useSelector((state) => state.card.currentPage);
+  const perPage = useSelector((state) => state.card.perPage);
 
   const indexOfLastCard = currentPage * perPage;
   const indexOfFirstCard = indexOfLastCard - perPage;
   const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
 
-  const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
-  const handleNextPage = () => {
-    if (currentPage < Math.ceil(cards.length / perPage)) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
-  };
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        const cardDataWithRemainingTime = calculateRemainingTimeForCards(cardData);
+        dispatch(setCards(cardDataWithRemainingTime));
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, [dispatch]);
+
+  const handlePageClick = (pageNumber) => dispatch(setCurrentPage(pageNumber));
+  const handleNextPage = () => dispatch(nextPage());
+  const handlePrevPage = () => dispatch(prevPage());
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(cards.length / perPage); i++) {
