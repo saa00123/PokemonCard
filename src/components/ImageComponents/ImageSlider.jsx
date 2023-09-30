@@ -45,7 +45,7 @@ const Button = styled.button`
   transform: translateY(-50%);
   z-index: 2;
   background-color: rgba(255, 255, 255, 0.5);
-  color: white;
+  color: black;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
