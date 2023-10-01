@@ -1,8 +1,17 @@
 /* eslint-disable no-const-assign */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import firestore from "../../Firebase/firestore";
+import {
+  setCards,
+  setCurrentPage,
+  nextPage,
+  prevPage,
+  setViewMode,
+  setSortOrder,
+} from "../../store/reducers/cardSlice";
 import Header from "../../components/BaseComponents/Header";
 import Color from "../../components/BaseComponents/Color";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -84,7 +93,7 @@ const calculateRemainingTimeForCards = (cards) =>
 
 const Home = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const dispatch = useDispatch();
 
   // console.log("home uuid : ", location.state.uid);
 
@@ -96,8 +105,7 @@ const Home = () => {
   const White = Color({ color: "Default" });
   const Red = Color({ color: "Red" });
 
-  const [cards, setCards] = useState([]);
-  const [userUid, setUserUid] = useState("");
+  const cards = useSelector((state) => state.card.cards);
 
   useEffect(() => {
     const fetchAllCards = async () => {
@@ -122,24 +130,37 @@ const Home = () => {
   }, []);
 
   /** 페이징 */
-  const [currentPage, setCurrentPage] = useState(1);
-  const perPage = 16;
+  const currentPage = useSelector((state) => state.card.currentPage);
+  const perPage = useSelector((state) => state.card.perPage);
 
   const indexOfLastCard = currentPage * perPage;
   const indexOfFirstCard = indexOfLastCard - perPage;
   const currentCards = cards.slice(indexOfFirstCard, indexOfLastCard);
 
-  const handlePageClick = (pageNumber) => setCurrentPage(pageNumber);
-  const handleNextPage = () => {
-    if (currentPage < Math.ceil(cards.length / perPage)) {
-      setCurrentPage((prev) => prev + 1);
-    }
-  };
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
-    }
-  };
+  useEffect(() => {
+    const fetchAllCards = async () => {
+      try {
+        const querySnapshot = await firestore.collection("CardRegistration").get();
+        const cardData = [];
+        querySnapshot.forEach((doc) => {
+          cardData.push({
+            id: doc.id,
+            ...doc.data(),
+          });
+        });
+        const cardDataWithRemainingTime = calculateRemainingTimeForCards(cardData);
+        dispatch(setCards(cardDataWithRemainingTime));
+      } catch (error) {
+        console.error("Error fetching cards:", error);
+      }
+    };
+
+    fetchAllCards();
+  }, [dispatch]);
+
+  const handlePageClick = (pageNumber) => dispatch(setCurrentPage(pageNumber));
+  const handleNextPage = () => dispatch(nextPage());
+  const handlePrevPage = () => dispatch(prevPage());
 
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(cards.length / perPage); i++) {
@@ -147,8 +168,8 @@ const Home = () => {
   }
 
   /** 정렬 */
-  const [viewMode, setViewMode] = useState("grid");
-  const [sortOrder, setSortOrder] = useState("마감순");
+  const viewMode = useSelector((state) => state.card.viewMode);
+  const sortOrder = useSelector((state) => state.card.sortOrder);
 
   const ratingToId = Object.fromEntries(CardRating.map((rating) => [rating.label, rating.id]));
 
@@ -183,12 +204,12 @@ const Home = () => {
         break;
     }
 
-    setCards(sortedCards);
-  }, [sortOrder]);
+    dispatch(setCards(sortedCards));
+  }, [sortOrder, dispatch]);
 
   const handleSelect = (selectedOption, type) => {
     if (type === "sort") {
-      setSortOrder(selectedOption.label);
+      dispatch(setSortOrder(selectedOption.label));
     }
   };
 
@@ -213,8 +234,12 @@ const Home = () => {
             검색 결과
           </Div>
           <Div className="OptionContainer" height="fit-content" display="flex" margin="auto 0 auto auto">
-            <GridButton isActive={viewMode === "grid"} onClick={() => setViewMode("grid")} />
-            <ListButton isActive={viewMode === "list"} margin="0 0 0 4px" onClick={() => setViewMode("list")} />
+            <GridButton isActive={viewMode === "grid"} onClick={() => dispatch(setViewMode("grid"))} />
+            <ListButton
+              isActive={viewMode === "list"}
+              margin="0 0 0 4px"
+              onClick={() => dispatch(setViewMode("list"))}
+            />
           </Div>
           <DropDown
             margin="auto 0 auto 0.5rem"
