@@ -100,7 +100,15 @@ const Header = () => {
 
   const onClickLogout = async () => {
     try {
-      await firebase.auth().signOut();
+      console.log("로그아웃 누름");
+      if (!window.confirm("로그아웃 하시겠습니까?")) {
+        console.log("로그아웃 안함");
+      } else {
+        alert("로그아웃 되었습니다.");
+        sessionStorage.removeItem("uid");
+        setIsLoggedIn(false);
+        await firebase.auth().signOut();
+      }
     } catch (error) {
       console.error("Logout error : ", error);
     }
