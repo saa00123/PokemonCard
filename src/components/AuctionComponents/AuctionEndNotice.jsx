@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Div from "../BaseComponents/BasicDiv";
 import Color from "../BaseComponents/Color";
 
 function AuctionEndNotice() {
   const Gray2 = Color({ color: "Gray2" });
+  const history = useHistory();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      history.push("/");
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [history]);
 
   return (
     <div>
