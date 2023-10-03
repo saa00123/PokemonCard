@@ -66,18 +66,6 @@ const Header = () => {
     const state = JSON.parse(sessionStorage.getItem("uid"));
     if (state === null) setIsLoggedIn(false);
     else setIsLoggedIn(true);
-    // const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-    //   console.log("header uid : ", user.uid);
-    //   if (user) {
-    //     // e.preventDefault();
-    //     setIsLoggedIn(true);
-    //     console.log(isLoggedIn);
-    //   } else {
-    //     setIsLoggedIn(false);
-    //     console.log(isLoggedIn);
-    //   }
-    // });
-    // return () => unsubscribe();
   }, []);
 
   const navigate = useNavigate();

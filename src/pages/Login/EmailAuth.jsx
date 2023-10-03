@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -7,6 +7,8 @@ import Button from "../../components/BaseComponents/Button";
 
 function EmailAuth() {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  console.log(state);
 
   const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
@@ -46,14 +48,16 @@ function EmailAuth() {
           height="5.625rem"
           margin="0 0 1.125rem 0"
           color={Gray2}
-          fontsize="3rem"
+          fontsize="2rem"
           fontWeight="bold"
           notebookwidth="43.75rem"
           notebookheight="4.375rem"
           notebookmargin="0"
-          notebookfontSize="2.25rem"
+          notebookfontsize="2.25rem"
         >
-          <Div className="EmailCheck">aaa@naver.com</Div>
+          <Div className="EmailCheck" fontsize="2.4rem">
+            {state}
+          </Div>
           으로 보낸
         </Div>
         <Div
@@ -65,12 +69,12 @@ function EmailAuth() {
           height="5.625rem"
           margin="0 0 1.125rem 0"
           color={Gray2}
-          fontSize="3rem"
+          fontsize="2rem"
           fontWeight="bold"
           notebookwidth="43.75rem"
           notebookheight="4.375rem"
           notebookmargin="0 0 2rem 0"
-          notebookfontSize="2.25rem"
+          notebookfontsize="2.25rem"
         >
           이메일 인증링크를 확인하세요.
         </Div>
@@ -78,7 +82,7 @@ function EmailAuth() {
           className="HomeBtn"
           width="12.5rem"
           height="4.375rem"
-          fontSize="1.5rem"
+          fontsize="1.5rem"
           fontWeight="bold"
           borderradius="1rem"
           border="none"

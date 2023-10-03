@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import app from "../../Firebase/firebase";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -6,8 +8,44 @@ import Button from "../../components/BaseComponents/Button";
 import Input from "../../components/BaseComponents/Input";
 
 function FindIdPassword() {
+  const navigate = useNavigate();
+
   const Default = Color({ color: "Default" });
   const Gray2 = Color({ color: "Gray2" });
+
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const onChangeNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
+  const onChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  // 비밀번호 재설정
+  const onClickFindPassword = () => {
+    if (email !== "") {
+      console.log(email);
+      app
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then((res) => {
+          console.log("비밀번호 reset, email 전송");
+          // console.log(res);
+          navigate("/EmailAuth", { state: email });
+        })
+        .catch((err) => {
+          console.log("에러 메세지 : ", err.message);
+        });
+    }
+  };
 
   return (
     <Div
@@ -50,7 +88,7 @@ function FindIdPassword() {
             notebookheight="3.875rem"
             notebookfontsize="1.75rem"
           >
-            아이디 찾기
+            이메일 찾기
           </Div>
           <Div
             className="FindIdMainContainer"
@@ -78,7 +116,7 @@ function FindIdPassword() {
               notebookheight="3.125rem"
               notebookfontsize="1.25rem"
             >
-              회원정보에 등록한 이름과 이메일을 입력해주세요.
+              회원정보에 등록한 이름과 닉네임을 입력해주세요.
             </Div>
             <Div
               className="NameContainer"
@@ -112,6 +150,7 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onChange={onChangeName}
               />
             </Div>
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
@@ -127,10 +166,10 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1.25rem"
               >
-                이메일
+                닉네임
               </Div>
               <Input
-                placeholder="이메일을 입력하세요."
+                placeholder="닉네임을 입력하세요."
                 padding="0 0 0 1.313rem"
                 margin="0 0.375rem 0 0"
                 width="21.875rem"
@@ -141,6 +180,7 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onChange={onChangeNickname}
               />
               <Button
                 type="submit"
@@ -211,7 +251,7 @@ function FindIdPassword() {
             >
               회원정보에 등록한 아이디와 이메일을 입력해주세요.
             </Div>
-            <Div
+            {/* <Div
               className="IdContainer"
               display="flex"
               width="35.375rem"
@@ -243,8 +283,9 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onChange={onChangeId}
               />
-            </Div>
+            </Div> */}
             <Div className="EmailContainer" display="flex" margin="0 0 0.688rem 0">
               <Div
                 className="Email"
@@ -272,6 +313,7 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onChange={onChangeEmail}
               />
               <Button
                 type="submit"
@@ -285,6 +327,7 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onClick={onClickFindPassword}
               >
                 확인
               </Button>
