@@ -95,6 +95,8 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // console.log("home uuid : ", location.state.uid);
+
   const handleCardClick = (id) => {
     navigate(`/Auction/${id}`);
   };

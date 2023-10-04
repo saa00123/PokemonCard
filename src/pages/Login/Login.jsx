@@ -17,31 +17,19 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
-  const handleSignIn = () => {
-    // app
-    //   .auth()
-    //   .signInWithEmailAndPassword(id, password)
-    //   .then((userCredential) => {
-    //     // 로그인 성공 시 처리
-    //     console.log("로그인 성공:", userCredential.user.multiFactor.user);
-    //     setError(null);
-    //     navigate("/");
-    //   })
-    //   .catch((error) => {
-    //     setError(error.message);
-    //   });
-    // const auth = getAuth();
-    // signInWithCustomToken(auth, token)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const { user } = userCredential;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     // ...
-    //   });
+  const handleSignIn = async () => {
+    app
+      .auth()
+      .signInWithEmailAndPassword(id, password)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        console.log("user uid : ", user.uid);
+        sessionStorage.setItem("uid", JSON.stringify(user.uid));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -81,10 +69,10 @@ function Login() {
               notebookheight="3.125rem"
               notebookfontsize="1.25rem"
             >
-              아이디
+              이메일
             </Div>
             <Input
-              placeholder="Put your id"
+              placeholder="Put your email"
               padding="0 0 0 1.313rem"
               width="21.875rem"
               height="3.75rem"
@@ -185,7 +173,7 @@ function Login() {
                   notebookhoverborder="none"
                   notebookhoverbordercolor="none"
                 >
-                  아이디/비밀번호 찾기
+                  이메일/비밀번호 찾기
                 </Button>
               </Div>
             </Div>

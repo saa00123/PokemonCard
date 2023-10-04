@@ -28,6 +28,11 @@ const DivContainer = styled.div`
   overflow-x: ${(props) => props.overflowx};
   overflow-y: ${(props) => props.overflowy};
   word-wrap: ${(props) => props.wordwrap};
+  top: ${(props) => props.top};
+  right: ${(props) => props.right};
+  bottom: ${(props) => props.bottom};
+  left: ${(props) => props.left};
+  float: ${(props) => props.float};
 
   @media (min-width: 1024px) and (max-width: 1440px) {
     display: ${(props) => props.notebookdisplay};
@@ -53,6 +58,11 @@ const DivContainer = styled.div`
     vertical-align: ${(props) => props.notebookverticalalign};
     grid-template-rows: ${(props) => props.notebookGridTemplateRows};
     grid-template-columns: ${(props) => props.notebookGridTemplateColumns};
+    top: ${(props) => props.notebooktop};
+    right: ${(props) => props.notebookright};
+    bottom: ${(props) => props.notebookbottom};
+    left: ${(props) => props.notebookleft};
+    float: ${(props) => props.notebookfloat};
   }
 `;
 
@@ -84,6 +94,11 @@ const BasicDiv = (props) => {
     overflowx,
     overflowy,
     wordwrap,
+    top,
+    right,
+    bottom,
+    left,
+    float,
     notebookdisplay,
     notebookflexdirection,
     notebookjustifycontent,
@@ -107,6 +122,11 @@ const BasicDiv = (props) => {
     notebookverticalalign,
     notebookGridTemplateRow,
     notebookGridTemplateColumns,
+    notebooktop,
+    notebookright,
+    notebookbottom,
+    notebookleft,
+    notebookfloat,
     children,
     ...rest
   } = props;
@@ -139,6 +159,11 @@ const BasicDiv = (props) => {
       overflowx={overflowx}
       overflowy={overflowy}
       wordwrap={wordwrap}
+      top={top}
+      right={right}
+      bottom={bottom}
+      left={left}
+      float={float}
       notebookdisplay={notebookdisplay}
       notebookflexdirection={notebookflexdirection}
       notebookjustifycontent={notebookjustifycontent}
@@ -162,6 +187,11 @@ const BasicDiv = (props) => {
       notebookposition={notebookposition}
       notebookoverflowx={notebookoverflowx}
       notebookoverflowy={notebookoverflowy}
+      notebooktop={notebooktop}
+      notebookright={notebookright}
+      notebookbottom={notebookbottom}
+      notebookleft={notebookleft}
+      notebookfloat={notebookfloat}
       {...rest}
     >
       {children}

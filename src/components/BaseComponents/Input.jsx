@@ -70,6 +70,7 @@ const Input = (props) => {
     notebookpadding,
     notebookHoverBorder,
     disabled,
+    onBlur,
     ...rest
   } = props;
 
@@ -95,6 +96,7 @@ const Input = (props) => {
       notebookmargin={notebookmargin}
       notebookpadding={notebookpadding}
       disabled={disabled}
+      onBlur={onBlur}
       {...rest}
     />
   );
