@@ -11,6 +11,7 @@ import {
   setAuctionPrice,
   setCurrentPrice,
   setRandomId,
+  setSeller,
 } from "../../store/reducers/cardSlice";
 import database from "../../Firebase/database";
 import firestore from "../../Firebase/firestore";

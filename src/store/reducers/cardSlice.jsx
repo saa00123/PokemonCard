@@ -112,6 +112,9 @@ const cardSlice = createSlice({
     setOfflineTradingPlace(state, action) {
       state.offlineTradingPlace = action.payload;
     },
+    setSeller(state, action) {
+      state.offlineTradingPlace = action.payload;
+    },
 
     /** 페이징 */
     setCurrentPage(state, action) {
@@ -159,6 +162,7 @@ export const {
   toggleIsOnlineChecked,
   toggleIsOfflineChecked,
   setOfflineTradingPlace,
+  setSeller,
   setCurrentPage,
   setPerPage,
   nextPage,

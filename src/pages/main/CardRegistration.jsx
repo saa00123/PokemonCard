@@ -214,6 +214,13 @@ function CardRegistration() {
       tradingMethods.push(offlineInfo);
     }
 
+    const sellerUid = sessionStorage.getItem("uid");
+
+    if (!sellerUid) {
+      console.error("세션 스토리지에서 uid를 찾을 수 없습니다. 사용자가 로그인하였는지 확인해주세요.");
+      return;
+    }
+
     const cardData = {
       title,
       information,
@@ -227,6 +234,7 @@ function CardRegistration() {
         endDate,
       },
       trading: tradingMethods,
+      seller: sellerUid,
     };
 
     try {
