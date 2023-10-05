@@ -94,6 +94,8 @@ const Header = () => {
       } else {
         alert("로그아웃 되었습니다.");
         sessionStorage.removeItem("uid");
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("nickname");
         setIsLoggedIn(false);
         await firebase.auth().signOut();
       }
