@@ -61,17 +61,28 @@ const HeaderMenu = styled.button`
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  useEffect(() => {
-    console.log("header uid", JSON.parse(sessionStorage.getItem("uid")));
-    const state = JSON.parse(sessionStorage.getItem("uid"));
-    if (state === null) setIsLoggedIn(false);
-    else setIsLoggedIn(true);
-  }, []);
+  const uid = JSON.parse(sessionStorage.getItem("uid"));
+  console.log("uid : ", uid);
+  // useEffect(() => {
+  //   console.log("header uid", uid);
+  //   const state = JSON.parse(sessionStorage.getItem("uid"));
+  //   if (state === null) setIsLoggedIn(false);
+  //   else setIsLoggedIn(true);
+  // }, [isLoggedIn]);
 
   const navigate = useNavigate();
 
+  const checkUid = () => {
+    if (uid !== null) return true;
+    return false;
+  };
+
   const navigateCardRegistration = () => {
-    navigate("/CardRegistration");
+    if (uid !== null) navigate("/CardRegistration");
+    else {
+      alert("로그인이 필요한 페이지 입니다.");
+      navigate("/Login");
+    }
   };
 
   const navigatFinishAuction = () => {
@@ -96,7 +107,8 @@ const Header = () => {
         sessionStorage.removeItem("uid");
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("nickname");
-        setIsLoggedIn(false);
+        navigate("/");
+        // setIsLoggedIn(false);
         await firebase.auth().signOut();
       }
     } catch (error) {
@@ -113,7 +125,7 @@ const Header = () => {
           <HeaderMenu onClick={navigateCardRegistration}>카드 등록</HeaderMenu>
           <HeaderMenu onClick={navigatFinishAuction}>마감된 경매</HeaderMenu>
           <HeaderMenu onClick={navigateMyPage}>마이 페이지</HeaderMenu>
-          {isLoggedIn ? (
+          {uid ? (
             <HeaderMenu onClick={onClickLogout}>로그아웃</HeaderMenu>
           ) : (
             <HeaderMenu onClick={navigateLogin}>로그인</HeaderMenu>
