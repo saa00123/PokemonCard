@@ -29,6 +29,15 @@ function FindIdPassword() {
     setEmail(e.target.value);
   };
 
+  // 이메일 찾기
+  const onClickFindEmail = () => {
+    if (name !== "" && nickname !== "") {
+      console.log(name, nickname);
+    } else {
+      alert("형식을 모두 적어주세요");
+    }
+  };
+
   // 비밀번호 재설정
   const onClickFindPassword = () => {
     if (email !== "") {
@@ -36,7 +45,7 @@ function FindIdPassword() {
       app
         .auth()
         .sendPasswordResetEmail(email)
-        .then((res) => {
+        .then(() => {
           console.log("비밀번호 reset, email 전송");
           // console.log(res);
           navigate("/EmailAuth", { state: email });
@@ -44,6 +53,8 @@ function FindIdPassword() {
         .catch((err) => {
           console.log("에러 메세지 : ", err.message);
         });
+    } else {
+      alert("형식을 모두 적어주세요");
     }
   };
 
@@ -194,6 +205,7 @@ function FindIdPassword() {
                 notebookheight="2.5rem"
                 notebookfontsize="1rem"
                 notebookborderradius="10px"
+                onClick={onClickFindEmail}
               >
                 확인
               </Button>
@@ -249,7 +261,7 @@ function FindIdPassword() {
               notebookheight="3.125rem"
               notebookfontsize="1.25rem"
             >
-              회원정보에 등록한 아이디와 이메일을 입력해주세요.
+              회원정보에 등록한 이메일을 입력해주세요.
             </Div>
             {/* <Div
               className="IdContainer"
