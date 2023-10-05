@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import app from "../../Firebase/firebase"; // firebase.js 파일에서 Firebase 인스턴스를 가져옵니다.
+import app from "../../Firebase/firebase";
+import firestore from "../../Firebase/firestore";
 import Color from "../../components/BaseComponents/Color";
 import Logo from "../../components/BaseComponents/Logo";
 import Div from "../../components/BaseComponents/BasicDiv";
@@ -15,20 +16,39 @@ function Login() {
 
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
   const [error, setError] = useState(null);
 
   const handleSignIn = async () => {
-    app
-      .auth()
-      .signInWithEmailAndPassword(id, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
-        console.log("user uid : ", user.uid);
-        sessionStorage.setItem("uid", JSON.stringify(user.uid));
-        navigate("/");
+    firestore
+      .collection("user")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setNickname(doc.data().nickname);
+          app
+            .auth()
+            .signInWithEmailAndPassword(id, password)
+            .then((userCredential) => {
+              const { user } = userCredential;
+              // console.log("user uid : ", user.uid);
+
+              sessionStorage.setItem("uid", JSON.stringify(user.uid));
+              sessionStorage.setItem("email", JSON.stringify(id));
+              sessionStorage.setItem("nickname", JSON.stringify(nickname));
+
+              navigate("/");
+            })
+            .catch((err) => {
+              console.log(err);
+              alert("로그인에 실패했습니다.");
+            });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log("err : ", err);
+        alert("정보를 가져오는데 오류가 발생했습니다.");
       });
   };
 
