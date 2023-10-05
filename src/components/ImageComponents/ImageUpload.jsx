@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import storage from "../../Firebase/storage";
+import storage from "../../Firebase/storage"; // firebase.js 파일에서 storage 인스턴스를 가져옵니다.
 import Div from "../BaseComponents/BasicDiv";
 import Input from "../BaseComponents/Input";
 import Button from "../BaseComponents/Button";
@@ -46,29 +46,26 @@ function ImageUpload({ onImageUrlsUpdate }) {
     // 선택한 파일들의 미리보기 URL 배열 생성
     const previewUrls = updatedFiles.map((file) => URL.createObjectURL(file));
     setPreviewUrls(previewUrls);
-
-    // 모든 파일들을 업로드하고 완료되면 onImageUrlsUpdate 호출
-    Promise.all(files.map(handleUpload)).then(() => {
-      onImageUrlsUpdate(uploadedUrls);
-    });
   };
 
-  const handleUpload = async (file) => {
+  const handleUpload = (file) => {
     const fileName = `${uuidv4()}_${file.name}`;
     const storageRef = storage.ref(fileName);
 
-    try {
-      await storageRef.put(file);
-      const url = await storageRef.getDownloadURL();
-      setUploadedUrls((prevUrls) => {
-        const newUrls = [...prevUrls, url];
-        onImageUrlsUpdate(newUrls);
-        return newUrls;
+    storageRef
+      .put(file)
+      .then(() => storageRef.getDownloadURL())
+      .then((url) => {
+        setUploadedUrls((prevUrls) => {
+          const newUrls = [...prevUrls, url];
+          onImageUrlsUpdate(newUrls);
+          return newUrls;
+        });
+        console.log("File uploaded successfully.");
+      })
+      .catch((error) => {
+        console.error("Error during file upload:", error);
       });
-      console.log("File uploaded successfully.");
-    } catch (error) {
-      console.error("Error during file upload:", error);
-    }
   };
 
   const handleDelete = (index) => {
