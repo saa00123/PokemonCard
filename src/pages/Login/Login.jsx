@@ -20,37 +20,35 @@ function Login() {
   const [error, setError] = useState(null);
 
   const handleSignIn = async () => {
-    firestore
-      .collection("user")
-      .doc(id)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          setNickname(doc.data().nickname);
-          app
-            .auth()
-            .signInWithEmailAndPassword(id, password)
-            .then((userCredential) => {
-              const { user } = userCredential;
-              // console.log("user uid : ", user.uid);
-
+    app
+      .auth()
+      .signInWithEmailAndPassword(id, password)
+      .then((userCredential) => {
+        const { user } = userCredential;
+        // console.log("user uid : ", user.uid);
+        firestore
+          .collection("user")
+          .doc(id)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
               sessionStorage.setItem("uid", JSON.stringify(user.uid));
               sessionStorage.setItem("email", JSON.stringify(id));
-              sessionStorage.setItem("nickname", JSON.stringify(nickname));
+              sessionStorage.setItem("nickname", JSON.stringify(doc.data().nickname));
+            } else {
+              console.log("아모고또 없지요~!");
+            }
+          })
+          .catch((err) => {
+            console.log("err : ", err);
+            alert("정보를 가져오는데 오류가 발생했습니다.");
+          });
 
-              navigate("/");
-            })
-            .catch((err) => {
-              console.log(err);
-              alert("로그인에 실패했습니다.");
-            });
-        } else {
-          console.log("아모고또 없지요~!");
-        }
+        navigate("/");
       })
       .catch((err) => {
-        console.log("err : ", err);
-        alert("정보를 가져오는데 오류가 발생했습니다.");
+        console.log(err);
+        alert("로그인에 실패했습니다.");
       });
   };
 
