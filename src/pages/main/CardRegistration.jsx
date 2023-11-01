@@ -200,42 +200,26 @@ function CardRegistration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const tradingMethods = [];
-
-    if (isOnlineChecked) {
-      tradingMethods.push("온라인 거래");
-    }
-
-    if (isOfflineChecked) {
-      const offlineInfo = {
-        method: "오프라인 거래",
-        place: offlineTradingPlace,
-      };
-      tradingMethods.push(offlineInfo);
-    }
+    const tradingMethods = [
+      isOnlineChecked && "온라인 거래",
+      isOfflineChecked && { method: "오프라인 거래", place: offlineTradingPlace },
+    ].filter(Boolean);
 
     const cardData = {
       title,
       information,
       imageUrls,
-      price: {
-        startPrice,
-        bidUnit,
-      },
-      date: {
-        startDate,
-        endDate,
-      },
+      price: { startPrice, bidUnit },
+      date: { startDate, endDate },
       trading: tradingMethods,
     };
 
     try {
       await firestore.collection("CardRegistration").add(cardData);
-      console.log("Card added successfully");
       dispatch(resetState());
       navigate("/");
     } catch (error) {
-      console.error("Error adding card:", error);
+      console.error("카드 추가 중 오류:", error);
     }
   };
 
